@@ -21,6 +21,9 @@
     <Filter Include="program\[001] dxlib_ext\create_mesh">
       <UniqueIdentifier>{11d8e443-8d64-409c-92f1-6895cd2dbbce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\scene">
+      <UniqueIdentifier>{f36f90b2-793f-4fc7-a8e3-7f6e18c582be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
