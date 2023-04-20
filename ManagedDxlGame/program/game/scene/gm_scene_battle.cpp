@@ -1,4 +1,4 @@
-#include "scene_battle.h"
+#include "gm_scene_battle.h"
 
 void SceneBattle::Initialzie() {
 

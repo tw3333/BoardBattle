@@ -1,4 +1,4 @@
-#include "scene_manager.h"
+#include "gm_scene_manager.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
 

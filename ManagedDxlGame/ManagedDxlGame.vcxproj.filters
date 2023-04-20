@@ -27,6 +27,9 @@
     <Filter Include="program\[003] game\ui">
       <UniqueIdentifier>{afe84607-3d72-4986-a73f-6f00f11b1f49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\object">
+      <UniqueIdentifier>{3579b634-876d-42e4-abd2-5c2dbe5abc51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -140,13 +143,13 @@
     <ClCompile Include="program\library\tnl_instance.cpp">
       <Filter>program\[000] library</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\scene_manager.cpp">
+    <ClCompile Include="program\game\gm_scene_manager.cpp">
       <Filter>program\[003] game</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\scene\scene_selectphase.cpp">
+    <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\scene\scene_battle.cpp">
+    <ClCompile Include="program\game\scene\gm_scene_battle.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_ally.cpp">
@@ -257,16 +260,16 @@
     <ClInclude Include="program\library\tnl_instance.h">
       <Filter>program\[000] library</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\scene\scene_base.h">
+    <ClInclude Include="program\game\scene\gm_scene_base.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\scene_manager.h">
+    <ClInclude Include="program\game\gm_scene_manager.h">
       <Filter>program\[003] game</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\scene\scene_selectphase.h">
+    <ClInclude Include="program\game\scene\gm_scene_selectphase.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\scene\scene_battle.h">
+    <ClInclude Include="program\game\scene\gm_scene_battle.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_ally.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_enemy.h">
       <Filter>program\[003] game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_gameobject.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

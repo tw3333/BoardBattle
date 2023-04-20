@@ -6,6 +6,7 @@
 
 class SceneBase {
 public:
+	
 	SceneBase(){}
 	virtual ~SceneBase(){}
 
