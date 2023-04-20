@@ -24,6 +24,9 @@
     <Filter Include="program\[003] game\scene">
       <UniqueIdentifier>{f36f90b2-793f-4fc7-a8e3-7f6e18c582be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\ui">
+      <UniqueIdentifier>{afe84607-3d72-4986-a73f-6f00f11b1f49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -137,6 +140,15 @@
     <ClCompile Include="program\library\tnl_instance.cpp">
       <Filter>program\[000] library</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene_manager.cpp">
+      <Filter>program\[003] game</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\scene\scene_selectphase.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\scene\scene_battle.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -238,6 +250,18 @@
     </ClInclude>
     <ClInclude Include="program\library\tnl_instance.h">
       <Filter>program\[000] library</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\scene_base.h">
+      <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene_manager.h">
+      <Filter>program\[003] game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\scene_selectphase.h">
+      <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\scene_battle.h">
+      <Filter>program\[003] game\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
