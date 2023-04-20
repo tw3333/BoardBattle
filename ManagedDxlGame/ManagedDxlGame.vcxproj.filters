@@ -149,6 +149,9 @@
     <ClCompile Include="program\game\scene\scene_battle.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ally.cpp">
+      <Filter>program\[003] game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -262,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="program\game\scene\scene_battle.h">
       <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ally.h">
+      <Filter>program\[003] game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_unit.h">
+      <Filter>program\[003] game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

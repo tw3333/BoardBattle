@@ -166,6 +166,7 @@
     <ClCompile Include="program\dxlib_ext\dxlib_ext_mesh.cpp" />
     <ClCompile Include="program\dxlib_ext\dxlib_ext_texture.cpp" />
     <ClCompile Include="program\dxlib_ext\OBJLoader.cpp" />
+    <ClCompile Include="program\game\gm_ally.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
     <ClCompile Include="program\game\scene\scene_battle.cpp" />
     <ClCompile Include="program\game\scene\scene_selectphase.cpp" />
@@ -199,7 +200,9 @@
     <ClInclude Include="program\dxlib_ext\dxlib_ext_render_param.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_texture.h" />
     <ClInclude Include="program\dxlib_ext\OBJLoader.h" />
+    <ClInclude Include="program\game\gm_ally.h" />
     <ClInclude Include="program\game\gm_main.h" />
+    <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\scene\scene_battle.h" />
     <ClInclude Include="program\game\scene\scene_selectphase.h" />
     <ClInclude Include="program\game\scene\scene_base.h" />
