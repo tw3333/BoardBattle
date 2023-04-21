@@ -6,12 +6,27 @@
 class Ally : public Unit{
 public:
 
-	Ally() {}
+	Ally(int id, int hp, int cost, int speed){
+	
+		ally_id_ = id;
+		max_hp_ = hp;
+		now_hp_ = hp;
+		max_cost_ = cost;
+		now_cost_ = cost;
+		speed_ = speed;
+	
+	}
+
 	~Ally(){}
 
 	//getter,setter
 	Unit::Type getTYPE() { return type_; }
 	int getAllyID() { return ally_id_; }
+	int getAllyMaxHp() { return max_hp_; }
+	int getAllyNowHp() { return now_hp_; }
+	int getAllyMaxCost() { return max_cost_; }
+	int getAllyNowCost() { return now_cost_; }
+	int getAllySpeed() { return speed_; }
 
 
 	//ÉÅÉìÉoä÷êî
@@ -32,6 +47,8 @@ private:
 	int now_cost_;
 
 	int speed_;
+
+
 
 	std::string img_face1_path;
 	std::string img_face2_path;
