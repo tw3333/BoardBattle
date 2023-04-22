@@ -1,6 +1,8 @@
 #pragma once
 #include "gm_scene_base.h"
 
+#include "../gm_scene_manager.h"
+
 class SceneBattle : public SceneBase {
 public:
 

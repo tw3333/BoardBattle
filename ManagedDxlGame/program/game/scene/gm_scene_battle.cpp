@@ -10,5 +10,9 @@ void SceneBattle::Update(float delta_time) {
 
 void SceneBattle::Render() {
 
+	DrawStringEx(0,0,-1,"SceneBattle");
+
+
+
 }
 
