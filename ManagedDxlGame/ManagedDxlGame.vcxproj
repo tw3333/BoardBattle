@@ -169,6 +169,7 @@
     <ClCompile Include="program\game\gm_ally.cpp" />
     <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
+    <ClCompile Include="program\game\gm_scene_battle_camera.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
     <ClCompile Include="program\game\gm_scene_manager.cpp" />
@@ -202,8 +203,10 @@
     <ClInclude Include="program\dxlib_ext\dxlib_ext_texture.h" />
     <ClInclude Include="program\dxlib_ext\OBJLoader.h" />
     <ClInclude Include="program\game\gm_ally.h" />
+    <ClInclude Include="program\game\gm_card.h" />
     <ClInclude Include="program\game\gm_enemy.h" />
     <ClInclude Include="program\game\gm_main.h" />
+    <ClInclude Include="program\game\gm_scene_battle_camera.h" />
     <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\gm_gameobject.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />

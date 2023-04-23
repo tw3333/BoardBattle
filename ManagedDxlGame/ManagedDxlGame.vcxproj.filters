@@ -30,6 +30,15 @@
     <Filter Include="program\[003] game\object">
       <UniqueIdentifier>{3579b634-876d-42e4-abd2-5c2dbe5abc51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\unit">
+      <UniqueIdentifier>{3eda1caa-5765-40a6-986d-d7192de11bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="program\[003] game\manager">
+      <UniqueIdentifier>{232bfb90-f8d2-48e0-9086-07e60f896080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="program\[003] game\camera">
+      <UniqueIdentifier>{bb321f02-1afc-4c69-bb4e-c6eecf437971}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -143,9 +152,6 @@
     <ClCompile Include="program\library\tnl_instance.cpp">
       <Filter>program\[000] library</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_scene_manager.cpp">
-      <Filter>program\[003] game</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
@@ -153,10 +159,16 @@
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_ally.cpp">
-      <Filter>program\[003] game</Filter>
+      <Filter>program\[003] game\unit</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_enemy.cpp">
-      <Filter>program\[003] game</Filter>
+      <Filter>program\[003] game\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_scene_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_scene_battle_camera.cpp">
+      <Filter>program\[003] game\camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,26 +275,32 @@
     <ClInclude Include="program\game\scene\gm_scene_base.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_scene_manager.h">
-      <Filter>program\[003] game</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\scene\gm_scene_battle.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_ally.h">
-      <Filter>program\[003] game</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_unit.h">
-      <Filter>program\[003] game</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_enemy.h">
-      <Filter>program\[003] game</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_gameobject.h">
       <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card.h">
+      <Filter>program\[003] game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ally.h">
+      <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemy.h">
+      <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_scene_manager.h">
+      <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_unit.h">
+      <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_scene_battle_camera.h">
+      <Filter>program\[003] game\camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
