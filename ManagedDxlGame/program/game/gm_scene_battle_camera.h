@@ -25,6 +25,12 @@ private:
 
 	CameraType camera_type_ = Main;
 
+	float target_distance_ = 100;
+
+	tnl::Vector3 main_camera_pos_;
+
+
+
 	
 
 };

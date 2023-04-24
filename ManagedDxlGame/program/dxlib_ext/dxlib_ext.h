@@ -21,8 +21,8 @@
 #include "dxlib_ext_mesh.h"
 #include "dxlib_ext_texture.h"
 
-const int DXE_WINDOW_WIDTH = 1280;
-const int DXE_WINDOW_HEIGHT = 720;
+const int DXE_WINDOW_WIDTH = 1600;
+const int DXE_WINDOW_HEIGHT = 900;
 const float DXE_FIX_FPS = 60.0f;
 
 void DrawStringEx(const float x, const float y, const int color, const char* _str, ...);

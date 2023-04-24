@@ -170,6 +170,9 @@
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp">
       <Filter>program\[003] game\camera</Filter>
     </ClCompile>
+    <ClCompile Include="gm_battle_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -301,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_scene_battle_camera.h">
       <Filter>program\[003] game\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_battle_manager.h">
+      <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
