@@ -173,6 +173,12 @@
     <ClCompile Include="gm_battle_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene\gm_scene_load.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ally_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -306,6 +312,15 @@
       <Filter>program\[003] game\camera</Filter>
     </ClInclude>
     <ClInclude Include="gm_battle_manager.h">
+      <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_board_object.h">
+      <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\gm_scene_load.h">
+      <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ally_manager.h">
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>

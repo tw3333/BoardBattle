@@ -1,6 +1,8 @@
 #pragma once
 
 //memo
+//Boardã‚É’u‚©‚ê‚éUnit‚ÌŠî’êƒNƒ‰ƒX
+
 
 
 class Unit {

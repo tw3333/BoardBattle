@@ -1,6 +1,10 @@
 #pragma once
 #include "../dxlib_ext/dxlib_ext.h"
 
+//memo
+//各Sceneクラスを管理、遷移させるクラス
+//Singlton設計
+
 class SceneBase;
 
 class SceneManager {
