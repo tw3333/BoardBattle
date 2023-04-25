@@ -19,9 +19,9 @@ private:
 	//std::string;
 	
 	
-	int card_img_handle;
-	std::string card_img_path;
-	
+	int card_img_handle_; 
+	std::string card_img_path_;
+	std::string card_explanation_; //ƒJ[ƒh‚ÌŒø‰Ê•¶
 
 
 };
