@@ -1,9 +1,13 @@
 #pragma once
+#include <string>
 
 class Card {
 public:
 
-	Card(){}
+	Card(int cost){
+		cost_ = cost;
+	
+	}
 	~Card(){}
 
 
@@ -11,5 +15,13 @@ public:
 private:
 
 	int cost_;
+
+	//std::string;
+	
+	
+	int card_img_handle;
+	std::string card_img_path;
+	
+
 
 };

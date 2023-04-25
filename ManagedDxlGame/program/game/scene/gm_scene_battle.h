@@ -30,7 +30,8 @@ private:
 	//pointer
 	SceneBattleCamera* camera_ = nullptr;
 
-	dxe::Mesh* kari_board_ = nullptr;
+	dxe::Mesh* debug_board_obj_ = nullptr;
+
 
 	//bool
 	bool is_draw_debug_layout_ = false;

@@ -3,10 +3,15 @@
 void SceneBattle::Initialzie() {
 
 	camera_ = new SceneBattleCamera();
-	camera_->pos_ = { 0,680,-605 };
-
+	camera_->target_ = { (float)w1 * 8 / 2,0,(float)h1*8/2};
+	//camera_->pos_ = { 0,680,-605 };
+	camera_->pos_ = { (float)w1 * 8 / 2,680,-605 };
 	
-
+	debug_board_obj_ = dxe::Mesh::CreatePlane({ (float)w1*8,(float)h1*8,0 });
+	debug_board_obj_->setTexture(dxe::Texture::CreateFromFile("graphics/512.bmp"));
+	debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
+	debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
+	
 
 
 
@@ -25,7 +30,28 @@ void SceneBattle::Update(float delta_time) {
 
 	}
 
+	if (tnl::Input::IsKeyDown(eKeys::KB_W)) {
+		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 1,  0 }, camera_->rot_);
+	}
+	if (tnl::Input::IsKeyDown(eKeys::KB_S)) {
+		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, -1, 0 }, camera_->rot_);
+	}
 
+	if (tnl::Input::IsKeyDown(eKeys::KB_Q)) {
+		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0,  1 }, camera_->rot_);
+	}
+	if (tnl::Input::IsKeyDown(eKeys::KB_E)) {
+		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0, -1 }, camera_->rot_);
+	}
+
+	if (tnl::Input::IsKeyDown(eKeys::KB_R)) {
+
+		camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(1));
+	}
+
+	if (tnl::Input::IsKeyDown(eKeys::KB_F)) {
+		camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(-1));
+	}
 
 
 
@@ -34,13 +60,14 @@ void SceneBattle::Update(float delta_time) {
 void SceneBattle::Render() {
 
 	camera_->update();
+	debug_board_obj_->render(camera_);
 	
 	DrawStringEx(0,0,-1,"SceneBattle");
 
 	DrawDebugLayOut(is_draw_debug_layout_);
 	
 
-	DrawBox(0,0,1280,720,0,true);
+	//DrawBox(0,0,1280,720,0,true);
 
 }
 
