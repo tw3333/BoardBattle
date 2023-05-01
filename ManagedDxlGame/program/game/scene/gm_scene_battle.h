@@ -2,7 +2,9 @@
 #include "gm_scene_base.h"
 
 #include "../gm_scene_manager.h"
+#include "../gm_card_manager.h"
 #include "../gm_scene_battle_camera.h"
+#include "../gm_ui_cardview.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -29,7 +31,10 @@ private:
 	//メンバ変数
 	//pointer
 	SceneBattleCamera* camera_ = nullptr;
-
+	//CardView* cardview_ = nullptr;
+	CardManager* cmgr_ = nullptr;
+	
+	
 	dxe::Mesh* debug_board_obj_ = nullptr;
 
 

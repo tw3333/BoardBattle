@@ -13,7 +13,9 @@ void SceneBattle::Initialzie() {
 	debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
 	
 
-
+	cmgr_ = cmgr_->GetInstance();
+	cmgr_->MakeDebugCard();
+	
 
 }
 
@@ -64,8 +66,19 @@ void SceneBattle::Render() {
 	
 	DrawStringEx(0,0,-1,"SceneBattle");
 
+
+
+	//test—Ìˆæ
+	CardView cardview(cmgr_->getCardDateAtIndex(1));
+	cardview.Render(0,0);
+
+
+
 	DrawDebugLayOut(is_draw_debug_layout_);
 	
+
+
+
 
 	//DrawBox(0,0,1280,720,0,true);
 

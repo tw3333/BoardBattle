@@ -17,6 +17,9 @@ public:
 	//ƒƒ“ƒoŠÖ”
 	void MakeDebugCard();
 
+	//get,set
+	Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }
+
 private:
 
 	CardManager(){};

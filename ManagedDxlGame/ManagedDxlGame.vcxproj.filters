@@ -347,5 +347,8 @@
     <ClInclude Include="program\game\gm_ui_cardview.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_ui_cardui_controller.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

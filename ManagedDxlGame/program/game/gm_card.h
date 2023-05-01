@@ -11,7 +11,10 @@ public:
 	~Card(){}
 
 	//g,s
-	void setCardImgHandle(int handle) { card_img_handle_ = handle;  };
+	void setCardImgHandle(int handle) { card_img_handle_ = handle;  }
+	
+	int getCardImgHandle() { return card_img_handle_; }
+
 
 private:
 

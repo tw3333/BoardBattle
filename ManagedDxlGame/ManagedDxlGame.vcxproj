@@ -217,6 +217,7 @@
     <ClInclude Include="program\game\gm_hand.h" />
     <ClInclude Include="program\game\gm_main.h" />
     <ClInclude Include="program\game\gm_scene_battle_camera.h" />
+    <ClInclude Include="program\game\gm_ui_cardui_controller.h" />
     <ClInclude Include="program\game\gm_ui_cardview.h" />
     <ClInclude Include="program\game\gm_ui_handview.h" />
     <ClInclude Include="program\game\gm_ui_panel.h" />
