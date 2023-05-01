@@ -7,8 +7,9 @@ void CardView::Render(int x, int y) {
 
 	if (is_opened_) {
 
-		DrawExtendGraph(x, y, x + card_w_, y + card_h_, card_->getCardImgHandle(), false);
-
+		//ƒJ[ƒh•`ŽÊ
+		DrawExtendGraph(x, y, x + open_card_w_, y + open_card_h_, card_->getCardImgHandle(), false);
+		
 
 	}
 	else {
