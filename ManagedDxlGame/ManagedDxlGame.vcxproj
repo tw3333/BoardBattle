@@ -169,9 +169,11 @@
     <ClCompile Include="program\dxlib_ext\OBJLoader.cpp" />
     <ClCompile Include="program\game\gm_ally.cpp" />
     <ClCompile Include="program\game\gm_ally_manager.cpp" />
+    <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp" />
+    <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_load.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
@@ -210,9 +212,14 @@
     <ClInclude Include="program\game\gm_ally.h" />
     <ClInclude Include="program\game\gm_ally_manager.h" />
     <ClInclude Include="program\game\gm_card.h" />
+    <ClInclude Include="program\game\gm_card_manager.h" />
     <ClInclude Include="program\game\gm_enemy.h" />
+    <ClInclude Include="program\game\gm_hand.h" />
     <ClInclude Include="program\game\gm_main.h" />
     <ClInclude Include="program\game\gm_scene_battle_camera.h" />
+    <ClInclude Include="program\game\gm_ui_cardview.h" />
+    <ClInclude Include="program\game\gm_ui_handview.h" />
+    <ClInclude Include="program\game\gm_ui_panel.h" />
     <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\gm_gameobject.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />

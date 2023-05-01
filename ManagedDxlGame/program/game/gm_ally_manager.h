@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+
 #include "gm_ally.h"
 
 //memo
@@ -12,7 +13,7 @@ public:
 	static AllyManager* GetInstance();
 	static void Destory();
 
-	std::vector<Ally*> allies_;
+	
 
 private:
 
@@ -21,9 +22,8 @@ private:
 
 	static AllyManager* instance_;
 
-	//全Allyのインスタンス
-	//std::vector<Ally*> allies_;
-
+	//メンバ変数	
+	std::vector<Ally*> all_ally_data_;
 
 
 };

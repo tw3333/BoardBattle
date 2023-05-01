@@ -39,6 +39,9 @@
     <Filter Include="program\[003] game\camera">
       <UniqueIdentifier>{bb321f02-1afc-4c69-bb4e-c6eecf437971}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\card">
+      <UniqueIdentifier>{ecfe6d69-4cfd-4d89-9317-f33aeeaacc7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -179,6 +182,12 @@
     <ClCompile Include="program\game\gm_ally_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_cardview.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -293,9 +302,6 @@
     <ClInclude Include="program\game\gm_gameobject.h">
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_card.h">
-      <Filter>program\[003] game</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_ally.h">
       <Filter>program\[003] game\unit</Filter>
     </ClInclude>
@@ -322,6 +328,24 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ally_manager.h">
       <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_manager.h">
+      <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_handview.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_panel.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_hand.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_cardview.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
