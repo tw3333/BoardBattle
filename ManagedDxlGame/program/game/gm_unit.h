@@ -10,6 +10,10 @@ public:
 
 	virtual ~Unit(){}
 
+	
+
+protected:
+
 	enum class Type {
 		None,
 		Ally,
@@ -17,8 +21,7 @@ public:
 		Obstacle
 	};
 
-private:
-
 	Type type_ = Type::None;
+	void setType(Type type) { type_ = type; }
 
 };

@@ -3,10 +3,11 @@
 void SceneBattle::Initialzie() {
 
 	camera_ = new SceneBattleCamera();
-	camera_->target_ = { (float)w1 * 8 / 2,0,(float)h1*8/2};
-	//camera_->pos_ = { 0,680,-605 };
-	camera_->pos_ = { (float)w1 * 8 / 2,680,-605 };
+	//camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(54));
 	
+
+
+
 	debug_board_obj_ = dxe::Mesh::CreatePlane({ (float)w1*8,(float)h1*8,0 });
 	debug_board_obj_->setTexture(dxe::Texture::CreateFromFile("graphics/512.bmp"));
 	debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
@@ -30,20 +31,26 @@ void SceneBattle::Update(float delta_time) {
 			is_draw_debug_layout_ = false;
 		}
 
+		
+
 	}
 
 	if (tnl::Input::IsKeyDown(eKeys::KB_W)) {
-		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 1,  0 }, camera_->rot_);
+		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 1,  0 }, camera_->rot_);
+		camera_->pos_.z += 1;
 	}
 	if (tnl::Input::IsKeyDown(eKeys::KB_S)) {
-		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, -1, 0 }, camera_->rot_);
+		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, -1, 0 }, camera_->rot_);
+		camera_->pos_.z += -1;
 	}
 
 	if (tnl::Input::IsKeyDown(eKeys::KB_Q)) {
-		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0,  1 }, camera_->rot_);
+		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0,  1 }, camera_->rot_);
+		camera_->pos_.y += 1;
 	}
 	if (tnl::Input::IsKeyDown(eKeys::KB_E)) {
-		camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0, -1 }, camera_->rot_);
+		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0, -1 }, camera_->rot_);
+		camera_->pos_.y -= 1;
 	}
 
 	if (tnl::Input::IsKeyDown(eKeys::KB_R)) {
@@ -61,7 +68,7 @@ void SceneBattle::Update(float delta_time) {
 
 void SceneBattle::Render() {
 
-	camera_->update();
+	camera_->Update();
 	debug_board_obj_->render(camera_);
 	
 	DrawStringEx(0,0,-1,"SceneBattle");
@@ -70,7 +77,7 @@ void SceneBattle::Render() {
 
 	//test—Ìˆæ
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
-	cardview.Render(0,0);
+	cardview.Render(w1*8,h1*7);
 
 
 
@@ -89,6 +96,10 @@ void SceneBattle::Render() {
 
 void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
+	DrawStringEx(w1*8,0,-1,"camera.pos.x:%f",camera_->pos_.x);
+	DrawStringEx(w1 * 8, 20, -1, "camera.pos.y:%f", camera_->pos_.y);
+	DrawStringEx(w1 * 8, 40, -1, "camera.pos.z:%f", camera_->pos_.z);
+
 	if (is_draw) {
 		for (int i = 0; i < 10; ++i) {
 			DrawLine(0, h1 + h1 * i, DXE_WINDOW_WIDTH, h1 + h1 * i, -1);
@@ -97,5 +108,19 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	}
 
 	DrawGridGround(camera_, 50, 20);
+
+	//Board‚ÌƒOƒŠƒbƒgü
+	for (int i = 0; i <= 10; ++i) {
+
+		float mas_x = (w1 * 8) / 10;
+		float mas_z = (h1 * 8) / 10;
+
+		DrawLine3D({0,0,0 + (mas_z * i)}, {float(w1 * 8),0,0 + (mas_z * i)}, red_);
+		DrawLine3D({0 + (mas_x * i),0,0}, {0 + (mas_x * i),0,(float)(h1 * 8)}, red_);
+
+
+
+
+	}
 
 }

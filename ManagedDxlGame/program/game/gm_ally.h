@@ -8,6 +8,7 @@ public:
 
 	Ally(int id, int hp, int cost, int speed){
 	
+		setType(Type::Ally);
 		ally_id_ = id;
 		max_hp_ = hp;
 		now_hp_ = hp;
@@ -31,10 +32,10 @@ public:
 
 	//ƒƒ“ƒoŠÖ”
 	
-
+	
 private:
 
-	Unit::Type type_ = Unit::Type::Ally;
+	//type_ = Type::Ally;
 	
 	//AllyŠÇ——pID
 	int ally_id_;

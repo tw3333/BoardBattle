@@ -42,6 +42,9 @@
     <Filter Include="program\[003] game\card">
       <UniqueIdentifier>{ecfe6d69-4cfd-4d89-9317-f33aeeaacc7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\model">
+      <UniqueIdentifier>{54551b27-b3c0-478f-8f6f-63d70a94b0c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -186,6 +189,9 @@
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_cardview.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_handview.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -349,6 +355,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_cardui_controller.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_model.h">
+      <Filter>program\[003] game\model</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_parts.h">
+      <Filter>program\[003] game\model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

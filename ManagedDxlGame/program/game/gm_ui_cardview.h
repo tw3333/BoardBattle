@@ -28,7 +28,7 @@ private:
 	Card* card_ = nullptr;
 
 	bool is_mouse_Hovering_ = false;
-	bool is_opened_ = true;
+	bool is_opened_ = false;
 
 
 	int card_w_ = DXE_WINDOW_WIDTH / 10;
