@@ -214,6 +214,7 @@
     <ClInclude Include="program\game\gm_ally_manager.h" />
     <ClInclude Include="program\game\gm_card.h" />
     <ClInclude Include="program\game\gm_card_manager.h" />
+    <ClInclude Include="program\game\gm_data_ally.h" />
     <ClInclude Include="program\game\gm_enemy.h" />
     <ClInclude Include="program\game\gm_hand.h" />
     <ClInclude Include="program\game\gm_main.h" />

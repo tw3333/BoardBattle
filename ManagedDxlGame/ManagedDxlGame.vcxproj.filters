@@ -45,6 +45,9 @@
     <Filter Include="program\[003] game\model">
       <UniqueIdentifier>{54551b27-b3c0-478f-8f6f-63d70a94b0c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\data">
+      <UniqueIdentifier>{bb4eacc3-3bff-4ed9-b39a-02fa3ea387c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -361,6 +364,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_parts.h">
       <Filter>program\[003] game\model</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_data_ally.h">
+      <Filter>program\[003] game\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
