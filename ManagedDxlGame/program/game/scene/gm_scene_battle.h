@@ -6,6 +6,9 @@
 #include "../gm_scene_battle_camera.h"
 #include "../gm_ui_cardview.h"
 
+#include "../gm_object.h"
+#include "../"
+
 //memo
 //戦闘シーンのSceneクラス
 

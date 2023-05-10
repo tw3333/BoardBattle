@@ -5,13 +5,10 @@ void SceneBattle::Initialzie() {
 	camera_ = new SceneBattleCamera();
 	//camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(54));
 	
-
-
-
-	debug_board_obj_ = dxe::Mesh::CreatePlane({ (float)w1*8,(float)h1*8,0 });
-	debug_board_obj_->setTexture(dxe::Texture::CreateFromFile("graphics/512.bmp"));
-	debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
-	debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
+	//debug_board_obj_ = dxe::Mesh::CreatePlane({ (float)w1*8,(float)h1*8,0 });
+	//debug_board_obj_->setTexture(dxe::Texture::CreateFromFile("graphics/512.bmp"));
+	//debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
+	//debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
 	
 
 	cmgr_ = cmgr_->GetInstance();
@@ -69,7 +66,7 @@ void SceneBattle::Update(float delta_time) {
 void SceneBattle::Render() {
 
 	camera_->Update();
-	debug_board_obj_->render(camera_);
+	//debug_board_obj_->render(camera_);
 	
 	DrawStringEx(0,0,-1,"SceneBattle");
 

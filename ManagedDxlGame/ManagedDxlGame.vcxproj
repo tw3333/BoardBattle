@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gm_battle_manager.cpp" />
+    <ClCompile Include="gm_object.cpp" />
     <ClCompile Include="gm_object_board.cpp" />
     <ClCompile Include="ManagedDxlGame.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_barrel.cpp" />
@@ -202,7 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gm_battle_manager.h" />
-    <ClInclude Include="gm_board_object.h" />
     <ClInclude Include="gm_object_board.h" />
     <ClInclude Include="gm_parts.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext.h" />
@@ -229,7 +229,7 @@
     <ClInclude Include="program\game\gm_ui_handview.h" />
     <ClInclude Include="program\game\gm_ui_panel.h" />
     <ClInclude Include="program\game\gm_unit.h" />
-    <ClInclude Include="program\game\gm_gameobject.h" />
+    <ClInclude Include="program\game\gm_object.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />
     <ClInclude Include="program\game\scene\gm_scene_load.h" />
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h" />
