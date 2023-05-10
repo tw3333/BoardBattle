@@ -12,8 +12,10 @@ public:
 	enum {
 		Board,
 		BackGround,
-
+		PartsMax
 	};
+
+	
 
 	//ÉÅÉìÉoä÷êî
 	void Create();
@@ -22,7 +24,10 @@ public:
 
 private:
 
-	tnl::Vector3 size_ = {(float)DXE_WINDOW_WIDTH /10 * 8,0,(float)DXE_WINDOW_HEIGHT / 10 * 8};
+	tnl::Vector3 size_ = {DXE_WINDOW_WIDTH /10 * 8,0,DXE_WINDOW_HEIGHT / 10 * 8};
+	
+	float size_w_ = (DXE_WINDOW_WIDTH / 10) * 8;
+	float size_h_ = (DXE_WINDOW_HEIGHT / 10) * 8;
 
 
 };

@@ -18,11 +18,8 @@ public:
 	virtual void Render(dxe::Camera* camera);
 
 
-private:
-
 	tnl::Vector3 pos_;
 	tnl::Quaternion rot_;
 	std::vector<Parts*> parts_;
-
 
 };
