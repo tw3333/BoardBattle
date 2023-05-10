@@ -197,6 +197,9 @@
     <ClCompile Include="program\game\gm_ui_handview.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="gm_object_board.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -367,6 +370,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_ally.h">
       <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_object_board.h">
+      <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_parts.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

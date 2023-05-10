@@ -29,7 +29,7 @@ private:
 	bool is_edit_picked_ = false;
 	
 	//Card
-	
+
 
 	//‰æ‘œƒpƒX
 	std::string img_face1_path;

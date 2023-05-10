@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gm_battle_manager.cpp" />
+    <ClCompile Include="gm_object_board.cpp" />
     <ClCompile Include="ManagedDxlGame.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_barrel.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_box.cpp" />
@@ -202,6 +203,8 @@
   <ItemGroup>
     <ClInclude Include="gm_battle_manager.h" />
     <ClInclude Include="gm_board_object.h" />
+    <ClInclude Include="gm_object_board.h" />
+    <ClInclude Include="gm_parts.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_camera.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_data.h" />
