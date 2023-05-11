@@ -10,7 +10,11 @@ void SceneBattle::Initialzie() {
 	//debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	//debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
 	
+
+
 	obj_board_ = ObjBoard::Create();
+	obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
+	obj_ally_->pos_ = { 100,50,200 };
 
 
 
@@ -24,6 +28,7 @@ void SceneBattle::Initialzie() {
 void SceneBattle::Update(float delta_time) {
 
 	obj_board_->Update(delta_time);
+	obj_ally_->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -74,6 +79,7 @@ void SceneBattle::Render() {
 	camera_->Update();
 	//debug_board_obj_->render(camera_);
 	obj_board_->Render(camera_);
+	obj_ally_->Render(camera_);
 	
 
 	DrawStringEx(0,0,-1,"SceneBattle");

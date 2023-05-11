@@ -1,15 +1,16 @@
 #include "gm_scene_manager.h"
 
 #include "scene/gm_scene_battle.h"
+#include "scene/gm_scene_load.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
 
 //コンストラクタ
 SceneManager::SceneManager() {
 	
-	scene_now_ = new SceneBattle();
+	scene_now_ = new SceneLoad();
 	scene_now_->Initialzie();
-	img_black_ = LoadGraph("graphics/white.bmp");
+	img_black_ = LoadGraph("graphics/512.bmp");
 
 	SetBackgroundColor(32,32,32);
 

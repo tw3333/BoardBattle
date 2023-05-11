@@ -1,6 +1,5 @@
 #pragma once
 
-
 //memo
 //各Sceneクラスの基底クラス
 
@@ -13,10 +12,5 @@ public:
 	virtual void Initialzie() = 0;
 	virtual void Update(float delta_time) {}
 	virtual void Render(){}
-
-
-
-
-private:
 
 };

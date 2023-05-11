@@ -3,11 +3,13 @@
 
 #include "../gm_scene_manager.h"
 #include "../gm_card_manager.h"
+#include "../gm_allydata_manager.h"
 #include "../gm_scene_battle_camera.h"
 #include "../gm_ui_cardview.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
+#include "../gm_object_ally.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -16,7 +18,7 @@ class SceneBattle : public SceneBase {
 public:
 
 	SceneBattle() {}
-	~SceneBattle(){}
+	~SceneBattle() {}
 
 	void Initialzie() override;
 	void Update(float delta_time) override;
@@ -36,7 +38,9 @@ private:
 	SceneBattleCamera* camera_ = nullptr;
 	//CardView* cardview_ = nullptr;
 	CardManager* cmgr_ = nullptr;
+	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
 	ObjBoard* obj_board_ = nullptr;
+	ObjAlly* obj_ally_ = nullptr;
 	
 	
 	dxe::Mesh* debug_board_obj_ = nullptr;

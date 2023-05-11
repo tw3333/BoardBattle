@@ -26,10 +26,9 @@ private:
 	SceneManager();
 	~SceneManager();
 
-	int img_black_;
+	int img_black_ = 0;
 
 	static SceneManager* instance_;
-
 
 	// ‰æ–Ê‘JˆÚ‰‰o‚ÌŠÔ
 	const float SCENE_TRANSITION_FIX_TIME = 0.5f;

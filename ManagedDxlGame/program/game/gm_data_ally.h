@@ -8,9 +8,18 @@
 class AllyData {
 public:
 
-	AllyData() {}
+	AllyData(int ally_id) { 
+		ally_id_ = ally_id;
+	
+	}
 	~AllyData(){}
 
+	//getter
+	int getAllyDataID() { return ally_id_; }
+	std::string getImgBattlePath() { return img_battle_path; }
+
+	//setter
+	void setImgBattlePath(std::string path) { img_battle_path = path; }
 
 private:
 
