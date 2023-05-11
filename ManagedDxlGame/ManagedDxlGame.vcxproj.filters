@@ -179,9 +179,6 @@
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp">
       <Filter>program\[003] game\camera</Filter>
     </ClCompile>
-    <ClCompile Include="gm_battle_manager.cpp">
-      <Filter>program\[003] game\manager</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\scene\gm_scene_load.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
@@ -197,10 +194,10 @@
     <ClCompile Include="program\game\gm_ui_handview.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
-    <ClCompile Include="gm_object_board.cpp">
+    <ClCompile Include="program\game\gm_object_board.cpp">
       <Filter>program\[003] game\object</Filter>
     </ClCompile>
-    <ClCompile Include="gm_object.cpp">
+    <ClCompile Include="program\game\gm_object.cpp">
       <Filter>program\[003] game\object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -332,9 +329,6 @@
     <ClInclude Include="program\game\gm_scene_battle_camera.h">
       <Filter>program\[003] game\camera</Filter>
     </ClInclude>
-    <ClInclude Include="gm_battle_manager.h">
-      <Filter>program\[003] game\manager</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\scene\gm_scene_load.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
@@ -365,16 +359,13 @@
     <ClInclude Include="program\game\gm_model.h">
       <Filter>program\[003] game\model</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_parts.h">
-      <Filter>program\[003] game\model</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_data_ally.h">
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
-    <ClInclude Include="gm_object_board.h">
+    <ClInclude Include="program\game\gm_parts.h">
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
-    <ClInclude Include="gm_parts.h">
+    <ClInclude Include="program\game\gm_object_board.h">
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>

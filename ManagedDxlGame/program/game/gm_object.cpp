@@ -1,4 +1,4 @@
-#include "program/game/gm_object.h"
+#include "gm_object.h"
 
 void GameObject::Update(float delta_time) {
 

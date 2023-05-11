@@ -7,7 +7,7 @@
 #include "../gm_ui_cardview.h"
 
 #include "../gm_object.h"
-#include "../"
+#include "../gm_object_board.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -36,6 +36,7 @@ private:
 	SceneBattleCamera* camera_ = nullptr;
 	//CardView* cardview_ = nullptr;
 	CardManager* cmgr_ = nullptr;
+	ObjBoard* obj_board_ = nullptr;
 	
 	
 	dxe::Mesh* debug_board_obj_ = nullptr;

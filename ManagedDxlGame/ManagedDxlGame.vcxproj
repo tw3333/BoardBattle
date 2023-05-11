@@ -142,9 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="gm_battle_manager.cpp" />
-    <ClCompile Include="gm_object.cpp" />
-    <ClCompile Include="gm_object_board.cpp" />
     <ClCompile Include="ManagedDxlGame.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_barrel.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_box.cpp" />
@@ -174,6 +171,8 @@
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
+    <ClCompile Include="program\game\gm_object.cpp" />
+    <ClCompile Include="program\game\gm_object_board.cpp" />
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp" />
     <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
@@ -202,9 +201,6 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gm_battle_manager.h" />
-    <ClInclude Include="gm_object_board.h" />
-    <ClInclude Include="gm_parts.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_camera.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_data.h" />
@@ -222,6 +218,7 @@
     <ClInclude Include="program\game\gm_hand.h" />
     <ClInclude Include="program\game\gm_main.h" />
     <ClInclude Include="program\game\gm_model.h" />
+    <ClInclude Include="program\game\gm_object_board.h" />
     <ClInclude Include="program\game\gm_parts.h" />
     <ClInclude Include="program\game\gm_scene_battle_camera.h" />
     <ClInclude Include="program\game\gm_ui_cardui_controller.h" />

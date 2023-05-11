@@ -3,12 +3,9 @@
 
 class Parts {
 public:
-	
 	Parts() {}
-	~Parts() {
-		delete mesh_;
-	}
-	
+	~Parts() { delete mesh_; }
+
 	bool is_render_ = true;
 	tnl::Vector3 ofs_pos_;
 	tnl::Quaternion ofs_rot_;
