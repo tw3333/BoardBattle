@@ -206,6 +206,12 @@
     <ClCompile Include="program\game\gm_allydata_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_object_square.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_unit_ally.cpp">
+      <Filter>program\[003] game\unit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -379,6 +385,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_allydata_manager.h">
       <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_square.h">
+      <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_unit_ally.h">
+      <Filter>program\[003] game\unit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

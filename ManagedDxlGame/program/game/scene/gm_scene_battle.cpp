@@ -16,8 +16,8 @@ void SceneBattle::Initialzie() {
 	obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
 	obj_ally_->pos_ = { 100,50,200 };
 
-
-
+	unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1));
+	unit_ally_->setBoardPos(5,5);
 
 	cmgr_ = cmgr_->GetInstance();
 	cmgr_->MakeDebugCard();
@@ -27,8 +27,12 @@ void SceneBattle::Initialzie() {
 
 void SceneBattle::Update(float delta_time) {
 
+	GetMousePoint(&debug_mp_x,&debug_mp_y);
+
 	obj_board_->Update(delta_time);
 	obj_ally_->Update(delta_time);
+	unit_ally_->Update();
+	unit_ally_->getObj()->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -81,6 +85,7 @@ void SceneBattle::Render() {
 	obj_board_->Render(camera_);
 	obj_ally_->Render(camera_);
 	
+	unit_ally_->getObj()->Render(camera_);
 
 	DrawStringEx(0,0,-1,"SceneBattle");
 
@@ -110,6 +115,10 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1*8,0,-1,"camera.pos.x:%f",camera_->pos_.x);
 	DrawStringEx(w1 * 8, 20, -1, "camera.pos.y:%f", camera_->pos_.y);
 	DrawStringEx(w1 * 8, 40, -1, "camera.pos.z:%f", camera_->pos_.z);
+	DrawStringEx(w1*8,60,-1,"MouseX:%d", debug_mp_x);
+	DrawStringEx(w1 * 8, 80, -1, "MouseY:%d", debug_mp_y);
+
+
 
 	if (is_draw) {
 		for (int i = 0; i < 10; ++i) {

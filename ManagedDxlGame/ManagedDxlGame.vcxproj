@@ -175,9 +175,11 @@
     <ClCompile Include="program\game\gm_object.cpp" />
     <ClCompile Include="program\game\gm_object_ally.cpp" />
     <ClCompile Include="program\game\gm_object_board.cpp" />
+    <ClCompile Include="program\game\gm_object_square.cpp" />
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp" />
     <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
+    <ClCompile Include="program\game\gm_unit_ally.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_load.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
@@ -223,6 +225,7 @@
     <ClInclude Include="program\game\gm_model.h" />
     <ClInclude Include="program\game\gm_object_ally.h" />
     <ClInclude Include="program\game\gm_object_board.h" />
+    <ClInclude Include="program\game\gm_object_square.h" />
     <ClInclude Include="program\game\gm_parts.h" />
     <ClInclude Include="program\game\gm_scene_battle_camera.h" />
     <ClInclude Include="program\game\gm_ui_cardui_controller.h" />
@@ -231,6 +234,7 @@
     <ClInclude Include="program\game\gm_ui_panel.h" />
     <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\gm_object.h" />
+    <ClInclude Include="program\game\gm_unit_ally.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />
     <ClInclude Include="program\game\scene\gm_scene_load.h" />
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h" />

@@ -6,7 +6,7 @@ ObjAlly* ObjAlly::Create(AllyData* allydata) {
 	obj_ally->parts_.resize(PartsMax);
 
 	Parts* body = new Parts();
-	body->mesh_ = dxe::Mesh::CreatePlaneMV({64,100,0});
+	body->mesh_ = dxe::Mesh::CreatePlaneMV({100,100,0});
 	//body->mesh_->setTexture(dxe::Texture::CreateFromFile(allydata->getImgBattlePath().c_str()));
 	body->mesh_->setTexture(dxe::Texture::CreateFromFile(allydata->getImgBattlePath().c_str()));
 

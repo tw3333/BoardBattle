@@ -11,6 +11,8 @@
 #include "../gm_object_board.h"
 #include "../gm_object_ally.h"
 
+#include "../gm_unit_ally.h"
+
 //memo
 //戦闘シーンのSceneクラス
 
@@ -42,6 +44,7 @@ private:
 	ObjBoard* obj_board_ = nullptr;
 	ObjAlly* obj_ally_ = nullptr;
 	
+	UnitAlly* unit_ally_ = nullptr;
 	
 	dxe::Mesh* debug_board_obj_ = nullptr;
 
@@ -51,4 +54,8 @@ private:
 
 	//colorcode
 	int red_ = GetColor(255, 0, 0);
+
+	//debugにつかう変数
+	int debug_mp_x = 0;
+	int debug_mp_y = 0;
 };
