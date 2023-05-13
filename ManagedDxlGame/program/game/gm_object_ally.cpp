@@ -6,10 +6,10 @@ ObjAlly* ObjAlly::Create(AllyData* allydata) {
 	obj_ally->parts_.resize(PartsMax);
 
 	Parts* body = new Parts();
-	body->mesh_ = dxe::Mesh::CreatePlaneMV({100,100,0});
+	body->mesh_ = dxe::Mesh::CreatePlane({80,100,0});
 	//body->mesh_->setTexture(dxe::Texture::CreateFromFile(allydata->getImgBattlePath().c_str()));
 	body->mesh_->setTexture(dxe::Texture::CreateFromFile(allydata->getImgBattlePath().c_str()));
-
+	body->ofs_pos_ = { 0,50,0 };
 	body->ofs_rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
 	body->mesh_->setAlpha(obj_ally->alpha_);
 	body->mesh_->setBlendMode(obj_ally->dxlib_blend_mode_);

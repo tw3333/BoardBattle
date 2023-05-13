@@ -14,7 +14,6 @@ public:
 	enum {
 		Body,
 		PartsMax
-
 	};
 
 
@@ -28,9 +27,6 @@ private:
 
 	float alpha_ = 1.0f;
 	int dxlib_blend_mode_ = DX_BLENDMODE_ALPHA;
-
-
-
 
 };
 

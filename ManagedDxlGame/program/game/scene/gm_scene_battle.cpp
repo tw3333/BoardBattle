@@ -10,14 +10,14 @@ void SceneBattle::Initialzie() {
 	//debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	//debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
 	
-
+	unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1), 5, 5);
 
 	obj_board_ = ObjBoard::Create();
-	obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
-	obj_ally_->pos_ = { 100,50,200 };
+	//obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
+	//obj_ally_->pos_ = { 100,50,200 };
 
-	unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1));
-	unit_ally_->setBoardPos(5,5);
+	//unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1),5,5);
+	//unit_ally_->setBoardPos(5,5);
 
 	cmgr_ = cmgr_->GetInstance();
 	cmgr_->MakeDebugCard();
@@ -29,9 +29,10 @@ void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 
+	//unit_ally_->getObj()->Update(delta_time);
 	obj_board_->Update(delta_time);
-	obj_ally_->Update(delta_time);
-	unit_ally_->Update();
+	//obj_ally_->Update(delta_time);
+	//unit_ally_->Update();
 	unit_ally_->getObj()->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
@@ -83,7 +84,7 @@ void SceneBattle::Render() {
 	camera_->Update();
 	//debug_board_obj_->render(camera_);
 	obj_board_->Render(camera_);
-	obj_ally_->Render(camera_);
+	//obj_ally_->Render(camera_);
 	
 	unit_ally_->getObj()->Render(camera_);
 

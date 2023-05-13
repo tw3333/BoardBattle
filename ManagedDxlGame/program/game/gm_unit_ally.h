@@ -11,21 +11,27 @@
 class UnitAlly : public Unit {
 public:
 
-	UnitAlly(AllyData* ally_data) {
+	UnitAlly(AllyData* ally_data, int row, int col) {
 	
 		ally_data_ = ally_data;
 		obj_ = ObjAlly::Create(ally_data_);
+		setBoardPos(row, col);
+		obj_->Update(0);
+
 	}
 	~UnitAlly(){}
 
 	
 	void Update();
-	
+	//void InitializeBoardAndObjPos(int row, int col);
+
 	//setter
-	void setBoardPos(int row, int col) { 
-		board_pos_.row = row;
-		board_pos_.col = col;
-	}
+	//void setBoardPos(int row, int col) { 
+	//	board_pos_.row = row;
+	//	board_pos_.col = col;
+	//}
+
+	void setBoardPos(int row, int col);
 
 	//getter
 	ObjAlly* getObj() { return obj_; }
@@ -33,8 +39,8 @@ public:
 
 private:
 
-	AllyData* ally_data_;
-	ObjAlly* obj_;
+	AllyData* ally_data_ = nullptr;
+	ObjAlly* obj_ = nullptr;
 
 	//èÛë‘
 	bool is_dead_ = false;
