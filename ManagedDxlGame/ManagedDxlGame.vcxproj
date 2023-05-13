@@ -177,6 +177,7 @@
     <ClCompile Include="program\game\gm_object_board.cpp" />
     <ClCompile Include="program\game\gm_object_square.cpp" />
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp" />
+    <ClCompile Include="program\game\gm_square.cpp" />
     <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="program\game\gm_object_square.h" />
     <ClInclude Include="program\game\gm_parts.h" />
     <ClInclude Include="program\game\gm_scene_battle_camera.h" />
+    <ClInclude Include="program\game\gm_square.h" />
     <ClInclude Include="program\game\gm_ui_cardui_controller.h" />
     <ClInclude Include="program\game\gm_ui_cardview.h" />
     <ClInclude Include="program\game\gm_ui_handview.h" />

@@ -13,6 +13,8 @@
 
 #include "../gm_unit_ally.h"
 
+#include "../gm_square.h"
+
 //memo
 //戦闘シーンのSceneクラス
 
@@ -45,6 +47,7 @@ private:
 	ObjAlly* obj_ally_ = nullptr;
 	
 	UnitAlly* unit_ally_ = nullptr;
+	Square* square_ = nullptr;
 	
 	dxe::Mesh* debug_board_obj_ = nullptr;
 

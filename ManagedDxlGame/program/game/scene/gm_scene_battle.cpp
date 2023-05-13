@@ -19,6 +19,8 @@ void SceneBattle::Initialzie() {
 	//unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1),5,5);
 	//unit_ally_->setBoardPos(5,5);
 
+	square_ = new Square(5,5);
+
 	cmgr_ = cmgr_->GetInstance();
 	cmgr_->MakeDebugCard();
 	
@@ -34,6 +36,7 @@ void SceneBattle::Update(float delta_time) {
 	//obj_ally_->Update(delta_time);
 	//unit_ally_->Update();
 	unit_ally_->getObj()->Update(delta_time);
+	square_->getObj()->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -87,6 +90,7 @@ void SceneBattle::Render() {
 	//obj_ally_->Render(camera_);
 	
 	unit_ally_->getObj()->Render(camera_);
+	square_->getObj()->Render(camera_);
 
 	DrawStringEx(0,0,-1,"SceneBattle");
 

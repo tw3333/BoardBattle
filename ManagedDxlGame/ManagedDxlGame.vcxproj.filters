@@ -48,6 +48,9 @@
     <Filter Include="program\[003] game\data">
       <UniqueIdentifier>{bb4eacc3-3bff-4ed9-b39a-02fa3ea387c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\unclassfication">
+      <UniqueIdentifier>{9c7fe196-4192-4f81-8b93-1d90e165a175}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_unit_ally.cpp">
       <Filter>program\[003] game\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_square.cpp">
+      <Filter>program\[003] game\unclassfication</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -391,6 +397,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_unit_ally.h">
       <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_square.h">
+      <Filter>program\[003] game\unclassfication</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
