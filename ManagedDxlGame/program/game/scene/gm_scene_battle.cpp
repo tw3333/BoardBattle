@@ -20,6 +20,15 @@ void SceneBattle::Initialzie() {
 	//unit_ally_->setBoardPos(5,5);
 
 	square_ = new Square(5,5);
+	
+	//board_ = new Board();
+	//board_->Create();
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 10; ++j) {
+			all_square_.push_back(new Square(i,j));
+
+		}
+	}
 
 	cmgr_ = cmgr_->GetInstance();
 	cmgr_->MakeDebugCard();
@@ -37,6 +46,9 @@ void SceneBattle::Update(float delta_time) {
 	//unit_ally_->Update();
 	unit_ally_->getObj()->Update(delta_time);
 	square_->getObj()->Update(delta_time);
+	//board_->Update(delta_time);
+
+	for (auto al : all_square_) { al->getObj()->Update(delta_time); }
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -47,38 +59,7 @@ void SceneBattle::Update(float delta_time) {
 			is_draw_debug_layout_ = false;
 		}
 
-		
-
 	}
-
-	if (tnl::Input::IsKeyDown(eKeys::KB_W)) {
-		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 1,  0 }, camera_->rot_);
-		camera_->pos_.z += 1;
-	}
-	if (tnl::Input::IsKeyDown(eKeys::KB_S)) {
-		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, -1, 0 }, camera_->rot_);
-		camera_->pos_.z += -1;
-	}
-
-	if (tnl::Input::IsKeyDown(eKeys::KB_Q)) {
-		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0,  1 }, camera_->rot_);
-		camera_->pos_.y += 1;
-	}
-	if (tnl::Input::IsKeyDown(eKeys::KB_E)) {
-		//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0, -1 }, camera_->rot_);
-		camera_->pos_.y -= 1;
-	}
-
-	if (tnl::Input::IsKeyDown(eKeys::KB_R)) {
-
-		camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(1));
-	}
-
-	if (tnl::Input::IsKeyDown(eKeys::KB_F)) {
-		camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(-1));
-	}
-
-
 
 }
 
@@ -91,21 +72,16 @@ void SceneBattle::Render() {
 	
 	unit_ally_->getObj()->Render(camera_);
 	square_->getObj()->Render(camera_);
+	for (auto al : all_square_) { al->getObj()->Render(camera_); }
 
 	DrawStringEx(0,0,-1,"SceneBattle");
 
+	DrawDebugLayOut(is_draw_debug_layout_);
 
 
 	//test—Ìˆæ
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
 	cardview.Render(w1*8,h1*7);
-
-
-
-	DrawDebugLayOut(is_draw_debug_layout_);
-	
-
-
 
 
 	//DrawBox(0,0,1280,720,0,true);
@@ -149,3 +125,36 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	}
 
 }
+
+
+//memo
+//================================================
+//ƒJƒƒ‰‘€ì
+//if (tnl::Input::IsKeyDown(eKeys::KB_W)) {
+//	//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 1,  0 }, camera_->rot_);
+//	camera_->pos_.z += 1;
+//}
+//if (tnl::Input::IsKeyDown(eKeys::KB_S)) {
+//	//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, -1, 0 }, camera_->rot_);
+//	camera_->pos_.z += -1;
+//}
+//
+//if (tnl::Input::IsKeyDown(eKeys::KB_Q)) {
+//	//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0,  1 }, camera_->rot_);
+//	camera_->pos_.y += 1;
+//}
+//if (tnl::Input::IsKeyDown(eKeys::KB_E)) {
+//	//camera_->pos_ += tnl::Vector3::TransformCoord({ 0, 0, -1 }, camera_->rot_);
+//	camera_->pos_.y -= 1;
+//}
+//
+//if (tnl::Input::IsKeyDown(eKeys::KB_R)) {
+//
+//	camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(1));
+//}
+//
+//if (tnl::Input::IsKeyDown(eKeys::KB_F)) {
+//	camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(-1));
+//}
+
+//==================================================

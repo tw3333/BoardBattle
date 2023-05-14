@@ -1,9 +1,14 @@
 #include "gm_object_square.h"
+#include "../dxlib_ext/dxlib_ext_texture.h"
 
 ObjSquare* ObjSquare::Create() {
 
 	ObjSquare* obj_square = new ObjSquare();
 	obj_square->parts_.resize(PartsMax);
+
+	//dxe::Texture tex = dxe::Texture::CreateFromFile("graphics/tile/test_tile.png");
+	
+
 
 	Parts* base_square = new Parts();
 	base_square->mesh_ = dxe::Mesh::CreatePlaneMV({obj_square->getSquareSize().w,obj_square->getSquareSize().h,0});

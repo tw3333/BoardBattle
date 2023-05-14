@@ -218,6 +218,15 @@
     <ClCompile Include="program\game\gm_square.cpp">
       <Filter>program\[003] game\unclassfication</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_board.cpp">
+      <Filter>program\[003] game\unclassfication</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_select_square.cpp">
+      <Filter>program\[003] game\unclassfication</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_object_select_flame.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -400,6 +409,15 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_square.h">
       <Filter>program\[003] game\unclassfication</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_board.h">
+      <Filter>program\[003] game\unclassfication</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_select_square.h">
+      <Filter>program\[003] game\unclassfication</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_select_flame.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

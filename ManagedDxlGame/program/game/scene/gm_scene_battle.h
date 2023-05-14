@@ -14,6 +14,7 @@
 #include "../gm_unit_ally.h"
 
 #include "../gm_square.h"
+#include "../gm_board.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -48,6 +49,9 @@ private:
 	
 	UnitAlly* unit_ally_ = nullptr;
 	Square* square_ = nullptr;
+	Board* board_ = nullptr;
+
+	std::vector<Square*> all_square_;
 	
 	dxe::Mesh* debug_board_obj_ = nullptr;
 

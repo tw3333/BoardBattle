@@ -169,14 +169,17 @@
     <ClCompile Include="program\game\gm_ally.cpp" />
     <ClCompile Include="program\game\gm_allydata_manager.cpp" />
     <ClCompile Include="program\game\gm_ally_manager.cpp" />
+    <ClCompile Include="program\game\gm_board.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
     <ClCompile Include="program\game\gm_object.cpp" />
     <ClCompile Include="program\game\gm_object_ally.cpp" />
     <ClCompile Include="program\game\gm_object_board.cpp" />
+    <ClCompile Include="program\game\gm_object_select_flame.cpp" />
     <ClCompile Include="program\game\gm_object_square.cpp" />
     <ClCompile Include="program\game\gm_scene_battle_camera.cpp" />
+    <ClCompile Include="program\game\gm_select_square.cpp" />
     <ClCompile Include="program\game\gm_square.cpp" />
     <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
@@ -217,6 +220,7 @@
     <ClInclude Include="program\game\gm_ally.h" />
     <ClInclude Include="program\game\gm_allydata_manager.h" />
     <ClInclude Include="program\game\gm_ally_manager.h" />
+    <ClInclude Include="program\game\gm_board.h" />
     <ClInclude Include="program\game\gm_card.h" />
     <ClInclude Include="program\game\gm_card_manager.h" />
     <ClInclude Include="program\game\gm_data_ally.h" />
@@ -226,9 +230,11 @@
     <ClInclude Include="program\game\gm_model.h" />
     <ClInclude Include="program\game\gm_object_ally.h" />
     <ClInclude Include="program\game\gm_object_board.h" />
+    <ClInclude Include="program\game\gm_object_select_flame.h" />
     <ClInclude Include="program\game\gm_object_square.h" />
     <ClInclude Include="program\game\gm_parts.h" />
     <ClInclude Include="program\game\gm_scene_battle_camera.h" />
+    <ClInclude Include="program\game\gm_select_square.h" />
     <ClInclude Include="program\game\gm_square.h" />
     <ClInclude Include="program\game\gm_ui_cardui_controller.h" />
     <ClInclude Include="program\game\gm_ui_cardview.h" />
