@@ -20,15 +20,19 @@ void SceneBattle::Initialzie() {
 	//unit_ally_->setBoardPos(5,5);
 
 	square_ = new Square(5,5);
-	
-	//board_ = new Board();
-	//board_->Create();
-	for (int i = 0; i < 10; ++i) {
-		for (int j = 0; j < 10; ++j) {
-			all_square_.push_back(new Square(i,j));
 
-		}
-	}
+	//square_->
+	
+	board_ = new Board();
+	board_->Create();
+	ss_ = new SelectSquare(board_->getBoardSquares());
+
+	//for (int i = 0; i < 10; ++i) {
+	//	for (int j = 0; j < 10; ++j) {
+	//		all_square_.push_back(new Square(i,j));
+
+	//	}
+	//}
 
 	cmgr_ = cmgr_->GetInstance();
 	cmgr_->MakeDebugCard();
@@ -46,9 +50,11 @@ void SceneBattle::Update(float delta_time) {
 	//unit_ally_->Update();
 	unit_ally_->getObj()->Update(delta_time);
 	square_->getObj()->Update(delta_time);
-	//board_->Update(delta_time);
 
-	for (auto al : all_square_) { al->getObj()->Update(delta_time); }
+	board_->Update(delta_time);
+	ss_->Update(delta_time,camera_);
+
+	//for (auto al : all_square_) { al->getObj()->Update(delta_time); }
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -65,6 +71,8 @@ void SceneBattle::Update(float delta_time) {
 
 void SceneBattle::Render() {
 
+
+
 	camera_->Update();
 	//debug_board_obj_->render(camera_);
 	obj_board_->Render(camera_);
@@ -72,12 +80,14 @@ void SceneBattle::Render() {
 	
 	unit_ally_->getObj()->Render(camera_);
 	square_->getObj()->Render(camera_);
-	for (auto al : all_square_) { al->getObj()->Render(camera_); }
+
+	//for (auto al : all_square_) { al->getObj()->Render(camera_); }
+	board_->Render(camera_);
 
 	DrawStringEx(0,0,-1,"SceneBattle");
 
 	DrawDebugLayOut(is_draw_debug_layout_);
-
+	ss_->Render(camera_);
 
 	//test—Ìˆæ
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
@@ -98,8 +108,8 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 40, -1, "camera.pos.z:%f", camera_->pos_.z);
 	DrawStringEx(w1*8,60,-1,"MouseX:%d", debug_mp_x);
 	DrawStringEx(w1 * 8, 80, -1, "MouseY:%d", debug_mp_y);
-
-
+	DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
+	DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
 
 	if (is_draw) {
 		for (int i = 0; i < 10; ++i) {
@@ -116,8 +126,8 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 		float mas_x = (w1 * 8) / 10;
 		float mas_z = (h1 * 8) / 10;
 
-		DrawLine3D({0,0,0 + (mas_z * i)}, {float(w1 * 8),0,0 + (mas_z * i)}, red_);
-		DrawLine3D({0 + (mas_x * i),0,0}, {0 + (mas_x * i),0,(float)(h1 * 8)}, red_);
+		DrawLine3D({0,0,0 + (mas_z * i)}, {float(w1 * 8),0,0 + (mas_z * i)}, gray_);
+		DrawLine3D({0 + (mas_x * i),0,0}, {0 + (mas_x * i),0,(float)(h1 * 8)}, gray_);
 
 
 

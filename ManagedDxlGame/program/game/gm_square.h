@@ -10,8 +10,8 @@ public:
 		
 		obj_ = ObjSquare::Create();
 		SetSquarePos(row,col);
-		obj_->Update(0);
 
+		obj_->Update(0);
 	}
 	~Square(){}
 
@@ -22,13 +22,14 @@ public:
 
 	void SetSquarePos(int row, int col);
 	ObjSquare* getObj() { return obj_; }
+	//tnl::Vector3 getBeginPos() { return begin_pos_; }
+	//tnl::Vector3 getEndPos() { return end_pos_; }
+	int test_ = 1;
 
 private:
 
-	ObjSquare* obj_ = nullptr;
+	ObjSquare* obj_;
 	
 	SquarePos square_pos_ = {0,0};
-
-
-
+	
 };

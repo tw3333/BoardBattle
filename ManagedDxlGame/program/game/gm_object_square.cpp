@@ -11,9 +11,9 @@ ObjSquare* ObjSquare::Create() {
 
 
 	Parts* base_square = new Parts();
-	base_square->mesh_ = dxe::Mesh::CreatePlaneMV({obj_square->getSquareSize().w,obj_square->getSquareSize().h,0});
+	base_square->mesh_ = dxe::Mesh::CreatePlaneMV({obj_square->getSize().x,obj_square->getSize().z,0});
 	base_square->mesh_->setTexture(dxe::Texture::CreateFromFile("graphics/tile/test_tile.png"));
-	base_square->mesh_->pos_ = {0,1,0};
+	base_square->ofs_pos_ = { 0,1,0 };
 	base_square->ofs_rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	
 	obj_square->parts_[BaseSquare] = base_square;
@@ -24,6 +24,19 @@ ObjSquare* ObjSquare::Create() {
 }
 
 void ObjSquare::Update(float delta_time) {
+
+	//ObjSquareの始点x,z
+	begin_pos_ = {
+		pos_.x - (DXE_WINDOW_WIDTH / 10) * 8 / 10 / 2,0,
+		pos_.z + (DXE_WINDOW_HEIGHT / 10) * 8 / 10 / 2
+	};
+
+	//ObjSquareの終点x,z
+	end_pos_ = {
+		pos_.x + (DXE_WINDOW_WIDTH / 10) * 8 / 10 / 2,0,
+		pos_.z - (DXE_WINDOW_HEIGHT / 10) * 8 / 10 / 2
+	};
+
 
 	GameObject::Update(delta_time);
 }

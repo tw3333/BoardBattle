@@ -15,6 +15,7 @@
 
 #include "../gm_square.h"
 #include "../gm_board.h"
+#include "../gm_select_square.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -50,6 +51,7 @@ private:
 	UnitAlly* unit_ally_ = nullptr;
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
+	SelectSquare* ss_ = nullptr;
 
 	std::vector<Square*> all_square_;
 	
@@ -61,6 +63,7 @@ private:
 
 	//colorcode
 	int red_ = GetColor(255, 0, 0);
+	int gray_ = GetColor(128,128,128);
 
 	//debugにつかう変数
 	int debug_mp_x = 0;
