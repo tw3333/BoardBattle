@@ -227,6 +227,9 @@
     <ClCompile Include="program\game\gm_object_select_flame.cpp">
       <Filter>program\[003] game\object</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_panel.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -418,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_object_select_flame.h">
       <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_component.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

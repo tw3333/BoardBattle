@@ -31,7 +31,7 @@ public:
 
 private:
 
-	ObjSelectFlame* obj_;
+	ObjSelectFlame* obj_; //p
 	tnl::Vector3 hit_;
 
 	int board_w_ = (DXE_WINDOW_WIDTH / 10) * 8;
@@ -40,7 +40,7 @@ private:
 	int bw1_ = board_w_ / 10;
 	int bh1_ = board_h_ / 10;
 
-	std::array<std::array<Square*, 10>, 10> board_squares_;
+	std::array<std::array<Square*, 10>, 10> board_squares_; //p
 
 	int select_square_row_ = 0; //‘I‘ð‚³‚ê‚Ä‚¢‚ésquare‚Ìrow
 	int select_square_col_ = 0; //‘I‘ð‚³‚ê‚Ä‚¢‚ésquare‚Ìcol

@@ -12,11 +12,21 @@ void SceneLoad::Update(float delta_time) {
 
 	SceneManager* smgr = SceneManager::GetInstance();
 
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_RETURN)) {
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_1)) {
 		
 		if (amgr_->is_loaded_) {
 
 			smgr->ChengeScene(new SceneBattle());
+
+		}
+
+	}
+
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_2)) {
+
+		if (amgr_->is_loaded_) {
+
+			smgr->ChengeScene(new SceneSelectPhase());
 
 		}
 
@@ -33,7 +43,9 @@ void SceneLoad::Render() {
 	}else if (amgr_->is_loaded_) {
 
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2, -1, "Load Finish!");
-		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 20, -1, "Push:[Enter]");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 20, -1, "Push:[1]->Scenebattle");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 40, -1, "Push:[2]->SceneSelectPhase");
+
 	}
 
 }
