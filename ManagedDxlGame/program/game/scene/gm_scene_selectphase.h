@@ -17,6 +17,7 @@ public:
 	void Render() override;
 
 	UIWindow* ui_window_ = nullptr;
+	UIPanel* ui_panel_ = nullptr;
 
 	std::vector<UIComponent*> all_ui_;
 	std::vector<std::shared_ptr<UIComponent>> all_ui_component_;

@@ -13,5 +13,9 @@ public:
 	
 	}
 
+	static float EaseOutExpo(float x) {
+		return x == 1.0f ? 1.0f : 1.0f - std::pow(2, -10 * x);
+	}
+
 
 };
