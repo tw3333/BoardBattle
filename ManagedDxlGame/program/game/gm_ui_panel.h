@@ -11,12 +11,12 @@ public:
 	
 	//arg1~4左下頂点座標x,yと右下頂点座標x2,y2を指定
 	//arg5...Panelに貼り付ける画像のハンドル
-	UIPanel(int x, int y, int x2, int y2,int img_handle){	
+	UIPanel(int x, int y, int width, int height){	
 		x_ = x;
 		y_ = y;
-		x2_ = x2;
-		y2_ = y2;
-		img_handle_ = img_handle;
+		width_ = width;
+		height_ = height;
+		
 	}
 	~UIPanel(){}
 
@@ -24,14 +24,17 @@ public:
 	void Update(float delta_time) override;
 	void Render() override;
 
+	//setter
+	void setGraphHandle(int graph_handle) { graph_handle_ = graph_handle; }
 
 private:
 
 	int x_;
 	int y_;
-	int x2_;
-	int y2_;
-	int img_handle_;
+
+	int graph_handle_;
+	int width_;
+	int height_;
 
 
 };

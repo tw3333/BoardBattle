@@ -5,6 +5,7 @@
 void SceneLoad::Initialzie() {
 
 	amgr_->DebugLoadAllyData();
+	tmgr_->LoadTexture();
 	
 }
 

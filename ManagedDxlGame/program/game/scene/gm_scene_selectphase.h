@@ -5,6 +5,7 @@
 #include "../gm_ui_panel.h"
 #include <vector>
 
+#include "../gm_texture_manager.h"
 class SceneSelectPhase : public SceneBase {
 public:
 
@@ -15,13 +16,18 @@ public:
 	void Update(float delta_time) override;
 	void Render() override;
 
-	UIWindow* ui_window_;
+	UIWindow* ui_window_ = nullptr;
+
 	std::vector<UIComponent*> all_ui_;
+	std::vector<std::shared_ptr<UIComponent>> all_ui_component_;
+
 
 
 private:
 
 	int h1 = DXE_WINDOW_HEIGHT / 10;
 	int w1 = DXE_WINDOW_WIDTH / 10;
+
+	TextureManager* tmgr_ = TextureManager::GetInstance();
 
 };

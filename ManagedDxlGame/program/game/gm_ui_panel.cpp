@@ -7,15 +7,15 @@ void UIPanel::Update(float delta_time) {
 
 void UIPanel::Render() {
 
-	if (img_handle_) {
+	if (graph_handle_) {
 
-		DrawExtendGraph(x_,y_,x2_,y2_,img_handle_,false);
+		DrawExtendGraph(x_,y_,x_ + width_, y_ + height_ ,graph_handle_,false);
 
 		
 	}
-	else if (!img_handle_) {
+	else if (graph_handle_) {
 
-		DrawBox(x_,y_,x2_,y2_,-1,true);
+		DrawBox(x_,y_, x_ + width_, y_ + height_, -1 ,true);
 
 	}
 

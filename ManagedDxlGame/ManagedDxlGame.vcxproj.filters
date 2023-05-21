@@ -51,6 +51,9 @@
     <Filter Include="program\[003] game\unclassfication">
       <UniqueIdentifier>{9c7fe196-4192-4f81-8b93-1d90e165a175}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\twr">
+      <UniqueIdentifier>{f9a267e9-1323-4f83-88fd-726b364a8841}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -232,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_window.cpp">
       <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_texture_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +439,18 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_mediator.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_selectphase_mediator.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_texture_manager.h">
+      <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_color.h">
+      <Filter>program\[003] game\twr</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_easingfunctions.h">
+      <Filter>program\[003] game\twr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

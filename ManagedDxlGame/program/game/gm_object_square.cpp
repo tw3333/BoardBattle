@@ -15,7 +15,10 @@ ObjSquare* ObjSquare::Create() {
 	base_square->mesh_->setTexture(dxe::Texture::CreateFromFile("graphics/tile/test_tile.png"));
 	base_square->ofs_pos_ = { 0,1,0 };
 	base_square->ofs_rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
-	
+	//base_square->mesh_->setAlpha(obj_square->alpha_);
+	//base_square->mesh_->setBlendMode(obj_square->dxlib_blend_mode_);
+
+
 	obj_square->parts_[BaseSquare] = base_square;
 
 	obj_square->Update(0);

@@ -7,8 +7,10 @@ class UIComponent;
 class UIMediator {
 public:
 
-	virtual void notify(UIComponent* sender, std::string event) const = 0;
+	virtual void Notify(UIComponent* sender, std::string event) const = 0;
 
 private:
+
+
 
 };
