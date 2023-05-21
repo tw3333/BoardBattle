@@ -39,6 +39,7 @@ void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 			{	
 				obj_->pos_.x = board_squares_[i][j]->getObj()->pos_.x;
 				obj_->pos_.z = board_squares_[i][j]->getObj()->pos_.z;
+				//TODO:‚±‚±‚ÉƒNƒŠƒbƒN”»’è‚ð“ü‚ê‚é
 				select_square_row_ = i;
 				select_square_col_ = j;
 			}

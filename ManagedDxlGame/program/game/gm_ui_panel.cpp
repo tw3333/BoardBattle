@@ -6,19 +6,6 @@ void UIPanel::Update(float delta_time) {
 		
 		time_ += delta_time / duration_;
 
-		DrawStringEx(300,300,-1,"timer:%f",time_);
-
-		//float old_x = x_;
-
-		//float start = -100.0f;
-		//float end = 300.0f;
-		//float result = EasingFunctions::EaseOutoExpo(start, end, time_);
-		//DrawStringEx(300, 340, -1, "t:%f, result:%f", time_, result);
-
-		//x_ = EasingFunctions::EaseOutoExpo(start_x_, x_, time_);
-
-		//DrawStringEx(300, 320, -1, "old:%d, new:%d", old_x, x_);
-
 		if (time_ > 1) {
 
 			time_ = 1;
@@ -27,9 +14,11 @@ void UIPanel::Update(float delta_time) {
 
 		x_ = EasingFunctions::EaseOutExpo(time_) * (end_x_ - start_x_) + start_x_;
 		AnimationRender();
-		
-		
 	}
+
+
+
+
 
 }
 
@@ -47,7 +36,6 @@ void UIPanel::Render() {
 			DrawBox(x_, y_, x_ + (float)width_, y_ + height_, 255, true);
 
 		}
-
 
 	}
 
