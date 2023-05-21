@@ -230,6 +230,9 @@
     <ClCompile Include="program\game\gm_ui_panel.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_window.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -423,6 +426,12 @@
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_component.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_window.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_mediator.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
