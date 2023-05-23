@@ -9,7 +9,8 @@ void UIButton::Update(float delta_time) {
 		//クリック判定
 		if (IsClicked(mouse_pos.x, mouse_pos.y)) {
 
-			UIPanel::mediator_->Notify(this, "ButtonFunction");
+			//UIPanel::mediator_->Notify(this, "ButtonFunction");
+			DrawStringEx(500,500,-1,"clicked!");
 		
 		}
 
@@ -25,13 +26,12 @@ void UIButton::Update(float delta_time) {
 //arg1,2...mouseの各座標
 bool UIButton::IsClicked(int mouse_x, int mouse_y) {
 
-	if (x_ < mouse_x && mouse_x < x_ + width_ 
-		&& y_ < mouse_y && mouse_y < y_ + height_) {
+	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+		if (x_ < mouse_x && mouse_x < x_ + width_
+			&& y_ < mouse_y && mouse_y < y_ + height_) {
 
-		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 			return true;
 		}
-
 	}
 
 }

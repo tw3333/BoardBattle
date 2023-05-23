@@ -3,6 +3,7 @@
 #include "../../dxlib_ext/dxlib_ext.h"
 #include  "../gm_ui_window.h"
 #include "../gm_ui_panel.h"
+#include "../gm_ui_button.h"
 #include <vector>
 
 #include "../gm_texture_manager.h"
@@ -19,6 +20,7 @@ public:
 
 	UIWindow* ui_window_ = nullptr;
 	UIPanel* ui_panel_ = nullptr;
+	UIButton* ui_button_ = nullptr;
 
 	std::vector<UIComponent*> all_ui_;
 	std::vector<std::shared_ptr<UIComponent>> all_ui_component_;

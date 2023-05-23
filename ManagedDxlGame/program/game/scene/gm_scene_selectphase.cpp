@@ -16,6 +16,12 @@ void SceneSelectPhase::Initialzie() {
 	ui_panel_->SetEasingFunction(std::make_unique<EaseOutExpo>());
 	ui_panel_->SetStartEasing(-100,0);
 
+	ui_button_ = new UIButton(200,200,200,100);
+	ui_button_->SetEasingFunction(std::make_unique<EaseOutExpo>());
+	ui_button_->SetStartEasing(-100,0);
+
+
+
 
 
 }
@@ -26,6 +32,7 @@ void SceneSelectPhase::Update(float delta_time) {
 
 	for (auto uc : all_ui_component_) { uc->Update(delta_time); }
 	ui_panel_->Update(delta_time);
+	ui_button_->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
 
@@ -40,6 +47,8 @@ void SceneSelectPhase::Render() {
 	
 	for (auto uc : all_ui_component_) { uc->Render(); }
 	ui_panel_->Render();
+	ui_button_->Render();
+
 
 	for (int i = 0; i < 10; ++i) {
 		DrawLine(0, h1 + h1 * i, DXE_WINDOW_WIDTH, h1 + h1 * i, -1);
