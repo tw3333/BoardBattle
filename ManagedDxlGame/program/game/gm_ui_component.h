@@ -11,13 +11,13 @@ class UIComponent {
 public:
 
 
-	virtual ~UIComponent() { delete mediator_; }
+	virtual ~UIComponent() { }
 
 	virtual void Update(float delta_time) = 0;
 	virtual void Render() = 0;
 
 	
-	void setMediator(UIMediator* mediator) { mediator_= mediator; }
+	void SetMediator(UIMediator* mediator) { mediator_= mediator; }
 
 protected:
 

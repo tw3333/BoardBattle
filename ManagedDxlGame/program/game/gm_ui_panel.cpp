@@ -4,6 +4,12 @@ void UIPanel::Update(float delta_time) {
 
 	if (is_moving_) { 
 		
+		if (delay_ > 0.0f) {
+			delay_ -= delta_time;
+			return;  // ディレイ時間が経過していない場合は処理をスキップ
+		}
+
+
 		time_ += delta_time / duration_;
 
 		if (time_ > 1) {
@@ -12,12 +18,10 @@ void UIPanel::Update(float delta_time) {
 			is_moving_ = false;
 		}
 
-		x_ = EasingFunctions::EaseOutExpo(time_) * (end_x_ - start_x_) + start_x_;
-		AnimationRender();
+		float eased_time = easing_function_->Ease(time_);
+		x_ = eased_time * (end_x_ - start_x_) + start_x_;
+		DuringAnimationRender();
 	}
-
-
-
 
 
 }
@@ -41,7 +45,7 @@ void UIPanel::Render() {
 
 }
 
-void UIPanel::AnimationRender() {
+void UIPanel::DuringAnimationRender() {
 
 	if (graph_handle_) {
 
@@ -58,7 +62,8 @@ void UIPanel::AnimationRender() {
 
 
 //arg1...easing開始時の左上x座標
-void UIPanel::SetStartEasing(int start_x) {
+//arg2...アニメーション開始までのdelay
+void UIPanel::SetStartEasing(int start_x,float delay) {
 
 	start_x_ = start_x;
 	end_x_ = x_;

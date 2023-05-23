@@ -1,4 +1,5 @@
 #pragma once
+#include "gm_ui_component.h"
 #include "gm_ui_mediator.h"
 #include <vector>
 #include <memory>
@@ -16,9 +17,10 @@ public:
 
 
 	void SetMediators() { 
-		for (auto uc : ui_components_) { uc->setMediator(this); } 
+		for (auto uc : ui_components_) { uc->SetMediator(this); } 
 	}
-	void Notify(UIComponent* sender, std::string event) const override;
+
+	void Notify(UIComponent* sender, std::string event) override;
 
 
 private:

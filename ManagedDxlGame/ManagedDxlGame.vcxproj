@@ -182,9 +182,11 @@
     <ClCompile Include="program\game\gm_select_square.cpp" />
     <ClCompile Include="program\game\gm_square.cpp" />
     <ClCompile Include="program\game\gm_texture_manager.cpp" />
+    <ClCompile Include="program\game\gm_ui_button.cpp" />
     <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
     <ClCompile Include="program\game\gm_ui_panel.cpp" />
+    <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_window.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
@@ -224,6 +226,7 @@
     <ClInclude Include="program\game\gm_allydata_manager.h" />
     <ClInclude Include="program\game\gm_ally_manager.h" />
     <ClInclude Include="program\game\gm_board.h" />
+    <ClInclude Include="program\game\gm_ui_button.h" />
     <ClInclude Include="program\game\gm_card.h" />
     <ClInclude Include="program\game\gm_card_manager.h" />
     <ClInclude Include="program\game\gm_color.h" />

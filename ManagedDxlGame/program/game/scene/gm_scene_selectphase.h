@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../gm_texture_manager.h"
+
 class SceneSelectPhase : public SceneBase {
 public:
 

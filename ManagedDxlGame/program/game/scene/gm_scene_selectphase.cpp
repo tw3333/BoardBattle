@@ -1,4 +1,6 @@
 #include "gm_scene_selectphase.h"
+#include "../gm_easingfunctions.h"
+#include <memory>
 
 
 void SceneSelectPhase::Initialzie() {
@@ -11,7 +13,8 @@ void SceneSelectPhase::Initialzie() {
 	all_ui_component_.emplace_back(new UIPanel(50,50,200,100));
 
 	ui_panel_ = new UIPanel(100,100,200,100);
-	ui_panel_->SetStartEasing(-100);
+	ui_panel_->SetEasingFunction(std::make_unique<EaseOutExpo>());
+	ui_panel_->SetStartEasing(-100,0);
 
 
 
@@ -26,7 +29,7 @@ void SceneSelectPhase::Update(float delta_time) {
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
 
-		ui_panel_->SetStartEasing(-100);
+		ui_panel_->SetStartEasing(-100,0);
 	}
 
 }

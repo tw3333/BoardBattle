@@ -239,6 +239,12 @@
     <ClCompile Include="program\game\gm_texture_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_button.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -451,6 +457,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_easingfunctions.h">
       <Filter>program\[003] game\twr</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_button.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

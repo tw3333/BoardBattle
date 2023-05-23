@@ -4,6 +4,27 @@
 //memo 
 //easing関数の集約クラス
 
+
+//ストラテジーパターン使用
+class EasingFunction {
+public:
+	
+	virtual float Ease(float t) const = 0;
+
+};
+
+class EaseOutExpo : public EasingFunction {
+public:
+
+	float Ease(float t) const override {
+		return (t == 1.0f) ? 1.0f : 1.0f - std::pow(2, -10 * t);
+	}
+
+
+};
+
+
+//Not Used!!!!
 class EasingFunctions {
 public:
 
