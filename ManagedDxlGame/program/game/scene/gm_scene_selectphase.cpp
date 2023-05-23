@@ -16,9 +16,9 @@ void SceneSelectPhase::Initialzie() {
 	ui_panel_->SetEasingFunction(std::make_unique<EaseOutExpo>());
 	ui_panel_->SetStartEasing(-100,0);
 
-	ui_button_ = new UIButton(200,200,200,100);
+	ui_button_ = new UIButton(100,300,200,100);
 	ui_button_->SetEasingFunction(std::make_unique<EaseOutExpo>());
-	ui_button_->SetStartEasing(-100,0);
+	ui_button_->SetStartEasing(-100,0.30);
 
 
 
@@ -37,6 +37,7 @@ void SceneSelectPhase::Update(float delta_time) {
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
 
 		ui_panel_->SetStartEasing(-100,0);
+		ui_button_->SetStartEasing(-100,0.05);
 	}
 
 }

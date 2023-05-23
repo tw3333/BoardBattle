@@ -67,6 +67,7 @@ void UIPanel::SetStartEasing(int start_x,float delay) {
 
 	start_x_ = start_x;
 	end_x_ = x_;
+	delay_ = delay;
 	time_ = 0;
 	is_moving_ = true;
 
