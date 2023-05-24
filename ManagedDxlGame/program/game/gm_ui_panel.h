@@ -56,5 +56,6 @@ protected:
 	int height_;
 
 	bool is_moving_ = false;
+	
 
 };

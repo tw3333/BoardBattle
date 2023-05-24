@@ -4,6 +4,7 @@
 #include  "../gm_ui_window.h"
 #include "../gm_ui_panel.h"
 #include "../gm_ui_button.h"
+#include "../gm_ui_selectphase_mediator.h"
 #include <vector>
 
 #include "../gm_texture_manager.h"
@@ -22,10 +23,10 @@ public:
 	UIPanel* ui_panel_ = nullptr;
 	UIButton* ui_button_ = nullptr;
 
-	std::vector<UIComponent*> all_ui_;
-	std::vector<std::shared_ptr<UIComponent>> all_ui_component_;
+	
+	void CreateUIComponents();
 
-
+	bool is_sen;
 
 private:
 
@@ -33,5 +34,13 @@ private:
 	int w1 = DXE_WINDOW_WIDTH / 10;
 
 	TextureManager* tmgr_ = TextureManager::GetInstance();
+
+	//UIçÏê¨ópïœêî(âº)
+	//UISelectPhaseMediator* ui_mediator_ = new UISelectPhaseMediator();
+	std::vector<UIComponent*> all_ui_;
+	std::vector<std::shared_ptr<UIComponent>> ui_components_;
+	std::vector<std::shared_ptr<UIButton>> ui_buttons_;
+
+
 
 };

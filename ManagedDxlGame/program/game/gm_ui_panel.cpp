@@ -2,49 +2,64 @@
 
 void UIPanel::Update(float delta_time) {
 
-	if (is_moving_) { 
-		
-		if (delay_ > 0.0f) {
-			delay_ -= delta_time;
-			return;  // ディレイ時間が経過していない場合は処理をスキップ
+	if (is_enabled_) {
+
+		if (is_moving_) {
+
+			if (delay_ > 0.0f) {
+				delay_ -= delta_time;
+				return;  // ディレイ時間が経過していない場合は処理をスキップ
+			}
+
+
+			time_ += delta_time / duration_;
+
+			if (time_ > 1) {
+
+				time_ = 1;
+				is_moving_ = false;
+			}
+
+			float eased_time = easing_function_->Ease(time_);
+			x_ = eased_time * (end_x_ - start_x_) + start_x_;
+			DuringAnimationRender();
 		}
 
-
-		time_ += delta_time / duration_;
-
-		if (time_ > 1) {
-
-			time_ = 1;
-			is_moving_ = false;
-		}
-
-		float eased_time = easing_function_->Ease(time_);
-		x_ = eased_time * (end_x_ - start_x_) + start_x_;
-		DuringAnimationRender();
 	}
+
+
 
 
 }
 
 void UIPanel::Render() {
 
-	if (!is_moving_) {
+	if (is_enabled_) {
 
-		if (graph_handle_) {
+		if (!is_moving_) {
 
-			DrawExtendGraph(x_, y_, x_ + width_, y_ + height_, graph_handle_, false);
+			if (graph_handle_) {
 
-		}
-		else if (!graph_handle_) {
+				DrawExtendGraph(x_, y_, x_ + width_, y_ + height_, graph_handle_, false);
 
-			DrawBox(x_, y_, x_ + (float)width_, y_ + height_, 255, true);
+			}
+			else if (!graph_handle_) {
+
+				DrawBox(x_, y_, x_ + (float)width_, y_ + height_, 255, true);
+
+			}
 
 		}
 
 	}
 
+
+
+
 }
 
+
+//アニメーション中の描写
 void UIPanel::DuringAnimationRender() {
 
 	if (graph_handle_) {

@@ -4,21 +4,22 @@ void UIButton::Update(float delta_time) {
 
 	tnl::Vector3 mouse_pos = tnl::Input::GetMousePosition();
 
-	if (!is_moving_) {
+	if (is_enabled_) {
 
-		//クリック判定
-		if (IsClicked(mouse_pos.x, mouse_pos.y)) {
+		if (!is_moving_) {
 
-			//UIPanel::mediator_->Notify(this, "ButtonFunction");
-			DrawStringEx(500,500,-1,"clicked!");
-		
+			//クリック判定
+			if (IsClicked(mouse_pos.x, mouse_pos.y)) {
+
+				//mediator_->Notify(this, notify_tag_);
+				
+
+			}
+
 		}
 
-
-
+		UIPanel::Update(delta_time);
 	}
-
-	UIPanel::Update(delta_time);
 
 }
 

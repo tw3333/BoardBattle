@@ -21,7 +21,10 @@ void TextureManager::Destory() {
 void TextureManager::LoadTexture() {
 
 	selectphase_back1_ = dxe::Texture::CreateFromFile("graphics/selectphase_back1.jpg");
-	
+	icon_3d_stairs_ = dxe::Texture::CreateFromFile("graphics/3d-stairs.png");
+	icon_character_ = dxe::Texture::CreateFromFile("graphics/character.png");
+	icon_dungeon_gate_ = dxe::Texture::CreateFromFile("graphics/dungeon-gate.png");
+
 
 
 }

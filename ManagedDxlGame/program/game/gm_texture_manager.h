@@ -10,8 +10,13 @@ public:
 	static TextureManager* GetInstance();
 	static void Destory();
 
+
+
 	Shared<dxe::Texture> selectphase_back1_;
-	int selectphase_back1_img_ = 0;
+	Shared<dxe::Texture> icon_3d_stairs_;
+	Shared<dxe::Texture> icon_character_;
+	Shared<dxe::Texture> icon_dungeon_gate_;
+
 
 	
 	void LoadTexture();
