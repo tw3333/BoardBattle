@@ -11,9 +11,13 @@ void UIButton::Update(float delta_time) {
 			//ƒNƒŠƒbƒN”»’è
 			if (IsClicked(mouse_pos.x, mouse_pos.y)) {
 
-				//mediator_->Notify(this, notify_tag_);
-				
 
+				if (mediator_) {
+
+					mediator_->Notify(this, notify_tag_);
+
+				}
+				
 			}
 
 		}

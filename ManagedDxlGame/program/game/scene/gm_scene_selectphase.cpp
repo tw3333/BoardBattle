@@ -55,25 +55,33 @@ void SceneSelectPhase::Render() {
 
 void SceneSelectPhase::CreateUIComponents() {
 
+
 	auto ui_panel = std::make_shared<UIPanel>(10,10,90,90);
 	ui_panel->setGraphHandle(tmgr_->icon_dungeon_gate_->getDxLibGraphHandle());
 	ui_components_.push_back(ui_panel);
 
-	auto ui_panel2 = std::make_shared<UIPanel>(10,120,90,700);
-	ui_components_.push_back(ui_panel2);
+	auto ui_panel_1 = std::make_shared<UIPanel>(10, 10, 90, 90);
+	ui_panel_1->setGraphHandle(tmgr_->icon_character_->getDxLibGraphHandle());
 
-	//auto ui_panel3 = std::make_shared<UIPanel>(110,10,w1*2, 90);
-	//ui_components_.push_back(ui_panel3);
-	
+	ui_components_.push_back(ui_panel_1);
+
+//	
 	auto ui_button_1 = std::make_shared<UIButton>(12, 125,85,85);
 	ui_button_1->setGraphHandle(tmgr_->icon_dungeon_gate_->getDxLibGraphHandle());
+	ui_button_1->SetNotifyTag("SwitchDungeonWindow");
+	ui_mediator_->SetSwitchDungeonWindowButton(ui_button_1);
 	ui_components_.push_back(ui_button_1);
 
+//
+	auto ui_button_2 = std::make_shared<UIButton>(12, 220, 85, 85);
+	ui_button_2->setGraphHandle(tmgr_->icon_character_->getDxLibGraphHandle());
+	ui_button_2->SetNotifyTag("SwitchCharacterWindow");
+	ui_mediator_->SetSwitchCharacterWindowButton(ui_button_2);
+	ui_components_.push_back(ui_button_2);
 
 
-	UIButton* ui_button_2 = new UIButton(100, 100, w1 * 2, h1 * 1);
-	ui_button_2->SetEasingFunction(std::make_unique<EaseOutExpo>());
-	ui_button_2->SetStartEasing(-100, 0);
+
+
 
 
 

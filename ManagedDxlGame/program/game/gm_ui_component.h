@@ -24,7 +24,7 @@ public:
 protected:
 
 	UIMediator* mediator_ = nullptr;
-	std::string notify_tag_;
+	std::string notify_tag_; //Notifyで使用する通知タグ
 
 	bool is_enabled_ = true;
 

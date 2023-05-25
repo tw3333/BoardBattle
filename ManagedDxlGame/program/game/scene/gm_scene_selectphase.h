@@ -36,7 +36,9 @@ private:
 	TextureManager* tmgr_ = TextureManager::GetInstance();
 
 	//UIì¬—p•Ï”(‰¼)
-	//UISelectPhaseMediator* ui_mediator_ = new UISelectPhaseMediator();
+	UISelectPhaseMediator* ui_mediator_ = new UISelectPhaseMediator();
+
+
 	std::vector<UIComponent*> all_ui_;
 	std::vector<std::shared_ptr<UIComponent>> ui_components_;
 	std::vector<std::shared_ptr<UIButton>> ui_buttons_;

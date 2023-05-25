@@ -17,16 +17,25 @@ public:
 	~UISelectPhaseMediator(){}
 
 
+	void Notify(UIComponent* sender, std::string tag) override;
 
-	void SetMediators() { 
-		for (auto uc : ui_components_) { uc->SetMediator(this); } 
+	void SetShowWhichWindowPanel(Shared<UIButton> ui_component) {
+		button_switch_character_window_ = ui_component;
+		this->button_switch_character_window_->SetMediator(this);
+	};
+
+	void SetSwitchDungeonWindowButton(Shared<UIButton> ui_button) {
+		button_switch_dungeon_window_ = ui_button;
+		this->button_switch_dungeon_window_->SetMediator(this);
 	}
 
-	void Notify(UIComponent* sender, std::string event) override;
+	void SetSwitchCharacterWindowButton(Shared<UIButton> ui_button) {
+		button_switch_character_window_ = ui_button;
+		this->button_switch_character_window_->SetMediator(this);
+	}
 
-	void SetShowWhichWindowPanel(Shared<UIPanel> ui_component) {
-		this->panel_show_which_window_->SetMediator(this);
-	};
+
+
 
 private:
 
