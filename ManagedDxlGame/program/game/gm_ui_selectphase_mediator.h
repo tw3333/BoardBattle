@@ -3,6 +3,7 @@
 #include "gm_ui_mediator.h"
 #include "gm_ui_panel.h"
 #include "gm_ui_button.h"
+#include "gm_ui_dungeon_window.h"
 #include <vector>
 #include <memory>
 
@@ -44,14 +45,23 @@ public:
 		this->button_switch_character_window_->SetMediator(this);
 	}
 
-	void SetDungeonWindow(std::vector<std::shared_ptr<UIComponent>> window) {
+	void SetDungeonWindow(Shared<DungeonWindow> window) {
 		dungeon_window_ = window;
+		this->dungeon_window_->SetMediator(this);
 	}
 
 	void SetCharacterWindow(std::vector<std::shared_ptr<UIComponent>> window) {
 		character_window_ = window;
 	}
 
+	void SetTest(std::vector<std::shared_ptr<UIComponent>> window) {
+
+		d_window_ = window;
+		for (auto d : d_window_) {
+			d->SetMediator(this);
+		}
+
+	}
 
 private:
 
@@ -69,12 +79,10 @@ private:
 	Shared<UIButton> button_switch_dungeon_tab_ = nullptr;
 	Shared<UIButton> button_switch_partyedit_tab_ = nullptr;
 
-
-
-	std::vector<std::shared_ptr<UIComponent>> dungeon_window_;
 	std::vector<std::shared_ptr<UIComponent>> character_window_;
 
+	Shared<DungeonWindow> dungeon_window_;
 
-
+	std::vector<Shared<UIComponent>> d_window_;
 
 };

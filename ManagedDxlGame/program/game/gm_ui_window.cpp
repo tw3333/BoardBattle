@@ -4,6 +4,7 @@ void UIWindow::AddComponent(UIComponent* component) {
 
 	ui_parts_.emplace_back(component);
 
+
 }
 
 void UIWindow::Update(float delta_time) {

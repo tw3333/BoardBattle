@@ -24,6 +24,7 @@ void TextureManager::LoadTexture() {
 	icon_3d_stairs_ = dxe::Texture::CreateFromFile("graphics/3d-stairs.png");
 	icon_character_ = dxe::Texture::CreateFromFile("graphics/icon_character.png");
 	icon_dungeon_gate_ = dxe::Texture::CreateFromFile("graphics/dungeon-gateA.png");
+	panel_dungeon_ = dxe::Texture::CreateFromFile("graphics/ui/panel_dungeon.png");
 
 
 

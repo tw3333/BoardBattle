@@ -16,6 +16,7 @@ public:
 	Shared<dxe::Texture> icon_3d_stairs_;
 	Shared<dxe::Texture> icon_character_;
 	Shared<dxe::Texture> icon_dungeon_gate_;
+	Shared<dxe::Texture> panel_dungeon_;
 
 
 	

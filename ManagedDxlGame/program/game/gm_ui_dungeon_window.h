@@ -4,7 +4,8 @@
 #include "gm_ui_button.h"
 #include "gm_ui_mediator.h"
 
-
+#include "gm_texture_manager.h"
+#include <vector>
 
 class DungeonWindow : public UIComponent {
 public:
@@ -28,7 +29,7 @@ public:
 
 	//
 	Shared<UIPanel>& GetWindow() { return window_; }
-
+	std::vector<Shared<UIComponent>> GetComponents() { return dungeon_window_components_; }
 
 private:
 
@@ -38,8 +39,19 @@ private:
 	int window_h_;
 
 
+	int button_w_ = (DXE_WINDOW_WIDTH / 10) + (DXE_WINDOW_WIDTH) /10 *0.5;
+	int button_h_ = DXE_WINDOW_HEIGHT / 10;
+
+
 	//Components
 	Shared<UIPanel> window_;
+	Shared<UIPanel> window_dungeon_tab_;
 
+	Shared<UIButton> switch_dungeon_tab_;
+	Shared<UIButton> switch_partyedit_tab_;
+
+	std::vector<Shared<UIComponent>> dungeon_window_components_;
+
+	TextureManager* tmgr_ = TextureManager::GetInstance();
 
 };

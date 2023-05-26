@@ -88,6 +88,8 @@ void SceneSelectPhase::CreateUIComponents() {
 //dungeon
 	auto dungeon_window = std::make_shared<DungeonWindow>(110,10,1600 - 120,880);
 	dungeon_window->Create();
+	ui_mediator_->SetTest(dungeon_window->GetComponents());
+
 	ui_components_.push_back(dungeon_window);
 
 
