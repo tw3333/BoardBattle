@@ -65,6 +65,12 @@ private:
 	Shared<UIButton> button_switch_dungeon_window_ = nullptr;
 	Shared<UIButton> button_switch_character_window_ = nullptr;
 
+//dungeonwindow
+	Shared<UIButton> button_switch_dungeon_tab_ = nullptr;
+	Shared<UIButton> button_switch_partyedit_tab_ = nullptr;
+
+
+
 	std::vector<std::shared_ptr<UIComponent>> dungeon_window_;
 	std::vector<std::shared_ptr<UIComponent>> character_window_;
 

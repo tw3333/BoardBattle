@@ -1,5 +1,6 @@
 #include "gm_scene_selectphase.h"
 #include "../gm_easingfunctions.h"
+#include "../gm_ui_dungeon_window.h"
 #include <memory>
 
 
@@ -71,7 +72,7 @@ void SceneSelectPhase::CreateUIComponents() {
 	ui_mediator_->SetShowIconCharacterWindow(ui_panel_1);
 	ui_components_.push_back(ui_panel_1);
 
-//	
+//switch_button
 	auto ui_button_1 = std::make_shared<UIButton>(12, 125,85,85);
 	ui_button_1->setGraphHandle(tmgr_->icon_dungeon_gate_->getDxLibGraphHandle());
 	ui_button_1->SetNotifyTag("SwitchDungeonWindow");
@@ -84,23 +85,10 @@ void SceneSelectPhase::CreateUIComponents() {
 	ui_mediator_->SetSwitchCharacterWindowButton(ui_button_2);
 	ui_components_.push_back(ui_button_2);
 
-//
-	auto dungeon_window = std::make_shared<UIPanel>(110,10,1600 - 120,880);
-	dungeon_window->setColor(GetColor(128,128,128));
-	dungeon_window_components_.push_back(dungeon_window);
+//dungeon
+	auto dungeon_window = std::make_shared<DungeonWindow>(110,10,1600 - 120,880);
+	dungeon_window->Create();
 	ui_components_.push_back(dungeon_window);
-
-	auto dungeon_tab_button = std::make_shared<UIButton>(w1*1,h1*1,w1*2,h1*1);
-	dungeon_tab_button->setColor(GetColor(211,211,211));
-	dungeon_window_components_.push_back(dungeon_tab_button);
-	ui_components_.push_back(dungeon_tab_button);
-
-	auto dungeon_party_edit_button = std::make_shared<UIButton>(w1 * 1, h1 * 3, w1 * 2, h1 * 1);
-	dungeon_party_edit_button->setColor(GetColor(211, 211, 211));
-	dungeon_window_components_.push_back(dungeon_party_edit_button);
-	ui_components_.push_back(dungeon_party_edit_button);
-
-	ui_mediator_->SetDungeonWindow(dungeon_window_components_);
 
 
 }
