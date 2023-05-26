@@ -27,8 +27,7 @@ public:
 
 private:
 
-	int size_w_ = 0;
-	int size_h_ = 0;
+	
 	bool is_opened;
 
 	std::vector<UIComponent*> ui_parts_;

@@ -45,7 +45,7 @@ void UIPanel::Render() {
 			}
 			else if (!graph_handle_) {
 
-				DrawBox(x_, y_, x_ + (float)width_, y_ + height_, 255, true);
+				DrawBox(x_, y_, x_ + (float)width_, y_ + height_, color_, true);
 
 			}
 

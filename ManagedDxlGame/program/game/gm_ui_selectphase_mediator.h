@@ -24,6 +24,16 @@ public:
 		this->button_switch_character_window_->SetMediator(this);
 	};
 
+	void SetShowIconDungeonWindow(Shared<UIPanel> ui_panel) {
+		panel_icon_dungeon_window_ = ui_panel;
+		this->panel_icon_dungeon_window_->SetMediator(this);
+	}
+
+	void SetShowIconCharacterWindow(Shared<UIPanel> ui_panel) {
+		panel_icon_character_window_ = ui_panel;
+		this->panel_icon_character_window_ ->SetMediator(this);
+	}
+
 	void SetSwitchDungeonWindowButton(Shared<UIButton> ui_button) {
 		button_switch_dungeon_window_ = ui_button;
 		this->button_switch_dungeon_window_->SetMediator(this);
@@ -34,18 +44,29 @@ public:
 		this->button_switch_character_window_->SetMediator(this);
 	}
 
+	void SetDungeonWindow(std::vector<std::shared_ptr<UIComponent>> window) {
+		dungeon_window_ = window;
+	}
 
+	void SetCharacterWindow(std::vector<std::shared_ptr<UIComponent>> window) {
+		character_window_ = window;
+	}
 
 
 private:
 
 	std::vector<UIComponent*> ui_components_;
-
-
 	Shared<UIPanel> panel_show_which_window_ = nullptr;
+	
+	Shared<UIPanel> panel_icon_dungeon_window_ = nullptr;
+	Shared<UIPanel> panel_icon_character_window_ = nullptr;
+
+
 	Shared<UIButton> button_switch_dungeon_window_ = nullptr;
 	Shared<UIButton> button_switch_character_window_ = nullptr;
 
+	std::vector<std::shared_ptr<UIComponent>> dungeon_window_;
+	std::vector<std::shared_ptr<UIComponent>> character_window_;
 
 
 

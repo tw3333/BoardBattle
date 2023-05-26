@@ -40,7 +40,12 @@ private:
 
 
 	std::vector<UIComponent*> all_ui_;
+
 	std::vector<std::shared_ptr<UIComponent>> ui_components_;
+	std::vector<std::shared_ptr<UIComponent>> dungeon_window_components_;
+	std::vector<std::shared_ptr<UIComponent>> character_window_components_;
+
+
 	std::vector<std::shared_ptr<UIButton>> ui_buttons_;
 
 

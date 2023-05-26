@@ -27,6 +27,7 @@ public:
 
 	//setter
 	void setGraphHandle(int graph_handle) { graph_handle_ = graph_handle; }
+	void setColor(int color_code) { color_ = color_code; }
 
 	//easingópÇÃä÷êî
 	void SetEasingFunction(std::unique_ptr<EasingFunction> easingFunction) { easing_function_ = std::move(easingFunction); };
@@ -57,5 +58,8 @@ protected:
 
 	bool is_moving_ = false;
 	
+	//Color
+	int color_ = -1;
+
 
 };
