@@ -248,6 +248,9 @@
     <ClCompile Include="program\game\gm_ui_dungeon_window.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_object_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -466,6 +469,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_dungeon_window.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_manager.h">
+      <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

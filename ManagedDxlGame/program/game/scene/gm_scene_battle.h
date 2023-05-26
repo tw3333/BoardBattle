@@ -5,6 +5,8 @@
 #include "../gm_card_manager.h"
 #include "../gm_allydata_manager.h"
 #include "../gm_scene_battle_camera.h"
+#include "../gm_object_manager.h"
+
 #include "../gm_ui_cardview.h"
 
 #include "../gm_object.h"
@@ -57,6 +59,7 @@ private:
 	
 	dxe::Mesh* debug_board_obj_ = nullptr;
 
+	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
 	//bool
 	bool is_draw_debug_layout_ = false;

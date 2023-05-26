@@ -6,6 +6,7 @@
 #include "../gm_scene_manager.h"
 #include "../scene/gm_scene_battle.h"
 #include "gm_scene_selectphase.h"
+#include "../gm_object_manager.h"
 
 //memo
 //データのロードを行うシーン
@@ -25,7 +26,9 @@ private:
 
 	AllyDataManager* amgr_ = AllyDataManager::GetInstance();
 	TextureManager* tmgr_ = TextureManager::GetInstance();
-	
+	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
+
+
 
 	enum NextScene {
 		//SceneBattle

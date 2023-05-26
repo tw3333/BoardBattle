@@ -29,10 +29,12 @@ public:
 
 	//
 	Shared<UIPanel>& GetWindow() { return window_; }
-	std::vector<Shared<UIComponent>> GetComponents() { return dungeon_window_components_; }
+	Shared<UIButton>& GetSwitchDungeonTabButton() { return switch_dungeon_tab_; }
+
 
 private:
-
+	
+	TextureManager* tmgr_ = TextureManager::GetInstance();
 	int window_posx_;
 	int window_posy_;
 	int window_w_;
@@ -49,9 +51,7 @@ private:
 
 	Shared<UIButton> switch_dungeon_tab_;
 	Shared<UIButton> switch_partyedit_tab_;
-
-	std::vector<Shared<UIComponent>> dungeon_window_components_;
-
-	TextureManager* tmgr_ = TextureManager::GetInstance();
-
+		
+	std::vector<Shared<UIComponent>>dungeon_window_components_;
+	
 };

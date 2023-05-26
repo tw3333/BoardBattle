@@ -171,6 +171,7 @@
     <ClCompile Include="program\game\gm_ally_manager.cpp" />
     <ClCompile Include="program\game\gm_board.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
+    <ClCompile Include="program\game\gm_object_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_dungeon_window.cpp" />
     <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="program\game\gm_allydata_manager.h" />
     <ClInclude Include="program\game\gm_ally_manager.h" />
     <ClInclude Include="program\game\gm_board.h" />
+    <ClInclude Include="program\game\gm_object_manager.h" />
     <ClInclude Include="program\game\gm_ui_dungeon_window.h" />
     <ClInclude Include="program\game\gm_ui_button.h" />
     <ClInclude Include="program\game\gm_card.h" />
