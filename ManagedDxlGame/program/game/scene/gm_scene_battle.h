@@ -51,6 +51,8 @@ private:
 	ObjAlly* obj_ally_ = nullptr;
 	
 	UnitAlly* unit_ally_ = nullptr;
+	UnitAlly*  unit_ally2_ = nullptr;
+
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
 	SelectSquare* ss_ = nullptr;

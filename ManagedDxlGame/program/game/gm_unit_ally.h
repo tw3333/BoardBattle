@@ -13,12 +13,12 @@
 class UnitAlly : public Unit {
 public:
 
-	UnitAlly(AllyData* ally_data, int row, int col) {
+	UnitAlly(int id,AllyData* ally_data, int row, int col) {
 	
 		ally_data_ = ally_data;
 		obj_ = ObjAlly::Create(ally_data_);
 		ObjectManager& t = ObjectManager::GetInstance();
-		obj_ = t.GetObjAllyAtID(1);
+		obj_ = t.GetObjAllyAtID(id);
 
 
 		setBoardPos(row, col);

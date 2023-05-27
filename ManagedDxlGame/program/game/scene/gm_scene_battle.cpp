@@ -13,7 +13,8 @@ void SceneBattle::Initialzie() {
 	
 	
 
-	unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1), 5, 5);
+	unit_ally_ = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 5, 5);
+	unit_ally2_ = new UnitAlly(2,allydata_mgr_->getAllyDataAtID(1), 6, 5);
 
 
 
@@ -54,6 +55,7 @@ void SceneBattle::Update(float delta_time) {
 	//obj_ally_->Update(delta_time);
 	//unit_ally_->Update();
 	unit_ally_->getObj()->Update(delta_time);
+	unit_ally2_->getObj()->Update(delta_time);
 	square_->getObj()->Update(delta_time);
 
 	board_->Update(delta_time);
@@ -84,6 +86,7 @@ void SceneBattle::Render() {
 	//obj_ally_->Render(camera_);
 	
 	unit_ally_->getObj()->Render(camera_);
+	unit_ally2_->getObj()->Render(camera_);
 	square_->getObj()->Render(camera_);
 
 	//for (auto al : all_square_) { al->getObj()->Render(camera_); }
