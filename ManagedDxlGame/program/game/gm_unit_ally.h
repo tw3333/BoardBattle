@@ -4,6 +4,7 @@
 #include "gm_data_ally.h"
 #include "gm_object_manager.h"
 
+
 //memo
 //盤面上のUnitとしてのAllyを表すクラス
 //AllyDataクラスのポインタを渡して作成
@@ -16,6 +17,10 @@ public:
 	
 		ally_data_ = ally_data;
 		obj_ = ObjAlly::Create(ally_data_);
+		ObjectManager& t = ObjectManager::GetInstance();
+		obj_ = t.GetObjAllyAtID(1);
+
+
 		setBoardPos(row, col);
 		obj_->Update(0);
 

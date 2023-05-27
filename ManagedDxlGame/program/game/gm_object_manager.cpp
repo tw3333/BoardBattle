@@ -5,7 +5,7 @@ void ObjectManager::CreateObjAllys() {
 	ObjAlly* obj_ally = new ObjAlly();
 
 	//ID:1
-	ObjAlly* obj_ally1 = obj_ally->CreateAlly("graphics/unit/ally/c1_board_img.png");
+	ObjAlly* obj_ally1 = obj_ally->CreateAlly("graphics/unit/enemy/1486010403.png");
 	obj_ally1->SetObjAllyID(1);
 
 	//ID:2
