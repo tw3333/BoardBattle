@@ -5,7 +5,10 @@
 void SceneLoad::Initialzie() {
 
 	amgr_->DebugLoadAllyData();
+	tmgr_->LoadTexture();
 	
+	obj_mgr_.CreateObjAllys();
+
 }
 
 void SceneLoad::Update(float delta_time) {

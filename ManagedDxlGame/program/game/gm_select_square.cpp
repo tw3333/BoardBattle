@@ -2,6 +2,8 @@
 
 void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 
+	obj_->Update(delta_time);
+
 	tnl::Vector3 msv = tnl::Input::GetMousePosition();
 	tnl::Vector3 ray = tnl::Vector3::CreateScreenRay(
 		msv.x
@@ -37,15 +39,13 @@ void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 			{	
 				obj_->pos_.x = board_squares_[i][j]->getObj()->pos_.x;
 				obj_->pos_.z = board_squares_[i][j]->getObj()->pos_.z;
+				//TODO:‚±‚±‚ÉƒNƒŠƒbƒN”»’è‚ð“ü‚ê‚é
 				select_square_row_ = i;
 				select_square_col_ = j;
 			}
 		}
 	}
 
-
-
-	obj_->Update(delta_time);
 
 }
 

@@ -2,6 +2,8 @@
 #include "gm_unit.h"
 #include "gm_object_ally.h"
 #include "gm_data_ally.h"
+#include "gm_object_manager.h"
+
 
 //memo
 //”Õ–Êã‚ÌUnit‚Æ‚µ‚Ä‚ÌAlly‚ð•\‚·ƒNƒ‰ƒX
@@ -15,6 +17,10 @@ public:
 	
 		ally_data_ = ally_data;
 		obj_ = ObjAlly::Create(ally_data_);
+		ObjectManager& t = ObjectManager::GetInstance();
+		obj_ = t.GetObjAllyAtID(1);
+
+
 		setBoardPos(row, col);
 		obj_->Update(0);
 
@@ -35,6 +41,7 @@ public:
 
 	//getter
 	ObjAlly* getObj() { return obj_; }
+	void SetObj(ObjAlly* obj) { obj_ = obj; }
 
 
 private:

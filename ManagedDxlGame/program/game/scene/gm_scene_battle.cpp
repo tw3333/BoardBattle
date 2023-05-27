@@ -1,4 +1,5 @@
 #include "gm_scene_battle.h"
+#include "../gm_object_manager.h"
 
 void SceneBattle::Initialzie() {
 	
@@ -10,7 +11,11 @@ void SceneBattle::Initialzie() {
 	//debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	//debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
 	
+	
+
 	unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1), 5, 5);
+
+
 
 	obj_board_ = ObjBoard::Create();
 	//obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
