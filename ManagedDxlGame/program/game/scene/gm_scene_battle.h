@@ -18,6 +18,7 @@
 #include "../gm_square.h"
 #include "../gm_board.h"
 #include "../gm_select_square.h"
+#include "../gm_anim_sprite3d.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -56,6 +57,7 @@ private:
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
 	SelectSquare* ss_ = nullptr;
+	AnimSprite3D* sprite_ = nullptr;
 
 	std::vector<Square*> all_square_;
 	

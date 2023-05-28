@@ -59,6 +59,7 @@ public:
 		, const float play_time
 		, const uint32_t frame_num
 		, const uint32_t frame_size_h
-		, const uint32_t frame_start_num_h);
+		, const uint32_t frame_start_num_h
+		, const uint32_t row_num);
 
 };

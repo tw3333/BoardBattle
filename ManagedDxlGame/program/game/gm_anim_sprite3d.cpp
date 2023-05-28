@@ -57,7 +57,8 @@ void AnimSprite3D::regist(
 	, const float play_time
 	, const uint32_t frame_num
 	, const uint32_t frame_size_h
-	, const uint32_t frame_start_num_h)
+	, const uint32_t frame_start_num_h
+	, const uint32_t row_num) //縦分分割に対応するために追加
 {
 	// １種類のアニメーション情報を作成
 	Shared<AnimUnit> unit = std::make_shared<AnimUnit>();
@@ -70,19 +71,35 @@ void AnimSprite3D::regist(
 	GetGraphSize(unit->texture_->getDxLibGraphHandle(), &img_w, &img_h);
 
 	// フレーム毎にパーツを作成
-	float sv = (float)frame_start_num_h / (float)img_h;
-	float ev = (float)(frame_start_num_h + frame_size_h) / (float)img_h;
+	//float sv = (float)frame_start_num_h / (float)img_h;
+	//float ev = (float)(frame_start_num_h + frame_size_h) / (float)img_h;
+
+	uint32_t frames_per_row = frame_num / row_num;
 
 	for (int i = 0; i < frame_num; ++i) {
+
+		int row = i / frames_per_row;
+		int col = i % frames_per_row;
+
+		float su = (float)col / (float)frames_per_row;
+		float eu = (float)(col + 1) / (float)frames_per_row;
+
+		float sv = (float)row / (float)row_num;
+		float ev = (float)(row + 1) / (float)row_num;
+
 		Parts* parts = new Parts();
+		//parts->mesh_ = dxe::Mesh::CreatePlaneMV(
+		//	{ plane_width, plane_height, 0 }, 1, 1, true, 
+		//	{ (float)i / (float)frame_num, sv, 0 }, { float(i+1) / (float)frame_num, ev, 0 });
 		parts->mesh_ = dxe::Mesh::CreatePlaneMV(
 			{ plane_width, plane_height, 0 }, 1, 1, true,
-			{ (float)i / (float)frame_num, sv, 0 }, { float(i + 1) / (float)frame_num, ev, 0 });
+			{ su, sv, 0 }, { eu, ev, 0 });
+
 		parts->mesh_->setTexture(unit->texture_);
 		parts->mesh_->setDefaultLightEnable(false);
 		parts_.emplace_back(parts);
 		parts_[unit->parts_start_index_ + i]->is_render_ = false;
-	}
 
+	}
 
 }

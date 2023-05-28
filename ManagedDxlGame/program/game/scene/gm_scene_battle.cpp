@@ -16,7 +16,12 @@ void SceneBattle::Initialzie() {
 	unit_ally_ = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 5, 5);
 	unit_ally2_ = new UnitAlly(2,allydata_mgr_->getAllyDataAtID(1), 6, 5);
 
-
+	sprite_ = new AnimSprite3D(camera_);
+	sprite_->regist(80, 80, "walk_front", "graphics/effect/anim_shild.png",
+		tnl::SeekUnit::ePlayMode::REPEAT, 1.0f, 10, 240, 0,2);
+	sprite_->setCurrentAnim("walk_front");
+	sprite_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
+	sprite_->pos_ = {300,30,300};
 
 	obj_board_ = ObjBoard::Create();
 	//obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
@@ -61,6 +66,7 @@ void SceneBattle::Update(float delta_time) {
 	board_->Update(delta_time);
 	ss_->Update(delta_time,camera_);
 
+	sprite_->Update(delta_time);
 	//for (auto al : all_square_) { al->getObj()->Update(delta_time); }
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
@@ -96,6 +102,8 @@ void SceneBattle::Render() {
 
 	DrawDebugLayOut(is_draw_debug_layout_);
 	ss_->Render(camera_);
+
+	sprite_->Render(camera_);
 
 	//test—Ìˆæ
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
