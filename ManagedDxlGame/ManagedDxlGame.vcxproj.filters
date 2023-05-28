@@ -251,6 +251,9 @@
     <ClCompile Include="program\game\gm_object_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_anim_sprite3d.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -472,6 +475,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_object_manager.h">
       <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_anim_sprite3d.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
