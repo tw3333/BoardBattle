@@ -15,13 +15,16 @@ void SceneBattle::Initialzie() {
 
 	unit_ally_ = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 5, 5);
 	unit_ally2_ = new UnitAlly(2,allydata_mgr_->getAllyDataAtID(1), 6, 5);
+	obj_target_circle_->pos_ = unit_ally2_->getObj()->pos_;
+	obj_target_circle_->pos_.z += 1;
 
 	sprite_ = new AnimSprite3D(camera_);
 	sprite_->regist(80, 80, "walk_front", "graphics/effect/anim_shild.png",
 		tnl::SeekUnit::ePlayMode::REPEAT, 1.0f, 10, 240, 0,2);
 	sprite_->setCurrentAnim("walk_front");
-	sprite_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
 	sprite_->pos_ = {300,30,300};
+
+
 
 	obj_board_ = ObjBoard::Create();
 	//obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
@@ -66,6 +69,8 @@ void SceneBattle::Update(float delta_time) {
 	board_->Update(delta_time);
 	ss_->Update(delta_time,camera_);
 
+	obj_target_circle_->Update(delta_time);
+
 	sprite_->Update(delta_time);
 	//for (auto al : all_square_) { al->getObj()->Update(delta_time); }
 
@@ -79,6 +84,11 @@ void SceneBattle::Update(float delta_time) {
 		}
 
 	}
+
+	//Phase
+	phase_.update(delta_time);
+
+
 
 }
 
@@ -104,6 +114,8 @@ void SceneBattle::Render() {
 	ss_->Render(camera_);
 
 	sprite_->Render(camera_);
+
+	obj_target_circle_->Render(camera_);
 
 	//test—Ìˆæ
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
@@ -150,6 +162,13 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 	}
 
+}
+
+bool SceneBattle::PhaseSetBattle(const float delta_time) {
+
+	DrawStringEx(500,10,-1,"SetBattle");
+
+	return true;
 }
 
 

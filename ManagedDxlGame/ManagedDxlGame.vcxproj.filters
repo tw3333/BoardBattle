@@ -254,6 +254,12 @@
     <ClCompile Include="program\game\gm_anim_sprite3d.cpp">
       <Filter>program\[003] game\object</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_phase_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_object_target_circle.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -477,6 +483,12 @@
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_anim_sprite3d.h">
+      <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_phase_manager.h">
+      <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_target_circle.h">
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>

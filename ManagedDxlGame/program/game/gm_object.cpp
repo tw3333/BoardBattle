@@ -10,8 +10,10 @@ void GameObject::Update(float delta_time) {
 }
 
 void GameObject::Render(dxe::Camera* camera) {
+	
 	for (auto pts : parts_) {
 		if (!pts->is_render_) continue;
 		pts->mesh_->render(camera);
 	}
+
 }

@@ -44,6 +44,7 @@ void AnimSprite3D::Update(float delta_time) {
 	// パーツ座標の更新
 	parts_[idx]->mesh_->pos_ = pos_;
 	parts_[idx]->mesh_->rot_ = tnl::Quaternion::LookAtAxisY(billboard_target_->pos_, billboard_target_->target_);
+	parts_[idx]->mesh_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
 
 }
 

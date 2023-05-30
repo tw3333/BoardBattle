@@ -12,6 +12,7 @@
 #include "../gm_object.h"
 #include "../gm_object_board.h"
 #include "../gm_object_ally.h"
+#include "../gm_object_target_circle.h"
 
 #include "../gm_unit_ally.h"
 
@@ -19,6 +20,7 @@
 #include "../gm_board.h"
 #include "../gm_select_square.h"
 #include "../gm_anim_sprite3d.h"
+//#include "../../library/tnl_sequence.h"
 
 //memo
 //戦闘シーンのSceneクラス
@@ -50,6 +52,7 @@ private:
 	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
 	ObjBoard* obj_board_ = nullptr;
 	ObjAlly* obj_ally_ = nullptr;
+	ObjTargetCircle* obj_target_circle_ = ObjTargetCircle::Create(ObjTargetCircle::TextureColor::Red);
 	
 	UnitAlly* unit_ally_ = nullptr;
 	UnitAlly*  unit_ally2_ = nullptr;
@@ -75,4 +78,19 @@ private:
 	//debugにつかう変数
 	int debug_mp_x = 0;
 	int debug_mp_y = 0;
+
+	//Phase
+	tnl::Sequence<SceneBattle> phase_ =
+		tnl::Sequence<SceneBattle>(this,&SceneBattle::PhaseSetBattle);
+
+
+	bool PhaseSetBattle(const float delta_time);
+
+	bool PhaseAllyTurn(const float delta_time);
+	bool PhaseEnemyTturn(const float delta_time);
+
+
+
+
+
 };

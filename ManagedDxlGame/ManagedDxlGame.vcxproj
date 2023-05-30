@@ -173,6 +173,8 @@
     <ClCompile Include="program\game\gm_board.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_object_manager.cpp" />
+    <ClCompile Include="program\game\gm_object_target_circle.cpp" />
+    <ClCompile Include="program\game\gm_phase_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_dungeon_window.cpp" />
     <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
@@ -231,6 +233,8 @@
     <ClInclude Include="program\game\gm_anim_sprite3d.h" />
     <ClInclude Include="program\game\gm_board.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />
+    <ClInclude Include="program\game\gm_object_target_circle.h" />
+    <ClInclude Include="program\game\gm_phase_manager.h" />
     <ClInclude Include="program\game\gm_ui_dungeon_window.h" />
     <ClInclude Include="program\game\gm_ui_button.h" />
     <ClInclude Include="program\game\gm_card.h" />

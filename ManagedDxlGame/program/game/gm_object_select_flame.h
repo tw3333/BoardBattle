@@ -24,5 +24,6 @@ private:
 	float frequency_ = 1.3; //“_–Å‚Ì‘¬“x’²®—p•Ï”
 	float alpha_ = 1.0;
 	int dxlib_blend_mode_ = DX_BLENDMODE_ALPHA;
-
+	
+		
 };

@@ -18,12 +18,14 @@ SceneManager::SceneManager() {
 
 //デストラクタ
 SceneManager::~SceneManager() {
+
 	if (scene_now_) { delete scene_now_;  }
 	if (scene_next_) { delete scene_next_; }
 }
 
 //SceneManagerインスタンス取得
 SceneManager* SceneManager::GetInstance() {
+
 	if (!instance_) {
 		instance_ = new SceneManager();
 	}
@@ -32,10 +34,12 @@ SceneManager* SceneManager::GetInstance() {
 
 //SceneManagerのインスタンス破棄
 void SceneManager::Destroy() {
+
 	if (instance_) { 
 		delete instance_; 
 		instance_ = nullptr;
 	}
+
 }
 
 
