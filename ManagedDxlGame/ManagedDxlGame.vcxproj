@@ -166,7 +166,6 @@
     <ClCompile Include="program\dxlib_ext\dxlib_ext_mesh.cpp" />
     <ClCompile Include="program\dxlib_ext\dxlib_ext_texture.cpp" />
     <ClCompile Include="program\dxlib_ext\OBJLoader.cpp" />
-    <ClCompile Include="program\game\gm_ally.cpp" />
     <ClCompile Include="program\game\gm_allydata_manager.cpp" />
     <ClCompile Include="program\game\gm_ally_manager.cpp" />
     <ClCompile Include="program\game\gm_anim_sprite3d.cpp" />
@@ -176,7 +175,6 @@
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_dungeon_window.cpp" />
-    <ClCompile Include="program\game\gm_enemy.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
     <ClCompile Include="program\game\gm_object.cpp" />
     <ClCompile Include="program\game\gm_object_ally.cpp" />
@@ -194,6 +192,7 @@
     <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_window.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />
+    <ClCompile Include="program\game\gm_unit_enemy.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_load.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
@@ -227,11 +226,11 @@
     <ClInclude Include="program\dxlib_ext\dxlib_ext_render_param.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_texture.h" />
     <ClInclude Include="program\dxlib_ext\OBJLoader.h" />
-    <ClInclude Include="program\game\gm_ally.h" />
     <ClInclude Include="program\game\gm_allydata_manager.h" />
     <ClInclude Include="program\game\gm_ally_manager.h" />
     <ClInclude Include="program\game\gm_anim_sprite3d.h" />
     <ClInclude Include="program\game\gm_board.h" />
+    <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />
     <ClInclude Include="program\game\gm_object_target_circle.h" />
     <ClInclude Include="program\game\gm_phase_manager.h" />
@@ -242,7 +241,6 @@
     <ClInclude Include="program\game\gm_color.h" />
     <ClInclude Include="program\game\gm_data_ally.h" />
     <ClInclude Include="program\game\gm_easingfunctions.h" />
-    <ClInclude Include="program\game\gm_enemy.h" />
     <ClInclude Include="program\game\gm_hand.h" />
     <ClInclude Include="program\game\gm_main.h" />
     <ClInclude Include="program\game\gm_model.h" />
@@ -266,6 +264,7 @@
     <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\gm_object.h" />
     <ClInclude Include="program\game\gm_unit_ally.h" />
+    <ClInclude Include="program\game\gm_unit_enemy.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />
     <ClInclude Include="program\game\scene\gm_scene_load.h" />
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h" />

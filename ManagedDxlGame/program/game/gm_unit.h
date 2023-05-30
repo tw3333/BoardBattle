@@ -30,5 +30,12 @@ public:
 
 private:
 
+	//BoardPos board_pos_;
+
+protected:
+
+	Type unit_type_;
+	BoardPos board_pos_;
+
 
 };

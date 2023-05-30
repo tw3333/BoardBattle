@@ -21,7 +21,7 @@ public:
 		obj_ = t.GetObjAllyAtID(id);
 
 
-		setBoardPos(row, col);
+		SetBoardPos(row, col);
 		obj_->Update(0);
 
 	}
@@ -37,7 +37,7 @@ public:
 	//	board_pos_.col = col;
 	//}
 
-	void setBoardPos(int row, int col);
+	void SetBoardPos(int row, int col);
 
 	//getter
 	ObjAlly* getObj() { return obj_; }
@@ -53,6 +53,5 @@ private:
 	bool is_dead_ = false;
 	bool is_acted_ = false;
 
-	BoardPos board_pos_;
 
 };

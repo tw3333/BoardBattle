@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "gm_ally.h"
+
 
 //memo
 //Allyのインスタンスを作成、保持、管理するクラス
@@ -23,7 +23,7 @@ private:
 	static AllyManager* instance_;
 
 	//メンバ変数	
-	std::vector<Ally*> all_ally_data_;
+	/*std::vector<Ally*> all_ally_data_;*/
 
 
 };

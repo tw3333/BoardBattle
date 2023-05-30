@@ -152,9 +152,6 @@
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_triangle_right.cpp">
       <Filter>program\[001] dxlib_ext\create_mesh</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_main.cpp">
-      <Filter>program\[003] game</Filter>
-    </ClCompile>
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_hollow_out_disk_plane.cpp">
       <Filter>program\[001] dxlib_ext\create_mesh</Filter>
     </ClCompile>
@@ -172,12 +169,6 @@
     </ClCompile>
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp">
       <Filter>program\[003] game\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_ally.cpp">
-      <Filter>program\[003] game\unit</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_enemy.cpp">
-      <Filter>program\[003] game\unit</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_scene_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
@@ -259,6 +250,12 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_object_target_circle.cpp">
       <Filter>program\[003] game\object</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_unit_enemy.cpp">
+      <Filter>program\[003] game\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_main.cpp">
+      <Filter>program\[003] game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -374,12 +371,6 @@
     <ClInclude Include="program\game\gm_object.h">
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_ally.h">
-      <Filter>program\[003] game\unit</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_enemy.h">
-      <Filter>program\[003] game\unit</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_scene_manager.h">
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
@@ -490,6 +481,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_object_target_circle.h">
       <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_unit_enemy.h">
+      <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_data_enemy.h">
+      <Filter>program\[003] game\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
