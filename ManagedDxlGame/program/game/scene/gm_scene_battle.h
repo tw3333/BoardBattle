@@ -87,6 +87,9 @@ private:
 	bool PhaseSetBattle(const float delta_time);
 
 	bool PhaseAllyTurn(const float delta_time);
+
+
+
 	bool PhaseEnemyTturn(const float delta_time);
 
 
