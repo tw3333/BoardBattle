@@ -15,7 +15,7 @@ public:
 
 	static ObjSelectFlame* Create();
 	void Update(float delta_time) override;
-	bool is_flashing_ = true;
+	bool is_flashing_ = false;
 
 private:
 

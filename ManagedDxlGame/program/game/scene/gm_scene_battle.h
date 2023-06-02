@@ -8,6 +8,8 @@
 #include "../gm_object_manager.h"
 
 #include "../gm_ui_cardview.h"
+#include "../gm_ui_player_action_buttons.h"
+#include "../gm_ui_scene_battle_mediator.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -25,6 +27,8 @@
 //memo
 //戦闘シーンのSceneクラス
 
+
+
 class SceneBattle : public SceneBase {
 public:
 
@@ -38,6 +42,21 @@ public:
 	//メンバ関数
 	void DrawDebugLayOut(bool is_draw);
 
+
+
+
+	//Sequence
+	tnl::Sequence<SceneBattle> seq_ =
+		tnl::Sequence<SceneBattle>(this, &SceneBattle::PhaseSetBattle);
+	//tnl::Sequence<SceneBattle>* phase_;
+	bool PhaseSetBattle(const float delta_time);
+
+	bool PhaseCard(const float delta_time);
+	bool PhaseMove(const float delta_time);
+	bool PhaseTool(const float delta_time);
+	bool PhaseTurnEnd(const float delta_time);
+	bool PhaseAllyTurn(const float delta_time);
+	bool PhaseEnemyTturn(const float delta_time);
 
 private:
 	
@@ -68,6 +87,10 @@ private:
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
+	//UI
+	UIPlayerActionButtons* ui_action_buttons_ = nullptr;
+	UISceneBattleMediator* ui_mediator_ = nullptr;
+
 	//bool
 	bool is_draw_debug_layout_ = false;
 
@@ -78,22 +101,6 @@ private:
 	//debugにつかう変数
 	int debug_mp_x = 0;
 	int debug_mp_y = 0;
-
-	//Phase
-	tnl::Sequence<SceneBattle> phase_ =
-		tnl::Sequence<SceneBattle>(this,&SceneBattle::PhaseSetBattle);
-
-
-	bool PhaseSetBattle(const float delta_time);
-
-	bool PhaseAllyTurn(const float delta_time);
-
-
-
-	bool PhaseEnemyTturn(const float delta_time);
-
-
-
 
 
 };

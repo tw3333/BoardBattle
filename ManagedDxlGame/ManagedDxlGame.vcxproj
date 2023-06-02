@@ -191,6 +191,7 @@
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
     <ClCompile Include="program\game\gm_ui_panel.cpp" />
     <ClCompile Include="program\game\gm_ui_player_action_buttons.cpp" />
+    <ClCompile Include="program\game\gm_ui_scene_battle_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_window.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />

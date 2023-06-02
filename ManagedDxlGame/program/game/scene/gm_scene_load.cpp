@@ -8,6 +8,8 @@ void SceneLoad::Initialzie() {
 	tmgr_->LoadTexture();
 	
 	obj_mgr_.CreateObjAllys();
+	obj_mgr_.CreateObjSquares();
+
 
 }
 

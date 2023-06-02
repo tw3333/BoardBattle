@@ -7,7 +7,6 @@ public:
 	~ObjSquare() { delete square_texture_; }
 
 	enum {
-
 		BaseSquare,
 		PartsMax
 	};
@@ -17,8 +16,6 @@ public:
 		Grass,
 		Stone,
 		Poison,	
-		
-
 	};
 
 	struct SquareSize {
@@ -27,6 +24,7 @@ public:
 	};
 
 	static ObjSquare* Create();
+
 	void Update(float delta_time) override;
 
 	//getter
@@ -63,5 +61,7 @@ private:
 	};
 
 	dxe::Texture* square_texture_;
+
+
 
 };

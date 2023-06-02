@@ -49,6 +49,19 @@ private:
 	AllyData* ally_data_ = nullptr;
 	ObjAlly* obj_ = nullptr;
 
+	//ステータス
+	int max_hp_;
+	int current_hp_;
+
+	int max_card_cost_;
+	int current_card_cost_;
+
+	int max_move_cost_;
+	int current_move_cost_;
+
+	int speed_;
+
+
 	//状態
 	bool is_dead_ = false;
 	bool is_acted_ = false;

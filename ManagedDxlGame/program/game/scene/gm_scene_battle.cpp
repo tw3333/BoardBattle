@@ -33,7 +33,7 @@ void SceneBattle::Initialzie() {
 	//unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1),5,5);
 	//unit_ally_->setBoardPos(5,5);
 
-	square_ = new Square(5,5);
+	//square_ = new Square(5,5);
 
 	//square_->
 	
@@ -47,16 +47,27 @@ void SceneBattle::Initialzie() {
 
 	//	}
 	//}
+	ui_mediator_ = new UISceneBattleMediator();
+	ui_mediator_->SetSequence(&seq_);
+
+	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*8,w1*2,h1*2);
+	ui_action_buttons_->SetMediator(ui_mediator_);
+	ui_action_buttons_->SetMediators();
+
+
 
 	cmgr_ = cmgr_->GetInstance();
 	cmgr_->MakeDebugCard();
 	
+
 
 }
 
 void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
+	seq_.update(delta_time);
+
 
 	//unit_ally_->getObj()->Update(delta_time);
 	obj_board_->Update(delta_time);
@@ -64,7 +75,7 @@ void SceneBattle::Update(float delta_time) {
 	//unit_ally_->Update();
 	unit_ally_->getObj()->Update(delta_time);
 	unit_ally2_->getObj()->Update(delta_time);
-	square_->getObj()->Update(delta_time);
+	//square_->getObj()->Update(delta_time);
 
 	board_->Update(delta_time);
 	ss_->Update(delta_time,camera_);
@@ -73,6 +84,9 @@ void SceneBattle::Update(float delta_time) {
 
 	sprite_->Update(delta_time);
 	//for (auto al : all_square_) { al->getObj()->Update(delta_time); }
+
+	//UI
+	ui_action_buttons_->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -86,7 +100,7 @@ void SceneBattle::Update(float delta_time) {
 	}
 
 	//Phase
-	phase_.update(delta_time);
+	
 
 
 
@@ -103,7 +117,7 @@ void SceneBattle::Render() {
 	
 	unit_ally_->getObj()->Render(camera_);
 	unit_ally2_->getObj()->Render(camera_);
-	square_->getObj()->Render(camera_);
+	//square_->getObj()->Render(camera_);
 
 	//for (auto al : all_square_) { al->getObj()->Render(camera_); }
 	board_->Render(camera_);
@@ -116,6 +130,9 @@ void SceneBattle::Render() {
 	sprite_->Render(camera_);
 
 	obj_target_circle_->Render(camera_);
+
+	//UI
+	ui_action_buttons_->Render();
 
 	//test—Ìˆæ
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
@@ -136,7 +153,7 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 40, -1, "camera.pos.z:%f", camera_->pos_.z);
 	DrawStringEx(w1*8,60,-1,"MouseX:%d", debug_mp_x);
 	DrawStringEx(w1 * 8, 80, -1, "MouseY:%d", debug_mp_y);
-	DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
+	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
 	DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
 
 	if (is_draw) {
@@ -171,6 +188,37 @@ bool SceneBattle::PhaseSetBattle(const float delta_time) {
 	return true;
 }
 
+bool SceneBattle::PhaseCard(const float delta_time) {
+
+	DrawStringEx(500,30,-1,"PhaseCard");
+
+	return true;
+}
+
+bool SceneBattle::PhaseMove(const float delta_time) {
+
+	DrawStringEx(500, 30, -1, "PhaseMove");
+
+	return true;
+
+
+}
+bool SceneBattle::PhaseTool(const float delta_time) {
+
+	DrawStringEx(500, 30, -1, "PhaseTool");
+
+	return true;
+
+
+}
+bool SceneBattle::PhaseTurnEnd(const float delta_time) {
+
+	DrawStringEx(500, 30, -1, "PhaseTurnEnd");
+
+	return true;
+
+
+}
 
 //memo
 //================================================

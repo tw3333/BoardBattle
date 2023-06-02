@@ -28,3 +28,17 @@ void ObjectManager::CreateObjAllys() {
 	delete obj_ally;
 }
 
+//ObjSquare‚ğì¬‚µ‚Äpool
+void ObjectManager::CreateObjSquares() {
+
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 10; ++j) {
+
+			obj_squares_[i][j] = ObjSquare::Create();
+
+		}
+
+	}
+
+
+}

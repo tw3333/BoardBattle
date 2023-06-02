@@ -1,5 +1,6 @@
 #pragma once
 #include "gm_object_ally.h"
+#include "gm_object_square.h"
 
 //memo
 //マジックスタティックを用いて作成
@@ -37,6 +38,9 @@ public:
 		return nullptr;
 	}
 
+	void CreateObjSquares();
+	ObjSquare* GetSquaresAtIndex(int row, int col) { return obj_squares_[row][col]; }
+
 private:
 	
 	//GetInstance以外での生成防止
@@ -46,6 +50,9 @@ private:
 	//membervariable
 	//std::vector<Shared<ObjAlly>> obj_allys_;
 	std::vector<ObjAlly*> obj_allys_;
+	ObjSquare* obj_square_ = nullptr;
+
+	ObjSquare* obj_squares_[10][10];
 
 
 };

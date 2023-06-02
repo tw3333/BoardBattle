@@ -28,11 +28,12 @@ private:
 	std::string name_;
 
 	int hp_;
+	
 	int cost_;
-
 	int move_cost_;
 	int speed_;
 	
+
 	//ó‘Ô
 	bool is_party_picked_ = false;
 	bool is_edit_picked_ = false;

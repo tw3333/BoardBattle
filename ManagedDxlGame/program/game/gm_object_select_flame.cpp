@@ -8,7 +8,7 @@ ObjSelectFlame* ObjSelectFlame::Create() {
 	Parts* select_flame = new Parts();
 	select_flame->mesh_ = dxe::Mesh::CreatePlaneMV(
 		{obj_select_flame->getSquareSize().w,obj_select_flame->getSquareSize().h,0});
-	select_flame->mesh_->setTexture(dxe::Texture::CreateFromFile("graphics/tile/selec_flame.png"));
+	select_flame->mesh_->setTexture(dxe::Texture::CreateFromFile("graphics/tile/select_flame.png"));
 	select_flame->ofs_pos_ = { 0,2,0 };
 	select_flame->ofs_rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	select_flame->mesh_->setAlpha(obj_select_flame->alpha_);
