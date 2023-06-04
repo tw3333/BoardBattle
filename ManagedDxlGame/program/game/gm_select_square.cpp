@@ -20,10 +20,10 @@ void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 	}
 
 	if (IsSelectFlameOutOfBoard(hit_)) {
-		obj_->parts_[0]->is_render_ = false;
+		obj_->parts_[ObjSelectFlame::SelectFlame]->is_render_ = false;
 	}
 	else {
-		obj_->parts_[0]->is_render_ = true;
+		obj_->parts_[ObjSelectFlame::SelectFlame]->is_render_ = true;
 	}
 	
 	for (int i = 0; i < 10; ++i) {
@@ -53,7 +53,9 @@ void SelectSquare::Render(dxe::Camera* camera) {
 
 	obj_->Render(camera);
 
-	DrawStringEx(0,100,-1,"test:%f",board_squares_[0][0]->getObj()->getBeginPos().x);
+	//DrawStringEx(0,100,-1,"test:%f",board_squares_[0][0]->getObj()->getBeginPos().x);
+
+
 }
 
 //マウスが盤面外に出ているかどうか

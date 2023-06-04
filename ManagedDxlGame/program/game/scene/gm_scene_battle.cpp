@@ -5,13 +5,6 @@ void SceneBattle::Initialzie() {
 	
 	camera_ = new SceneBattleCamera();
 	//camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(54));
-	
-	//debug_board_obj_ = dxe::Mesh::CreatePlane({ (float)w1*8,(float)h1*8,0 });
-	//debug_board_obj_->setTexture(dxe::Texture::CreateFromFile("graphics/512.bmp"));
-	//debug_board_obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
-	//debug_board_obj_->pos_ = { (float)w1*8/2,0,(float)h1*8/2};
-	
-	
 
 	unit_ally_ = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 5, 5);
 	unit_ally2_ = new UnitAlly(2,allydata_mgr_->getAllyDataAtID(1), 6, 5);
@@ -26,20 +19,11 @@ void SceneBattle::Initialzie() {
 
 
 
-	obj_board_ = ObjBoard::Create();
-	//obj_ally_ = ObjAlly::Create(allydata_mgr_->getAllyDataAtID(1));
-	//obj_ally_->pos_ = { 100,50,200 };
-
-	//unit_ally_ = new UnitAlly(allydata_mgr_->getAllyDataAtID(1),5,5);
-	//unit_ally_->setBoardPos(5,5);
-
-	//square_ = new Square(5,5);
-
-	//square_->
-	
 	board_ = new Board();
 	board_->Create();
-	ss_ = new SelectSquare(board_->getBoardSquares());
+	board_->SetCamera(camera_);
+
+	//ss_ = new SelectSquare(board_->getBoardSquares());
 
 	//for (int i = 0; i < 10; ++i) {
 	//	for (int j = 0; j < 10; ++j) {
@@ -70,15 +54,15 @@ void SceneBattle::Update(float delta_time) {
 
 
 	//unit_ally_->getObj()->Update(delta_time);
-	obj_board_->Update(delta_time);
+	//obj_board_->Update(delta_time);
 	//obj_ally_->Update(delta_time);
 	//unit_ally_->Update();
-	unit_ally_->getObj()->Update(delta_time);
+  	unit_ally_->getObj()->Update(delta_time);
 	unit_ally2_->getObj()->Update(delta_time);
 	//square_->getObj()->Update(delta_time);
 
 	board_->Update(delta_time);
-	ss_->Update(delta_time,camera_);
+	//ss_->Update(delta_time,camera_);
 
 	obj_target_circle_->Update(delta_time);
 
@@ -112,9 +96,8 @@ void SceneBattle::Render() {
 
 	camera_->Update();
 	//debug_board_obj_->render(camera_);
-	obj_board_->Render(camera_);
 	//obj_ally_->Render(camera_);
-	
+	DrawDebugLayOut(is_draw_debug_layout_);
 	unit_ally_->getObj()->Render(camera_);
 	unit_ally2_->getObj()->Render(camera_);
 	//square_->getObj()->Render(camera_);
@@ -124,9 +107,7 @@ void SceneBattle::Render() {
 
 	DrawStringEx(0,0,-1,"SceneBattle");
 
-	DrawDebugLayOut(is_draw_debug_layout_);
-	ss_->Render(camera_);
-
+	//ss_->Render(camera_);
 	sprite_->Render(camera_);
 
 	obj_target_circle_->Render(camera_);
@@ -138,8 +119,6 @@ void SceneBattle::Render() {
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
 	cardview.Render(w1*8,h1*7);
 
-
-	//DrawBox(0,0,1280,720,0,true);
 
 }
 
@@ -154,7 +133,7 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1*8,60,-1,"MouseX:%d", debug_mp_x);
 	DrawStringEx(w1 * 8, 80, -1, "MouseY:%d", debug_mp_y);
 	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
-	DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
+	//DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
 
 	if (is_draw) {
 		for (int i = 0; i < 10; ++i) {
@@ -163,7 +142,7 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 		}
 	}
 
-	DrawGridGround(camera_, 50, 20);
+	//DrawGridGround(camera_, 50, 20);
 
 	//Board‚ÌƒOƒŠƒbƒgü
 	for (int i = 0; i <= 10; ++i) {
@@ -173,10 +152,6 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 		DrawLine3D({0,0,0 + (mas_z * i)}, {float(w1 * 8),0,0 + (mas_z * i)}, gray_);
 		DrawLine3D({0 + (mas_x * i),0,0}, {0 + (mas_x * i),0,(float)(h1 * 8)}, gray_);
-
-
-
-
 	}
 
 }

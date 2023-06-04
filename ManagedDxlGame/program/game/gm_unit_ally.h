@@ -38,6 +38,7 @@ public:
 	//}
 
 	void SetBoardPos(int row, int col);
+	
 
 	//getter
 	ObjAlly* getObj() { return obj_; }

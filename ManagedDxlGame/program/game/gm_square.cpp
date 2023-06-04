@@ -18,4 +18,5 @@ void Square::SetSquarePos(int row, int col) {
 	obj_->pos_.x = (w1 / 2) + ((w1)*square_pos_.col);
 
 	obj_->Update(0);
+
 }

@@ -179,9 +179,6 @@
     <ClCompile Include="program\game\scene\gm_scene_load.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_ally_manager.cpp">
-      <Filter>program\[003] game\manager</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\gm_card_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
@@ -265,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_scene_battle_mediator.cpp">
       <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_board_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -392,9 +392,6 @@
     <ClInclude Include="program\game\scene\gm_scene_load.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_ally_manager.h">
-      <Filter>program\[003] game\manager</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_card_manager.h">
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
@@ -505,6 +502,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_player_action_buttons.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_board_manager.h">
+      <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include "gm_object_select_flame.h"
 #include "gm_square.h"
 #include <array>
+
 //memo
 //盤面上の１マスをマウスで選択できるようにするクラス
 //
@@ -12,6 +13,7 @@ class SelectSquare {
 public:
 
 	SelectSquare(const std::array<std::array<Square*,10>,10> board_squares) {
+		
 		obj_ = ObjSelectFlame::Create();
 		board_squares_ = board_squares;
 
