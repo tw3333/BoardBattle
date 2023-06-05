@@ -5,11 +5,8 @@ void SceneBattle::Initialzie() {
 	
 	camera_ = new SceneBattleCamera();
 	//camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(54));
+//debug
 
-	unit_ally_ = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 5, 5);
-	unit_ally2_ = new UnitAlly(2,allydata_mgr_->getAllyDataAtID(1), 6, 5);
-	obj_target_circle_->pos_ = unit_ally2_->getObj()->pos_;
-	obj_target_circle_->pos_.z += 1;
 
 	sprite_ = new AnimSprite3D(camera_);
 	sprite_->regist(80, 80, "walk_front", "graphics/effect/anim_shild.png",
@@ -17,20 +14,16 @@ void SceneBattle::Initialzie() {
 	sprite_->setCurrentAnim("walk_front");
 	sprite_->pos_ = {300,30,300};
 
+//-----
+	party_[0] = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 0, 0);
+	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
+	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
 
+	ui_hp_bar_ = new UIHpBar(0,h1*8,w1*2,h1*1,party_[0]);
 
 	board_ = new Board();
 	board_->Create();
 	board_->SetCamera(camera_);
-
-	//ss_ = new SelectSquare(board_->getBoardSquares());
-
-	//for (int i = 0; i < 10; ++i) {
-	//	for (int j = 0; j < 10; ++j) {
-	//		all_square_.push_back(new Square(i,j));
-
-	//	}
-	//}
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetSequence(&seq_);
 
@@ -52,25 +45,19 @@ void SceneBattle::Update(float delta_time) {
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 	seq_.update(delta_time);
 
-
-	//unit_ally_->getObj()->Update(delta_time);
-	//obj_board_->Update(delta_time);
-	//obj_ally_->Update(delta_time);
-	//unit_ally_->Update();
-  	unit_ally_->getObj()->Update(delta_time);
-	unit_ally2_->getObj()->Update(delta_time);
-	//square_->getObj()->Update(delta_time);
+	party_[0]->getObj()->Update(delta_time);
+	party_[1]->getObj()->Update(delta_time);
+	party_[2]->getObj()->Update(delta_time);
 
 	board_->Update(delta_time);
-	//ss_->Update(delta_time,camera_);
 
 	obj_target_circle_->Update(delta_time);
 
 	sprite_->Update(delta_time);
-	//for (auto al : all_square_) { al->getObj()->Update(delta_time); }
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
+	ui_hp_bar_->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -83,42 +70,29 @@ void SceneBattle::Update(float delta_time) {
 
 	}
 
-	//Phase
-	
-
-
-
 }
 
 void SceneBattle::Render() {
 
-
-
 	camera_->Update();
-	//debug_board_obj_->render(camera_);
-	//obj_ally_->Render(camera_);
 	DrawDebugLayOut(is_draw_debug_layout_);
-	unit_ally_->getObj()->Render(camera_);
-	unit_ally2_->getObj()->Render(camera_);
-	//square_->getObj()->Render(camera_);
+	DrawStringEx(0, 0, -1, "SceneBattle");
 
-	//for (auto al : all_square_) { al->getObj()->Render(camera_); }
+	party_[0]->getObj()->Render(camera_);
+	party_[1]->getObj()->Render(camera_);
+	party_[2]->getObj()->Render(camera_);
 	board_->Render(camera_);
-
-	DrawStringEx(0,0,-1,"SceneBattle");
-
-	//ss_->Render(camera_);
-	sprite_->Render(camera_);
-
-	obj_target_circle_->Render(camera_);
 
 	//UI
 	ui_action_buttons_->Render();
+	ui_hp_bar_->Render();
 
 	//test—Ìˆæ
+	sprite_->Render(camera_);
+	obj_target_circle_->Render(camera_);
+
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
 	cardview.Render(w1*8,h1*7);
-
 
 }
 

@@ -175,6 +175,7 @@
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_ally_action.cpp" />
+    <ClCompile Include="program\game\gm_ui_card_cost.cpp" />
     <ClCompile Include="program\game\gm_ui_dungeon_window.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
     <ClCompile Include="program\game\gm_object.cpp" />
@@ -189,10 +190,12 @@
     <ClCompile Include="program\game\gm_ui_button.cpp" />
     <ClCompile Include="program\game\gm_ui_cardview.cpp" />
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
+    <ClCompile Include="program\game\gm_ui_hp_bar.cpp" />
     <ClCompile Include="program\game\gm_ui_panel.cpp" />
     <ClCompile Include="program\game\gm_ui_player_action_buttons.cpp" />
     <ClCompile Include="program\game\gm_ui_scene_battle_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp" />
+    <ClCompile Include="program\game\gm_ui_turn_ally_state.cpp" />
     <ClCompile Include="program\game\gm_ui_window.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />
     <ClCompile Include="program\game\gm_unit_enemy.cpp" />
@@ -237,7 +240,9 @@
     <ClInclude Include="program\game\gm_object_manager.h" />
     <ClInclude Include="program\game\gm_object_target_circle.h" />
     <ClInclude Include="program\game\gm_phase_manager.h" />
+    <ClInclude Include="program\game\gm_scene_debug_battle_.h" />
     <ClInclude Include="program\game\gm_ui_ally_action.h" />
+    <ClInclude Include="program\game\gm_ui_card_cost.h" />
     <ClInclude Include="program\game\gm_ui_dungeon_window.h" />
     <ClInclude Include="program\game\gm_ui_button.h" />
     <ClInclude Include="program\game\gm_card.h" />
@@ -261,11 +266,13 @@
     <ClInclude Include="program\game\gm_ui_cardview.h" />
     <ClInclude Include="program\game\gm_ui_component.h" />
     <ClInclude Include="program\game\gm_ui_handview.h" />
+    <ClInclude Include="program\game\gm_ui_hp_bar.h" />
     <ClInclude Include="program\game\gm_ui_mediator.h" />
     <ClInclude Include="program\game\gm_ui_panel.h" />
     <ClInclude Include="program\game\gm_ui_player_action_buttons.h" />
     <ClInclude Include="program\game\gm_ui_scene_battle_mediator.h" />
     <ClInclude Include="program\game\gm_ui_selectphase_mediator.h" />
+    <ClInclude Include="program\game\gm_ui_turn_ally_state.h" />
     <ClInclude Include="program\game\gm_ui_window.h" />
     <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\gm_object.h" />

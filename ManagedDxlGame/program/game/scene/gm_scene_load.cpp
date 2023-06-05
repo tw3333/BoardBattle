@@ -5,10 +5,14 @@
 void SceneLoad::Initialzie() {
 
 	amgr_->DebugLoadAllyData();
+	amgr_->DebugLoadAllyTexture();
+
 	tmgr_->LoadTexture();
 	
 	obj_mgr_.CreateObjAllys();
 	obj_mgr_.CreateObjSquares();
+
+
 
 
 }

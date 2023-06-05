@@ -16,12 +16,17 @@ public:
 	UnitAlly(int id,AllyData* ally_data, int row, int col) {
 	
 		ally_data_ = ally_data;
+		max_hp_ = ally_data_->GetHp();
+		current_hp_ = max_hp_;
+		max_card_cost_ = ally_data_->GetCost();
+		current_card_cost_ = max_card_cost_;
+		max_move_cost_ = ally_data_->GetMoveCost();
+		speed_ = ally_data_->GetSpeed();
+
+
 		obj_ = ObjAlly::Create(ally_data_);
-		ObjectManager& t = ObjectManager::GetInstance();
-		obj_ = t.GetObjAllyAtID(id);
-
-
 		SetBoardPos(row, col);
+
 		obj_->Update(0);
 
 	}
@@ -43,6 +48,17 @@ public:
 	//getter
 	ObjAlly* getObj() { return obj_; }
 	void SetObj(ObjAlly* obj) { obj_ = obj; }
+
+	int GetMaxHp() { return max_hp_; }
+	int GetCurrentHp() { return current_hp_; }
+	int GetMaxCardCost() { return max_card_cost_;}
+	int GetCurrentCardCost() { return current_card_cost_; }
+	int GetMaxMoveCost() { return max_move_cost_; }
+	int GetCurrentMoveCost() { return current_card_cost_; }
+	int GetSpeed() { return speed_; }
+
+	bool GetIsDead() { return is_dead_; }
+	bool GetIs_Acted() { return is_acted_; }
 
 
 private:
@@ -66,6 +82,5 @@ private:
 	//ó‘Ô
 	bool is_dead_ = false;
 	bool is_acted_ = false;
-
 
 };

@@ -46,6 +46,10 @@ public:
 
 private:
 
+	UnitAlly* party_[3];
+	std::vector<UnitEnemy*> enemies_;
+
+
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
 	std::array<std::array<Square*, 10>,10> board_squares_; //10x10‚Ìƒ}ƒX”z—ñ
@@ -59,4 +63,5 @@ private:
 
 	//ColorCode
 	int gray_ = GetColor(128, 128, 128);
+
 };

@@ -13,6 +13,7 @@ public:
 	static void Destory();
 
 	void DebugLoadAllyData();
+	void DebugLoadAllyTexture();
 
 	bool is_loaded_ = false;
 

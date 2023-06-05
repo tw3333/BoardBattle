@@ -266,6 +266,15 @@
     <ClCompile Include="program\game\gm_board_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_turn_ally_state.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_hp_bar.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_card_cost.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -505,6 +514,18 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_board_manager.h">
       <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_scene_debug_battle_.h">
+      <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_turn_ally_state.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_hp_bar.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_card_cost.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

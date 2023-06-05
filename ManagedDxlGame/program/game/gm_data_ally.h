@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "../dxlib_ext/dxlib_ext.h"
 
 //memo
 //Allyの全体データを格納するクラス
@@ -24,6 +25,11 @@ public:
 	std::string getImgBattlePath() { return img_battle_path; }
 	void setImgBattlePath(std::string path) { img_battle_path = path; }
 
+	int GetHp() { return hp_; }
+	int GetCost() { return cost_; }
+	int GetMoveCost() { return move_cost_; }
+	int GetSpeed() { return speed_; }
+
 	Shared<dxe::Texture> GetTextureFace1() { return texture_face1_; }
 	Shared<dxe::Texture> GetTextureFace2() { return texture_face2_; }
 	Shared<dxe::Texture> GetTextureBattle() { return texture_battle_; }
@@ -32,13 +38,13 @@ public:
 	void SetTextureFace1(std::string texture_path) { 
 		texture_face1_ = dxe::Texture::CreateFromFile(texture_path);
 	}
-	void SetTextureFace1(std::string texture_path) {
+	void SetTextureFace2(std::string texture_path) {
 		texture_face2_ = dxe::Texture::CreateFromFile(texture_path);
 	}
-	void SetTextureFace1(std::string texture_path) {
+	void SetTextureBattle(std::string texture_path) {
 		texture_battle_ = dxe::Texture::CreateFromFile(texture_path);
 	}
-	void SetTextureFace1(std::string texture_path) {
+	void SetTextureStand(std::string texture_path) {
 		texture_stand_ = dxe::Texture::CreateFromFile(texture_path);
 	}
 

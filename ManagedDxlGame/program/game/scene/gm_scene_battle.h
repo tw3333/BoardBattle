@@ -10,6 +10,7 @@
 #include "../gm_ui_cardview.h"
 #include "../gm_ui_player_action_buttons.h"
 #include "../gm_ui_scene_battle_mediator.h"
+#include "../gm_ui_hp_bar.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -75,6 +76,7 @@ private:
 	
 	UnitAlly* unit_ally_ = nullptr;
 	UnitAlly*  unit_ally2_ = nullptr;
+	UnitAlly* party_[3];
 
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
@@ -90,6 +92,7 @@ private:
 	//UI
 	UIPlayerActionButtons* ui_action_buttons_ = nullptr;
 	UISceneBattleMediator* ui_mediator_ = nullptr;
+	UIHpBar* ui_hp_bar_ = nullptr;
 
 	//bool
 	bool is_draw_debug_layout_ = false;
