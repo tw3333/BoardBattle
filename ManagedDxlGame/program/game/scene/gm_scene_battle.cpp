@@ -20,6 +20,7 @@ void SceneBattle::Initialzie() {
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
 
 	ui_hp_bar_ = new UIHpBar(0,h1*8,w1*2,h1*1,party_[0]);
+	ui_card_cost_ = new UICardCost(0,h1*9,w1*2,h1*1 /2,party_[0]);
 
 	board_ = new Board();
 	board_->Create();
@@ -58,6 +59,7 @@ void SceneBattle::Update(float delta_time) {
 	//UI
 	ui_action_buttons_->Update(delta_time);
 	ui_hp_bar_->Update(delta_time);
+	ui_card_cost_->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -67,8 +69,17 @@ void SceneBattle::Update(float delta_time) {
 		else if (is_draw_debug_layout_) {
 			is_draw_debug_layout_ = false;
 		}
-
+		
+		party_[0]->DecreaseCurrentHp(20);
+		party_[0]->DecreaseCurrentCardCost(1);
 	}
+
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
+
+		party_[0]->DecreaseCurrentHp(20);
+		party_[0]->DecreaseCurrentCardCost(1);
+	}
+	
 
 }
 
@@ -86,6 +97,7 @@ void SceneBattle::Render() {
 	//UI
 	ui_action_buttons_->Render();
 	ui_hp_bar_->Render();
+	ui_card_cost_->Render();
 
 	//test—Ìˆæ
 	sprite_->Render(camera_);

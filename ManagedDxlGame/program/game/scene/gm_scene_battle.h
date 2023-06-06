@@ -11,6 +11,7 @@
 #include "../gm_ui_player_action_buttons.h"
 #include "../gm_ui_scene_battle_mediator.h"
 #include "../gm_ui_hp_bar.h"
+#include "../gm_ui_card_cost.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -93,6 +94,8 @@ private:
 	UIPlayerActionButtons* ui_action_buttons_ = nullptr;
 	UISceneBattleMediator* ui_mediator_ = nullptr;
 	UIHpBar* ui_hp_bar_ = nullptr;
+	UICardCost* ui_card_cost_ = nullptr;
+
 
 	//bool
 	bool is_draw_debug_layout_ = false;

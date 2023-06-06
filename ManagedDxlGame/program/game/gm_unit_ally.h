@@ -57,6 +57,16 @@ public:
 	int GetCurrentMoveCost() { return current_card_cost_; }
 	int GetSpeed() { return speed_; }
 
+	void SetCurrentHp(int value) { current_hp_ = value; }
+	
+	void DecreaseCurrentHp(int value) {
+		current_hp_ = (std::max)(0, current_hp_ - value);
+	}
+
+	void DecreaseCurrentCardCost(int value) {
+		current_card_cost_ = (std::max)(0, current_card_cost_ - value);
+	}
+	
 	bool GetIsDead() { return is_dead_; }
 	bool GetIs_Acted() { return is_acted_; }
 
