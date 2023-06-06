@@ -275,6 +275,9 @@
     <ClCompile Include="program\game\gm_ui_card_cost.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_move_cost.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -525,6 +528,9 @@
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_card_cost.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_move_cost.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>

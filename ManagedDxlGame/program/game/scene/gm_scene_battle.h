@@ -12,6 +12,7 @@
 #include "../gm_ui_scene_battle_mediator.h"
 #include "../gm_ui_hp_bar.h"
 #include "../gm_ui_card_cost.h"
+#include "../gm_ui_move_cost.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -95,6 +96,7 @@ private:
 	UISceneBattleMediator* ui_mediator_ = nullptr;
 	UIHpBar* ui_hp_bar_ = nullptr;
 	UICardCost* ui_card_cost_ = nullptr;
+	UIMoveCost* ui_move_cost_ = nullptr;
 
 
 	//bool

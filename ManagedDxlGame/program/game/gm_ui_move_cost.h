@@ -3,15 +3,12 @@
 #include "gm_unit_ally.h"
 
 //memo
-//座標とその大きさから四角形
-//左詰めでカードコストを〇で表示
 
-
-class UICardCost : public UIComponent {
+class UIMoveCost : public UIComponent {
 public:
-
-	UICardCost(int x, int y, int width, int height, UnitAlly* ally) {
 	
+	UIMoveCost(int x, int y, int width, int height, UnitAlly* ally){
+		
 		x_ = x;
 		y_ = y;
 		width_ = width;
@@ -19,12 +16,12 @@ public:
 		radius_ = height_ / 2;
 
 		unit_ally_ = ally;
-		max_cost_ = unit_ally_->GetMaxCardCost();
-		current_cost_ = unit_ally_->GetCurrentCardCost();
+		max_cost_ = unit_ally_->GetMaxMoveCost();
+		current_cost_ = unit_ally_->GetCurrentMoveCost();
 
 	}
-	~UICardCost() { delete unit_ally_; }
 
+	~UIMoveCost(){}
 
 	void Update(float delta_time) override;
 	void Render() override;
@@ -45,10 +42,12 @@ private:
 	int height_;
 	int radius_;
 
-	int graph_card_icon_ = LoadGraph("graphics/ui/card_icon.png");
+	int graph_move_icon_ = LoadGraph("graphics/ui/move_icon.png");
+
 
 	//ColorCode
-	int color_black_ = GetColor(0,0,0);
-	int color_orange_ = GetColor(255,165,0);
+	int color_black_ = GetColor(0, 0, 0);
+	int color_orange_ = GetColor(255, 165, 0);
+	int color_blue_ = GetColor(100,149,237);
 
 };

@@ -28,7 +28,7 @@ public:
 	void Render() override;
 
 	//member
-
+	void SetUnitAlly(UnitAlly* unit_ally) { unit_ally_ = unit_ally; }
 
 private:
 

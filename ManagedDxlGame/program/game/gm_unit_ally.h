@@ -16,11 +16,16 @@ public:
 	UnitAlly(int id,AllyData* ally_data, int row, int col) {
 	
 		ally_data_ = ally_data;
+		
 		max_hp_ = ally_data_->GetHp();
 		current_hp_ = max_hp_;
+		
 		max_card_cost_ = ally_data_->GetCost();
 		current_card_cost_ = max_card_cost_;
+		
 		max_move_cost_ = ally_data_->GetMoveCost();
+		current_move_cost_ = max_card_cost_;
+
 		speed_ = ally_data_->GetSpeed();
 
 
@@ -46,6 +51,7 @@ public:
 	
 
 	//getter
+	AllyData* GetAllyData() { return ally_data_; }
 	ObjAlly* getObj() { return obj_; }
 	void SetObj(ObjAlly* obj) { obj_ = obj; }
 
@@ -54,7 +60,7 @@ public:
 	int GetMaxCardCost() { return max_card_cost_;}
 	int GetCurrentCardCost() { return current_card_cost_; }
 	int GetMaxMoveCost() { return max_move_cost_; }
-	int GetCurrentMoveCost() { return current_card_cost_; }
+	int GetCurrentMoveCost() { return current_move_cost_; }
 	int GetSpeed() { return speed_; }
 
 	void SetCurrentHp(int value) { current_hp_ = value; }
