@@ -14,16 +14,18 @@
 class UITurnAllyState : public UIComponent {
 public:
 
-	UITurnAllyState(int x, int y, int width, int height, UnitAlly* unit_){
+	UITurnAllyState(int x, int y, int width, int height){
 		
 		x_ = x;
 		y_ = y;
 		width_ = width;
 		height_ = height;
 
-		unit_ally_ = unit_;
+		layer_ = height_ / 5;
 
-
+		ui_hp_bar_ = new UIHpBar(x_,y_ + layer_ * 2, x_ + width_,layer_);
+		ui_card_cost_ = new UICardCost(x_ , y_ + layer_ * 3, x_ + width_ ,layer_);
+		ui_move_cost_ = new UIMoveCost(x_, y_ + layer_ * 4, x_ + width_,layer_ );
 
 
 	}
@@ -39,8 +41,6 @@ public:
 		ui_move_cost_->SetUnitAlly(unit);
 		ui_hp_bar_->SetUnitAlly(unit);
 	}
-
-
 
 private:
 
@@ -59,7 +59,10 @@ private:
 	int width_;
 	int height_;
 
+	int layer_;
 
+	//ColorCode
+	int sitaji_ = GetColor(208,201,193);
 
 
 };

@@ -13,6 +13,7 @@
 #include "../gm_ui_hp_bar.h"
 #include "../gm_ui_card_cost.h"
 #include "../gm_ui_move_cost.h"
+#include "../gm_ui_turn_ally_state.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -97,7 +98,7 @@ private:
 	UIHpBar* ui_hp_bar_ = nullptr;
 	UICardCost* ui_card_cost_ = nullptr;
 	UIMoveCost* ui_move_cost_ = nullptr;
-
+	UITurnAllyState* ui_turn_ally_state_ = nullptr;
 
 	//bool
 	bool is_draw_debug_layout_ = false;

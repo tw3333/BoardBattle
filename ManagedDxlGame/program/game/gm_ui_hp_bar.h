@@ -9,19 +9,14 @@
 class UIHpBar : public UIComponent{
 public:
 
-	UIHpBar(int x, int y, int width, int height, UnitAlly* unit_ally) {
+	UIHpBar(int x, int y, int width, int height) {
 		
 		x_ = x;
 		y_ = y;
 		width_ = width;
 		height_ = height;
-		
-		unit_ally_ = unit_ally;
-		current_hp_ = unit_ally_->GetCurrentHp();
-		max_hp_ = unit_ally_->GetMaxHp();
 
 	}
-
 	~UIHpBar() { delete unit_ally_; }
 
 	void Update(float delta_time) override;

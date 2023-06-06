@@ -19,9 +19,13 @@ void SceneBattle::Initialzie() {
 	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
 
-	ui_hp_bar_ = new UIHpBar(0,h1*8,w1*2,h1*1,party_[0]);
-	ui_card_cost_ = new UICardCost(0,h1*8,w1*2,h1*1 /2,party_[0]);
-	ui_move_cost_ = new UIMoveCost(0, h1 * 9, w1 * 2, h1 * 1 / 2, party_[0]);
+	//ui_hp_bar_ = new UIHpBar(0,h1*8,w1*2,h1*1,party_[0]);
+	//ui_card_cost_ = new UICardCost(0,h1*8,w1*2,h1*1 /2,party_[0]);
+	//ui_move_cost_ = new UIMoveCost(0, h1 * 9, w1 * 2, h1 * 1 / 2, party_[0]);
+	ui_turn_ally_state_ = new UITurnAllyState(0, h1*7+(h1*1/2), w1*2, h1*2 + (h1 * 1 / 2));
+	ui_turn_ally_state_->SetUnitAlly(party_[2]);
+	ui_turn_ally_state_->Update(0);
+
 
 
 	board_ = new Board();
@@ -30,7 +34,7 @@ void SceneBattle::Initialzie() {
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetSequence(&seq_);
 
-	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*8,w1*2,h1*2);
+	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*7 + (h1 * 1 / 2),w1*2,h1*2 + (h1 * 1 / 2));
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
 
@@ -60,9 +64,10 @@ void SceneBattle::Update(float delta_time) {
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
-	ui_hp_bar_->Update(delta_time);
-	ui_card_cost_->Update(delta_time);
-	ui_move_cost_->Update(delta_time);
+	//ui_hp_bar_->Update(delta_time);
+	//ui_card_cost_->Update(delta_time);
+	//ui_move_cost_->Update(delta_time);
+	ui_turn_ally_state_->Update(delta_time);
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_U)) {
 
@@ -99,9 +104,10 @@ void SceneBattle::Render() {
 
 	//UI
 	ui_action_buttons_->Render();
-	ui_hp_bar_->Render();
-	ui_card_cost_->Render();
-	ui_move_cost_->Render();
+	//ui_hp_bar_->Render();
+	//ui_card_cost_->Render();
+	//ui_move_cost_->Render();
+	ui_turn_ally_state_->Render();
 
 	//test—Ìˆæ
 	sprite_->Render(camera_);

@@ -10,17 +10,13 @@
 class UICardCost : public UIComponent {
 public:
 
-	UICardCost(int x, int y, int width, int height, UnitAlly* ally) {
+	UICardCost(int x, int y, int width, int height) {
 	
 		x_ = x;
 		y_ = y;
 		width_ = width;
 		height_ = height;
 		radius_ = height_ / 2;
-
-		unit_ally_ = ally;
-		max_cost_ = unit_ally_->GetMaxCardCost();
-		current_cost_ = unit_ally_->GetCurrentCardCost();
 
 	}
 	~UICardCost() { delete unit_ally_; }
