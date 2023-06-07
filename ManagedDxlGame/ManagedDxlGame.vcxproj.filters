@@ -284,6 +284,9 @@
     <ClCompile Include="program\game\gm_battle_player_action_move.cpp">
       <Filter>program\[003] game\battle</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_battle_phase_player_action_move.cpp">
+      <Filter>program\[003] game\battle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -540,6 +543,12 @@
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_battle_player_action_move.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_phase.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_phase_player_action_move.h">
       <Filter>program\[003] game\battle</Filter>
     </ClInclude>
   </ItemGroup>
