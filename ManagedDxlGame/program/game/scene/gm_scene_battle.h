@@ -24,6 +24,8 @@
 
 #include "../gm_square.h"
 #include "../gm_board.h"
+#include "../gm_battle_player_action_move.h"
+
 #include "../gm_select_square.h"
 #include "../gm_anim_sprite3d.h"
 //#include "../../library/tnl_sequence.h"
@@ -51,16 +53,18 @@ public:
 
 	//Sequence
 	tnl::Sequence<SceneBattle> seq_ =
-		tnl::Sequence<SceneBattle>(this, &SceneBattle::PhaseSetBattle);
+		tnl::Sequence<SceneBattle>(this, &SceneBattle::PhaseAllyTurn);
 	//tnl::Sequence<SceneBattle>* phase_;
 	bool PhaseSetBattle(const float delta_time);
 
-	bool PhaseCard(const float delta_time);
-	bool PhaseMove(const float delta_time);
-	bool PhaseTool(const float delta_time);
-	bool PhaseTurnEnd(const float delta_time);
+	bool PhaseTurnDeside(const float delta_time);
+
+	bool PhaseActionCard(const float delta_time);
+	bool PhaseActionMove(const float delta_time);
+	bool PhaseActionTool(const float delta_time);
+	bool PhaseActionTurnEnd(const float delta_time);
 	bool PhaseAllyTurn(const float delta_time);
-	bool PhaseEnemyTturn(const float delta_time);
+	bool PhaseEnemyTurn(const float delta_time);
 
 private:
 	
@@ -81,8 +85,14 @@ private:
 	UnitAlly*  unit_ally2_ = nullptr;
 	UnitAlly* party_[3];
 
+	Unit* turn_unit_ = nullptr; //É^Å[ÉìåàÇﬂóp
+	UnitAlly* turn_ally_ = nullptr; //turnÇ™âÒÇ¡ÇƒÇ´ÇΩally
+
+
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
+	PlayerActionMove* player_action_move_ = nullptr;
+
 	SelectSquare* ss_ = nullptr;
 	AnimSprite3D* sprite_ = nullptr;
 

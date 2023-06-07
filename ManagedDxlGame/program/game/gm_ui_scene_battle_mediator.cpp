@@ -4,30 +4,44 @@
 
 void UISceneBattleMediator::Notify(UIComponent* sender, std::string tag) {
 
-	if (tag == "MoveButton") {
+	NotifyPlayerActionButton(is_player_action_button_enabled_,tag);
 
-		DrawStringEx(0,500,-1,"MoveButton");
 
+
+}
+
+void UISceneBattleMediator::NotifyPlayerActionButton(bool is_enable, std::string tag) {
+
+	if (is_enable) {
+
+		if (tag == "MoveButton") {
+
+			DrawStringEx(0, 500, -1, "MoveButton");
+			seq_->change(&SceneBattle::PhaseActionMove);
+
+		}
+		
+		if (tag == "CardButton") {
+
+			DrawStringEx(0, 500, -1, "CardButton");
+			seq_->change(&SceneBattle::PhaseActionCard);
+
+
+		}
+		
+		if (tag == "ToolButton") {
+
+			DrawStringEx(0, 500, -1, "ToolButton");
+			seq_->change(&SceneBattle::PhaseActionTool);
+		}
+		
+		if (tag == "TurnEndButton") {
+
+			DrawStringEx(0, 500, -1, "TurnButton");
+			seq_->change(&SceneBattle::PhaseActionTurnEnd);
+
+		}
 
 	}
-	if (tag == "CardButton") {
-
-		DrawStringEx(0, 500, -1, "CardButton");
-		seq_->change(&SceneBattle::PhaseCard);
-
-
-	}
-	if (tag == "ToolButton") {
-
-		DrawStringEx(0, 500, -1, "ToolButton");
-
-	}
-	if (tag == "TurnEndButton") {
-
-		DrawStringEx(0, 500, -1, "TurnButton");
-
-	}
-
-
-
+	
 }

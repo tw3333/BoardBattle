@@ -24,7 +24,7 @@ public:
 		current_card_cost_ = max_card_cost_;
 		
 		max_move_cost_ = ally_data_->GetMoveCost();
-		current_move_cost_ = max_card_cost_;
+		current_move_cost_ = max_move_cost_;
 
 		speed_ = ally_data_->GetSpeed();
 
@@ -48,7 +48,7 @@ public:
 	//}
 
 	void SetBoardPos(int row, int col);
-	
+	BoardPos GetBoardPos() { return board_pos_; }
 
 	//getter
 	AllyData* GetAllyData() { return ally_data_; }

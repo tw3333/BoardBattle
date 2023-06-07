@@ -38,4 +38,5 @@ protected:
 	BoardPos board_pos_;
 
 
+
 };

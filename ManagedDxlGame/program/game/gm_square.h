@@ -26,10 +26,15 @@ public:
 	ObjSquare* getObj() { return obj_; }
 	int test_ = 1;
 
+	bool GetIsCanMove() { return is_can_move_; }
+	void SetIsCanMove(bool flag) { is_can_move_ = flag; }
 
 private:
 
+	bool is_can_move_ = true;
+
 	ObjSquare* obj_;
+
 	
 	SquarePos square_pos_ = {0,0};
 

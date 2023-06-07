@@ -54,6 +54,9 @@
     <Filter Include="program\[003] game\twr">
       <UniqueIdentifier>{f9a267e9-1323-4f83-88fd-726b364a8841}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\battle">
+      <UniqueIdentifier>{a271a620-a737-4733-bdaa-8f4288e0bfa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_move_cost.cpp">
       <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_battle_player_action_move.cpp">
+      <Filter>program\[003] game\battle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -532,6 +538,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_move_cost.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_player_action_move.h">
+      <Filter>program\[003] game\battle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

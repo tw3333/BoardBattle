@@ -42,7 +42,8 @@ public:
 		col = select_square_->getSelectSquareCol();
 	}
 
-
+	void UpdateCanMoveSquare();
+	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
 
 private:
 
@@ -52,7 +53,7 @@ private:
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
-	std::array<std::array<Square*, 10>,10> board_squares_; //10x10のマス配列
+	std::array<std::array<Square*, 10>, 10> board_squares_;//10x10のマス配列
 
 	SelectSquare* select_square_ = nullptr;
 

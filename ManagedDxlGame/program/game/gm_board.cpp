@@ -14,6 +14,8 @@ void Board::Create() {
 
 void Board::Update(float delta_time) {
 
+	UpdateCanMoveSquare();
+
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
 
@@ -50,6 +52,18 @@ void Board::Render(dxe::Camera* camera) {
 
 
 	select_square_->Render(camera_);
+
+
+}
+
+void Board::UpdateCanMoveSquare() {
+
+	//ally‚Ì‚¢‚éƒ}ƒX‚ðˆÚ“®‹ÖŽ~
+	for (int i = 0; i < sizeof(party_) / sizeof(party_[0]); ++i) {
+
+		board_squares_[party_[i]->GetBoardPos().row][party_[i]->GetBoardPos().col]->SetIsCanMove(false);
+
+	}
 
 
 }
