@@ -38,8 +38,8 @@ public:
 	void SetCamera(dxe::Camera* camera) { camera_ = camera; }
 
 	void GetMouseOverSquarePos(int& row, int& col) { 
-		row = select_square_->getSelectSquareRow();
-		col = select_square_->getSelectSquareCol();
+		row = select_square_->GetSelectSquareRow();
+		col = select_square_->GetSelectSquareCol();
 	}
 
 	void UpdateCanMoveSquare();

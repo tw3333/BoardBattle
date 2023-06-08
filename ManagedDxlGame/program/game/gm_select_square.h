@@ -12,11 +12,10 @@
 class SelectSquare {
 public:
 
-	SelectSquare(const std::array<std::array<Square*,10>,10> board_squares) {
-		
+	SelectSquare(const std::array<std::array<Square*,10>,10> board_squares) 
+	:board_squares_(board_squares) 
+	{
 		obj_ = ObjSelectFlame::Create();
-		board_squares_ = board_squares;
-
 	}
 	~SelectSquare(){}
 
@@ -26,9 +25,9 @@ public:
 	bool IsSelectFlameOutOfBoard(tnl::Vector3 hit);
 
 	//アクセッサー
-	ObjSelectFlame* getObj() { return obj_; }
-	int getSelectSquareRow() { return select_square_row_; }
-	int getSelectSquareCol() { return select_square_col_; }
+	ObjSelectFlame* GetObj() { return obj_; }
+	int GetSelectSquareRow() { return select_square_row_; }
+	int GetSelectSquareCol() { return select_square_col_; }
 	
 
 private:

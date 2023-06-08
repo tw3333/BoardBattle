@@ -34,6 +34,7 @@ void PlayerActionMove::DisplayMoveRange(UnitAlly* unit) {
 					board_squares_[row][col]->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = true;
 
 
+
 				}
 				
 				//std::cout << "Square at (" << col << ", " << row << ") is within move range.\n";
@@ -43,8 +44,6 @@ void PlayerActionMove::DisplayMoveRange(UnitAlly* unit) {
 
 		}
 	}
-
-
 
 
 }

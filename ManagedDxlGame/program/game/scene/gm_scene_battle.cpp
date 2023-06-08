@@ -29,11 +29,18 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->Update(0);
 
 
-
 	board_ = new Board();
 	board_->Create();
 	board_->SetCamera(camera_);
 	board_->SetParty(party_);
+	board_->Update(0);
+
+	select_square_ = new SelectSquare(board_->getBoardSquares());
+
+	phase_player_action_move_ = 
+		new PhasePlayerActionMove(party_[0], select_square_, board_->getBoardSquares());
+
+	ChangeBattlePhase(phase_player_action_move_);
 
 	player_action_move_ = new PlayerActionMove(board_->getBoardSquares());
 
@@ -58,6 +65,7 @@ void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 	seq_.update(delta_time);
+	current_phase_->UpdateExecute(delta_time);
 
 	party_[0]->getObj()->Update(delta_time);
 	party_[1]->getObj()->Update(delta_time);
@@ -94,6 +102,7 @@ void SceneBattle::Update(float delta_time) {
 	}
 	
 	board_->Update(delta_time);
+	select_square_->Update(delta_time,camera_);
 	player_action_move_->Update(delta_time);
 
 }
@@ -108,6 +117,7 @@ void SceneBattle::Render() {
 	party_[1]->getObj()->Render(camera_);
 	party_[2]->getObj()->Render(camera_);
 	board_->Render(camera_);
+	current_phase_->RenderExecute(camera_);
 
 	//UI
 	ui_action_buttons_->Render();
@@ -136,6 +146,7 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 40, -1, "camera.pos.z:%f", camera_->pos_.z);
 	DrawStringEx(w1*8,60,-1,"MouseX:%d", debug_mp_x);
 	DrawStringEx(w1 * 8, 80, -1, "MouseY:%d", debug_mp_y);
+	DrawStringEx(w1*8,100,-1,"selectsquare[%d][%d]",select_square_->GetSelectSquareRow(),select_square_->GetSelectSquareCol());
 	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
 	//DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
 
@@ -182,6 +193,20 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time) {
 
 	return true;
 }
+
+void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
+
+	if (current_phase_) {
+		current_phase_->EndPhase();
+	}
+	current_phase_ = new_phase;
+	if (current_phase_) {
+		current_phase_->BeginPhase();
+	}
+
+}
+
+
 
 bool SceneBattle::PhaseActionCard(const float delta_time) {
 

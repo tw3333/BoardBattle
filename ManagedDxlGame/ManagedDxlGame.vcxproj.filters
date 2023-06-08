@@ -287,6 +287,9 @@
     <ClCompile Include="program\game\gm_battle_phase_player_action_move.cpp">
       <Filter>program\[003] game\battle</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_object_move_select_flame.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -550,6 +553,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_battle_phase_player_action_move.h">
       <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_move_select_flame.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

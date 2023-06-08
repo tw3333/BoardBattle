@@ -24,6 +24,8 @@
 
 #include "../gm_square.h"
 #include "../gm_board.h"
+#include "../gm_battle_phase.h"
+#include "../gm_battle_phase_player_action_move.h"
 #include "../gm_battle_player_action_move.h"
 
 #include "../gm_select_square.h"
@@ -66,6 +68,9 @@ public:
 	bool PhaseAllyTurn(const float delta_time);
 	bool PhaseEnemyTurn(const float delta_time);
 
+	//BattlePhase
+	void ChangeBattlePhase(BattlePhase* new_phase);
+
 private:
 	
 	int w1 = DXE_WINDOW_WIDTH / 10;
@@ -91,9 +96,13 @@ private:
 
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
+	SelectSquare* select_square_ = nullptr;
+	BattlePhase* current_phase_ = nullptr;
+	PhasePlayerActionMove* phase_player_action_move_ = nullptr;
+
+
 	PlayerActionMove* player_action_move_ = nullptr;
 
-	SelectSquare* ss_ = nullptr;
 	AnimSprite3D* sprite_ = nullptr;
 
 	std::vector<Square*> all_square_;

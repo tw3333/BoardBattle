@@ -1,6 +1,7 @@
 #pragma once
 #include "gm_object_ally.h"
 #include "gm_object_square.h"
+#include "gm_object_move_select_flame.h"
 
 //memo
 //マジックスタティックを用いて作成
@@ -39,6 +40,7 @@ public:
 	}
 
 	void CreateObjSquares();
+	ObjMoveSelectFlame* GetObjMoveSelectFlame() { return obj_move_select_flame_; }
 	ObjSquare* GetSquaresAtIndex(int row, int col) { return obj_squares_[row][col]; }
 
 private:
@@ -53,6 +55,6 @@ private:
 	ObjSquare* obj_square_ = nullptr;
 
 	ObjSquare* obj_squares_[10][10];
-
+	ObjMoveSelectFlame* obj_move_select_flame_;
 
 };
