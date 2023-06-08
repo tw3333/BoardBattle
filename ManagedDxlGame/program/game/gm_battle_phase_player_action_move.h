@@ -30,11 +30,13 @@ public:
 		select_square_col_ = col;
 	}
 
-	void DisplayMoveRange(UnitAlly* unit);
+	void MoveRange(UnitAlly* unit);
 	void CrearMoveRange();
 	void SetTurnUnitAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
+	void ExploreMoveRange(UnitAlly* unit, int cur_row, int cur_col, int remaining_cost);
 
-
+	std::array<std::array<int, 10>, 10> GetReachableSquares(UnitAlly* unit);
+	void UpdateRender(std::array<std::array<int, 10>, 10> reachable,UnitAlly* unit);
 private:
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
@@ -44,6 +46,9 @@ private:
 	SelectSquare* select_square_ = nullptr;
 	std::array<std::array<Square*, 10>, 10> board_squares_;
 
+
+	const int dx_[4] = { 0, 1, 0, -1 };
+	const int dy_[4] = { 1, 0, -1, 0 };
 
 	//SelectSquareƒNƒ‰ƒX‚©‚çŽæ“¾
 	int select_square_row_ = 0;

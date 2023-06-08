@@ -15,13 +15,13 @@ public:
 	
 
 	static ObjMoveSelectFlame* Create();
+	void Update(float delta_time) override;
 
 
 
 private:
 
-
-
-
+	float alpha_ = 1.0;
+	int dxlib_blend_mode_ = DX_BLENDMODE_ALPHA;
 
 };
