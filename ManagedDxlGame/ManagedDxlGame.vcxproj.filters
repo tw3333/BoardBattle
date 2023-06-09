@@ -290,6 +290,12 @@
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp">
       <Filter>program\[003] game\object</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_battle_phase_player_action_card.cpp">
+      <Filter>program\[003] game\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_enemydata_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -556,6 +562,18 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_object_move_select_flame.h">
       <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_phase_player_action_card.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_player_action_tool.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_player_action_turn_end.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemydata_manager.h">
+      <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
