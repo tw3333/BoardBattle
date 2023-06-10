@@ -175,6 +175,7 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
+    <ClCompile Include="program\game\gm_object_enemy.cpp" />
     <ClCompile Include="program\game\gm_object_manager.cpp" />
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp" />
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
@@ -250,6 +251,7 @@
     <ClInclude Include="program\game\gm_board_manager.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
+    <ClInclude Include="program\game\gm_object_enemy.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />
     <ClInclude Include="program\game\gm_object_move_select_flame.h" />
     <ClInclude Include="program\game\gm_object_target_circle.h" />

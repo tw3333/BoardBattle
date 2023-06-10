@@ -6,12 +6,14 @@ void SceneLoad::Initialzie() {
 
 	amgr_->DebugLoadAllyData();
 	amgr_->DebugLoadAllyTexture();
+	emgr_->DebugLoadEnemyData();
+	emgr_->DebugLoadenemyTexture();
 
 	tmgr_->LoadTexture();
 	
 	obj_mgr_.CreateObjAllys();
 	obj_mgr_.CreateObjSquares();
-
+	obj_mgr_.CreateObjEnemies();
 
 
 

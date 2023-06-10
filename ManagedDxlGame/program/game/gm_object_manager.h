@@ -1,7 +1,10 @@
 #pragma once
 #include "gm_object_ally.h"
+#include "gm_object_enemy.h"
 #include "gm_object_square.h"
 #include "gm_object_move_select_flame.h"
+
+#include "gm_enemydata_manager.h"
 
 //memo
 //マジックスタティックを用いて作成
@@ -29,12 +32,16 @@ public:
 	//memberfunction
 	void CreateObjAllys();
 	ObjAlly* GetObjAllyAtID(int id){ 
-		
 		for (auto oa : obj_allys_) {
-			if (oa->GetObjAllyID() == id) {
-				return oa;
-			}
+			if (oa->GetObjAllyID() == id) { return oa; }
+		}
+		return nullptr;
+	}
 
+	void CreateObjEnemies();
+	ObjEnemy* GetObjEnemyAtID(int id){
+		for (auto oe : obj_enemies_) {
+			if (oe->GetObjEnemyId() == id) { return oe; }
 		}
 		return nullptr;
 	}
@@ -43,6 +50,7 @@ public:
 	ObjMoveSelectFlame* GetObjMoveSelectFlame() { return obj_move_select_flame_; }
 	ObjSquare* GetSquaresAtIndex(int row, int col) { return obj_squares_[row][col]; }
 
+	
 private:
 	
 	//GetInstance以外での生成防止
@@ -52,6 +60,10 @@ private:
 	//membervariable
 	//std::vector<Shared<ObjAlly>> obj_allys_;
 	std::vector<ObjAlly*> obj_allys_;
+	std::vector<ObjEnemy*> obj_enemies_;
+
+	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
+
 	ObjSquare* obj_square_ = nullptr;
 
 	ObjSquare* obj_squares_[10][10];
