@@ -44,6 +44,7 @@ private:
 	ObjMoveSelectFlame* flame_ = omgr_.GetObjMoveSelectFlame();
 	UnitAlly* turn_ally_ = nullptr;
 	SelectSquare* select_square_ = nullptr;
+
 	std::array<std::array<Square*, 10>, 10> board_squares_;
 
 

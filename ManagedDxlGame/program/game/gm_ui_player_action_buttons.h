@@ -13,21 +13,43 @@ public:
 	//arg3,4...UI‘S‘Ì‚ðŽlŠp‚Æ‚µ‚½‚Æ‚«‚ÌAwidth,height
 	UIPlayerActionButtons(int x, int y, int width, int height) {
 
-		ui_components_[MoveButton] = new UIButton(x,y,width/2 -5,height/2 -5);
+		//ui_components_[MoveButton] = new UIButton(x,y,width/2 -5,height/2 -5);
+		//ui_components_[MoveButton]->SetMediator(this->mediator_);
+		//ui_components_[MoveButton]->SetNotifyTag("MoveButton");
+
+		//ui_components_[CardButton] = new UIButton(x + width / 2 +5, y, width/2 -5, height/2 -5);
+		//ui_components_[CardButton]->SetMediator(this->mediator_);
+		//ui_components_[CardButton]->SetNotifyTag("CardButton");
+
+		//ui_components_[ToolButton] = new UIButton(x, y + height/2 +5, width/2 -5, height/2 -5);
+		//ui_components_[ToolButton]->SetMediator(this->mediator_);
+		//ui_components_[ToolButton]->SetNotifyTag("ToolButton");
+
+		//ui_components_[TurnEndButton] = new UIButton(x + width/2 +5 ,y + height/2 +5, width/2 -5, height/2 -5);
+		//ui_components_[TurnEndButton]->SetMediator(this->mediator_);
+		//ui_components_[TurnEndButton]->SetNotifyTag("TurnEndButton");
+
+		int w1 = width / 3;
+		int y1 = height / 3;
+
+		ui_components_[MoveButton] = new UIButton(x + w1, y, w1, y1);
 		ui_components_[MoveButton]->SetMediator(this->mediator_);
 		ui_components_[MoveButton]->SetNotifyTag("MoveButton");
 
-		ui_components_[CardButton] = new UIButton(x + width / 2 +5, y, width/2 -5, height/2 -5);
+		ui_components_[CardButton] = new UIButton(x + w1*2, y + y1, w1, y1);
 		ui_components_[CardButton]->SetMediator(this->mediator_);
 		ui_components_[CardButton]->SetNotifyTag("CardButton");
 
-		ui_components_[ToolButton] = new UIButton(x, y + height/2 +5, width/2 -5, height/2 -5);
+		ui_components_[ToolButton] = new UIButton(x, y + y1, w1, y1);
 		ui_components_[ToolButton]->SetMediator(this->mediator_);
 		ui_components_[ToolButton]->SetNotifyTag("ToolButton");
 
-		ui_components_[TurnEndButton] = new UIButton(x + width/2 +5 ,y + height/2 +5, width/2 -5, height/2 -5);
+		ui_components_[TurnEndButton] = new UIButton(x + w1,y + y1*2,w1,y1);
 		ui_components_[TurnEndButton]->SetMediator(this->mediator_);
 		ui_components_[TurnEndButton]->SetNotifyTag("TurnEndButton");
+
+
+
 
 
 	}
