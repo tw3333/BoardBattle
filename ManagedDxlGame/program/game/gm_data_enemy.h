@@ -22,7 +22,7 @@ public:
 	int GetEnemyDataID() { return enemy_id_; }
 	std::string GetName() { return name_; }
 	int GetHp() { return hp_; }
-	int GetSpped() { return speed_; }
+	int GetSpeed() { return speed_; }
 	int GetMoveCost() { return move_cost_; }
 	int GetActionCost() { return action_cost_; }
 

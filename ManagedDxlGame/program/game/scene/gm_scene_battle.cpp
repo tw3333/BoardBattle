@@ -20,6 +20,9 @@ void SceneBattle::Initialzie() {
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
 	turn_unit_ = party_[0];
 
+	unit_enemy_ = new UnitEnemy(9, enemydata_mgr_->GetEnemyDataAtID(9),5,5);
+	
+
 
 	//ui_hp_bar_ = new UIHpBar(0,h1*8,w1*2,h1*1,party_[0]);
 	//ui_card_cost_ = new UICardCost(0,h1*8,w1*2,h1*1 /2,party_[0]);
@@ -70,6 +73,7 @@ void SceneBattle::Update(float delta_time) {
 	party_[0]->getObj()->Update(delta_time);
 	party_[1]->getObj()->Update(delta_time);
 	party_[2]->getObj()->Update(delta_time);
+	unit_enemy_->GetObj()->Update(delta_time);
 
 	obj_target_circle_->Update(delta_time);
 
@@ -116,6 +120,8 @@ void SceneBattle::Render() {
 	party_[0]->getObj()->Render(camera_);
 	party_[1]->getObj()->Render(camera_);
 	party_[2]->getObj()->Render(camera_);
+	unit_enemy_->GetObj()->Render(camera_);
+
 	board_->Render(camera_);
 	current_phase_->RenderExecute(camera_);
 

@@ -3,12 +3,31 @@
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_data_enemy.h"
 #include "gm_object_enemy.h"
-
+#include "gm_enemydata_manager.h"
+#include "gm_object_manager.h"
 
 class UnitEnemy : public Unit {
 public:
 
-	UnitEnemy(){}
+	UnitEnemy(int id, EnemyData* enemy_data, int row, int col){
+	
+		ObjectManager& instance_ = ObjectManager::GetInstance();
+		obj_ = instance_.GetObjEnemyAtID(id);
+		SetBoardPos(row, col);
+	
+		max_hp_ = enemy_data->GetHp();
+		current_hp_ = max_hp_;
+
+		max_move_cost_ = enemy_data->GetMoveCost();
+		current_move_cost_ = max_move_cost_;
+
+		max_action_cost_ = enemy_data->GetActionCost();
+		current_action_cost_ = max_action_cost_;
+
+		speed_ = enemy_data->GetSpeed();
+
+
+	}
 	~UnitEnemy(){}
 
 
@@ -16,7 +35,7 @@ public:
 
 	void SetBoardPos(int row, int col);
 
-
+	ObjEnemy* GetObj() { return obj_; }
 
 private:
 	
@@ -31,6 +50,9 @@ private:
 
 	int max_move_cost_;
 	int current_move_cost_;
+
+	int max_action_cost_;
+	int current_action_cost_;
 
 	int speed_;
 

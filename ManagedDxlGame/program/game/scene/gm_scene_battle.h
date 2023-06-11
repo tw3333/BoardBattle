@@ -4,6 +4,7 @@
 #include "../gm_scene_manager.h"
 #include "../gm_card_manager.h"
 #include "../gm_allydata_manager.h"
+#include "../gm_enemydata_manager.h"
 #include "../gm_scene_battle_camera.h"
 #include "../gm_object_manager.h"
 
@@ -21,6 +22,7 @@
 #include "../gm_object_target_circle.h"
 
 #include "../gm_unit_ally.h"
+#include "../gm_unit_enemy.h"
 
 #include "../gm_square.h"
 #include "../gm_board.h"
@@ -82,6 +84,8 @@ private:
 	//CardView* cardview_ = nullptr;
 	CardManager* cmgr_ = nullptr;
 	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
+	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
+
 	ObjBoard* obj_board_ = nullptr;
 	ObjAlly* obj_ally_ = nullptr;
 	ObjTargetCircle* obj_target_circle_ = ObjTargetCircle::Create(ObjTargetCircle::TextureColor::Red);
@@ -89,6 +93,8 @@ private:
 	UnitAlly* unit_ally_ = nullptr;
 	UnitAlly*  unit_ally2_ = nullptr;
 	UnitAlly* party_[3];
+	UnitEnemy* unit_enemy_ = nullptr;
+
 
 	Unit* turn_unit_ = nullptr; //ƒ^[ƒ“Œˆ‚ß—p
 	UnitAlly* turn_ally_ = nullptr; //turn‚ª‰ñ‚Á‚Ä‚«‚½ally
