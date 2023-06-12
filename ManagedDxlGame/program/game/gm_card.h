@@ -1,33 +1,40 @@
 #pragma once
 #include <string>
+#include <memory>
+#include "gm_data_card.h"
+#include "../dxlib_ext/dxlib_ext.h"
+
+//memo
+//Scenebattleで使用するインスタンス
+//Battleで使用するので値が変動する
+//またここからCardEffectも実装を行っているよ
+
 
 class Card {
 public:
 
-	Card(int cost){
-		cost_ = cost;
-	
-	}
+	Card(CardData* card_data)
+	:card_id_(card_data->GetCardID()), card_cost_(card_data->GetCardCost()), current_card_cost_(card_cost_)
+	, card_name_(card_data->GetCardName()), card_explanation_(card_data->GetCardExplanation())
+	,card_texture_(card_data->GetCardTexture())
+	{}
 	~Card(){}
 
-	//g,s
-	void setCardImgHandle(int handle) { card_img_handle_ = handle;  }
 	
-	int getCardImgHandle() { return card_img_handle_; }
+	//g,s
 
 
 private:
 
 	int card_id_;
+	int card_cost_;
+	int current_card_cost_;
+
 	std::string card_name_;
 	std::string card_explanation_; //カードの効果文
 
-	int card_img_handle_; 
-	std::string card_img_path_;
+	std::shared_ptr<dxe::Texture> card_texture_;
 
-
-	//パラメータ
-	int cost_;
 
 
 };

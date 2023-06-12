@@ -74,8 +74,14 @@ public:
 		current_card_cost_ = (std::max)(0, current_card_cost_ - value);
 	}
 	
+	//状態
 	bool GetIsDead() { return is_dead_; }
 	bool GetIs_Acted() { return is_acted_; }
+
+	int GetTauntValue() { return taunt_value_; }
+	void SetTauntValue(int value) { taunt_value_ = value; }
+	int GetShieldValue() { return shield_value_; }
+	void SetShieldValue(int value) { shield_value_ = value; }
 
 
 private:
@@ -99,5 +105,9 @@ private:
 	//状態
 	bool is_dead_ = false;
 	bool is_acted_ = false;
+
+	//補正値
+	int taunt_value_ = 0; //タウント値
+	int shield_value_ = 0; //シールド値
 
 };

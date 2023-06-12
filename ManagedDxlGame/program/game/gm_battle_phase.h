@@ -2,6 +2,7 @@
 #include <memory>
 #include "../dxlib_ext/dxlib_ext.h"
 
+
 //memo
 //Stateƒpƒ^[ƒ“
 
@@ -24,6 +25,7 @@ public:
 protected:
 
     SceneBattle* scene_battle_;
+
 
 
 
