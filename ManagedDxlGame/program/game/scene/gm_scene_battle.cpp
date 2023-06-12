@@ -54,6 +54,7 @@ void SceneBattle::Initialzie() {
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
 
+	ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
 	
 
 
@@ -109,6 +110,8 @@ void SceneBattle::Update(float delta_time) {
 	select_square_->Update(delta_time,camera_);
 	player_action_move_->Update(delta_time);
 
+	ui_card_->Update(delta_time);
+
 }
 
 void SceneBattle::Render() {
@@ -136,10 +139,12 @@ void SceneBattle::Render() {
 	sprite_->Render(camera_);
 	obj_target_circle_->Render(camera_);
 
+	
 	CardView cardview(cmgr_->getCardDateAtIndex(1));
 	cardview.Render(w1*8,h1*7);
 
 
+	ui_card_->Render();
 }
 
 

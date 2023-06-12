@@ -19,6 +19,7 @@ void UIHpBar::Render() {
 
 	if (unit_ally_) {
 
+		
 		DrawStringEx(x_, y_, color_black_, "HP:%d/%d", current_hp_, max_hp_);
 
 		//Hp‚Ì”ä—¦‚Å•ÏŒ`‚·‚éHPƒo[

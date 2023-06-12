@@ -6,6 +6,8 @@
 //UnitAllyのポインタを渡してHPバーを表示できるUI
 
 
+
+
 class UIHpBar : public UIComponent{
 public:
 

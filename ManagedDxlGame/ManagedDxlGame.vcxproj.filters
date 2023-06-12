@@ -587,5 +587,8 @@
     <ClInclude Include="program\game\gm_ui_card.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_data_card.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

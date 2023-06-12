@@ -14,7 +14,6 @@ void UITurnAllyState::Update(float delta_time) {
 	}
 
 
-
 }
 
 void UITurnAllyState::Render() {
