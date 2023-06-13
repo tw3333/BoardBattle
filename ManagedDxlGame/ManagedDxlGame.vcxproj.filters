@@ -311,6 +311,12 @@
     <ClCompile Include="program\game\gm_battle_phase_turn_enemy.cpp">
       <Filter>program\[003] game\battle</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_battle_phase_turn_end.cpp">
+      <Filter>program\[003] game\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_font_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -610,6 +616,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_battle_phase_turn_enemy.h">
       <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_phase_turn_end.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_font_manager.h">
+      <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

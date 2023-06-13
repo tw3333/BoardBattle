@@ -171,6 +171,7 @@
     <ClCompile Include="program\game\gm_battle_phase_player_action_move.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_player_action_card.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_turn_ally.cpp" />
+    <ClCompile Include="program\game\gm_battle_phase_turn_end.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_turn_enemy.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_unit_speed_cal.cpp" />
     <ClCompile Include="program\game\gm_battle_player_action_move.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
+    <ClCompile Include="program\game\gm_font_manager.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />
     <ClCompile Include="program\game\gm_object_manager.cpp" />
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp" />
@@ -249,6 +251,7 @@
     <ClInclude Include="program\game\gm_battle_phase_player_action_card.h" />
     <ClInclude Include="program\game\gm_battle_phase_player_action_move.h" />
     <ClInclude Include="program\game\gm_battle_phase_turn_ally.h" />
+    <ClInclude Include="program\game\gm_battle_phase_turn_end.h" />
     <ClInclude Include="program\game\gm_battle_phase_turn_enemy.h" />
     <ClInclude Include="program\game\gm_battle_phase_unit_speed_cal.h" />
     <ClInclude Include="program\game\gm_battle_player_action_move.h" />
@@ -260,6 +263,7 @@
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
+    <ClInclude Include="program\game\gm_font_manager.h" />
     <ClInclude Include="program\game\gm_object_enemy.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />
     <ClInclude Include="program\game\gm_object_move_select_flame.h" />

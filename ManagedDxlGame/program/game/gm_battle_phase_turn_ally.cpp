@@ -28,7 +28,12 @@ bool PhaseTurnAlly::UpdateExecute(float delta_time) {
 
 bool PhaseTurnAlly::RenderExecute(dxe::Camera* camera) {
 	
-	DrawStringEx(500,0,-1,"PhaseTurnAlly");
+	
+	DrawString(500, 0, "PhaseTurnAlly",-1);
+
+
+
+	//DrawStringEx(500,0,-1,"PhaseTurnAlly");
 	
 
 
