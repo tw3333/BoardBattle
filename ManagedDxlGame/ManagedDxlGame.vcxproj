@@ -170,6 +170,7 @@
     <ClCompile Include="program\game\gm_anim_sprite3d.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_player_action_move.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_player_action_card.cpp" />
+    <ClCompile Include="program\game\gm_battle_phase_turn_ally.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_unit_speed_cal.cpp" />
     <ClCompile Include="program\game\gm_battle_player_action_move.cpp" />
     <ClCompile Include="program\game\gm_board.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="program\game\gm_battle_phase.h" />
     <ClInclude Include="program\game\gm_battle_phase_player_action_card.h" />
     <ClInclude Include="program\game\gm_battle_phase_player_action_move.h" />
+    <ClInclude Include="program\game\gm_battle_phase_turn_ally.h" />
     <ClInclude Include="program\game\gm_battle_phase_unit_speed_cal.h" />
     <ClInclude Include="program\game\gm_battle_player_action_move.h" />
     <ClInclude Include="program\game\gm_battle_player_action_tool.h" />

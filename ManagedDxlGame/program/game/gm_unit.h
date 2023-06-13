@@ -3,19 +3,20 @@
 //memo
 //Board上に置かれるUnitの基底クラス
 
-
+//Unitがどのタイプかを表す
+enum class UnitType {
+	None,
+	Ally,
+	Enemy,
+	Obstacle
+};
 
 class Unit {
 public:
 
 	virtual ~Unit(){}
 
-	enum class Type {
-		None,
-		Ally,
-		Enemy,
-		Obstacle
-	};
+	virtual UnitType GetUnitType() const = 0;
 
 	//[0]~[9]の10x10マス盤面上の座標
 	//盤面の左上頂点座標起点,row*col
@@ -25,18 +26,35 @@ public:
 		int col;
 	};
 
-	Type type_ = Type::None;
-	void setType(Type type) { type_ = type; }
+
+	//UnitType unit_type_ = Unit::UnitType::None;
+	
+	//void setType(Type type) { type_ = type; }
+	bool GetIsDead() { return is_dead_; }
+	bool GetIsActed() { return is_acted_; }
+	bool GetIsTurn() { return is_turn_; }
+	int GetSpeed() { return speed_; }
+
+	void SetIsDead(bool flag) { is_dead_ = flag; }
+	void SetIsActed(bool flag) { is_acted_ = flag; }
+	void SetIsTurn(bool flag) { is_turn_ = flag; }
+	
+
+
 
 private:
 
-	//BoardPos board_pos_;
 
 protected:
 
-	Type unit_type_;
+	
 	BoardPos board_pos_;
+	UnitType unit_type = UnitType::None;
+	int speed_ = 0;
 
-
+	//Unit共通の状態
+	bool is_dead_ = false;
+	bool is_acted_ = false;
+	bool is_turn_ = false;
 
 };

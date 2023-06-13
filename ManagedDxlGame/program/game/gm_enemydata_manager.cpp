@@ -20,16 +20,16 @@ void EnemyDataManager::Destroy() {
 
 void EnemyDataManager::DebugLoadEnemyData() {
 
-	all_enemy_data_.emplace_back(new EnemyData(1,"スライム",30,30,1,1));
-	all_enemy_data_.emplace_back(new EnemyData(2, "ミイラ", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(3, "ペン", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(4, "マジポン", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(5, "キャンドル", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(6, "回復ルル", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(7, "攻撃ルル", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(8, "ゴーレム", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(9, "リザード", 30, 30, 1,1));
-	all_enemy_data_.emplace_back(new EnemyData(10, "ドラゴン", 30, 30, 1, 1));
+	all_enemy_data_.emplace_back(new EnemyData(1,"スライム",30,1,1,1));
+	all_enemy_data_.emplace_back(new EnemyData(2, "ミイラ", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(3, "ペン", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(4, "マジポン", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(5, "キャンドル", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(6, "回復ルル", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(7, "攻撃ルル", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(8, "ゴーレム", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(9, "リザード", 30, 1, 1,1));
+	all_enemy_data_.emplace_back(new EnemyData(10, "ドラゴン", 30, 1, 1, 1));
 
 
 	//all_enemy_data_.emplace_back(new EnemyData(10, "ドラゴン", 30, 30, 1, 1));

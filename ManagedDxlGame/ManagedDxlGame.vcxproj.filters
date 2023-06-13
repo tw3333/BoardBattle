@@ -305,6 +305,9 @@
     <ClCompile Include="program\game\gm_battle_phase_unit_speed_cal.cpp">
       <Filter>program\[003] game\battle</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_battle_phase_turn_ally.cpp">
+      <Filter>program\[003] game\battle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -597,6 +600,9 @@
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_battle_phase_unit_speed_cal.h">
+      <Filter>program\[003] game\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_phase_turn_ally.h">
       <Filter>program\[003] game\battle</Filter>
     </ClInclude>
   </ItemGroup>

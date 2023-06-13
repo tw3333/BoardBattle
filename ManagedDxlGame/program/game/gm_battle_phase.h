@@ -1,16 +1,20 @@
 #pragma once
 #include <memory>
 #include "../dxlib_ext/dxlib_ext.h"
+#include "gm_square.h"
+
 
 
 //memo
 //Stateパターン
+//ToDo::スマートポインタを使用しての循環参照を解決する方法を詳しく調べる
 
 
 class SceneBattle;
 
 class BattlePhase {
 public:
+
 
     virtual ~BattlePhase() {}
 
@@ -25,7 +29,6 @@ public:
 protected:
 
     SceneBattle* scene_battle_;
-
 
 
 

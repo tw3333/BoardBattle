@@ -24,14 +24,14 @@ void CardManager::Destory() {
 //debug用のカード生成
 void CardManager::MakeDebugCard() {
 
-	for (int i = 0; i < 10; ++i) {
-		debug_card_data_.emplace_back(new Card(1));
+	//for (int i = 0; i < 10; ++i) {
+	//	debug_card_data_.emplace_back(new Card(1));
 
-	}
+	//}
 
-	for (int i = 0; i < debug_card_data_.size(); ++i) {
-		debug_card_data_[i]->setCardImgHandle(LoadGraph("graphics/card/card_test_img.png"));
+	//for (int i = 0; i < debug_card_data_.size(); ++i) {
+	//	debug_card_data_[i]->setCardImgHandle(LoadGraph("graphics/card/card_test_img.png"));
 
-	}
+	//}
 
 }

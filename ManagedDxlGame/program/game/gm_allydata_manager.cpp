@@ -20,10 +20,10 @@ void AllyDataManager::Destory() {
 
 void AllyDataManager::DebugLoadAllyData() {
 
-	all_ally_data_.emplace_back(new AllyData(1,"ミア",30,3,5,30));
-	all_ally_data_.emplace_back(new AllyData(2,"ルーセント",30,3,1,30));
+	all_ally_data_.emplace_back(new AllyData(1,"ミア",30,3,5,35));
+	all_ally_data_.emplace_back(new AllyData(2,"ルーセント",30,3,1,25));
 	all_ally_data_.emplace_back(new AllyData(3,"ズズ",30,3,1,30));
-	all_ally_data_.emplace_back(new AllyData(4,"ライン",40,3,1,25));
+	all_ally_data_.emplace_back(new AllyData(4,"ライン",40,3,1,20));
 
 	is_loaded_ = true;
 }

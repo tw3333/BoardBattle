@@ -11,6 +11,8 @@ public:
 
 	UnitEnemy(int id, EnemyData* enemy_data, int row, int col){
 	
+		enemy_data_ = enemy_data;
+
 		ObjectManager& instance_ = ObjectManager::GetInstance();
 		obj_ = instance_.GetObjEnemyAtID(id);
 		SetBoardPos(row, col);
@@ -35,9 +37,11 @@ public:
 
 	void SetBoardPos(int row, int col);
 
+	UnitType GetUnitType() const override { return UnitType::Enemy; }
 	ObjEnemy* GetObj() { return obj_; }
 
 private:
+	
 	
 	EnemyData* enemy_data_ = nullptr;
 	ObjEnemy* obj_ = nullptr;
@@ -54,9 +58,6 @@ private:
 	int max_action_cost_;
 	int current_action_cost_;
 
-	int speed_;
-
-
-
+	
 
 };

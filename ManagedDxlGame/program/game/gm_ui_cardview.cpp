@@ -5,19 +5,19 @@
 //arg1...描写したい座標の左上頂点座標x, arg2...描写したい座標の左上頂点座標y
 void CardView::Render(int x, int y) {
 
-	if (is_opened_) {
+	//if (is_opened_) {
 
-		//カード描写
-		DrawExtendGraph(x, y, x + open_card_w_, y + open_card_h_, card_->getCardImgHandle(), false);
-		
+	//	//カード描写
+	//	DrawExtendGraph(x, y, x + open_card_w_, y + open_card_h_, card_->getCardImgHandle(), false);
+	//	
 
-	}
-	else {
+	//}
+	//else {
 
-		DrawExtendGraph(x, y, x + card_w_, y + card_h_, card_->getCardImgHandle(), false);
+	//	DrawExtendGraph(x, y, x + card_w_, y + card_h_, card_->getCardImgHandle(), false);
 
-	}
-	
+	//}
+	//
 	
 }
 

@@ -15,6 +15,7 @@ void SceneBattle::Initialzie() {
 	sprite_->pos_ = {300,30,300};
 
 //-----
+
 	party_[0] = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 0, 0);
 	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
@@ -22,14 +23,12 @@ void SceneBattle::Initialzie() {
 
 	unit_enemy_ = new UnitEnemy(9, enemydata_mgr_->GetEnemyDataAtID(9),5,5);
 	
+	all_units_.push_back(party_[0]);
+	all_units_.push_back(party_[1]);
+	all_units_.push_back(party_[2]);
+	all_units_.push_back(unit_enemy_);
 
 
-	//ui_hp_bar_ = new UIHpBar(0,h1*8,w1*2,h1*1,party_[0]);
-	//ui_card_cost_ = new UICardCost(0,h1*8,w1*2,h1*1 /2,party_[0]);
-	//ui_move_cost_ = new UIMoveCost(0, h1 * 9, w1 * 2, h1 * 1 / 2, party_[0]);
-	ui_turn_ally_state_ = new UITurnAllyState(0, h1*7+(h1*1/2), w1*2, h1*2 + (h1 * 1 / 2));
-	ui_turn_ally_state_->SetUnitAlly(party_[2]);
-	ui_turn_ally_state_->Update(0);
 
 
 	board_ = new Board();
@@ -42,13 +41,17 @@ void SceneBattle::Initialzie() {
 
 	phase_player_action_move_ = 
 		new PhasePlayerActionMove(party_[0], select_square_, board_->getBoardSquares());
+	phase_unit_speed_cal_ = new PhaseUnitSpeedCal(all_units_,turn_ally_,turn_enemy_);
+	phase_turn_ally_ = new PhaseTurnAlly();
 
-	ChangeBattlePhase(phase_player_action_move_);
+	InitialTurnCal();
+
+	//ChangeBattlePhase(phase_player_action_move_);
 
 	player_action_move_ = new PlayerActionMove(board_->getBoardSquares());
 
 	ui_mediator_ = new UISceneBattleMediator();
-	ui_mediator_->SetSequence(&seq_);
+
 
 	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*7 + (h1 * 1 / 2),w1*2,h1*2 + (h1 * 1 / 2));
 	ui_action_buttons_->SetMediator(ui_mediator_);
@@ -56,10 +59,12 @@ void SceneBattle::Initialzie() {
 
 	ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
 	
+	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
+	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
+	ui_turn_ally_state_->Update(0);
 
-
-	cmgr_ = cmgr_->GetInstance();
-	cmgr_->MakeDebugCard();
+	//cmgr_ = cmgr_->GetInstance();
+	//cmgr_->MakeDebugCard();
 	
 
 
@@ -68,7 +73,7 @@ void SceneBattle::Initialzie() {
 void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
-	seq_.update(delta_time);
+	
 	current_phase_->UpdateExecute(delta_time);
 
 	party_[0]->getObj()->Update(delta_time);
@@ -140,8 +145,8 @@ void SceneBattle::Render() {
 	obj_target_circle_->Render(camera_);
 
 	
-	CardView cardview(cmgr_->getCardDateAtIndex(1));
-	cardview.Render(w1*8,h1*7);
+	//CardView cardview(cmgr_->getCardDateAtIndex(1));
+	//cardview.Render(w1*8,h1*7);
 
 
 	ui_card_->Render();
@@ -184,25 +189,27 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 
 
-bool SceneBattle::PhaseSetBattle(const float delta_time) {
+void SceneBattle::InitialTurnCal() {
 
-	DrawStringEx(500,10,-1,"SetBattle");
+	//素早さ順に降順ソート
+	std::sort(all_units_.begin(), all_units_.end(),[](Unit* a, Unit* b) {
+			return a->GetSpeed() > b->GetSpeed();
+	});
 
-	return true;
-}
-
-bool SceneBattle::PhaseAllyTurn(const float delta_time) {
-
-	//Todo:キャストの正当性の確保
-	turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
-	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
+	turn_unit_ = all_units_.front();
 
 
-	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
+	if (turn_unit_->GetUnitType() == UnitType::Ally) {
+		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+		ChangeBattlePhase(phase_turn_ally_);
+
+	}
+	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
+		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+	}
 
 
-
-	return true;
+	
 }
 
 void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
@@ -218,40 +225,6 @@ void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
 }
 
 
-
-bool SceneBattle::PhaseActionCard(const float delta_time) {
-
-	DrawStringEx(500,30,-1,"PhaseCard");
-
-	return true;
-}
-
-bool SceneBattle::PhaseActionMove(const float delta_time) {
-
-	DrawStringEx(500, 30, -1, "PhaseMove");
-	player_action_move_->SetIsEnabled(true);
-	player_action_move_->SetTurnAlly(turn_ally_);
-
-
-
-	return true;
-}
-bool SceneBattle::PhaseActionTool(const float delta_time) {
-
-	DrawStringEx(500, 30, -1, "PhaseTool");
-
-	return true;
-
-
-}
-bool SceneBattle::PhaseActionTurnEnd(const float delta_time) {
-
-	DrawStringEx(500, 30, -1, "PhaseTurnEnd");
-
-	return true;
-
-
-}
 
 //memo
 //================================================

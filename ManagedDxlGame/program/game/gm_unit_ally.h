@@ -37,7 +37,7 @@ public:
 	}
 	~UnitAlly(){}
 
-	
+	UnitType GetUnitType() const override { return UnitType::Ally; }
 	void Update();
 	//void InitializeBoardAndObjPos(int row, int col);
 
@@ -83,8 +83,11 @@ public:
 	int GetShieldValue() { return shield_value_; }
 	void SetShieldValue(int value) { shield_value_ = value; }
 
+	
 
 private:
+
+	
 
 	AllyData* ally_data_ = nullptr;
 	ObjAlly* obj_ = nullptr;
@@ -99,12 +102,10 @@ private:
 	int max_move_cost_;
 	int current_move_cost_;
 
-	int speed_;
-
-
 	//状態
-	bool is_dead_ = false;
-	bool is_acted_ = false;
+
+	
+
 
 	//補正値
 	int taunt_value_ = 0; //タウント値

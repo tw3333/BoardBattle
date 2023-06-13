@@ -44,7 +44,7 @@ public:
 
 private:
 
-	UnitAlly* unit_ally_;
+	UnitAlly* unit_ally_ = nullptr;
 
 	UICardCost* ui_card_cost_ = nullptr;
 	UIMoveCost* ui_move_cost_ = nullptr;
