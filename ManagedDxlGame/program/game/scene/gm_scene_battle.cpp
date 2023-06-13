@@ -51,6 +51,9 @@ void SceneBattle::Initialzie() {
 	player_action_move_ = new PlayerActionMove(board_->getBoardSquares());
 
 	ui_mediator_ = new UISceneBattleMediator();
+	ui_mediator_->SetScene(this);
+	ui_mediator_->SetPhasePlayerActionMove(phase_player_action_move_);
+
 
 
 	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*7 + (h1 * 1 / 2),w1*2,h1*2 + (h1 * 1 / 2));
@@ -217,7 +220,9 @@ void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
 	if (current_phase_) {
 		current_phase_->EndPhase();
 	}
+
 	current_phase_ = new_phase;
+
 	if (current_phase_) {
 		current_phase_->BeginPhase();
 	}
