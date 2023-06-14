@@ -39,8 +39,8 @@ void SceneBattle::Initialzie() {
 
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
-	phase_player_action_move_ = 
-		new PhasePlayerActionMove(party_[0], select_square_, board_->getBoardSquares());
+	//phase_player_action_move_ = 
+		//new PhasePlayerActionMove(party_[0], select_square_, board_->getBoardSquares());
 	phase_unit_speed_cal_ = new PhaseUnitSpeedCal(all_units_,turn_ally_,turn_enemy_);
 	phase_turn_ally_ = new PhaseTurnAlly();
 
@@ -52,7 +52,7 @@ void SceneBattle::Initialzie() {
 
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetScene(this);
-	ui_mediator_->SetPhasePlayerActionMove(phase_player_action_move_);
+	//ui_mediator_->SetPhasePlayerActionMove(phase_player_action_move_);
 
 
 
@@ -77,6 +77,8 @@ void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 	
+	phase_.update(delta_time);
+
 	current_phase_->UpdateExecute(delta_time);
 
 	party_[0]->getObj()->Update(delta_time);
@@ -228,6 +230,27 @@ void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
 	}
 
 }
+
+bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
+
+
+
+
+
+	return true;
+}
+
+bool SceneBattle::PhaseAllyTurn(const float delta_time)
+{
+	return true;
+}
+
+bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
+	
+	
+	return true;
+}
+
 
 
 

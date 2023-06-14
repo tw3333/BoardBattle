@@ -64,6 +64,24 @@ public:
 	//BattlePhase
 	void ChangeBattlePhase(BattlePhase* new_phase);
 
+	//
+	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::PhaseInitialTurnCal);
+
+
+
+	bool PhaseInitialTurnCal(const float delta_time);
+	bool PhaseAllyTurn(const float delta_time);
+	bool PhaseEnemyTurn(const float delta_time);
+
+
+	bool PhasePlayerActionMove(const float delta_time);
+	bool PhasePlayerActionCard(const float delta_time);
+	bool PhasePlayerActionTool(const float delta_time);
+	bool PhasePlayerActionTurnEnd(const float delta_time);
+
+
+
+
 private:
 	
 	int w1 = DXE_WINDOW_WIDTH / 10;
@@ -102,7 +120,7 @@ private:
 	BattlePhase* current_phase_ = nullptr;
 	PhaseUnitSpeedCal* phase_unit_speed_cal_ = nullptr;
 	PhaseTurnAlly* phase_turn_ally_ = nullptr;
-	PhasePlayerActionMove* phase_player_action_move_ = nullptr;
+	//PhasePlayerActionMove* phase_player_action_move_ = nullptr;
 
 
 	PlayerActionMove* player_action_move_ = nullptr;
