@@ -42,30 +42,6 @@ void UISceneBattleMediator::NotifyPlayerActionButton(bool is_enable, std::string
 
 	}
 	
-	if (tag == "MoveButton") {
-
-		DrawStringEx(0, 500, -1, "MoveButton");
-
-		scene_battle_->ChangeBattlePhase(phase_player_action_move_);
-
-	}
-
-	if (tag == "CardButton") {
-
-		DrawStringEx(0, 500, -1, "CardButton");
-
-
-	}
-
-	if (tag == "ToolButton") {
-
-		DrawStringEx(0, 500, -1, "ToolButton");
-	}
-
-	if (tag == "TurnEndButton") {
-
-		DrawStringEx(0, 500, -1, "TurnButton");
-
-	}
+	
 
 }

@@ -56,7 +56,7 @@ protected:
 	int width_;
 	int height_;
 
-	bool is_moving_ = false;
+	bool is_moving_ = false; //アニメーション中は判定をなくす
 	
 	//Color
 	int color_ = -1;

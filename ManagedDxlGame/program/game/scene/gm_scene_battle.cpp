@@ -52,6 +52,7 @@ void SceneBattle::Initialzie() {
 
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetScene(this);
+	ui_mediator_->SetSequence(&phase_);
 	//ui_mediator_->SetPhasePlayerActionMove(phase_player_action_move_);
 
 
@@ -79,7 +80,6 @@ void SceneBattle::Update(float delta_time) {
 	
 	phase_.update(delta_time);
 
-	current_phase_->UpdateExecute(delta_time);
 
 	party_[0]->getObj()->Update(delta_time);
 	party_[1]->getObj()->Update(delta_time);
@@ -136,7 +136,7 @@ void SceneBattle::Render() {
 	unit_enemy_->GetObj()->Render(camera_);
 
 	board_->Render(camera_);
-	current_phase_->RenderExecute(camera_);
+
 
 	//UI
 	ui_action_buttons_->Render();
@@ -192,7 +192,7 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 }
 
-
+//ŠePhase‚ÌŽÀ‘•=====================================================================================
 
 void SceneBattle::InitialTurnCal() {
 
@@ -206,11 +206,13 @@ void SceneBattle::InitialTurnCal() {
 
 	if (turn_unit_->GetUnitType() == UnitType::Ally) {
 		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
-		ChangeBattlePhase(phase_turn_ally_);
+		phase_.change(&SceneBattle::PhaseAllyTurn);
 
 	}
 	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+
+		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
 
@@ -242,11 +244,54 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
+	DrawStringEx(500,0,-1,"PhaseTurnAlly");
+	ui_action_buttons_->SetIsEnabled(true);
+
+
+
+
 	return true;
 }
 
 bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
+	DrawStringEx(500,0,-1,"PhaseTurnEnemy");
+
+
+
+
+	return true;
+}
+
+bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
+	
+	DrawStringEx(500,0,-1,"PhasePlayerActionMove");
+	
+	return true;
+}
+
+bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
+	
+	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
+
+	
+	return true;
+}
+
+bool SceneBattle::PhasePlayerActionTool(const float delta_time) {
+	
+	DrawStringEx(500, 0, -1, "PhasePlayerActionTool");
+
+	
+	return true;
+}
+
+bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
+	
+	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
+
+
+
 	
 	return true;
 }

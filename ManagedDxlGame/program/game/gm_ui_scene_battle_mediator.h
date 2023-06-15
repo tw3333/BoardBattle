@@ -20,7 +20,7 @@ public:
 	void SetScene(SceneBattle* scene) { scene_battle_ = scene; }
 
 	void Notify(UIComponent* sender, std::string tag) override;
-	void SetSequence(tnl::Sequence<SceneBattle>* seq) {	seq_ = seq; }
+	void SetSequence(tnl::Sequence<SceneBattle>* seq) {	phase_ = seq; }
 
 	//UIPlayerActionButtons
 	void NotifyPlayerActionButton(bool is_enable, std::string tag);
@@ -37,7 +37,7 @@ private:
 
 	std::vector<UIComponent> ui_components_;
 
-	tnl::Sequence<SceneBattle>* seq_;
+	tnl::Sequence<SceneBattle>* phase_;
 
 	SceneBattle* scene_battle_ = nullptr;
 

@@ -28,7 +28,8 @@ public:
 	ObjSelectFlame* GetObj() { return obj_; }
 	int GetSelectSquareRow() { return select_square_row_; }
 	int GetSelectSquareCol() { return select_square_col_; }
-	
+	tnl::Vector3 GetSelectSquareObjPos() { return select_square_obj_pos_; }
+
 
 private:
 
@@ -45,5 +46,6 @@ private:
 
 	int select_square_row_ = 0; //‘I‘ð‚³‚ê‚Ä‚¢‚ésquare‚Ìrow
 	int select_square_col_ = 0; //‘I‘ð‚³‚ê‚Ä‚¢‚ésquare‚Ìcol
+	tnl::Vector3 select_square_obj_pos_; //‘I‘ð‚³‚ê‚Ä‚¢‚éSquare‚ÌObjPos\
 	 
 };

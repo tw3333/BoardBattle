@@ -36,6 +36,7 @@
 
 #include "../gm_select_square.h"
 #include "../gm_anim_sprite3d.h"
+
 //#include "../../library/tnl_sequence.h"
 
 //memo
