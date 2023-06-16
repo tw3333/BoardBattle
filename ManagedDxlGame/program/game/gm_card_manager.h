@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-
+#include "gm_data_card.h"
 #include "gm_card.h"
 
 //memo
@@ -16,6 +16,8 @@ public:
 
 	//ƒƒ“ƒoŠÖ”
 	void MakeDebugCard();
+	void CreateDebugCardData();
+
 
 	//get,set
 	Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }

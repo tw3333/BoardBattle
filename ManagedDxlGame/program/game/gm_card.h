@@ -20,7 +20,9 @@ public:
 	{}
 	~Card(){}
 
-	
+
+	void CardCurrentEffect(float delt_time);
+
 	//g,s
 
 
@@ -30,7 +32,7 @@ private:
 	int card_cost_;
 	int current_card_cost_;
 
-	std::string card_name_;
+	std::string card_name_; //カードの名前
 	std::string card_explanation_; //カードの効果文
 
 	std::shared_ptr<dxe::Texture> card_texture_;

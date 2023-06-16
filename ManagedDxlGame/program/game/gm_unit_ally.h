@@ -3,6 +3,7 @@
 #include "gm_object_ally.h"
 #include "gm_data_ally.h"
 #include "gm_object_manager.h"
+#include "gm_card.h"
 
 
 //memo
@@ -83,7 +84,9 @@ public:
 	int GetShieldValue() { return shield_value_; }
 	void SetShieldValue(int value) { shield_value_ = value; }
 
-	
+	//Card
+	void SetIsDrewInitCard(bool flag) { is_drew_init_card_ = flag; }
+	bool GetIsDrewInitCard() { return is_drew_init_card_; }
 
 private:
 
@@ -105,6 +108,10 @@ private:
 	//状態
 
 	
+	//Card
+	bool is_drew_init_card_ = false; //初期カードを引いたかどうか
+	std::vector<Card*> deck_; //デッキ
+	std::vector<Card*> hand_; //手札
 
 
 	//補正値

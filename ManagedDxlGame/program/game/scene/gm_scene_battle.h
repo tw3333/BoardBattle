@@ -71,6 +71,7 @@ public:
 
 
 	bool PhaseInitialTurnCal(const float delta_time);
+	bool TurnCal(const float delta_time);
 	bool PhaseAllyTurn(const float delta_time);
 	bool PhaseEnemyTurn(const float delta_time);
 

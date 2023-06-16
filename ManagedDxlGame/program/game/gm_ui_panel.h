@@ -60,6 +60,6 @@ protected:
 	
 	//Color
 	int color_ = -1;
-
+	
 
 };
