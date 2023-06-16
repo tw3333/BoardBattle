@@ -23,6 +23,7 @@ public:
 
 	void CardCurrentEffect(float delt_time);
 
+
 	//g,s
 
 

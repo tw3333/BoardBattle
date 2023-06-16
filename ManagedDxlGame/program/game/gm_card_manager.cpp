@@ -1,37 +1,17 @@
-#include "../dxlib_ext/dxlib_ext.h"
-
 #include "gm_card_manager.h"
 
 
-CardManager* CardManager::instance_ = nullptr;
+void CardManager::CreateDebugCardData() {
 
-CardManager* CardManager::GetInstance() {
-
-	if (!instance_) { instance_ = new CardManager(); }
-	return instance_;
-
-}
-
-void CardManager::Destory() {
-
-	if (instance_) { 
-		delete instance_; 
-		instance_ = nullptr;
-	}
-
-}
-
-//debug用のカード生成
-void CardManager::MakeDebugCard() {
-
-	//for (int i = 0; i < 10; ++i) {
-	//	debug_card_data_.emplace_back(new Card(1));
-
-	//}
-
-	//for (int i = 0; i < debug_card_data_.size(); ++i) {
-	//	debug_card_data_[i]->setCardImgHandle(LoadGraph("graphics/card/card_test_img.png"));
-
-	//}
+	debug_card_data_.emplace_back(new CardData(1,1,"debug1","debug用カードです。","graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(2, 1, "debug2", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(3, 1, "debug3", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(4, 1, "debug4", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(5, 1, "debug5", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(6, 1, "debug6", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(7, 1, "debug7", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(8, 1, "debug8", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(9, 1, "debug9", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(10, 1, "debug10", "debug用カードです。", "graphics/card/c1/beeding-heart.png"));
 
 }

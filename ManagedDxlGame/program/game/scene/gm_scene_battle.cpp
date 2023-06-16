@@ -235,8 +235,53 @@ void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
 
 bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
+	//‘f‘‚³‡‚É~‡ƒ\[ƒg
+	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
+		return a->GetSpeed() > b->GetSpeed();
+		});
+
+	turn_unit_ = all_units_.front();
 
 
+	if (turn_unit_->GetUnitType() == UnitType::Ally) {
+		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+		phase_.change(&SceneBattle::PhaseAllyTurn);
+
+	}
+	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
+		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+
+		phase_.change(&SceneBattle::PhaseEnemyTurn);
+	}
+
+
+
+	return true;
+}
+
+bool SceneBattle::TurnCal(const float delta_time) {
+
+	//‘f‘‚³‡‚É~‡ƒ\[ƒg
+	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
+		return a->GetSpeed() > b->GetSpeed();
+	});
+
+	
+
+
+	turn_unit_ = all_units_.front();
+
+
+	if (turn_unit_->GetUnitType() == UnitType::Ally) {
+		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+		phase_.change(&SceneBattle::PhaseAllyTurn);
+
+	}
+	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
+		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+
+		phase_.change(&SceneBattle::PhaseEnemyTurn);
+	}
 
 
 	return true;
@@ -290,6 +335,10 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
 
+	turn_ally_->SetIsActed(true);
+
+
+	//phase_.change(SceneBattle::TurnCal);
 
 
 	

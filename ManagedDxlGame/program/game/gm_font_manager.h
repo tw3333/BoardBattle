@@ -1,4 +1,5 @@
 #pragma once
+#include "DxLib.h"
 
 //memo
 //マジックスタティックを用いて作成
@@ -24,12 +25,18 @@ public:
 
 	void CreateFontData();
 
+	int GetCardNameFont () const { return card_name_font_; }
+	int GetCardCostFont () const { return card_cost_font_; }
+	int GetCardExplanationFont () const { return card_explanation_font_; }
 
 private:
 
 	FontManager() = default;
 	~FontManager() = default;
 
+	int card_name_font_;
+	int card_cost_font_;
+	int card_explanation_font_;
 
 
 

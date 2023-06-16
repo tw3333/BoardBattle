@@ -4,6 +4,8 @@
 
 void SceneLoad::Initialzie() {
 
+	font_mgr_.CreateFontData();
+
 	amgr_->DebugLoadAllyData();
 	amgr_->DebugLoadAllyTexture();
 	emgr_->DebugLoadEnemyData();
@@ -15,6 +17,7 @@ void SceneLoad::Initialzie() {
 	obj_mgr_.CreateObjSquares();
 	obj_mgr_.CreateObjEnemies();
 
+	card_mgr_.CreateDebugCardData();
 
 
 }
@@ -58,5 +61,10 @@ void SceneLoad::Render() {
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 40, -1, "Push:[2]->SceneSelectPhase");
 
 	}
+
+
+	DrawStringToHandle(0,0,"CardCostFont",-1,font_mgr_.GetCardCostFont());
+	DrawStringToHandle(0, 100, "CardNameFont", -1, font_mgr_.GetCardNameFont());
+	DrawStringToHandle(0, 200, "CardTextFont", -1, font_mgr_.GetCardExplanationFont());
 
 }

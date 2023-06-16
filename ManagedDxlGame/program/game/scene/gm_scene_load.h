@@ -7,7 +7,11 @@
 #include "../gm_scene_manager.h"
 #include "../scene/gm_scene_battle.h"
 #include "gm_scene_selectphase.h"
+
 #include "../gm_object_manager.h"
+#include "../gm_card_manager.h"
+#include "../gm_font_manager.h"
+
 
 //memo
 //データのロードを行うシーン
@@ -28,9 +32,11 @@ private:
 	AllyDataManager* amgr_ = AllyDataManager::GetInstance();
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
 	TextureManager* tmgr_ = TextureManager::GetInstance();
+
+
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
-
-
+	CardManager& card_mgr_ = CardManager::GetInstance();
+	FontManager& font_mgr_ = FontManager::GetInstance();
 
 
 	enum NextScene {

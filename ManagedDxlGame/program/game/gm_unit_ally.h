@@ -88,6 +88,7 @@ public:
 	void SetIsDrewInitCard(bool flag) { is_drew_init_card_ = flag; }
 	bool GetIsDrewInitCard() { return is_drew_init_card_; }
 
+
 private:
 
 	
