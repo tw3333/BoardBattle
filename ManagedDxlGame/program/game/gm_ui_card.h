@@ -1,5 +1,6 @@
 #pragma once
 #include "gm_ui_component.h"
+#include "gm_font_manager.h"
 
 class UICard : public UIComponent {
 public:
@@ -23,6 +24,8 @@ private:
 
 	int w1_ = width_ / 10;
 	int h1_ = height_ / 10;
+
+	FontManager& font_mgr_ = FontManager::GetInstance();
 
 	//ColorCode
 	int	color_ground_work_ = GetColor(211,204,196);

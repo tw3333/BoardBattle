@@ -57,6 +57,9 @@
     <Filter Include="program\[003] game\battle">
       <UniqueIdentifier>{a271a620-a737-4733-bdaa-8f4288e0bfa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\enemyaction">
+      <UniqueIdentifier>{ce3d3087-2385-41f0-9bcd-f0e98c556491}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -316,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_font_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_enemy_action_move.cpp">
+      <Filter>program\[003] game\enemyaction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -622,6 +628,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_font_manager.h">
       <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemy_action.h">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemy_action_move.h">
+      <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

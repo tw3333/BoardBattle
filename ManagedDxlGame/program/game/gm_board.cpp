@@ -65,5 +65,41 @@ void Board::UpdateCanMoveSquare() {
 
 	}
 
+}
+
+void Board::UpdateSquareState() {
+
+
+	for (int row = 0; row < 10; ++row) {
+		for (int col = 0; col < 10; ++col) {
+
+			board_squares_[row][col]->SetAllyInSquare(false);
+			board_squares_[row][col]->SetEnemyInSquare(false);
+			board_squares_[row][col]->SetIsCanMove(true);
+
+		}
+	}
+
+	//ally‚Ì‚¢‚éƒ}ƒX‚ðˆÚ“®‹ÖŽ~
+	for (int i = 0; i < sizeof(party_) / sizeof(party_[0]); ++i) {
+
+		board_squares_[party_[i]->GetBoardPos().row][party_[i]->GetBoardPos().col]->SetIsCanMove(false);
+		board_squares_[party_[i]->GetBoardPos().row][party_[i]->GetBoardPos().col]->SetAllyInSquare(true);
+
+	}
+
+
+	if (!enemies_.empty()) {
+
+		for (int i = 0; i < enemies_.size(); ++i) {
+
+			board_squares_[enemies_[i]->GetBoardPos().row][enemies_[i]->GetBoardPos().col]->SetEnemyInSquare(true);
+
+		}
+
+	}
+
+
+
 
 }

@@ -43,12 +43,16 @@ public:
 	}
 
 	void UpdateCanMoveSquare();
+	void UpdateSquareState();
 	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
+	void SetAllUnits(std::vector<Unit*> all_units) { all_units_ = all_units; }
+
 
 private:
 
 	UnitAlly* party_[3];
 	std::vector<UnitEnemy*> enemies_;
+	std::vector<Unit*> all_units_;
 
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();

@@ -20,3 +20,27 @@ void Square::SetSquarePos(int row, int col) {
 	obj_->Update(0);
 
 }
+
+//SquareにUnitEnemyを持たせる。その際UnitAllyのポインタをnullptrに
+void Square::SetUnitEnemy(UnitEnemy* unit) {
+
+	if (unit_ally_) {
+		unit_ally_ = nullptr;
+	}
+
+	unit_enemy_ = unit;
+
+
+}
+
+//SquareにUnitAllyを持たせる。その際UnitEnemyのポインタをnullptrに
+void Square::SetUnitAlly(UnitAlly* unit) {
+
+	if (unit_enemy_) {
+		unit_enemy_ = nullptr;
+	}
+
+	unit_ally_ = unit;
+
+}
+

@@ -196,6 +196,7 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
+    <ClCompile Include="program\game\gm_enemy_action_move.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />
     <ClCompile Include="program\game\gm_object_manager.cpp" />
@@ -280,6 +281,8 @@
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
+    <ClInclude Include="program\game\gm_enemy_action.h" />
+    <ClInclude Include="program\game\gm_enemy_action_move.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
     <ClInclude Include="program\game\gm_object_enemy.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />

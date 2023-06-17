@@ -40,13 +40,29 @@ public:
 	UnitType GetUnitType() const override { return UnitType::Enemy; }
 	ObjEnemy* GetObj() { return obj_; }
 
+	enum class MoveType {
+		NotMove, //不動
+		RandomMove, //コスト分ランダムに動く
+		ForcusMove //taunt値が高いAllyに向かって動く
+	};
+	MoveType GetMoveType() { return move_type_; }
+	MoveType SetMoveType(MoveType type) { move_type_ = type; }
+
+	int GetMaxHp() { return max_hp_; }
+	
+	int GetCurrentHp() { return current_hp_; }
+	void SetCurrentHp(int hp) { current_hp_ = hp; }
+
+
 private:
 	
-	
+	MoveType move_type_ = MoveType::NotMove;
+
+
 	EnemyData* enemy_data_ = nullptr;
 	ObjEnemy* obj_ = nullptr;
 
-
+	
 
 	//ステータス
 	int max_hp_;

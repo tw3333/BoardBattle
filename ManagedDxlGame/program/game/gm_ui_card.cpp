@@ -27,6 +27,7 @@ void UICard::Render() {
 
 	//Costを表示するBox
 	DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + 34, pos_y_ + 34, color_orange_, true);
+	DrawStringToHandle(pos_x_ + 4, pos_y_ + 4,"1",-1, font_mgr_.GetCardCostFont());
 
 
 	//カード名下地

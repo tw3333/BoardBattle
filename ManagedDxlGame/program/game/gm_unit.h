@@ -39,8 +39,8 @@ public:
 	void SetIsActed(bool flag) { is_acted_ = flag; }
 	void SetIsTurn(bool flag) { is_turn_ = flag; }
 	
-
-
+	void SetBoardPos(int row, int col) { board_pos_.row = row; board_pos_.col = col; }
+	BoardPos GetBoardPos() { return board_pos_; }
 
 private:
 

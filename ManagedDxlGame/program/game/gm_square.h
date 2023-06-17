@@ -2,6 +2,10 @@
 #include "gm_object_square.h"
 #include "gm_object_manager.h"
 
+#include "gm_unit.h"
+#include "gm_unit_ally.h"
+#include "gm_unit_enemy.h"
+
 //memo
 //盤面の１マスを表すクラス
 
@@ -28,14 +32,24 @@ public:
 
 	bool GetIsCanMove() { return is_can_move_; }
 	void SetIsCanMove(bool flag) { is_can_move_ = flag; }
+	bool GetEnemyInSquare() { return enemy_in_square_; }
+	void SetEnemyInSquare(bool flag) { enemy_in_square_ = flag; }
+	bool GetAllyInSquare() { return ally_in_square_; }
+	void SetAllyInSquare(bool flag) { ally_in_square_ = flag; }
+
+
 
 private:
 
 	bool is_can_move_ = true;
+	bool enemy_in_square_  = false;
+	bool ally_in_square_ = false;
 
 	ObjSquare* obj_;
 
-	
+	UnitEnemy* unit_enemy_ = nullptr;
+	UnitAlly* unit_ally_ = nullptr;
+
 	SquarePos square_pos_ = {0,0};
 
 
