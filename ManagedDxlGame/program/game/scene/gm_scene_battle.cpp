@@ -7,7 +7,6 @@ void SceneBattle::Initialzie() {
 	//camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(54));
 //debug
 
-
 	sprite_ = new AnimSprite3D(camera_);
 	sprite_->regist(80, 80, "walk_front", "graphics/effect/anim_shild.png",
 		tnl::SeekUnit::ePlayMode::REPEAT, 1.0f, 10, 240, 0,2);
@@ -15,21 +14,20 @@ void SceneBattle::Initialzie() {
 	sprite_->pos_ = {300,30,300};
 
 //-----
-
 	party_[0] = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 0, 0);
 	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
-	turn_unit_ = party_[0];
+	
+	party_units_.push_back(party_[0]);
+	party_units_.push_back(party_[1]);
+	party_units_.push_back(party_[2]);
 
 	unit_enemy_ = new UnitEnemy(9, enemydata_mgr_->GetEnemyDataAtID(9),5,5);
 	
-	all_units_.push_back(party_[0]);
 	all_units_.push_back(party_[1]);
+	all_units_.push_back(party_[0]);
 	all_units_.push_back(party_[2]);
 	all_units_.push_back(unit_enemy_);
-
-
-
 
 	board_ = new Board();
 	board_->Create();
@@ -39,24 +37,10 @@ void SceneBattle::Initialzie() {
 
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
-	//phase_player_action_move_ = 
-		//new PhasePlayerActionMove(party_[0], select_square_, board_->getBoardSquares());
-	phase_unit_speed_cal_ = new PhaseUnitSpeedCal(all_units_,turn_ally_,turn_enemy_);
-	phase_turn_ally_ = new PhaseTurnAlly();
-
-	InitialTurnCal();
-
-	//ChangeBattlePhase(phase_player_action_move_);
-
-	player_action_move_ = new PlayerActionMove(board_->getBoardSquares());
-
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetScene(this);
 	ui_mediator_->SetSequence(&phase_);
-	//ui_mediator_->SetPhasePlayerActionMove(phase_player_action_move_);
-
-
-
+	
 	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*7 + (h1 * 1 / 2),w1*2,h1*2 + (h1 * 1 / 2));
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
@@ -66,19 +50,14 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
 
-	//cmgr_ = cmgr_->GetInstance();
-	//cmgr_->MakeDebugCard();
 	
-
-
 }
 
 void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 	
-	phase_.update(delta_time);
-
+	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 
 	party_[0]->getObj()->Update(delta_time);
 	party_[1]->getObj()->Update(delta_time);
@@ -91,6 +70,7 @@ void SceneBattle::Update(float delta_time) {
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
+
 	//ui_hp_bar_->Update(delta_time);
 	//ui_card_cost_->Update(delta_time);
 	//ui_move_cost_->Update(delta_time);
@@ -117,9 +97,12 @@ void SceneBattle::Update(float delta_time) {
 	
 	board_->Update(delta_time);
 	select_square_->Update(delta_time,camera_);
-	player_action_move_->Update(delta_time);
+
 
 	ui_card_->Update(delta_time);
+
+	phase_.update(delta_time);
+
 
 }
 
@@ -135,6 +118,7 @@ void SceneBattle::Render() {
 	unit_enemy_->GetObj()->Render(camera_);
 
 	board_->Render(camera_);
+
 
 
 	//UI
@@ -195,6 +179,8 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 void SceneBattle::InitialTurnCal() {
 
+	turn_count_ += 1;
+
 	//素早さ順に降順ソート
 	std::sort(all_units_.begin(), all_units_.end(),[](Unit* a, Unit* b) {
 			return a->GetSpeed() > b->GetSpeed();
@@ -214,9 +200,6 @@ void SceneBattle::InitialTurnCal() {
 		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
-	
-
-	
 }
 
 void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
@@ -245,8 +228,8 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
 	if (turn_unit_->GetUnitType() == UnitType::Ally) {
 		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+		
 		phase_.change(&SceneBattle::PhaseAllyTurn);
-
 	}
 	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
@@ -261,17 +244,29 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
 bool SceneBattle::TurnCal(const float delta_time) {
 
+	turn_count_ += 1;
+	turn_unit_ = nullptr;
+	
 	//素早さ順に降順ソート
 	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
 		return a->GetSpeed() > b->GetSpeed();
 	});
 
-	turn_unit_ = all_units_.front();
+
+	for (auto au : all_units_) {
+
+		if (!au->GetIsActed() && !au->GetIsDead()) {
+			if (!turn_unit_ || au->GetSpeed() > turn_unit_->GetSpeed()) {
+		
+				turn_unit_ = au;
+
+			}
+		}
+	}
 
 	if (turn_unit_->GetUnitType() == UnitType::Ally) {
 		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
 		phase_.change(&SceneBattle::PhaseAllyTurn);
-
 	}
 	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
@@ -279,16 +274,50 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
+	return true;
+}
 
+bool SceneBattle::ResetActedCal(const float delta_time)
+{
+	DrawStringEx(0,500,-1,"ResetActedCal");
+
+	bool all_acted = true;
+
+	for (auto au : all_units_) {
+
+		if (!au) {
+			continue;  // nullptrの要素をスキップする
+		}
+
+		if (!au->GetIsActed()) {
+			all_acted = false;
+			break;
+		}
+
+	}
+
+	if (all_acted) {
+		for (auto au : all_units_) {
+			if (au) {
+				au->SetIsActed(false);
+			}
+		}
+	}
+
+	reset_acted_ = false;
+	phase_.change(&SceneBattle::TurnCal);
 	return true;
 }
 
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
-	ui_action_buttons_->SetIsEnabled(true);
+	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
+		phase_.change(&SceneBattle::PhaseDebug);
 
+	}
 
 
 	return true;
@@ -298,15 +327,12 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhaseTurnEnemy");
 
-	if (!turn_enemy_->GetIsActed()) {
+	turn_enemy_->SetIsActed(true);
 
+	
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
+		phase_.change(&SceneBattle::ResetActedCal);
 
-
-
-
-
-		turn_enemy_->SetIsActed(true);
-		phase_.change(&SceneBattle::TurnCal);
 	}
 
 
@@ -339,14 +365,24 @@ bool SceneBattle::PhasePlayerActionTool(const float delta_time) {
 bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
+	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 
 	turn_ally_->SetIsActed(true);
 
 
-	//phase_.change(SceneBattle::TurnCal);
+	phase_.change(&SceneBattle::ResetActedCal);
 
 
 	
+	return true;
+}
+
+bool SceneBattle::PhaseDebug(const float delta_time) {
+
+	DrawStringEx(500,0,-1,"PhaseDebug");
+
+
+
 	return true;
 }
 

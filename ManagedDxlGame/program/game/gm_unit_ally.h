@@ -75,9 +75,7 @@ public:
 		current_card_cost_ = (std::max)(0, current_card_cost_ - value);
 	}
 	
-	//ó‘Ô
-	bool GetIsDead() { return is_dead_; }
-	bool GetIs_Acted() { return is_acted_; }
+	
 
 	int GetTauntValue() { return taunt_value_; }
 	void SetTauntValue(int value) { taunt_value_ = value; }

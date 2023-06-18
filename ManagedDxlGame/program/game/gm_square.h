@@ -9,6 +9,10 @@
 //memo
 //盤面の１マスを表すクラス
 
+class Unit;
+class UnitAlly;
+class UnitEnemy;
+
 class Square {
 public:
 

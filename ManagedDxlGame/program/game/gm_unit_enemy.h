@@ -5,6 +5,7 @@
 #include "gm_object_enemy.h"
 #include "gm_enemydata_manager.h"
 #include "gm_object_manager.h"
+#include "gm_enemy_action.h"
 
 class UnitEnemy : public Unit {
 public:
@@ -67,6 +68,7 @@ private:
 
 	EnemyData* enemy_data_ = nullptr;
 	ObjEnemy* obj_ = nullptr;
+	
 
 	
 

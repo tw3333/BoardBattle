@@ -14,7 +14,9 @@ public:
 		return 0 <= row && row < 9 && 0 <= col && col < 9;
 	}
 
+
 	void Execute(UnitEnemy* unit_enemy) override;
+	
 
 	//i‚Ş•ûŒü
 	enum class Direction {

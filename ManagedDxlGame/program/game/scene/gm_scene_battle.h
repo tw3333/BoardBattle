@@ -34,6 +34,7 @@
 #include "../gm_battle_player_action_move.h"
 
 
+
 #include "../gm_select_square.h"
 #include "../gm_anim_sprite3d.h"
 
@@ -66,12 +67,13 @@ public:
 	void ChangeBattlePhase(BattlePhase* new_phase);
 
 	//
-	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::PhaseInitialTurnCal);
+	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal);
 
 
 
 	bool PhaseInitialTurnCal(const float delta_time);
 	bool TurnCal(const float delta_time);
+	bool ResetActedCal(const float delta_time);
 	bool PhaseAllyTurn(const float delta_time);
 	bool PhaseEnemyTurn(const float delta_time);
 
@@ -80,6 +82,7 @@ public:
 	bool PhasePlayerActionCard(const float delta_time);
 	bool PhasePlayerActionTool(const float delta_time);
 	bool PhasePlayerActionTurnEnd(const float delta_time);
+	bool PhaseDebug(const float delta_time);
 
 
 
@@ -88,6 +91,10 @@ private:
 	
 	int w1 = DXE_WINDOW_WIDTH / 10;
 	int h1 = DXE_WINDOW_HEIGHT / 10;
+
+	//int
+	int turn_count_ = 0;
+	bool reset_acted_ = false;
 
 	//メンバ変数
 	//pointer
@@ -108,11 +115,15 @@ private:
 
 
 	Unit* turn_unit_ = nullptr; //ターン決め用
+	std::vector <UnitAlly*> party_units_;
+	std::vector<UnitEnemy*> enemy_units_;
 	std::vector<Unit*> all_units_;
+
 
 	UnitAlly* turn_ally_ = nullptr; //turnが回ってきたally
 	UnitEnemy* turn_enemy_ = nullptr;
 
+	//EnemyAction* enemy_action_ = nullptr;
 
 
 	Square* square_ = nullptr;

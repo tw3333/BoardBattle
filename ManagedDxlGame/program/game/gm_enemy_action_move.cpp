@@ -1,5 +1,6 @@
 #include "gm_enemy_action_move.h"
 
+//Todo:リファクタリング
 
 void EnemyActionMove::Execute(UnitEnemy* unit_enemy) {
 
