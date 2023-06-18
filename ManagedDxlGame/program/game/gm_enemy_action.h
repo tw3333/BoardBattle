@@ -12,14 +12,14 @@ class EnemyAction {
 public:
 
 
-	EnemyAction(std::array<std::array<Square*, 10>, 10> board_squares)
-	: board_squares_(board_squares)
+	EnemyAction(std::array<std::array<Square*, 10>, 10>& board_squares,std::vector<UnitAlly*>& party)
+	: board_squares_(board_squares),party_(party)
 	{}
 
 	virtual ~EnemyAction() {}
 
 
-	virtual void execute(UnitEnemy* unit_enemy) = 0;
+	virtual void Execute(UnitEnemy* unit_enemy) = 0;
 
 
 
@@ -33,7 +33,7 @@ private:
 protected:
 
 
-	std::array<std::array<Square*, 10>, 10> board_squares_;
-
+	std::array<std::array<Square*, 10>, 10>& board_squares_;
+	std::vector<UnitAlly*>& party_;
 
 };

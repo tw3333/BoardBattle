@@ -146,6 +146,7 @@ private:
 
 	//bool
 	bool is_draw_debug_layout_ = false;
+	bool is_enemy_action_ = false;
 
 	//colorcode
 	int red_ = GetColor(255, 0, 0);

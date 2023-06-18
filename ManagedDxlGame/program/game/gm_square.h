@@ -36,8 +36,10 @@ public:
 	void SetEnemyInSquare(bool flag) { enemy_in_square_ = flag; }
 	bool GetAllyInSquare() { return ally_in_square_; }
 	void SetAllyInSquare(bool flag) { ally_in_square_ = flag; }
-
-
+	UnitEnemy* GetUnitEnemy() { return unit_enemy_; }
+	UnitAlly* GetUnitAlly() { return unit_ally_; }
+	void SetUnitEnemy(UnitEnemy* unit);
+	void SetUnitAlly(UnitAlly* unit);
 
 private:
 

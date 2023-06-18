@@ -323,6 +323,9 @@
     <ClCompile Include="program\game\gm_enemy_action_move.cpp">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_slime_action.cpp">
+      <Filter>program</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -633,6 +636,9 @@
       <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_enemy_action_move.h">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_slime_action.h">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
   </ItemGroup>

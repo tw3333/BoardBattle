@@ -266,11 +266,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		return a->GetSpeed() > b->GetSpeed();
 	});
 
-	
-
-
 	turn_unit_ = all_units_.front();
-
 
 	if (turn_unit_->GetUnitType() == UnitType::Ally) {
 		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
@@ -302,7 +298,16 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhaseTurnEnemy");
 
+	if (!turn_enemy_->GetIsActed()) {
 
+
+
+
+
+
+		turn_enemy_->SetIsActed(true);
+		phase_.change(&SceneBattle::TurnCal);
+	}
 
 
 	return true;
