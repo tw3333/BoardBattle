@@ -196,6 +196,7 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
+    <ClCompile Include="program\game\gm_enemy_action.cpp" />
     <ClCompile Include="program\game\gm_enemy_action_move.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />

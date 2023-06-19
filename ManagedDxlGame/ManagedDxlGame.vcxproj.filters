@@ -326,6 +326,9 @@
     <ClCompile Include="program\game\gm_slime_action.cpp">
       <Filter>program</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_enemy_action.cpp">
+      <Filter>program</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">

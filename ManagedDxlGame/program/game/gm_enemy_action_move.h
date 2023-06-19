@@ -5,9 +5,7 @@
 class EnemyActionMove : public EnemyAction {
 public:
 
-	EnemyActionMove() 
-	: EnemyAction(board_squares_,party_)
-	{}
+	EnemyActionMove() {}
 	~EnemyActionMove(){}
 
 	bool IsValidPosition(int row, int col) {
@@ -15,7 +13,7 @@ public:
 	}
 
 
-	void Execute(UnitEnemy* unit_enemy) override;
+	//void Execute(UnitEnemy* unit_enemy) override;
 	
 
 	//i‚Ş•ûŒü

@@ -14,6 +14,7 @@ void SceneBattle::Initialzie() {
 	sprite_->pos_ = {300,30,300};
 
 //-----
+	//Unit‚Ìì¬
 	party_[0] = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 0, 0);
 	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
@@ -23,18 +24,21 @@ void SceneBattle::Initialzie() {
 	party_units_.push_back(party_[2]);
 
 	unit_enemy_ = new UnitEnemy(9, enemydata_mgr_->GetEnemyDataAtID(9),5,5);
-	
-	all_units_.push_back(party_[1]);
-	all_units_.push_back(party_[0]);
-	all_units_.push_back(party_[2]);
-	all_units_.push_back(unit_enemy_);
+	enemy_units_.push_back(unit_enemy_);
 
+	all_units_.reserve(party_units_.size() + enemy_units_.size());
+	all_units_.insert(all_units_.end(), party_units_.begin(), party_units_.end());
+	all_units_.insert(all_units_.end(), enemy_units_.begin(), enemy_units_.end());
+
+
+	//Board‚Ìì¬
 	board_ = new Board();
 	board_->Create();
 	board_->SetCamera(camera_);
 	board_->SetParty(party_);
 	board_->Update(0);
 
+	//UI‚Ìì¬
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
 	ui_mediator_ = new UISceneBattleMediator();
@@ -103,7 +107,7 @@ void SceneBattle::Update(float delta_time) {
 
 	phase_.update(delta_time);
 
-
+	
 }
 
 void SceneBattle::Render() {
@@ -136,6 +140,9 @@ void SceneBattle::Render() {
 	//CardView cardview(cmgr_->getCardDateAtIndex(1));
 	//cardview.Render(w1*8,h1*7);
 
+	if (enemy_action_) {
+		enemy_action_->Render(camera_);
+	}
 
 	ui_card_->Render();
 }
@@ -323,9 +330,15 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 	return true;
 }
 
+//“G‚Ìƒ^[ƒ“ˆ—
 bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
-	DrawStringEx(500,0,-1,"PhaseTurnEnemy");
+	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
+
+	enemy_action_ = turn_enemy_->slime_action_;
+	enemy_action_->Execute(turn_enemy_,party_units_,enemy_units_,board_->getBoardSquares());
+	enemy_action_ = nullptr;
+
 
 	turn_enemy_->SetIsActed(true);
 

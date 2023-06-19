@@ -15,17 +15,14 @@ class EnemyAction {
 public:
 
 
-	EnemyAction(std::array<std::array<Square*, 10>, 10>& board_squares, std::vector<UnitAlly*>& party)
-	: board_squares_(board_squares), party_(party)
-	{}
-
 	virtual ~EnemyAction() {}
 
 
-	virtual void Execute(UnitEnemy* unit_enemy) = 0; //各Enemyの行動
+	virtual void Move(UnitEnemy* action_enemy, std::vector<UnitAlly*> party, std::vector<UnitEnemy*> enemies, const std::array<std::array<Square*, 10>, 10>& squares) = 0; //各Enemyの移動
+	virtual void Action(UnitEnemy* action_enemy, std::vector<UnitAlly*> party, std::vector<UnitEnemy*> enemies,  const std::array<std::array<Square*, 10>, 10>& squares) = 0; //各Enemyの特有のAction
+
+	virtual void Execute(UnitEnemy* action_enemy,std::vector<UnitAlly*> party, std::vector<UnitEnemy*> enemies, const std::array<std::array<Square*, 10>, 10>& squares) = 0; //各Enemyの行動
 	virtual void Render(dxe::Camera* camera) = 0; //Effectの描画
-
-
 
 
 
@@ -33,11 +30,13 @@ public:
 private:
 
 
-
 protected:
+	
+	bool IsAdjacentAlly(UnitEnemy* unit_enemy, UnitAlly* unit_ally);
+	bool IsAllyNearby(UnitEnemy* unit_enemy, std::vector<UnitAlly*> party);
+	bool IsValidPosition(int row, int col) {
+		return 0 <= row && row < 9 && 0 <= col && col < 9;
+	}
 
-
-	std::array<std::array<Square*, 10>, 10>& board_squares_;
-	std::vector<UnitAlly*>& party_;
 
 };

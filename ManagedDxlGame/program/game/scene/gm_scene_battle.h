@@ -33,7 +33,8 @@
 #include "../gm_battle_phase_player_action_move.h"
 #include "../gm_battle_player_action_move.h"
 
-
+#include "../gm_enemy_action.h"
+#include "../gm_slime_action.h"
 
 #include "../gm_select_square.h"
 #include "../gm_anim_sprite3d.h"
@@ -145,6 +146,8 @@ private:
 	dxe::Mesh* debug_board_obj_ = nullptr;
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
+
+	EnemyAction* enemy_action_ = nullptr;
 
 	//UI
 	UIPlayerActionButtons* ui_action_buttons_ = nullptr;

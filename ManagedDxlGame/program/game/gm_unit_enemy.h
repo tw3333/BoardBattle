@@ -7,6 +7,8 @@
 #include "gm_object_manager.h"
 #include "gm_enemy_action.h"
 
+#include "gm_slime_action.h"
+
 class UnitEnemy : public Unit {
 public:
 
@@ -60,7 +62,7 @@ public:
 	int GetCurrentActionCost() { return current_action_cost_; }
 	void GetCurrentActionCost(int cost) { current_action_cost_ = cost; }
 
-
+	EnemyAction* slime_action_ = new SlimeAction();
 private:
 	
 	MoveType move_type_ = MoveType::NotMove;
@@ -68,7 +70,7 @@ private:
 
 	EnemyData* enemy_data_ = nullptr;
 	ObjEnemy* obj_ = nullptr;
-	
+	//SlimeAction* slime_action_ = new SlimeAction();
 
 	
 
