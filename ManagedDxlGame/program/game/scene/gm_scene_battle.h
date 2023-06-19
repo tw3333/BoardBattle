@@ -33,8 +33,10 @@
 #include "../gm_battle_phase_player_action_move.h"
 #include "../gm_battle_player_action_move.h"
 
-#include "../gm_enemy_action.h"
-#include "../gm_slime_action.h"
+
+
+//#include "../gm_enemy_behavior_strategy.h"
+//#include "../gm_slime_behavior_strategy.h"
 
 #include "../gm_select_square.h"
 #include "../gm_anim_sprite3d.h"
@@ -58,8 +60,6 @@ public:
 
 	//メンバ関数
 	void DrawDebugLayOut(bool is_draw);
-
-
 
 
 	void InitialTurnCal();
@@ -101,6 +101,7 @@ private:
 	//pointer
 	SceneBattleCamera* camera_ = nullptr;
 	//CardView* cardview_ = nullptr;
+	//mgrインスタンス
 	CardManager* cmgr_ = nullptr;
 	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
 	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
@@ -147,7 +148,7 @@ private:
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
-	EnemyAction* enemy_action_ = nullptr;
+
 
 	//UI
 	UIPlayerActionButtons* ui_action_buttons_ = nullptr;

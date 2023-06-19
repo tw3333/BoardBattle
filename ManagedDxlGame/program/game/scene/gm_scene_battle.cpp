@@ -1,42 +1,43 @@
 #include "gm_scene_battle.h"
 #include "../gm_object_manager.h"
 
+#include "../gm_slime_behavior_strategy.h"
+
 void SceneBattle::Initialzie() {
-	
+//---
 	camera_ = new SceneBattleCamera();
-	//camera_->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(54));
-//debug
 
-	sprite_ = new AnimSprite3D(camera_);
-	sprite_->regist(80, 80, "walk_front", "graphics/effect/anim_shild.png",
-		tnl::SeekUnit::ePlayMode::REPEAT, 1.0f, 10, 240, 0,2);
-	sprite_->setCurrentAnim("walk_front");
-	sprite_->pos_ = {300,30,300};
+//---
+	//Board‚Ìì¬
+	board_ = new Board();
+	board_->Create(); //Square‚ð10x10ì¬
+	board_->SetCamera(camera_);
 
-//-----
 	//Unit‚Ìì¬
-	party_[0] = new UnitAlly(1,allydata_mgr_->getAllyDataAtID(1), 0, 0);
+	party_[0] = new UnitAlly(1, allydata_mgr_->getAllyDataAtID(1), 0, 0);
 	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
 	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
-	
+	party_[0]->SetTauntValue(500);
 	party_units_.push_back(party_[0]);
 	party_units_.push_back(party_[1]);
 	party_units_.push_back(party_[2]);
 
-	unit_enemy_ = new UnitEnemy(9, enemydata_mgr_->GetEnemyDataAtID(9),5,5);
+
+	unit_enemy_ = new UnitEnemy(9, enemydata_mgr_->GetEnemyDataAtID(9), 5, 5);
 	enemy_units_.push_back(unit_enemy_);
 
 	all_units_.reserve(party_units_.size() + enemy_units_.size());
 	all_units_.insert(all_units_.end(), party_units_.begin(), party_units_.end());
 	all_units_.insert(all_units_.end(), enemy_units_.begin(), enemy_units_.end());
 
-
-	//Board‚Ìì¬
-	board_ = new Board();
-	board_->Create();
-	board_->SetCamera(camera_);
 	board_->SetParty(party_);
-	board_->Update(0);
+	board_->SetPartyUnits(party_units_);
+	board_->SetEnemyUnits(enemy_units_);
+	board_->SetAllUnits(all_units_);
+
+	EnemyBehaviorStrategy* newBehavior = new SlimeBehaviorStrategy();
+	unit_enemy_->SetBehavior(newBehavior);
+	
 
 	//UI‚Ìì¬
 	select_square_ = new SelectSquare(board_->getBoardSquares());
@@ -54,13 +55,15 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
 
-	
+	board_->Update(0);
 }
 
 void SceneBattle::Update(float delta_time) {
 
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
-	
+	board_->Update(delta_time);
+	select_square_->Update(delta_time, camera_);
+
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 
 	party_[0]->getObj()->Update(delta_time);
@@ -70,7 +73,7 @@ void SceneBattle::Update(float delta_time) {
 
 	obj_target_circle_->Update(delta_time);
 
-	sprite_->Update(delta_time);
+	//sprite_->Update(delta_time);
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
@@ -99,8 +102,7 @@ void SceneBattle::Update(float delta_time) {
 		party_[0]->DecreaseCurrentCardCost(1);
 	}
 	
-	board_->Update(delta_time);
-	select_square_->Update(delta_time,camera_);
+	
 
 
 	ui_card_->Update(delta_time);
@@ -133,16 +135,14 @@ void SceneBattle::Render() {
 	ui_turn_ally_state_->Render();
 
 	//test—Ìˆæ
-	sprite_->Render(camera_);
+	//sprite_->Render(camera_);
 	obj_target_circle_->Render(camera_);
 
 	
 	//CardView cardview(cmgr_->getCardDateAtIndex(1));
 	//cardview.Render(w1*8,h1*7);
+	
 
-	if (enemy_action_) {
-		enemy_action_->Render(camera_);
-	}
 
 	ui_card_->Render();
 }
@@ -335,19 +335,16 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
 
-	enemy_action_ = turn_enemy_->slime_action_;
-	enemy_action_->Execute(turn_enemy_,party_units_,enemy_units_,board_->getBoardSquares());
-	enemy_action_ = nullptr;
-
+	turn_enemy_->Move(board_);
+	turn_enemy_->Act(board_);
 
 	turn_enemy_->SetIsActed(true);
+	phase_.change(&SceneBattle::ResetActedCal);
 
-	
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
-		phase_.change(&SceneBattle::ResetActedCal);
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
+	//	phase_.change(&SceneBattle::ResetActedCal);
 
-	}
-
+	//}
 
 	return true;
 }

@@ -6,11 +6,11 @@
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_object_manager.h"
 
-#include "gm_select_square.h"
+class Unit;
+class UnitAlly;
+class UnitEnemy;
+class SelectSquare;
 
-#include "gm_unit.h"
-#include "gm_unit_ally.h"
-#include "gm_unit_enemy.h"
 
 
 //memo
@@ -20,13 +20,12 @@
 //ToDo
 //ここでステージ毎のマス目や敵の生成を管理？
 
-
 class Board {
 public:
 
 	Board(){
 		Create();
-		select_square_ = new SelectSquare(board_squares_);
+		
 	}
 	~Board(){}
 
@@ -37,21 +36,33 @@ public:
 	std::array<std::array<Square*, 10>, 10> getBoardSquares() { return board_squares_;}
 	void SetCamera(dxe::Camera* camera) { camera_ = camera; }
 
-	void GetMouseOverSquarePos(int& row, int& col) { 
-		row = select_square_->GetSelectSquareRow();
-		col = select_square_->GetSelectSquareCol();
-	}
+
 
 	void UpdateCanMoveSquare();
 	void UpdateSquareState();
 	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
+
+	void SetPartyUnits(std::vector<UnitAlly*> party_units) { party_units_ = party_units; }
+	std::vector<UnitAlly*> GetPartyUnits() { return party_units_; }
+	void SetEnemyUnits(std::vector<UnitEnemy*> enemy_units) { enemy_units_ = enemy_units; }
+	std::vector<UnitEnemy*> GetEnemyUnits() { return enemy_units_; }
 	void SetAllUnits(std::vector<Unit*> all_units) { all_units_ = all_units; }
+	std::vector<Unit*> GetAllUnits() { return all_units_; }
+
+
+	bool IsAdjacentAlly(UnitEnemy* unit_enemy, UnitAlly* unit_ally);
+	bool IsAllyNearby(UnitEnemy* unit_enemy, std::vector<UnitAlly*> party);
+	bool IsValidPosition(int row, int col) {
+		return 0 <= row && row < 10 && 0 <= col && col < 10;
+	}
 
 
 private:
 
 	UnitAlly* party_[3];
-	std::vector<UnitEnemy*> enemies_;
+
+	std::vector<UnitAlly*> party_units_;
+	std::vector<UnitEnemy*> enemy_units_;
 	std::vector<Unit*> all_units_;
 
 

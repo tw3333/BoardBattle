@@ -15,6 +15,8 @@ void ObjectManager::CreateObjSquares() {
 
 	}
 
+
+
 	obj_move_select_flame_ = ObjMoveSelectFlame::Create();
 }
 

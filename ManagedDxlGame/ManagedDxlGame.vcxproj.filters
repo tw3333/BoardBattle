@@ -320,14 +320,8 @@
     <ClCompile Include="program\game\gm_font_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_enemy_action_move.cpp">
+    <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp">
       <Filter>program\[003] game\enemyaction</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_slime_action.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_enemy_action.cpp">
-      <Filter>program</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -635,13 +629,10 @@
     <ClInclude Include="program\game\gm_font_manager.h">
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_enemy_action.h">
+    <ClInclude Include="program\game\gm_slime_behavior_strategy.h">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_enemy_action_move.h">
-      <Filter>program\[003] game\enemyaction</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_slime_action.h">
+    <ClInclude Include="program\game\gm_enemy_behavior_strategy.h">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
   </ItemGroup>

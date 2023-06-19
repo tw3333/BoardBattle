@@ -5,14 +5,18 @@
 #include "gm_object_enemy.h"
 #include "gm_enemydata_manager.h"
 #include "gm_object_manager.h"
-#include "gm_enemy_action.h"
 
-#include "gm_slime_action.h"
+//#include <memory>
+class Board;
+class EnemyBehaviorStrategy;
+class SlimeBehaviorStrategy;
+
 
 class UnitEnemy : public Unit {
 public:
 
-	UnitEnemy(int id, EnemyData* enemy_data, int row, int col){
+	UnitEnemy(int id, EnemyData* enemy_data, int row, int col)
+	{
 	
 		enemy_data_ = enemy_data;
 
@@ -30,7 +34,6 @@ public:
 		current_action_cost_ = max_action_cost_;
 
 		speed_ = enemy_data->GetSpeed();
-
 
 	}
 	~UnitEnemy(){}
@@ -61,8 +64,19 @@ public:
 	void SetCurrentMoveCost(int cost) { current_move_cost_ = cost; }
 	int GetCurrentActionCost() { return current_action_cost_; }
 	void GetCurrentActionCost(int cost) { current_action_cost_ = cost; }
+	int GetCurrentDamage() { return current_damage_; }
+	void SetCurrentDamage(int damage) { current_damage_ = damage; }
 
-	EnemyAction* slime_action_ = new SlimeAction();
+	//BehaviorStrategy
+	void SetBehavior(EnemyBehaviorStrategy* newBehavior) {
+		behavior_ = newBehavior;
+	}
+
+	void Move(Board* board);
+	void Act(Board* board);
+
+
+
 private:
 	
 	MoveType move_type_ = MoveType::NotMove;
@@ -70,9 +84,9 @@ private:
 
 	EnemyData* enemy_data_ = nullptr;
 	ObjEnemy* obj_ = nullptr;
-	//SlimeAction* slime_action_ = new SlimeAction();
-
 	
+
+	EnemyBehaviorStrategy* behavior_ = nullptr;
 
 	//ステータス
 	int max_hp_;
@@ -84,6 +98,7 @@ private:
 	int max_action_cost_;
 	int current_action_cost_;
 
-	
+	int max_damage_ = 8;
+	int current_damage_ = 8;
 
 };

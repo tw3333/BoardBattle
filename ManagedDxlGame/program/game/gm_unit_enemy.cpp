@@ -1,5 +1,9 @@
 #include "gm_unit_enemy.h"
 
+#include "gm_board.h"
+#include "gm_enemy_behavior_strategy.h"
+#include "gm_slime_behavior_strategy.h"
+
 void UnitEnemy::Update() {
 
 	int w1 = ((DXE_WINDOW_WIDTH / 10) * 8) / 10;
@@ -31,3 +35,19 @@ void UnitEnemy::SetBoardPos(int row, int col) {
 
 
 }
+
+void UnitEnemy::Move(Board* board){
+
+	behavior_->Move(this,board);
+}
+
+void UnitEnemy::Act(Board* board) {
+
+	behavior_->Act(this,board);
+
+}
+
+
+
+
+

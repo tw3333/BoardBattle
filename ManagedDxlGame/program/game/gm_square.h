@@ -2,16 +2,14 @@
 #include "gm_object_square.h"
 #include "gm_object_manager.h"
 
-#include "gm_unit.h"
-#include "gm_unit_ally.h"
-#include "gm_unit_enemy.h"
+
 
 //memo
 //盤面の１マスを表すクラス
-
 class Unit;
 class UnitAlly;
 class UnitEnemy;
+
 
 class Square {
 public:
@@ -22,7 +20,6 @@ public:
 		SetSquarePos(row, col);
 
 	}
-	~Square(){}
 
 	struct SquarePos {
 		int row;
@@ -40,10 +37,11 @@ public:
 	void SetEnemyInSquare(bool flag) { enemy_in_square_ = flag; }
 	bool GetAllyInSquare() { return ally_in_square_; }
 	void SetAllyInSquare(bool flag) { ally_in_square_ = flag; }
-	UnitEnemy* GetUnitEnemy() { return unit_enemy_; }
-	UnitAlly* GetUnitAlly() { return unit_ally_; }
-	void SetUnitEnemy(UnitEnemy* unit);
-	void SetUnitAlly(UnitAlly* unit);
+	
+	//UnitEnemy* GetUnitEnemy() { return unit_enemy_; }
+	//UnitAlly* GetUnitAlly() { return unit_ally_; }
+	//void SetUnitEnemy(UnitEnemy* unit);
+	//void SetUnitAlly(UnitAlly* unit);
 
 private:
 
@@ -53,8 +51,6 @@ private:
 
 	ObjSquare* obj_;
 
-	UnitEnemy* unit_enemy_ = nullptr;
-	UnitAlly* unit_ally_ = nullptr;
 
 	SquarePos square_pos_ = {0,0};
 

@@ -196,15 +196,13 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
-    <ClCompile Include="program\game\gm_enemy_action.cpp" />
-    <ClCompile Include="program\game\gm_enemy_action_move.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />
     <ClCompile Include="program\game\gm_object_manager.cpp" />
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp" />
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
-    <ClCompile Include="program\game\gm_slime_action.cpp" />
+    <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp" />
     <ClCompile Include="program\game\gm_ui_ally_action.cpp" />
     <ClCompile Include="program\game\gm_ui_card.cpp" />
     <ClCompile Include="program\game\gm_ui_card_cost.cpp" />
@@ -283,8 +281,7 @@
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
-    <ClInclude Include="program\game\gm_enemy_action.h" />
-    <ClInclude Include="program\game\gm_enemy_action_move.h" />
+    <ClInclude Include="program\game\gm_enemy_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
     <ClInclude Include="program\game\gm_object_enemy.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />
@@ -292,7 +289,7 @@
     <ClInclude Include="program\game\gm_object_target_circle.h" />
     <ClInclude Include="program\game\gm_phase_manager.h" />
     <ClInclude Include="program\game\gm_scene_debug_battle_.h" />
-    <ClInclude Include="program\game\gm_slime_action.h" />
+    <ClInclude Include="program\game\gm_slime_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_ui_ally_action.h" />
     <ClInclude Include="program\game\gm_ui_card.h" />
     <ClInclude Include="program\game\gm_ui_card_cost.h" />

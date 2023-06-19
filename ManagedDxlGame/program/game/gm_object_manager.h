@@ -67,6 +67,7 @@ private:
 	ObjSquare* obj_square_ = nullptr;
 
 	ObjSquare* obj_squares_[10][10];
+
 	ObjMoveSelectFlame* obj_move_select_flame_;
 
 };
