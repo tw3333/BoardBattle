@@ -171,5 +171,5 @@ private:
 	int debug_mp_x = 0;
 	int debug_mp_y = 0;
 
-
+	int back_ = LoadGraph("graphics/background/back_forest.jpg");
 };

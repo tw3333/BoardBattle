@@ -323,6 +323,18 @@
     <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_display_range.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_onlyside_range.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_self_range.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -642,6 +654,15 @@
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_card_display_range.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_onlyside_range.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_self_range.h">
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
   </ItemGroup>

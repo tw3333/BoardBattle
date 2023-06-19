@@ -32,25 +32,24 @@ public:
 		int w1 = width / 3;
 		int y1 = height / 3;
 
-		ui_components_[MoveButton] = new UIButton(x + w1, y, w1, y1);
-		ui_components_[MoveButton]->SetMediator(this->mediator_);
-		ui_components_[MoveButton]->SetNotifyTag("MoveButton");
+		auto ui_move_button = new UIButton(x, y, w1, y1);
+		ui_move_button->setGraphHandle(g_move_);
+		ui_move_button->SetMediator(this->mediator_);
+		ui_move_button->SetNotifyTag("MoveButton");
 
-		ui_components_[CardButton] = new UIButton(x + w1*2, y + y1, w1, y1);
-		ui_components_[CardButton]->SetMediator(this->mediator_);
-		ui_components_[CardButton]->SetNotifyTag("CardButton");
+		auto ui_card_button = new UIButton(x, y, w1, y1);
+		ui_card_button->setGraphHandle(g_move_);
+		ui_card_button->SetMediator(this->mediator_);
+		ui_card_button->SetNotifyTag("CardButton");
 
-		ui_components_[ToolButton] = new UIButton(x, y + y1, w1, y1);
-		ui_components_[ToolButton]->SetMediator(this->mediator_);
-		ui_components_[ToolButton]->SetNotifyTag("ToolButton");
-
-		ui_components_[TurnEndButton] = new UIButton(x + w1,y + y1*2,w1,y1);
-		ui_components_[TurnEndButton]->SetMediator(this->mediator_);
-		ui_components_[TurnEndButton]->SetNotifyTag("TurnEndButton");
-
-
-
-
+		auto ui_turnend_button = new UIButton(x, y, w1, y1);
+		ui_turnend_button->setGraphHandle(g_move_);
+		ui_turnend_button->SetMediator(this->mediator_);
+		ui_turnend_button->SetNotifyTag("TurnButton");
+		
+		ui_components_[MoveButton] = ui_move_button;
+		ui_components_[CardButton] = ui_card_button;
+		ui_components_[TurnEndButton] = ui_turnend_button;
 
 	}
 	~UIPlayerActionButtons(){}
@@ -58,7 +57,6 @@ public:
 	enum {
 		MoveButton,
 		CardButton,
-		ToolButton,
 		TurnEndButton,
 		PartsMax
 	};
@@ -88,6 +86,9 @@ private:
 
 	UIComponent* ui_components_[PartsMax];
 
+	int g_move_ = LoadGraph("graphics/ui/move_button.png");
+	int g_card_ = LoadGraph("graphics/ui/card_button.png");
+	int g_turn_end_ = LoadGraph("graphics/ui/turn_end_button.png");
 
 
 };

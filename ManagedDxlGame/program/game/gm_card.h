@@ -48,7 +48,10 @@ public:
 	void CardEffect();
 
 	//g,s
-
+	void AddRangeAllyUnits(UnitAlly* unit) { in_range_ally_list_.push_back(unit); }
+	void AddRangeEnemyUnits(UnitEnemy* unit) { in_range_enemy_list_.push_back(unit); }
+	void AddTargetAllyUnits(UnitAlly* unit) { target_ally_list_.push_back(unit); }
+	void AddTargetEnemyUnits(UnitEnemy* unit) { target_enemy_list_.push_back(unit); }
 
 private:
 
@@ -71,6 +74,7 @@ private:
 
 	std::vector<UnitAlly*> in_range_ally_list_;
 	std::vector<UnitEnemy*> in_range_enemy_list_;
+
 	std::vector<UnitAlly*> target_ally_list_;
 	std::vector<UnitEnemy*> target_enemy_list_;
 

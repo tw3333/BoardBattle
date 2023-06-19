@@ -51,6 +51,8 @@ private:
 
 protected:
 
+	
+
 	int x_;
 	int y_;
 	int width_;

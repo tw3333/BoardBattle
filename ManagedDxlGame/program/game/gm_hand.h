@@ -18,6 +18,7 @@ public:
 
 private:
 
+
 	std::vector<Card*> hand_card_data_;
 
 
