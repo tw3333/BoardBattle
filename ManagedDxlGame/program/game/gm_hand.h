@@ -5,6 +5,8 @@
 
 //memo
 //SceneBattleで各Allyの手札を管理するクラス
+//描写、発動、破棄などの処理を行う
+
 
 class Hand {
 public:

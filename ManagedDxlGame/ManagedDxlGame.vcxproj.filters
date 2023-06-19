@@ -611,7 +611,7 @@
     <ClInclude Include="program\game\gm_data_card.h">
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_card_effect.h">
+    <ClInclude Include="program\game\gm_card_effect_decorator.h">
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_battle_phase_unit_speed_cal.h">
@@ -634,6 +634,15 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_enemy_behavior_strategy.h">
       <Filter>program\[003] game\enemyaction</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_play_state.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_component.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_display_range.h">
+      <Filter>program\[003] game\card</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

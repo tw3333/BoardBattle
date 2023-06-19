@@ -43,7 +43,7 @@ ObjTargetCircle* ObjTargetCircle::Create(TextureColor color) {
 	target_circle->ofs_pos_ = { 0,50,0 };
 	obj_->parts_[TargetCircle] = target_circle;
 
-	obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(20));
+	obj_->rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	
 //
 

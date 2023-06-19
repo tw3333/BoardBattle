@@ -11,6 +11,8 @@ public:
 	enum {
 		BaseSquare,
 		RangeTile,
+		CandidateTile,
+		TargetTile,
 		PartsMax
 	};
 	
