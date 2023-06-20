@@ -650,9 +650,6 @@
     <ClInclude Include="program\game\gm_card_play_state.h">
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_card_component.h">
-      <Filter>program\[003] game\card</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_card_display_range.h">
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
@@ -664,6 +661,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_card_self_range.h">
       <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_turn_view.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

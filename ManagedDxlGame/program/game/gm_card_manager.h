@@ -44,7 +44,9 @@ private:
 	std::vector<CardData*> debug_card_data_;
 
 	std::vector<Card*> all_card_data_;
-
-
-
+	
+	std::vector<Card*> c1_card_data_;
+	std::vector<Card*> c2_card_data_;	
+	std::vector<Card*> c3_card_data_;
+	std::vector<Card*> c4_card_data_;
 };

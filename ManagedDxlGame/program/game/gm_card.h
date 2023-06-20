@@ -3,7 +3,7 @@
 #include <memory>
 #include "gm_data_card.h"
 #include "../dxlib_ext/dxlib_ext.h"
-#include "gm_card_component.h"
+
 
 //memo
 //Scenebattleで使用するインスタンス
@@ -14,7 +14,7 @@ class UnitAlly;
 class UnitEnemy;
 class Board;
 
-class Card : public CardComponent {
+class Card  {
 public:
 
 	Card(CardData* card_data)
@@ -22,6 +22,7 @@ public:
 	, card_name_(card_data->GetCardName()), card_explanation_(card_data->GetCardExplanation())
 	, card_texture_(card_data->GetCardTexture())
 	{}
+	~Card(){}
 	
 
 	enum class RangeType {

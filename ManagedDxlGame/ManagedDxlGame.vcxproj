@@ -281,7 +281,6 @@
     <ClInclude Include="program\game\gm_battle_player_action_turn_end.h" />
     <ClInclude Include="program\game\gm_board.h" />
     <ClInclude Include="program\game\gm_board_manager.h" />
-    <ClInclude Include="program\game\gm_card_component.h" />
     <ClInclude Include="program\game\gm_card_display_range.h" />
     <ClInclude Include="program\game\gm_card_effect_decorator.h" />
     <ClInclude Include="program\game\gm_card_onlyside_range.h" />
@@ -334,6 +333,7 @@
     <ClInclude Include="program\game\gm_ui_scene_battle_mediator.h" />
     <ClInclude Include="program\game\gm_ui_selectphase_mediator.h" />
     <ClInclude Include="program\game\gm_ui_turn_ally_state.h" />
+    <ClInclude Include="program\game\gm_ui_turn_view.h" />
     <ClInclude Include="program\game\gm_ui_window.h" />
     <ClInclude Include="program\game\gm_unit.h" />
     <ClInclude Include="program\game\gm_object.h" />

@@ -32,24 +32,26 @@ public:
 		int w1 = width / 3;
 		int y1 = height / 3;
 
-		auto ui_move_button = new UIButton(x, y, w1, y1);
+		auto ui_move_button = new UIButton(x, y, width, y1*1);
 		ui_move_button->setGraphHandle(g_move_);
-		ui_move_button->SetMediator(this->mediator_);
-		ui_move_button->SetNotifyTag("MoveButton");
 
-		auto ui_card_button = new UIButton(x, y, w1, y1);
-		ui_card_button->setGraphHandle(g_move_);
-		ui_card_button->SetMediator(this->mediator_);
-		ui_card_button->SetNotifyTag("CardButton");
+		auto ui_card_button = new UIButton(x, y + y1*1, width, y1 * 1);
+		ui_card_button->setGraphHandle(g_card_);
 
-		auto ui_turnend_button = new UIButton(x, y, w1, y1);
-		ui_turnend_button->setGraphHandle(g_move_);
-		ui_turnend_button->SetMediator(this->mediator_);
-		ui_turnend_button->SetNotifyTag("TurnButton");
+		auto ui_turnend_button = new UIButton(x, y + y1*2, width, y1*1);
+		ui_turnend_button->setGraphHandle(g_turn_end_);
 		
 		ui_components_[MoveButton] = ui_move_button;
+		ui_components_[MoveButton]->SetMediator(this->mediator_);
+		ui_components_[MoveButton]->SetNotifyTag("MoveButton");
+
 		ui_components_[CardButton] = ui_card_button;
+		ui_components_[CardButton]->SetMediator(this->mediator_);
+		ui_components_[CardButton]->SetNotifyTag("CardButton");
+		
 		ui_components_[TurnEndButton] = ui_turnend_button;
+		ui_components_[TurnEndButton]->SetMediator(this->mediator_);
+		ui_components_[TurnEndButton]->SetNotifyTag("TurnEndButton");
 
 	}
 	~UIPlayerActionButtons(){}
