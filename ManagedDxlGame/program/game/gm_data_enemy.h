@@ -30,7 +30,11 @@ public:
 		texture_battle_ = dxe::Texture::CreateFromFile(texture_path);
 	}
 	Shared<dxe::Texture> GetTextureBattle() { return texture_battle_; }
-
+	
+	void SetTextureFace(std::string texture_path) {
+		texture_face_ = dxe::Texture::CreateFromFile(texture_path);
+	}
+	Shared<dxe::Texture> GetTextureFace() { return texture_face_; }
 
 
 private:
@@ -49,6 +53,7 @@ private:
 
 	//Texture
 	Shared<dxe::Texture> texture_battle_;
+	Shared<dxe::Texture> texture_face_;
 
 
 };

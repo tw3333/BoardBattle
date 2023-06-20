@@ -57,5 +57,15 @@ void EnemyDataManager::DebugLoadenemyTexture() {
 	all_enemy_data_[8]->SetTextureBattle("graphics/unit/enemy/adoption/lizard_battle.png");
 	all_enemy_data_[9]->SetTextureBattle("graphics/unit/enemy/adoption/doragon_battle.png");
 
+	all_enemy_data_[0]->SetTextureFace("graphics/unit/enemy/adoption/slime_face.png");
+	all_enemy_data_[1]->SetTextureFace("graphics/unit/enemy/adoption/mummy_face.png");
+	all_enemy_data_[2]->SetTextureFace("graphics/unit/enemy/adoption/pen_face.png");
+	all_enemy_data_[3]->SetTextureFace("graphics/unit/enemy/adoption/magipon_face.png");
+	all_enemy_data_[4]->SetTextureFace("graphics/unit/enemy/adoption/candle_face.png");
+	all_enemy_data_[5]->SetTextureFace("graphics/unit/enemy/adoption/heallulu_face.png");
+	all_enemy_data_[6]->SetTextureFace("graphics/unit/enemy/adoption/attacklulu_face.png");
+	all_enemy_data_[7]->SetTextureFace("graphics/unit/enemy/adoption/golem_face.png");
+	all_enemy_data_[8]->SetTextureFace("graphics/unit/enemy/adoption/lizard_face.png");
+	all_enemy_data_[9]->SetTextureFace("graphics/unit/enemy/adoption/doragon_face.png");
 
 }

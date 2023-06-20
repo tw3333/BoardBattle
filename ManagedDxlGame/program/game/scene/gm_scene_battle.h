@@ -16,6 +16,7 @@
 #include "../gm_ui_card_cost.h"
 #include "../gm_ui_move_cost.h"
 #include "../gm_ui_turn_ally_state.h"
+#include "../gm_ui_turn_view.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -85,10 +86,15 @@ public:
 	bool PhasePlayerActionTurnEnd(const float delta_time);
 	bool PhaseDebug(const float delta_time);
 
+	std::array<std::array<int, 10>, 10> GetReachableSquares(UnitAlly* unit);
+	void UpdateRender(std::array<std::array<int, 10>, 10> reachable, UnitAlly* unit);
 
 
 
 private:
+
+	const int dx_[4] = { 0, 1, 0, -1 };
+	const int dy_[4] = { 1, 0, -1, 0 };
 	
 	int w1 = DXE_WINDOW_WIDTH / 10;
 	int h1 = DXE_WINDOW_HEIGHT / 10;
@@ -148,6 +154,9 @@ private:
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
+	//UITurnView用の画像ハンドル配列
+	std::vector<Unit*> active_units_;
+
 
 
 	//UI
@@ -158,6 +167,7 @@ private:
 	UIMoveCost* ui_move_cost_ = nullptr;
 	UITurnAllyState* ui_turn_ally_state_ = nullptr;
 	UICard* ui_card_ = nullptr;
+	UITurnView* ui_turn_view_ = nullptr;
 
 	//bool
 	bool is_draw_debug_layout_ = false;

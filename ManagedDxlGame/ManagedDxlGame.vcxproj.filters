@@ -335,6 +335,9 @@
     <ClCompile Include="program\game\gm_card_self_range.cpp">
       <Filter>program\[003] game\card</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_turn_view.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">

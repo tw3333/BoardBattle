@@ -44,6 +44,7 @@ public:
 	void SetBoardPos(int row, int col);
 
 	UnitType GetUnitType() const override { return UnitType::Enemy; }
+	EnemyData* GetEnemyData() { return enemy_data_; }
 	ObjEnemy* GetObj() { return obj_; }
 
 	enum class MoveType {

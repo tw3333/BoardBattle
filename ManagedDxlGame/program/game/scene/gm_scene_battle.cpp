@@ -2,6 +2,7 @@
 #include "../gm_object_manager.h"
 
 #include "../gm_slime_behavior_strategy.h"
+#include <queue>
 
 void SceneBattle::Initialzie() {
 //---
@@ -55,6 +56,8 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
 
+	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
+
 	board_->Update(0);
 }
 
@@ -77,6 +80,7 @@ void SceneBattle::Update(float delta_time) {
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
+	ui_turn_view_->Update(delta_time);
 
 	//ui_hp_bar_->Update(delta_time);
 	//ui_card_cost_->Update(delta_time);
@@ -134,6 +138,7 @@ void SceneBattle::Render() {
 	//ui_card_cost_->Render();
 	//ui_move_cost_->Render();
 	ui_turn_ally_state_->Render();
+	ui_turn_view_->Render();
 
 	//test領域
 	//sprite_->Render(camera_);
@@ -229,7 +234,7 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 	//素早さ順に降順ソート
 	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
 		return a->GetSpeed() > b->GetSpeed();
-		});
+	});
 
 	turn_unit_ = all_units_.front();
 
@@ -264,6 +269,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 	for (auto au : all_units_) {
 
 		if (!au->GetIsActed() && !au->GetIsDead()) {
+			active_units_.push_back(au);
 			if (!turn_unit_ || au->GetSpeed() > turn_unit_->GetSpeed()) {
 		
 				turn_unit_ = au;
@@ -288,6 +294,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 bool SceneBattle::ResetActedCal(const float delta_time)
 {
 	DrawStringEx(0,500,-1,"ResetActedCal");
+	active_units_.clear();
 
 	bool all_acted = true;
 
@@ -309,6 +316,17 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 			if (au) {
 				au->SetIsActed(false);
 			}
+		}
+
+		for (auto pu : party_units_) {
+
+			pu->SetCurrentMoveCost(pu->GetMaxMoveCost());
+
+		}
+
+		for (auto eu : enemy_units_) {
+			eu->SetCurrentMoveCost(eu->GetCurrentMoveCost());
+
 		}
 	}
 
@@ -353,6 +371,48 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhasePlayerActionMove");
+
+	// 移動先のマスを取得
+	int target_row = select_square_->GetSelectSquareRow();
+	int target_col = select_square_->GetSelectSquareCol();
+
+	int ally_row = turn_ally_->GetBoardPos().row;
+	int ally_col = turn_ally_->GetBoardPos().col;
+
+	board_->getBoardSquare(ally_row,ally_col)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
+
+	// 移動可能な範囲を取得
+	std::array<std::array<int, 10>, 10> reachable = GetReachableSquares(turn_ally_);
+
+	// 移動先が移動可能な範囲内であるかチェック
+	if (reachable[target_row][target_col] == -1) {
+		return true;  // 移動できないので終了
+	}
+
+	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+
+		// 移動コストをチェック
+		int move_cost = turn_ally_->GetCurrentMoveCost();
+
+		// 移動コストが負にならないかチェック
+		if (move_cost < 0) {
+			phase_.change(&SceneBattle::PhaseAllyTurn);
+		}
+
+		// 移動先にユニットを移動
+		turn_ally_->SetBoardPos(target_row, target_col);
+
+
+		move_cost -= reachable[target_row][target_col];  // 移動コストを減らす
+		turn_ally_->SetCurrentMoveCost(move_cost);  // 移動コストを更新
+
+	}
+
+
+	// 移動可能範囲を再計算
+	reachable = GetReachableSquares(turn_ally_);
+	// 移動可能範囲の描画を更新
+	UpdateRender(reachable, turn_ally_);
 	
 	return true;
 }
@@ -398,7 +458,78 @@ bool SceneBattle::PhaseDebug(const float delta_time) {
 }
 
 
+std::array<std::array<int, 10>, 10> SceneBattle::GetReachableSquares(UnitAlly* unit) {
 
+	// 移動元の位置を取得
+	int ally_row = unit->GetBoardPos().row;
+	int ally_col = unit->GetBoardPos().col;
+
+	// 移動コストを取得
+	int move_cost = unit->GetCurrentMoveCost();
+
+
+	// 到達可能範囲を保存する二次元配列
+	std::array<std::array<int, 10>, 10> reachable;
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 10; ++j) {
+			reachable[i][j] = -1; // 初期化
+		}
+	}
+
+	if (move_cost <= 0) {
+		return reachable;
+	}
+
+	// BFSで探索
+	std::queue<std::pair<int, int>> que;
+	que.push({ ally_row, ally_col }); // スタート位置をqueueに追加
+	reachable[ally_row][ally_col] = 0; // スタート位置のコストは0
+
+	const int dx_[4] = { 0, 1, 0, -1 };
+	const int dy_[4] = { 1, 0, -1, 0 };
+
+	while (!que.empty()) {
+		auto current = que.front(); // 現在地点
+		que.pop();
+
+		for (int i = 0; i < 4; ++i) { // 4方向に対して探索
+			int nx = current.first + dx_[i];
+			int ny = current.second + dy_[i];
+
+			// 移動可能範囲チェック
+			if (nx < 0 || ny < 0 || nx >= 10 || ny >= 10) {
+				continue;
+			}
+
+			// 移動可能範囲かつ未訪問かつ移動コスト以内なら探索
+			if (reachable[nx][ny] == -1 && reachable[current.first][current.second] + 1 <= move_cost
+				&& board_->getBoardSquare(nx,ny)->GetIsCanMove()) {
+				reachable[nx][ny] = reachable[current.first][current.second] + 1;
+				que.push({ nx, ny });
+			}
+		}
+	}
+
+	return reachable;
+}
+
+void SceneBattle::UpdateRender(std::array<std::array<int, 10>, 10> reachable, UnitAlly* unit)
+{
+	// 移動可能範囲の描画を更新
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 10; ++j) {
+			if ((i != unit->GetBoardPos().row || j != unit->GetBoardPos().col) && reachable[i][j] != -1) {
+				board_->getBoardSquare(i,j)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = true;
+			}
+			else {
+
+				board_->getBoardSquare(i,j)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
+			}
+		}
+	}
+
+
+}
 
 //memo
 //================================================
