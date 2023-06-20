@@ -63,10 +63,12 @@ void SelectSquare::Render(dxe::Camera* camera) {
 }
 
 //マウスが盤面外に出ているかどうか
+//入っていたらtrueを返す
 bool SelectSquare::IsSelectFlameOutOfBoard(tnl::Vector3 hit) {
 
 	if (hit.x < 0 || board_w_ < hit.x || hit.z < 0 || board_h_ < hit.z) {
 		return true;
 	}
+
 	return false;
 }

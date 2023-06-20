@@ -103,6 +103,8 @@ private:
 	int turn_count_ = 0;
 	bool reset_acted_ = false;
 
+	tnl::Vector3 msv_; //mouse‚ÌÀ•Wæ“¾•Ï”
+
 	//ƒƒ“ƒo•Ï”
 	//pointer
 	SceneBattleCamera* camera_ = nullptr;
