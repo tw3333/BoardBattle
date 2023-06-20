@@ -318,16 +318,16 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 			}
 		}
 
-		for (auto pu : party_units_) {
+		//for (auto pu : party_units_) {
 
-			pu->SetCurrentMoveCost(pu->GetMaxMoveCost());
+		//	pu->SetCurrentMoveCost(pu->GetMaxMoveCost());
 
-		}
+		//}
 
-		for (auto eu : enemy_units_) {
-			eu->SetCurrentMoveCost(eu->GetCurrentMoveCost());
+		//for (auto eu : enemy_units_) {
+		//	eu->SetCurrentMoveCost(eu->GetCurrentMoveCost());
 
-		}
+		//}
 	}
 
 	reset_acted_ = false;
@@ -396,7 +396,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 		// 移動コストが負にならないかチェック
 		if (move_cost < 0) {
-			phase_.change(&SceneBattle::PhaseAllyTurn);
+			return 0;
 		}
 
 		// 移動先にユニットを移動
@@ -411,6 +411,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 	// 移動可能範囲を再計算
 	reachable = GetReachableSquares(turn_ally_);
+
 	// 移動可能範囲の描画を更新
 	UpdateRender(reachable, turn_ally_);
 	
