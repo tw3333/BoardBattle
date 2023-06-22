@@ -286,6 +286,7 @@
     <ClInclude Include="program\game\gm_board.h" />
     <ClInclude Include="program\game\gm_board_manager.h" />
     <ClInclude Include="program\game\gm_card_display_range.h" />
+    <ClInclude Include="program\game\gm_card_effect.h" />
     <ClInclude Include="program\game\gm_card_effect_decorator.h" />
     <ClInclude Include="program\game\gm_card_onlyside_range.h" />
     <ClInclude Include="program\game\gm_card_play_state.h" />

@@ -63,6 +63,9 @@
     <Filter Include="program\[003] game\card\range">
       <UniqueIdentifier>{28141741-a3c7-4db5-b03c-dc2f66456df0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\card\Effect">
+      <UniqueIdentifier>{77746548-2155-4b7b-999c-bba39abadb01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -679,6 +682,9 @@
     </ClInclude>
     <ClInclude Include="gm_card_range_self.h">
       <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect.h">
+      <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
