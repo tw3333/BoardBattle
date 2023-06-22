@@ -339,8 +339,6 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhasePlayerActionMove");
 	
-	
-
 	// ˆÚ“®æ‚Ìƒ}ƒX‚ðŽæ“¾
 	int target_row = select_square_->GetSelectSquareRow();
 	int target_col = select_square_->GetSelectSquareCol();

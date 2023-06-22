@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gm_card_range_self.cpp" />
     <ClCompile Include="ManagedDxlGame.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_barrel.cpp" />
     <ClCompile Include="program\dxlib_ext\create_mesh\dxlib_ext_mesh_box.cpp" />
@@ -260,6 +261,8 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gm_card_range.h" />
+    <ClInclude Include="gm_card_range_self.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_camera.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_data.h" />

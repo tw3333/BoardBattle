@@ -85,11 +85,8 @@ void Board::UpdateSquareState() {
 
 	//Unitのいる位置を移動禁止にする
 	for (auto au : all_units_) {
-
 		board_squares_[au->GetBoardPos().row][au->GetBoardPos().col]->SetIsCanMove(false);
-
 	}
-
 	//AllyとEnemyのいるSquareのフラグを更新
 	for (auto pu : party_units_) {
 		board_squares_[pu->GetBoardPos().row][pu->GetBoardPos().col]->SetAllyInSquare(true);

@@ -60,6 +60,9 @@
     <Filter Include="program\[003] game\enemyaction">
       <UniqueIdentifier>{ce3d3087-2385-41f0-9bcd-f0e98c556491}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\[003] game\card\range">
+      <UniqueIdentifier>{28141741-a3c7-4db5-b03c-dc2f66456df0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManagedDxlGame.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_turn_view.cpp">
       <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="gm_card_range_self.cpp">
+      <Filter>program\[003] game\card\range</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -667,6 +673,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_turn_view.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_card_range.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="gm_card_range_self.h">
+      <Filter>program\[003] game\card\range</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
