@@ -40,6 +40,8 @@ void SceneBattle::Initialzie() {
 	unit_enemy_->SetBehavior(newBehavior);
 	
 
+	obj_target_circle_->pos_ = board_->getBoardSquare(4,4)->getObj()->pos_;
+
 	//UI�̍쐬
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
@@ -75,6 +77,7 @@ void SceneBattle::Update(float delta_time) {
 	party_[2]->getObj()->Update(delta_time);
 	unit_enemy_->GetObj()->Update(delta_time);
 
+	obj_target_circle_->Update(delta_time);
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
@@ -102,7 +105,7 @@ void SceneBattle::Render() {
 
 	board_->Render(camera_);
 
-
+	obj_target_circle_->Render(camera_);
 
 	//UI
 	ui_action_buttons_->Render();
