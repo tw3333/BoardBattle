@@ -4,6 +4,8 @@
 #include "gm_data_card.h"
 #include "../dxlib_ext/dxlib_ext.h"
 
+#include "gm_card_range.h"
+
 
 //memo
 //Scenebattleで使用するインスタンス
@@ -53,6 +55,7 @@ public:
 	void AddRangeEnemyUnits(UnitEnemy* unit) { in_range_enemy_list_.push_back(unit); }
 	void AddTargetAllyUnits(UnitAlly* unit) { target_ally_list_.push_back(unit); }
 	void AddTargetEnemyUnits(UnitEnemy* unit) { target_enemy_list_.push_back(unit); }
+	void SetCardRange(CardRange* cardrange) { card_range_ = cardrange; }
 
 private:
 
@@ -70,12 +73,15 @@ private:
 	std::string card_name_; //カードの名前
 	std::string card_explanation_; //カードの効果文
 
+
+
+
 	std::shared_ptr<dxe::Texture> card_texture_;
 
 
+	CardRange* card_range_ = nullptr;
 	std::vector<UnitAlly*> in_range_ally_list_;
 	std::vector<UnitEnemy*> in_range_enemy_list_;
-
 	std::vector<UnitAlly*> target_ally_list_;
 	std::vector<UnitEnemy*> target_enemy_list_;
 

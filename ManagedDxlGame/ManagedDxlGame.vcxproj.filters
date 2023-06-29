@@ -335,6 +335,9 @@
     <ClCompile Include="program\game\gm_ui_turn_view.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_renge_self.cpp">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -654,6 +657,9 @@
       <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_card_range.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_renge_self.h">
       <Filter>program\[003] game\card\range</Filter>
     </ClInclude>
   </ItemGroup>

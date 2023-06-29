@@ -37,6 +37,8 @@ public:
 	void SetEnemyInSquare(bool flag) { enemy_in_square_ = flag; }
 	bool GetAllyInSquare() { return ally_in_square_; }
 	void SetAllyInSquare(bool flag) { ally_in_square_ = flag; }
+	void SetRenderRangeTile(bool flag) { obj_->parts_[ObjSquare::RangeTile]->is_render_ = flag; }
+	bool GetRenderRangeTile() { return obj_->parts_[ObjSquare::RangeTile]->is_render_; }
 	
 	//UnitEnemy* GetUnitEnemy() { return unit_enemy_; }
 	//UnitAlly* GetUnitAlly() { return unit_ally_; }
