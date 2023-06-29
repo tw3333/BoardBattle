@@ -329,23 +329,11 @@
     <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_card_display_range.cpp">
-      <Filter>program\[003] game\card</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\gm_card.cpp">
-      <Filter>program\[003] game\card</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_card_onlyside_range.cpp">
-      <Filter>program\[003] game\card</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_card_self_range.cpp">
       <Filter>program\[003] game\card</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_turn_view.cpp">
       <Filter>program\[003] game\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="gm_card_range_self.cpp">
-      <Filter>program\[003] game\card\range</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -635,9 +623,6 @@
     <ClInclude Include="program\game\gm_data_card.h">
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_card_effect_decorator.h">
-      <Filter>program\[003] game\card</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_battle_phase_unit_speed_cal.h">
       <Filter>program\[003] game\battle</Filter>
     </ClInclude>
@@ -662,29 +647,14 @@
     <ClInclude Include="program\game\gm_card_play_state.h">
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_card_display_range.h">
-      <Filter>program\[003] game\card</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_card_range.h">
-      <Filter>program\[003] game\card</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_card_onlyside_range.h">
-      <Filter>program\[003] game\card</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_card_self_range.h">
-      <Filter>program\[003] game\card</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_ui_turn_view.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
-    <ClInclude Include="gm_card_range.h">
-      <Filter>program\[003] game\card\range</Filter>
-    </ClInclude>
-    <ClInclude Include="gm_card_range_self.h">
-      <Filter>program\[003] game\card\range</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_card_effect.h">
       <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range.h">
+      <Filter>program\[003] game\card\range</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
