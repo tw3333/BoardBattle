@@ -51,6 +51,7 @@ private:
 	UIHpBar* ui_hp_bar_ = nullptr;
 
 	int turn_ally_icon_ = 0;
+	int flame_ = LoadGraph("graphics/ui/flame/flame_3.png");
 
 	
 	int x_;

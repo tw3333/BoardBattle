@@ -9,6 +9,7 @@
 #include "../gm_object_manager.h"
 
 #include "../gm_ui_card.h"
+#include "../gm_ui_card_hand.h"
 #include "../gm_ui_cardview.h"
 #include "../gm_ui_player_action_buttons.h"
 #include "../gm_ui_scene_battle_mediator.h"
@@ -169,7 +170,10 @@ private:
 	UIMoveCost* ui_move_cost_ = nullptr;
 	UITurnAllyState* ui_turn_ally_state_ = nullptr;
 	UICard* ui_card_ = nullptr;
+	UICardHand* ui_card_hand_ = nullptr;
 	UITurnView* ui_turn_view_ = nullptr;
+
+
 
 	//bool
 	bool is_draw_debug_layout_ = false;

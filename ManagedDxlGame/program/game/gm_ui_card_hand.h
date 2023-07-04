@@ -15,8 +15,14 @@ public:
 	: pos_x_(posx), pos_y_(posy), width_(width), height_(height)
 	{
 		
+		ui_cards_.push_back(new UICard(pos_x_, pos_y_, card_w, card_h));
+		ui_cards_.push_back(new UICard(pos_x_ + card_w * 1, pos_y_, card_w, card_h));
+		ui_cards_.push_back(new UICard(pos_x_ + card_w * 2, pos_y_, card_w, card_h));
+		ui_cards_.push_back(new UICard(pos_x_ + card_w * 3, pos_y_, card_w, card_h));
+		ui_cards_.push_back(new UICard(pos_x_ + card_w * 4, pos_y_, card_w, card_h));
 
 		
+		width_ = card_w * 5;
 	
 	}
 	~UICardHand(){}
@@ -25,6 +31,8 @@ public:
 	void Render() override;
 
 	void SetHandCards(std::vector<Card*> hand_cards) { hand_cards_ = hand_cards; }
+	UICard* GetMouseInsideTopCard(int mx, int my);
+
 
 private:
 
@@ -32,12 +40,23 @@ private:
 
 	int pos_x_;
 	int pos_y_;
+
+	int pos2_x_ = pos_x_ + width_;
+	int pos2_y_ = pos_y_ + height_;
+	
 	int width_;
 	int height_;
 
-	std::vector<UICard> ui_cards_;
+
+	std::vector<UICard*> ui_cards_;
 	std::vector<Card*> hand_cards_;
 
 	
+	int w1 = DXE_WINDOW_WIDTH / 10;
+	int h1 = DXE_WINDOW_HEIGHT / 10;
+
+	int card_w = w1 * 1 + (w1 / 2 / 2 / 2);
+	int card_h = h1 * 2 + (h1 / 2);
+
 
 };

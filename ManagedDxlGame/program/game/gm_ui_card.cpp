@@ -6,14 +6,14 @@ void UICard::Update(float delta_time) {
 
 	tnl::Vector3 msv = tnl::Input::GetMousePosition();
 
-	if (pos_x_ < msv.x && msv.x < pos_x_ + width_ && pos_y_ < msv.y && msv.y < pos_y_ + height_) {
+	//if (pos_x_ < msv.x && msv.x < pos_x_ + width_ && pos_y_ < msv.y && msv.y < pos_y_ + height_) {
 
-		card_up_ = true;
+	//	card_up_ = true;
 
-	}
-	else {
-		card_up_ = false;
-	}
+	//}
+	//else {
+	//	card_up_ = false;
+	//}
 
 	if (card_up_) {
 		
@@ -59,4 +59,14 @@ void UICard::Render() {
 
 	}
 
+}
+
+bool UICard::IsMouseInside(int mx, int my) {
+
+	if (pos_x_ < mx && mx < pos_x_ + width_ && pos_y_ < my && my < pos_y_ + height_) {
+
+		return true;
+	}
+
+	return false;
 }

@@ -13,7 +13,10 @@ public:
 	void Update(float delta_time) override;
 	void Render() override;
 	void SetIsRender(bool flag) { is_render_ = flag; }
-
+	void SetIsCardUp(bool flag) { card_up_ = flag; }
+	bool GetIsCardUp() { return card_up_; }
+	void SetPos(int pos_x, int pos_y) { pos_x_ = pos_x; pos_y_ = pos_y; }
+	bool IsMouseInside(int mx, int my);
 
 private:
 	bool is_render_ = true;
@@ -31,6 +34,8 @@ private:
 
 	int w1_ = width_ / 10;
 	int h1_ = height_ / 10;
+
+	
 
 	FontManager& font_mgr_ = FontManager::GetInstance();
 

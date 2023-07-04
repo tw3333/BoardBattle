@@ -22,6 +22,7 @@ void UITurnAllyState::Render() {
 
 		//‰º’n
 		DrawBox(x_, y_, x_ + width_, y_ + height_, sitaji_, true);
+		
 
 		DrawExtendGraph(x_, y_, x_ + width_, y_ + (layer_ * 2), turn_ally_icon_, true);
 
@@ -30,7 +31,6 @@ void UITurnAllyState::Render() {
 		ui_move_cost_->Render();
 		ui_hp_bar_->Render();
 
-	
-
+		
 
 }
