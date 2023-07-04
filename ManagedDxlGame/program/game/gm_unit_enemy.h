@@ -76,7 +76,9 @@ public:
 	void Move(Board* board);
 	void Act(Board* board);
 
-
+	void DecreaseCurrentHp(int value) {
+		current_hp_ = (std::max)(0, current_hp_ - value);
+	}
 
 private:
 	

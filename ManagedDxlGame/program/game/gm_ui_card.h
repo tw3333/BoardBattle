@@ -12,20 +12,29 @@ public:
 
 	void Update(float delta_time) override;
 	void Render() override;
+	void SetIsRender(bool flag) { is_render_ = flag; }
 
 
 private:
+	bool is_render_ = true;
 
 	int pos_x_;
 	int pos_y_;
-
 	int width_;
 	int height_;
+
+	int pre_pos_y_ = pos_y_; //規定位置
+	int card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
+
+
+	bool card_up_ = false;
 
 	int w1_ = width_ / 10;
 	int h1_ = height_ / 10;
 
 	FontManager& font_mgr_ = FontManager::GetInstance();
+
+	int debug_graph_ = LoadGraph("graphics/card/c1/bleeding-heart.png");
 
 	//ColorCode
 	int	color_ground_work_ = GetColor(211,204,196);

@@ -16,6 +16,7 @@ void CardRangeSelf::DisplayRange(UnitAlly* act_ally, Board* board)
 std::vector<Unit*> CardRangeSelf::GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units)
 {
 
+
 	std::vector<Unit*> units_in_range;
 	units_in_range.push_back(act_ally);
 	return units_in_range;

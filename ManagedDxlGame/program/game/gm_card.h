@@ -5,6 +5,7 @@
 #include "../dxlib_ext/dxlib_ext.h"
 
 #include "gm_card_range.h"
+#include "gm_card_effect.h"
 
 
 //memo
@@ -44,12 +45,8 @@ public:
 	};
 
 
-	void DisplayRange(UnitAlly* turn_ally, Board* board);
-	void AddInRangeUnits();
-	void AddTargetUnits();
-
-	void CardEffect();
-
+	void DisplayRange(UnitAlly* turn_ally, Board* board); //Card‚ÌŽË’ö•\Ž¦
+	
 	//g,s
 	void AddRangeAllyUnits(UnitAlly* unit) { in_range_ally_list_.push_back(unit); }
 	void AddRangeEnemyUnits(UnitEnemy* unit) { in_range_enemy_list_.push_back(unit); }
@@ -80,9 +77,15 @@ private:
 
 
 	CardRange* card_range_ = nullptr;
+	std::vector<CardEffect*> card_effect_list_;
+
 	std::vector<UnitAlly*> in_range_ally_list_;
 	std::vector<UnitEnemy*> in_range_enemy_list_;
 	std::vector<UnitAlly*> target_ally_list_;
 	std::vector<UnitEnemy*> target_enemy_list_;
+
+	std::vector<Unit*> in_range_unit_list_;
+	std::vector<Unit*> target_unit_list_;
+
 
 };

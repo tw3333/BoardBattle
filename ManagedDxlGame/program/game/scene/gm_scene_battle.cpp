@@ -52,6 +52,7 @@ void SceneBattle::Initialzie() {
 	ui_action_buttons_ = new UIPlayerActionButtons(w1*2,h1*7 + (h1 * 1 / 2),w1*2 - w1*1/2,h1*2 + (h1 * 1 / 2));
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
+
 	ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
 	
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
@@ -94,8 +95,8 @@ void SceneBattle::Update(float delta_time) {
 void SceneBattle::Render() {
 
 	camera_->Update();
-	DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,back_,false);
-	//DrawDebugLayOut(is_draw_debug_layout_);
+	//DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,back_,false);
+	DrawDebugLayOut(is_draw_debug_layout_);
 	//DrawStringEx(0, 0, -1, "SceneBattle");
 
 	party_[0]->getObj()->Render(camera_);
@@ -128,12 +129,11 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
 	//DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
 
-	if (is_draw) {
 		for (int i = 0; i < 10; ++i) {
 			DrawLine(0, h1 + h1 * i, DXE_WINDOW_WIDTH, h1 + h1 * i, -1);
 			DrawLine(w1 + w1 * i, 0, w1 + w1 * i, DXE_WINDOW_HEIGHT, -1);
 		}
-	}
+	
 
 	//DrawGridGround(camera_, 50, 20);
 

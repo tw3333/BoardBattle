@@ -7,6 +7,6 @@
 
 void Card::DisplayRange(UnitAlly* turn_ally, Board* board) {
 
-
+	card_range_->DisplayRange(turn_ally, board);
 
 }

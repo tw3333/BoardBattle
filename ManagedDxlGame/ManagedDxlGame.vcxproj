@@ -195,6 +195,7 @@
     <ClCompile Include="program\game\gm_board.cpp" />
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_damage.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_card_renge_self.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="program\game\gm_ui_ally_action.cpp" />
     <ClCompile Include="program\game\gm_ui_card.cpp" />
     <ClCompile Include="program\game\gm_ui_card_cost.cpp" />
+    <ClCompile Include="program\game\gm_ui_card_hand.cpp" />
     <ClCompile Include="program\game\gm_ui_dungeon_window.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
     <ClCompile Include="program\game\gm_object.cpp" />
@@ -281,7 +283,8 @@
     <ClInclude Include="program\game\gm_board.h" />
     <ClInclude Include="program\game\gm_board_manager.h" />
     <ClInclude Include="program\game\gm_card_effect.h" />
-    <ClInclude Include="program\game\gm_card_play_state.h" />
+    <ClInclude Include="program\game\gm_card_effect_damage.h" />
+    <ClInclude Include="program\game\gm_card_play.h" />
     <ClInclude Include="program\game\gm_card_range.h" />
     <ClInclude Include="program\game\gm_card_renge_self.h" />
     <ClInclude Include="program\game\gm_data_card.h" />
@@ -299,6 +302,7 @@
     <ClInclude Include="program\game\gm_ui_ally_action.h" />
     <ClInclude Include="program\game\gm_ui_card.h" />
     <ClInclude Include="program\game\gm_ui_card_cost.h" />
+    <ClInclude Include="program\game\gm_ui_card_hand.h" />
     <ClInclude Include="program\game\gm_ui_dungeon_window.h" />
     <ClInclude Include="program\game\gm_ui_button.h" />
     <ClInclude Include="program\game\gm_card.h" />
