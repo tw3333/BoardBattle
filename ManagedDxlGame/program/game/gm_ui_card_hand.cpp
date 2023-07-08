@@ -4,12 +4,7 @@ void UICardHand::Update(float delta_time) {
 
 	tnl::Vector3 msv = tnl::Input::GetMousePosition();
 
-	if (hand_cards_.size() == 1) {
-
-		
-
-	}
-
+	
 	for (auto uc : ui_cards_) {
 
 		if (GetMouseInsideTopCard(msv.x, msv.y) == uc) {
@@ -19,11 +14,11 @@ void UICardHand::Update(float delta_time) {
 	}
 
 
-	UICard* selected_card = GetMouseInsideTopCard(msv.x, msv.y);
+	select_card_ = GetMouseInsideTopCard(msv.x, msv.y);
 	
-	if (selected_card) {
+	if (select_card_) {
 
-		selected_card->SetIsCardUp(true);
+		select_card_->SetIsCardUp(true);
 	}
 
 
@@ -45,6 +40,10 @@ void UICardHand::Render() {
 	for (auto uc : ui_cards_) {
 
 		uc->Render();
+	}
+
+	if (select_card_) {
+		select_card_->Render();
 	}
 
 }
