@@ -28,6 +28,7 @@ public:
 
 
 	void CreateDebugCardData();
+	void CreateDebugCard();
 
 
 	//get,set
@@ -42,6 +43,7 @@ private:
 
 	//ƒƒ“ƒo•Ï
 	std::vector<CardData*> debug_card_data_;
+	std::vector<Card> debug_card_;
 
 	std::vector<Card*> all_card_data_;
 	

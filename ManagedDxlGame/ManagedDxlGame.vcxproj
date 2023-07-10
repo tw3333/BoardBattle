@@ -196,7 +196,9 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card.cpp" />
     <ClCompile Include="program\game\gm_card_effect_damage.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_heal.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
+    <ClCompile Include="program\game\gm_card_range_down.cpp" />
     <ClCompile Include="program\game\gm_card_range_up.cpp" />
     <ClCompile Include="program\game\gm_card_renge_self.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
@@ -285,8 +287,12 @@
     <ClInclude Include="program\game\gm_board_manager.h" />
     <ClInclude Include="program\game\gm_card_effect.h" />
     <ClInclude Include="program\game\gm_card_effect_damage.h" />
+    <ClInclude Include="program\game\gm_card_effect_heal.h" />
     <ClInclude Include="program\game\gm_card_play.h" />
     <ClInclude Include="program\game\gm_card_range.h" />
+    <ClInclude Include="program\game\gm_card_range_down.h" />
+    <ClInclude Include="program\game\gm_card_range_left.h" />
+    <ClInclude Include="program\game\gm_card_range_right.h" />
     <ClInclude Include="program\game\gm_card_range_up.h" />
     <ClInclude Include="program\game\gm_card_renge_self.h" />
     <ClInclude Include="program\game\gm_data_card.h" />

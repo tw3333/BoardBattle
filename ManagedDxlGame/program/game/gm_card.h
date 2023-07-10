@@ -52,7 +52,7 @@ public:
 	void AddRangeEnemyUnits(UnitEnemy* unit) { in_range_enemy_list_.push_back(unit); }
 	void AddTargetAllyUnits(UnitAlly* unit) { target_ally_list_.push_back(unit); }
 	void AddTargetEnemyUnits(UnitEnemy* unit) { target_enemy_list_.push_back(unit); }
-	void SetCardRange(CardRange* cardrange) { card_range_ = cardrange; }
+	
 
 private:
 
@@ -71,12 +71,9 @@ private:
 	std::string card_explanation_; //ƒJ[ƒh‚ÌŒø‰Ê•¶
 
 
-
-
 	std::shared_ptr<dxe::Texture> card_texture_;
 
-
-	CardRange* card_range_ = nullptr;
+	std::vector<CardRange*> card_range_list_;
 	std::vector<CardEffect*> card_effect_list_;
 
 	std::vector<UnitAlly*> in_range_ally_list_;
