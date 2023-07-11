@@ -200,6 +200,8 @@
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_card_play.cpp" />
     <ClCompile Include="program\game\gm_card_range_down.cpp" />
+    <ClCompile Include="program\game\gm_card_range_left.cpp" />
+    <ClCompile Include="program\game\gm_card_range_right.cpp" />
     <ClCompile Include="program\game\gm_card_range_up.cpp" />
     <ClCompile Include="program\game\gm_card_renge_self.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />

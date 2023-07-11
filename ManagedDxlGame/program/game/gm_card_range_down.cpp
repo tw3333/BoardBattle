@@ -7,6 +7,7 @@
 
 void CardRangeDown::DisplayRange(UnitAlly* act_ally, Board* board)
 {
+
 	for (int i = 1; i <= range_; ++i) {
 
 		int display_tile_row = act_ally->GetBoardPos().row + leave_ + i;

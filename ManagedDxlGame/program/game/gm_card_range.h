@@ -18,6 +18,8 @@ public:
 	virtual void DisplayRange(UnitAlly* act_ally, Board* board);
 	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units);
 
+
+
 protected:
 
 	bool is_specify_target_ = false;

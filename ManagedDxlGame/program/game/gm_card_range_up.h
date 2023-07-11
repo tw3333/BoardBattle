@@ -10,7 +10,12 @@
 class CardRangeUP : public CardRange {
 public:
 
-	CardRangeUP(int leave, int range): leave_(leave), range_(range) {}
+	CardRangeUP(int leave, int range_, bool is_specify_target, int target_num)
+	:leave_(leave), range_(range_)
+	{
+		is_specify_target_ = is_specify_target;
+		target_num_ = target_num;
+	}
 	~CardRangeUP(){}
 
 	void DisplayRange(UnitAlly* act_allly, Board* board) override;
