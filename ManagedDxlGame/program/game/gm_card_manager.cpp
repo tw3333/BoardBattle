@@ -25,7 +25,7 @@ void CardManager::CreateDebugCardData() {
 
 void CardManager::CreateDebugCard() {
 
-	debug_card_.emplace_back(new Card(debug_card_data_[0]));
+	//debug_card_.emplace_back(new Card(debug_card_data_[0]));
 
 
 

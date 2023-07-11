@@ -198,6 +198,7 @@
     <ClCompile Include="program\game\gm_card_effect_damage.cpp" />
     <ClCompile Include="program\game\gm_card_effect_heal.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
+    <ClCompile Include="program\game\gm_card_play.cpp" />
     <ClCompile Include="program\game\gm_card_range_down.cpp" />
     <ClCompile Include="program\game\gm_card_range_up.cpp" />
     <ClCompile Include="program\game\gm_card_renge_self.cpp" />

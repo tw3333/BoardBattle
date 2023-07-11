@@ -98,7 +98,7 @@ void SceneBattle::Render() {
 
 	camera_->Update();
 	//DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,back_,false);
-	DrawDebugLayOut(is_draw_debug_layout_);
+	DrawDebugLayOut(true);
 	//DrawStringEx(0, 0, -1, "SceneBattle");
 
 	party_[0]->getObj()->Render(camera_);

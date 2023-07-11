@@ -49,4 +49,5 @@ std::vector<Unit*> CardRangeUP::GetUnitInRange(UnitAlly* act_ally, std::vector<U
 
 	}
 
+	return range_units;
 }
