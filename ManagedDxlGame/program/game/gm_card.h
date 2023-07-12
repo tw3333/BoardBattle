@@ -28,23 +28,6 @@ public:
 	~Card(){}
 	
 
-	enum class RangeType {
-		None, //発動allyのposから
-		OnlyUp,
-		OnlyDown,
-		OnlyLeft,
-		OnlyRight,
-		FourDirections, //四方向に対して
-		AllEnemy, //全てのenemyに対して
-		AllAlly //全てのallyに対して
-	};
-
-	enum class TargetType {
-		Ally,
-		Enemy
-	};
-
-
 	void DisplayRange(UnitAlly* turn_ally, Board* board); //Cardの射程表示
 	
 	//g,s
@@ -56,9 +39,7 @@ public:
 
 private:
 
-	RangeType range_type_;
-	TargetType target_type_;
-
+	bool is_specify_target_ = false;
 	int target_num_ = 1;
 	int range_num_ = 1;
 

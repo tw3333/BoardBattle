@@ -13,10 +13,9 @@ void CardRangeRight::DisplayRange(UnitAlly* act_ally, Board* board) {
 		int display_tile_row = act_ally->GetBoardPos().row;
 		int display_tile_col = act_ally->GetBoardPos().col + leave_ + i;
 
-		if (0 <= display_tile_row && display_tile_row <= 9) {
+		if (0 <= display_tile_col && display_tile_col <= 9) {
 
 			board->getBoardSquare(display_tile_row, display_tile_col)->SetRenderRangeTile(true);
-
 
 		}
 
@@ -28,8 +27,29 @@ void CardRangeRight::DisplayRange(UnitAlly* act_ally, Board* board) {
 
 std::vector<Unit*> CardRangeRight::GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) {
 
+	std::vector<Unit*> range_units;
 
+	for (int i = 1; i <= range_; ++i) {
 
+		int range_row = act_ally->GetBoardPos().row;
+		int range_col = act_ally->GetBoardPos().col + leave_ + i;
 
-	return std::vector<Unit*>();
+		if (0 <= range_col && range_col <= 9) {
+
+			for (auto unit : all_units) {
+
+				if (unit->GetBoardPos().row == range_row && unit->GetBoardPos().col == range_col) {
+
+					range_units.push_back(unit);
+
+				}
+
+			}
+
+		}
+
+	}
+
+	return range_units;
+
 }

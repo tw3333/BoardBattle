@@ -90,7 +90,6 @@ void SceneBattle::Update(float delta_time) {
 	ui_card_hand_->Update(delta_time);
 
 	phase_.update(delta_time);
-
 	
 }
 
