@@ -17,11 +17,14 @@ public:
 
 
 	void Update();
-
 	void Render();
+
+	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board);
 
 	void EffectExecute();
 
+
+	void SetSelectCard(Card* card) { select_card_ = card; }
 	void SetCard(Card* card) { play_card_ = card; }
 
 
@@ -36,6 +39,7 @@ private:
 	std::vector<CardRange*> card_range_list_;
 
 	std::vector<Unit*> in_range_units_;
+	std::vector<Unit*> target_units_;
 	
 	
 

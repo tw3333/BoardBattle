@@ -31,10 +31,9 @@ public:
 	void DisplayRange(UnitAlly* turn_ally, Board* board); //Card‚ÌŽË’ö•\Ž¦
 	
 	//g,s
-	void AddRangeAllyUnits(UnitAlly* unit) { in_range_ally_list_.push_back(unit); }
-	void AddRangeEnemyUnits(UnitEnemy* unit) { in_range_enemy_list_.push_back(unit); }
-	void AddTargetAllyUnits(UnitAlly* unit) { target_ally_list_.push_back(unit); }
-	void AddTargetEnemyUnits(UnitEnemy* unit) { target_enemy_list_.push_back(unit); }
+	std::vector<CardRange*> GetCardRangeList() { return card_range_list_; }
+	std::vector<CardEffect*> GetCardEffectList() { return card_effect_list_; }
+
 	
 	bool GetIsSpecifyTarget() { return is_specify_target_; }
 	int GetTargetNum() { return target_num_; }
@@ -61,14 +60,6 @@ private:
 
 	std::vector<CardRange*> card_range_list_;
 	std::vector<CardEffect*> card_effect_list_;
-
-	std::vector<UnitAlly*> in_range_ally_list_;
-	std::vector<UnitEnemy*> in_range_enemy_list_;
-	std::vector<UnitAlly*> target_ally_list_;
-	std::vector<UnitEnemy*> target_enemy_list_;
-
-	std::vector<Unit*> in_range_unit_list_;
-	std::vector<Unit*> target_unit_list_;
 
 
 };
