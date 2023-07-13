@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -295,8 +295,12 @@
     <ClInclude Include="program\game\gm_card_range.h" />
     <ClInclude Include="program\game\gm_card_range_down.h" />
     <ClInclude Include="program\game\gm_card_range_left.h" />
+    <ClInclude Include="program\game\gm_card_range_lower_left.h" />
+    <ClInclude Include="program\game\gm_card_range_lower_right.h" />
     <ClInclude Include="program\game\gm_card_range_right.h" />
     <ClInclude Include="program\game\gm_card_range_up.h" />
+    <ClInclude Include="program\game\gm_card_range_upper_left.h" />
+    <ClInclude Include="program\game\gm_card_range_upper_right.h" />
     <ClInclude Include="program\game\gm_card_renge_self.h" />
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />

@@ -36,12 +36,17 @@ public:
 	void AddTargetAllyUnits(UnitAlly* unit) { target_ally_list_.push_back(unit); }
 	void AddTargetEnemyUnits(UnitEnemy* unit) { target_enemy_list_.push_back(unit); }
 	
+	bool GetIsSpecifyTarget() { return is_specify_target_; }
+	int GetTargetNum() { return target_num_; }
+
+
+
 
 private:
 
-	bool is_specify_target_ = false;
-	int target_num_ = 1;
-	int range_num_ = 1;
+	bool is_specify_target_ = false; //指定ターゲットかどうか
+	int target_num_ = 0; //指定ターゲットの数
+
 
 	int card_id_;
 	int card_cost_;

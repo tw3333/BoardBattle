@@ -24,6 +24,8 @@ public:
 
 	void SetCard(Card* card) { play_card_ = card; }
 
+
+
 private:
 
 
