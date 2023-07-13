@@ -195,6 +195,8 @@
     <ClCompile Include="program\game\gm_board.cpp" />
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_add_shield.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_add_taunt.cpp" />
     <ClCompile Include="program\game\gm_card_effect_damage.cpp" />
     <ClCompile Include="program\game\gm_card_effect_heal.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
@@ -289,6 +291,8 @@
     <ClInclude Include="program\game\gm_board.h" />
     <ClInclude Include="program\game\gm_board_manager.h" />
     <ClInclude Include="program\game\gm_card_effect.h" />
+    <ClInclude Include="program\game\gm_card_effect_add_shield.h" />
+    <ClInclude Include="program\game\gm_card_effect_add_taunt.h" />
     <ClInclude Include="program\game\gm_card_effect_damage.h" />
     <ClInclude Include="program\game\gm_card_effect_heal.h" />
     <ClInclude Include="program\game\gm_card_play.h" />

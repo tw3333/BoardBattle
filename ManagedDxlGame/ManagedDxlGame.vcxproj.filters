@@ -362,6 +362,12 @@
     <ClCompile Include="program\game\gm_card_range_right.cpp">
       <Filter>program\[003] game\card\range</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_add_taunt.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_add_shield.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -718,6 +724,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_card_range_upper_right.h">
       <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_add_taunt.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_add_shield.h">
+      <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

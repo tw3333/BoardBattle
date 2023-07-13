@@ -118,6 +118,6 @@ private:
 
 	//補正値
 	int taunt_value_ = 0; //タウント値
-	int shield_value_ = 0; //シールド値
+	//int shield_value_ = 0; //シールド値
 
 };

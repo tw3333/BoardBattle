@@ -51,6 +51,8 @@ protected:
 	BoardPos board_pos_;
 	UnitType unit_type = UnitType::None;
 	int speed_ = 0;
+	int shield_value_ = 0; //シールド値
+
 
 	//Unit共通の状態
 	bool is_dead_ = false;
