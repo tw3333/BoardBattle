@@ -347,6 +347,21 @@
     <ClCompile Include="program\game\gm_card_range_up.cpp">
       <Filter>program\[003] game\card\range</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_heal.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_play.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_range_down.cpp">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_range_left.cpp">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_range_right.cpp">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -678,6 +693,30 @@
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_card_range_up.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_heal.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_down.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_left.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_lower_left.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_lower_right.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_right.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_upper_left.h">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_upper_right.h">
       <Filter>program\[003] game\card\range</Filter>
     </ClInclude>
   </ItemGroup>
