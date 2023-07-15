@@ -368,6 +368,9 @@
     <ClCompile Include="program\game\gm_card_effect_add_shield.cpp">
       <Filter>program\[003] game\card\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_anim_manager.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -730,6 +733,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_card_effect_add_shield.h">
       <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_anim_manager.h">
+      <Filter>program\[003] game\manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

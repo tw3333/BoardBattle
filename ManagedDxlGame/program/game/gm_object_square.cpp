@@ -48,7 +48,7 @@ ObjSquare* ObjSquare::Create() {
 	target_tile->ofs_rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
 	target_tile->mesh_->setAlpha(1.0);
 	target_tile->mesh_->setBlendMode(obj_square->dxlib_blend_mode_);
-	target_tile->is_render_ = false;
+	target_tile->is_render_ = true;
 	obj_square->parts_[TargetTile] = target_tile;
 
 	//obj_square->rot_ =  tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(90));
@@ -82,10 +82,21 @@ void ObjSquare::Update(float delta_time) {
 
 	}
 
-	//if (this->parts_[TargetTile]->is_render_) {
+	if (this->parts_[TargetTile]->is_render_) {
 
-	//	this->parts_[TargetTile]->ofs_rot_ *= tnl::Quaternion::RotationAxis({ 0, 0, 1 }, tnl::ToRadian(-1));
-	//}
+		//this->parts_[TargetTile]->ofs_rot_ = tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(80));
+		//this->parts_[TargetTile]->ofs_rot_ *= tnl::Quaternion::RotationAxis({ 0, 1, 0 }, tnl::ToRadian(-1));
+		
+		//const float PI = 3.14159265;
+
+		//time_ += delta_time;
+
+		//alpha_ = (std::sin(time_ * frequency_ * PI) + 1.0) / 2.0;
+		//parts_[TargetTile]->mesh_->setAlpha(alpha_);
+
+
+
+	}
 
 	if (is_flashing_) {
 

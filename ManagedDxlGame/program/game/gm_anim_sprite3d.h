@@ -25,9 +25,13 @@ private:
 
 public:
 	
-	AnimSprite3D(dxe::Camera* camera) { billboard_target_ = camera; }
+	//AnimSprite3D(dxe::Camera* camera) { billboard_target_ = camera; }
+	AnimSprite3D() {}
 
 	void Update(float delta_time) override;
+
+	//Cameraのセット
+	void SetCamera(dxe::Camera* camera) { billboard_target_ = camera; }
 
 	//------------------------------------------------------------------------------------------
 	// アニメーションの切り替え

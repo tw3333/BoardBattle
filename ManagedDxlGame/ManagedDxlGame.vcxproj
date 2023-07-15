@@ -184,6 +184,7 @@
     <ClCompile Include="program\dxlib_ext\dxlib_ext_texture.cpp" />
     <ClCompile Include="program\dxlib_ext\OBJLoader.cpp" />
     <ClCompile Include="program\game\gm_allydata_manager.cpp" />
+    <ClCompile Include="program\game\gm_anim_manager.cpp" />
     <ClCompile Include="program\game\gm_anim_sprite3d.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_player_action_move.cpp" />
     <ClCompile Include="program\game\gm_battle_phase_player_action_card.cpp" />
@@ -277,6 +278,7 @@
     <ClInclude Include="program\dxlib_ext\dxlib_ext_texture.h" />
     <ClInclude Include="program\dxlib_ext\OBJLoader.h" />
     <ClInclude Include="program\game\gm_allydata_manager.h" />
+    <ClInclude Include="program\game\gm_anim_manager.h" />
     <ClInclude Include="program\game\gm_anim_sprite3d.h" />
     <ClInclude Include="program\game\gm_battle_phase.h" />
     <ClInclude Include="program\game\gm_battle_phase_player_action_card.h" />
