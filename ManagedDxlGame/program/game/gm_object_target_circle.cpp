@@ -6,6 +6,22 @@ void ObjTargetCircle::Update(float delta_time) {
 	this->parts_[InRangeCircle]->ofs_rot_ *= tnl::Quaternion::RotationAxis({ 0, 0, 1 }, tnl::ToRadian(1));
 	this->parts_[TargetCircle]->ofs_rot_ *= tnl::Quaternion::RotationAxis({ 0, 0, 1 }, tnl::ToRadian(-1));
 
+	if (tnl::Input::IsKeyDown(eKeys::KB_Q)) {
+		
+		this->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(1));
+
+
+	}
+
+	if (tnl::Input::IsKeyDown(eKeys::KB_E)) {
+
+		this->rot_ *= tnl::Quaternion::RotationAxis({ 1, 0, 0 }, tnl::ToRadian(-1));
+
+
+	}
+
+
+
 
 }
 
