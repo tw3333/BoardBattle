@@ -11,15 +11,15 @@ void CardEffectDamage::Effect(std::vector<Unit*> units) {
 
 		if (u->GetUnitType() == UnitType::Ally) {
 			
-			UnitAlly* unit_ = static_cast<UnitAlly*>(u);
-			unit_->DecreaseCurrentHp(damage_);
+			UnitAlly* unit = static_cast<UnitAlly*>(u);
+			unit->DecreaseCurrentHp(damage_);
 
 
 		}
 		else if (u->GetUnitType() == UnitType::Enemy) {
 		
-			UnitEnemy* unit_ = static_cast<UnitEnemy*>(u);
-			unit_->DecreaseCurrentHp(damage_);	
+			UnitEnemy* unit = static_cast<UnitEnemy*>(u);
+			unit->DecreaseCurrentHp(damage_);	
 			
 		}
 

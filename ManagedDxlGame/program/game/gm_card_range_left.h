@@ -4,11 +4,13 @@
 class CardRangeLeft : public CardRange {
 public:
 	
-	CardRangeLeft(int leave, int range_, bool is_specify_target, int target_num)
+	CardRangeLeft(int leave, int range_,Target target)
 	: leave_(leave), range_(range_)
 	{
-		is_specify_target_ = is_specify_target;
-		target_num_ = target_num;
+
+		target_ = target;
+
+
 	}
 	~CardRangeLeft(){}
 

@@ -6,7 +6,10 @@
 class CardRangeDown : public CardRange {
 public:
 
-	CardRangeDown(int leave, int range) : leave_(leave), range_(range){}
+	CardRangeDown(int leave, int range, Target target) : leave_(leave), range_(range)
+	{
+		target_ = target;
+	}
 	~CardRangeDown(){}
 
 

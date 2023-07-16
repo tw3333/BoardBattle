@@ -1,9 +1,6 @@
 #pragma once
 #include <vector>
 
-//memo
-//Cardのrangeを作成する基底クラス
-
 class Unit;
 class UnitAlly;
 class Board;
@@ -11,6 +8,12 @@ class Board;
 //memo
 //カードの射程の表示、また範囲内にいるUnitを指定する
 
+//どちらを対象とするか
+enum class Target{
+	Ally,
+	Enemy,
+	All
+};
 
 class CardRange {
 public:
@@ -18,16 +21,12 @@ public:
 	virtual void DisplayRange(UnitAlly* act_ally, Board* board);
 	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units);
 
-	bool GetIsSpecifyTarget() { return is_specify_target_; }
-	int GetTargetNum() { return target_num_; }
 
 
 
 protected:
 
-	bool is_specify_target_ = false;
-	int target_num_ = 0;
-
+	Target target_;
 
 
 
