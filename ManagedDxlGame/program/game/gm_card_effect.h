@@ -2,8 +2,6 @@
 #include <vector>
 
 class Unit;
-class UnitAlly;
-class UnitEnemy;
 
 
 class CardEffect {

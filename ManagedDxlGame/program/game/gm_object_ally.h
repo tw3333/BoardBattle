@@ -19,7 +19,7 @@ public:
 
 	void Update(float delta_time) override;
 
-	static ObjAlly* Create(AllyData* allydata);
+	//static ObjAlly* Create(AllyData* allydata);
 	float getAlphaNum() { return alpha_; }
 	int getDxLibBlendMode() { return dxlib_blend_mode_; }
 

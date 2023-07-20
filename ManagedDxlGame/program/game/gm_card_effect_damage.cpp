@@ -1,4 +1,5 @@
 #include "gm_card_effect_damage.h"
+
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"

@@ -14,7 +14,7 @@
 class UnitAlly : public Unit {
 public:
 
-	UnitAlly(int id,AllyData* ally_data, int row, int col) {
+	UnitAlly(AllyData* ally_data, int row, int col) {
 	
 		ally_data_ = ally_data;
 		
@@ -29,8 +29,8 @@ public:
 
 		speed_ = ally_data_->GetSpeed();
 
-
-		obj_ = ObjAlly::Create(ally_data_);
+		obj_ = ally_data->GetObj();
+		
 		SetBoardPos(row, col);
 
 		obj_->Update(0);
@@ -53,7 +53,7 @@ public:
 
 	//getter
 	AllyData* GetAllyData() { return ally_data_; }
-	ObjAlly* getObj() { return obj_; }
+	ObjAlly* GetObj() { return obj_; }
 	void SetObj(ObjAlly* obj) { obj_ = obj; }
 
 	int GetMaxHp() { return max_hp_; }

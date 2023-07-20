@@ -32,18 +32,12 @@ public:
 	//memberfunction
 	void CreateObjAllys();
 	ObjAlly* GetObjAllyAtID(int id){ 
-		for (auto oa : obj_allys_) {
+		for (auto oa : obj_allies_) {
 			if (oa->GetObjAllyID() == id) { return oa; }
 		}
 		return nullptr;
 	}
 
-	std::shared_ptr<ObjAlly> GetObjAllyAtIndex(int index) const {
-		if (index < 0 || index >= obj_allies_.size()) {
-			return nullptr;
-		}
-		return obj_allies_[index];
-	}
 
 	void CreateObjEnemies();
 	ObjEnemy* GetObjEnemyAtID(int id){
@@ -66,10 +60,11 @@ private:
 
 	//membervariable
 	//std::vector<Shared<ObjAlly>> obj_allys_;
-	std::vector<ObjAlly*> obj_allys_;
+
+	std::vector<ObjAlly*> obj_allies_;
 	std::vector<ObjEnemy*> obj_enemies_;
 
-	std::vector<std::shared_ptr<ObjAlly>> obj_allies_;
+
 
 
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();

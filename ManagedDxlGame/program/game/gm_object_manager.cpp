@@ -41,18 +41,12 @@ void ObjectManager::CreateObjAllys() {
 	ObjAlly* obj_ally4 = obj_ally->CreateAlly(4,"graphics/unit/ally/c4_board_img.png");
 	obj_ally4->SetObjAllyID(4);
 
-	obj_allys_.push_back(obj_ally1);
-	obj_allys_.push_back(obj_ally2);
-	obj_allys_.push_back(obj_ally3);
-	obj_allys_.push_back(obj_ally4);
+	obj_allies_.push_back(obj_ally1);
+	obj_allies_.push_back(obj_ally2);
+	obj_allies_.push_back(obj_ally3);
+	obj_allies_.push_back(obj_ally4);
+	
 	delete obj_ally;
-
-	obj_allies_.emplace_back(std::shared_ptr<ObjAlly>(ObjAlly::CreateAlly(1, "graphics/unit/ally/c1_battle.png")));
-	obj_allies_.emplace_back(std::shared_ptr<ObjAlly>(ObjAlly::CreateAlly(2, "graphics/unit/ally/c2_battle.png")));
-	obj_allies_.emplace_back(std::shared_ptr<ObjAlly>(ObjAlly::CreateAlly(3, "graphics/unit/ally/c3_battle.png")));
-	obj_allies_.emplace_back(std::shared_ptr<ObjAlly>(ObjAlly::CreateAlly(4, "graphics/unit/ally/c4_battle.png")));
-
-
 }
 
 void ObjectManager::CreateObjEnemies() {

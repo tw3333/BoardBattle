@@ -1,8 +1,6 @@
 #pragma once
 #include "gm_card_effect.h"
 
-class Unit;
-class UnitAlly;
 
 class CardEffectHeal : public CardEffect {
 public:

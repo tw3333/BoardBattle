@@ -3,8 +3,12 @@
 #include <vector>
 #include "../dxlib_ext/dxlib_ext.h"
 
+#include "gm_object.h"
+#include "gm_object_ally.h"
+
 //memo
 //Allyの全体データを格納するクラス
+class ObjAlly;
 
 class AllyData {
 public:
@@ -48,20 +52,25 @@ public:
 		texture_stand_ = dxe::Texture::CreateFromFile(texture_path);
 	}
 
-	void SetObj(std::shared_ptr<ObjAlly> obj) { obj_ = obj; }
-	std::shared_ptr<ObjAlly> GetObj() { return obj_; }
+	void SetObj(ObjAlly* obj) { obj_ = obj; }
+	ObjAlly* GetObj() { return obj_; }
+
+	void SetIsPartyPicked(bool flag) { is_party_picked_ = flag; }
+	bool GetIsPartyPicked() { return is_party_picked_; }
+	void SetIsEditPicked(bool flag) { is_edit_picked_ = flag; }
+	bool GetIsEditPiked() { return is_edit_picked_; }
 
 private:
 
-	int ally_id_;
+	int ally_id_ = 0;
 
 	std::string name_;
 
-	int hp_;
+	int hp_ = 0;
 	
-	int cost_;
-	int move_cost_;
-	int speed_;
+	int cost_ = 0;
+	int move_cost_ = 0;
+	int speed_ = 0;
 	
 
 	//状態
@@ -78,7 +87,7 @@ private:
 	std::string img_stand_path;
 
 	//Obj
-	std::shared_ptr<ObjAlly> obj_;
+	ObjAlly* obj_ = nullptr;
 
 	//Texture
 	Shared<dxe::Texture> texture_face1_;

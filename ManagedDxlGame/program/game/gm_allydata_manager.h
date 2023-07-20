@@ -18,7 +18,7 @@ public:
 
 	bool is_loaded_ = false;
 
-	AllyData* getAllyDataAtID(int id) {
+	AllyData* GetAllyDataAtID(int id) {
 		AllyData* allydata = nullptr;
 
 		for (auto ad : all_ally_data_) {
@@ -28,12 +28,6 @@ public:
 		return allydata;
 	}
 
-	std::shared_ptr<AllyData> GetAllyDataAtID(int id) {
-
-		for (auto ad : all_data_ally_) {
-			if (ad->GetAllyDataID() == id) { return ad; }
-		}
-	}
 
 
 private:
@@ -46,8 +40,6 @@ private:
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 
 	std::vector<AllyData*> all_ally_data_;
-
-	std::vector<std::shared_ptr<AllyData>> all_data_ally_;
 
 
 };
