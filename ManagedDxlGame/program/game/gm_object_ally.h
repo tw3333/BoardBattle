@@ -23,7 +23,8 @@ public:
 	float getAlphaNum() { return alpha_; }
 	int getDxLibBlendMode() { return dxlib_blend_mode_; }
 
-	ObjAlly* CreateAlly(std::string texture);
+	static ObjAlly* CreateAlly(int id, std::string texture);
+
 	void SetObjAllyID(int id) { ally_id_ = id; }
 	const int GetObjAllyID() { return ally_id_; }
 

@@ -38,6 +38,13 @@ public:
 		return nullptr;
 	}
 
+	std::shared_ptr<ObjAlly> GetObjAllyAtIndex(int index) const {
+		if (index < 0 || index >= obj_allies_.size()) {
+			return nullptr;
+		}
+		return obj_allies_[index];
+	}
+
 	void CreateObjEnemies();
 	ObjEnemy* GetObjEnemyAtID(int id){
 		for (auto oe : obj_enemies_) {
@@ -61,6 +68,9 @@ private:
 	//std::vector<Shared<ObjAlly>> obj_allys_;
 	std::vector<ObjAlly*> obj_allys_;
 	std::vector<ObjEnemy*> obj_enemies_;
+
+	std::vector<std::shared_ptr<ObjAlly>> obj_allies_;
+
 
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
 

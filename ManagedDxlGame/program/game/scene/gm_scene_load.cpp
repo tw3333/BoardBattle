@@ -6,6 +6,10 @@ void SceneLoad::Initialzie() {
 
 	font_mgr_.CreateFontData();
 
+	obj_mgr_.CreateObjAllys();
+	obj_mgr_.CreateObjSquares();
+	obj_mgr_.CreateObjEnemies();
+
 	amgr_->DebugLoadAllyData();
 	amgr_->DebugLoadAllyTexture();
 	emgr_->DebugLoadEnemyData();
@@ -13,10 +17,6 @@ void SceneLoad::Initialzie() {
 
 	tmgr_->LoadTexture();
 	
-	obj_mgr_.CreateObjAllys();
-	obj_mgr_.CreateObjSquares();
-	obj_mgr_.CreateObjEnemies();
-
 	card_mgr_.CreateDebugCardData();
 
 

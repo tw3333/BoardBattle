@@ -1,4 +1,5 @@
 #include "gm_card_renge_self.h"
+
 #include "gm_board.h"
 #include "gm_unit.h"
 #include "gm_unit_ally.h"

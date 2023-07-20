@@ -29,6 +29,8 @@
 
 #include "../gm_square.h"
 #include "../gm_board.h"
+#include "../gm_card_play.h"
+
 #include "../gm_battle_phase.h"
 #include "../gm_battle_phase_unit_speed_cal.h"
 #include "../gm_battle_phase_turn_ally.h"
@@ -139,7 +141,14 @@ private:
 
 	Square* square_ = nullptr;
 	Board* board_ = nullptr;
+
+	std::shared_ptr<Square> square_s_ = nullptr;
+	std::shared_ptr<Board> board_s_ = nullptr;
+
+
 	SelectSquare* select_square_ = nullptr;
+	CardPlay* card_play_ = nullptr;
+
 	//BattlePhase
 	BattlePhase* current_phase_ = nullptr;
 	PhaseUnitSpeedCal* phase_unit_speed_cal_ = nullptr;

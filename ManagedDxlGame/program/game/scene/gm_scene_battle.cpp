@@ -9,15 +9,18 @@ void SceneBattle::Initialzie() {
 	camera_ = new SceneBattleCamera();
 
 //---
+	card_play_= new CardPlay();
+
 	//Board‚Ìì¬
 	board_ = new Board();
 	board_->Create(); //Square‚ð10x10ì¬
 	board_->SetCamera(camera_);
 
 	//Unit‚Ìì¬
-	party_[0] = new UnitAlly(1, allydata_mgr_->getAllyDataAtID(1), 0, 0);
-	party_[1] = new UnitAlly(2, allydata_mgr_->getAllyDataAtID(2), 0, 1);
-	party_[2] = new UnitAlly(3, allydata_mgr_->getAllyDataAtID(3), 0, 2);
+	party_[0] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(1), 0, 0);
+	party_[1] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(2), 0, 1);
+	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 0, 2);
+
 	party_[0]->SetTauntValue(500);
 	party_units_.push_back(party_[0]);
 	party_units_.push_back(party_[1]);
@@ -74,9 +77,9 @@ void SceneBattle::Update(float delta_time) {
 
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 
-	party_[0]->getObj()->Update(delta_time);
-	party_[1]->getObj()->Update(delta_time);
-	party_[2]->getObj()->Update(delta_time);
+	party_[0]->GetObj()->Update(delta_time);
+	party_[1]->GetObj()->Update(delta_time);
+	party_[2]->GetObj()->Update(delta_time);
 	unit_enemy_->GetObj()->Update(delta_time);
 
 	obj_target_circle_->Update(delta_time);
@@ -100,9 +103,9 @@ void SceneBattle::Render() {
 	DrawDebugLayOut(true);
 	//DrawStringEx(0, 0, -1, "SceneBattle");
 
-	party_[0]->getObj()->Render(camera_);
-	party_[1]->getObj()->Render(camera_);
-	party_[2]->getObj()->Render(camera_);
+	party_[0]->GetObj()->Render(camera_);
+	party_[1]->GetObj()->Render(camera_);
+	party_[2]->GetObj()->Render(camera_);
 	unit_enemy_->GetObj()->Render(camera_);
 
 	board_->Render(camera_);

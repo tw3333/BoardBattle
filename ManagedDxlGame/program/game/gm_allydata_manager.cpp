@@ -25,6 +25,20 @@ void AllyDataManager::DebugLoadAllyData() {
 	all_ally_data_.emplace_back(new AllyData(3,"ズズ",30,3,1,30));
 	all_ally_data_.emplace_back(new AllyData(4,"ライン",40,3,1,20));
 
+
+	all_data_ally_.emplace_back(std::make_shared<AllyData>(1, "ミア", 30, 3, 5, 35));
+	all_data_ally_.emplace_back(std::make_shared<AllyData>(2, "ルーセント", 30, 3, 1, 25));
+	all_data_ally_.emplace_back(std::make_shared<AllyData>(3, "ズズ", 30, 3, 1, 30));
+	all_data_ally_.emplace_back(std::make_shared<AllyData>(4, "ライン", 40, 3, 1, 20));
+
+	for (auto ada : all_data_ally_) {
+
+		ada->SetObj(obj_mgr_.GetObjAllyAtIndex(ada->GetAllyDataID()));
+
+
+	}
+
+
 	is_loaded_ = true;
 }
 

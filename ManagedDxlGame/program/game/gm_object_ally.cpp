@@ -22,7 +22,7 @@ ObjAlly* ObjAlly::Create(AllyData* allydata) {
 	return obj_ally;
 }
 
-ObjAlly* ObjAlly::CreateAlly(std::string texture) {
+ObjAlly* ObjAlly::CreateAlly(int id,std::string texture) {
 
 	auto obj_ally = new ObjAlly();
 	obj_ally->parts_.resize(PartsMax);

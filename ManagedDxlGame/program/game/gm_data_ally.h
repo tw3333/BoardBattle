@@ -21,7 +21,7 @@ public:
 	~AllyData(){}
 
 	//accessor
-	int getAllyDataID() { return ally_id_; }
+	int GetAllyDataID() { return ally_id_; }
 	std::string getImgBattlePath() { return img_battle_path; }
 	void setImgBattlePath(std::string path) { img_battle_path = path; }
 
@@ -48,6 +48,9 @@ public:
 		texture_stand_ = dxe::Texture::CreateFromFile(texture_path);
 	}
 
+	void SetObj(std::shared_ptr<ObjAlly> obj) { obj_ = obj; }
+	std::shared_ptr<ObjAlly> GetObj() { return obj_; }
+
 private:
 
 	int ally_id_;
@@ -73,6 +76,9 @@ private:
 	std::string img_face2_path;
 	std::string img_battle_path;
 	std::string img_stand_path;
+
+	//Obj
+	std::shared_ptr<ObjAlly> obj_;
 
 	//Texture
 	Shared<dxe::Texture> texture_face1_;

@@ -113,7 +113,14 @@ private:
 	//Card
 	bool is_drew_init_card_ = false; //初期カードを引いたかどうか
 	std::vector<Card*> deck_; //デッキ
-	std::vector<Card*> hand_; //手札
+	//std::vector<Card*> hand_; //手札
+
+	std::vector <std::shared_ptr<Card*>> base_deck_; //デッキの元
+	std::vector <std::shared_ptr<Card*>> use_deck_; //実際に使用するデッキ
+	std::vector <std::shared_ptr<Card*>> hand_; //手札
+
+
+
 
 
 	//補正値
