@@ -2,6 +2,8 @@
 #include "gm_ui_component.h"
 #include "gm_font_manager.h"
 
+class Card;
+
 class UICard : public UIComponent {
 public:
 
@@ -19,6 +21,9 @@ public:
 	bool IsMouseInside(int mx, int my);
 
 private:
+
+	Card* card_ = nullptr;
+
 	bool is_render_ = true;
 
 	int pos_x_;
