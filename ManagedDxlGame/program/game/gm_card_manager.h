@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 
 
 
@@ -49,7 +50,7 @@ private:
 	std::vector<CardData*> debug_card_data_;
 	
 	std::vector<Card*> debug_card_;
-	//std::vector <std::shared_ptr<Card>> debug_deck_;
+	std::vector<std::shared_ptr<Card>> debug_deck_;
 
 
 	std::vector<Card*> all_card_data_;

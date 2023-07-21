@@ -25,13 +25,11 @@ void AllyDataManager::DebugLoadAllyData() {
 	all_ally_data_.emplace_back(new AllyData(3,"ƒYƒY",30,3,1,30));
 	all_ally_data_.emplace_back(new AllyData(4,"ƒ‰ƒCƒ“",40,3,1,20));
 
+	all_ally_data_[0]->SetObj(obj_mgr_.GetObjAllyAtID(1));
+	all_ally_data_[1]->SetObj(obj_mgr_.GetObjAllyAtID(2));
+	all_ally_data_[2]->SetObj(obj_mgr_.GetObjAllyAtID(3));
+	all_ally_data_[3]->SetObj(obj_mgr_.GetObjAllyAtID(4));
 
-	for (auto ada : all_ally_data_) {
-
-		ada->SetObj(obj_mgr_.GetObjAllyAtID(ada->GetAllyDataID()));
-
-
-	}
 
 
 	is_loaded_ = true;

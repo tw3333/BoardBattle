@@ -12,6 +12,7 @@ void SceneBattle::Initialzie() {
 	card_play_= new CardPlay();
 
 	//Board‚Ìì¬
+
 	board_ = new Board();
 	board_->Create(); //Square‚ð10x10ì¬
 	board_->SetCamera(camera_);

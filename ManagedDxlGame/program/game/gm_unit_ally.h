@@ -53,7 +53,15 @@ public:
 
 	//getter
 	AllyData* GetAllyData() { return ally_data_; }
-	ObjAlly* GetObj() { return obj_; }
+	ObjAlly* GetObj() {
+		if (!obj_) {
+			DrawStringEx(500,0,-1,"ID%d‚ÌObj‚ª‚È‚¢‚æ",ally_data_->GetAllyDataID());
+		
+		}
+
+		return obj_; 
+	
+	}
 	void SetObj(ObjAlly* obj) { obj_ = obj; }
 
 	int GetMaxHp() { return max_hp_; }
