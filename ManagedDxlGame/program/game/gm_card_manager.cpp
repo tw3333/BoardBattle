@@ -27,14 +27,20 @@ void CardManager::CreateDebugCardData() {
 	debug_card_data_[0]->AddCardRange(std::make_shared<CardRangeSelf>());
 
 
+	for (int i = 0; i < 10; ++i) {
+
+		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
+	}
+
+
 }
 
 void CardManager::CreateDebugCardDeck() {
 
-	//for (int i = 0; i < 10; ++i) {
-	//	
-	//	debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
-	//}
+	for (int i = 0; i < 10; ++i) {
+		
+		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
+	}
 
 
 

@@ -20,6 +20,7 @@ void SceneLoad::Initialzie() {
 	card_mgr_.CreateDebugCardData();
 
 
+
 }
 
 void SceneLoad::Update(float delta_time) {
