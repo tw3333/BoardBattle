@@ -4,10 +4,11 @@
 class Unit;
 
 
+
 class CardEffect {
 public:
 
-	virtual void Effect(std::vector<Unit*> untis);
+	virtual void Effect(std::vector<Unit*> untis) = 0;
 	
 
 

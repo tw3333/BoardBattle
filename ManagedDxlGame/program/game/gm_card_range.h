@@ -18,8 +18,8 @@ enum class Target{
 class CardRange {
 public:
 
-	virtual void DisplayRange(UnitAlly* act_ally, Board* board);
-	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units);
+	virtual void DisplayRange(UnitAlly* act_ally, Board* board) = 0;
+	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) = 0;
 
 
 
