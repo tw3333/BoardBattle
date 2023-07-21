@@ -31,9 +31,10 @@ void CardManager::CreateDebugCardData() {
 
 void CardManager::CreateDebugCardDeck() {
 
-	for (int i = 0; i < 10; ++i) {
-		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
-	}
+	//for (int i = 0; i < 10; ++i) {
+	//	
+	//	debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
+	//}
 
 
 

@@ -2,13 +2,12 @@
 #include <string>
 #include "../dxlib_ext/dxlib_ext.h"
 
-#include "gm_card_effect.h"
 
-
-#include "gm_card_range.h"
 
 //memo
 //各カードのデータを表すクラス
+class CardEffect;
+class CardRange;
 
 
 

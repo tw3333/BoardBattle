@@ -1,20 +1,15 @@
 #pragma once
 #include <vector>
 
-#include "gm_data_card.h"
-#include "gm_card.h"
+
 
 
 
 //memo
 //Cardクラスのインスタンスを生成、保持、管理するクラス
 //Singleton設計
-class CardEffect;
-class CardEffectHeal;
-
-class CardRange;
-class CardRangeSelf;
-
+class Card;
+class CardData;
 
 class CardManager {
 public:
@@ -54,7 +49,7 @@ private:
 	std::vector<CardData*> debug_card_data_;
 	
 	std::vector<Card*> debug_card_;
-	std::vector <std::shared_ptr<Card>> debug_deck_;
+	//std::vector <std::shared_ptr<Card>> debug_deck_;
 
 
 	std::vector<Card*> all_card_data_;

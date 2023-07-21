@@ -4,8 +4,7 @@
 #include "gm_data_card.h"
 #include "../dxlib_ext/dxlib_ext.h"
 
-#include "gm_card_range.h"
-#include "gm_card_effect.h"
+
 
 
 //memo
@@ -13,9 +12,9 @@
 //Battleで使用するので値が変動する
 //またここからCardEffectも実装を行っているよ
 
-class UnitAlly;
-class UnitEnemy;
-class Board;
+
+class CardRange;
+class CardEffect;
 
 class Card  {
 public:
@@ -27,7 +26,7 @@ public:
 	~Card(){}
 	
 
-	void DisplayRange(UnitAlly* turn_ally, Board* board); //Cardの射程表示
+
 	
 	//g,s
 	std::vector<CardRange*> GetCardRangeList() { return card_range_list_; }
