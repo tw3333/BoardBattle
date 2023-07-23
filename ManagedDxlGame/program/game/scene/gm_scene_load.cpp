@@ -4,6 +4,7 @@
 
 void SceneLoad::Initialzie() {
 
+	
 	font_mgr_.CreateFontData();
 
 	obj_mgr_.CreateObjAllys();
@@ -12,6 +13,7 @@ void SceneLoad::Initialzie() {
 
 	amgr_->DebugLoadAllyData();
 	amgr_->DebugLoadAllyTexture();
+
 	emgr_->DebugLoadEnemyData();
 	emgr_->DebugLoadenemyTexture();
 

@@ -49,13 +49,29 @@ void ObjectManager::CreateObjAllys() {
 
 void ObjectManager::CreateObjEnemies() {
 
-	for (int i = 1; i <= 10; ++i) {
+	ObjEnemy* obj_enemy1 = ObjEnemy::CreateEnemy(1,"graphics/unit/enemy/adoption/slime_battle.png");
+	ObjEnemy* obj_enemy2 = ObjEnemy::CreateEnemy(2, "graphics/unit/enemy/adoption/mummy_battle.png");
+	ObjEnemy* obj_enemy3 = ObjEnemy::CreateEnemy(3, "graphics/unit/enemy/adoption/pen_battle.png");
+	ObjEnemy* obj_enemy4 = ObjEnemy::CreateEnemy(4, "graphics/unit/enemy/adoption/crow_battle.png");
+	ObjEnemy* obj_enemy5 = ObjEnemy::CreateEnemy(5, "graphics/unit/enemy/adoption/magipon_battle.png");
+	ObjEnemy* obj_enemy6 = ObjEnemy::CreateEnemy(6, "graphics/unit/enemy/adoption/candle_battle.png");
+	ObjEnemy* obj_enemy7 = ObjEnemy::CreateEnemy(7, "graphics/unit/enemy/adoption/heallulu_battle.png");
+	ObjEnemy* obj_enemy8 = ObjEnemy::CreateEnemy(8, "graphics/unit/enemy/adoption/attacklulu_battle.png");
+	ObjEnemy* obj_enemy9 = ObjEnemy::CreateEnemy(9, "graphics/unit/enemy/adoption/golem_battle.png");
+	ObjEnemy* obj_enemy10 = ObjEnemy::CreateEnemy(10, "graphics/unit/enemy/adoption/lizard_battle.png");
+	ObjEnemy* obj_enemy11 = ObjEnemy::CreateEnemy(11, "graphics/unit/enemy/adoption/dragon_battle.png");
 
-		ObjEnemy* obj_enemy = ObjEnemy::Create(emgr_->GetEnemyDataAtID(i));
-		obj_enemy->SetObjEnemyID(i);
-		obj_enemies_.push_back(obj_enemy);
-
-	}
+	obj_enemies_.push_back(obj_enemy1);
+	obj_enemies_.push_back(obj_enemy2);
+	obj_enemies_.push_back(obj_enemy3);
+	obj_enemies_.push_back(obj_enemy4);
+	obj_enemies_.push_back(obj_enemy5);
+	obj_enemies_.push_back(obj_enemy6);
+	obj_enemies_.push_back(obj_enemy7);
+	obj_enemies_.push_back(obj_enemy8);
+	obj_enemies_.push_back(obj_enemy9);
+	obj_enemies_.push_back(obj_enemy10);
+	obj_enemies_.push_back(obj_enemy11);
 
 }
 

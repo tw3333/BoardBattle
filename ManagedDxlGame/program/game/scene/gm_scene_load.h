@@ -39,6 +39,10 @@ private:
 	FontManager& font_mgr_ = FontManager::GetInstance();
 
 
+
+
+
+
 	enum NextScene {
 		//SceneBattle
 		

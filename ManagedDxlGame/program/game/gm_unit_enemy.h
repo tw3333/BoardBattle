@@ -4,7 +4,7 @@
 #include "gm_data_enemy.h"
 #include "gm_object_enemy.h"
 #include "gm_enemydata_manager.h"
-#include "gm_object_manager.h"
+
 
 //#include <memory>
 class Board;
@@ -15,14 +15,9 @@ class SlimeBehaviorStrategy;
 class UnitEnemy : public Unit {
 public:
 
-	UnitEnemy(int id, EnemyData* enemy_data, int row, int col)
+	UnitEnemy(EnemyData* enemy_data, int row, int col)
 	{
-	
 		enemy_data_ = enemy_data;
-
-		ObjectManager& instance_ = ObjectManager::GetInstance();
-		obj_ = instance_.GetObjEnemyAtID(id);
-		SetBoardPos(row, col);
 	
 		max_hp_ = enemy_data->GetHp();
 		current_hp_ = max_hp_;
@@ -34,6 +29,12 @@ public:
 		current_action_cost_ = max_action_cost_;
 
 		speed_ = enemy_data->GetSpeed();
+
+		obj_ = enemy_data->GetObj();
+
+		SetBoardPos(row, col);
+
+		obj_->Update(0);
 
 	}
 	~UnitEnemy(){}

@@ -2,6 +2,8 @@
 #include <string>
 #include "../dxlib_ext/dxlib_ext.h"
 
+class ObjEnemy;
+
 class EnemyData {
 public:
 
@@ -36,6 +38,8 @@ public:
 	}
 	Shared<dxe::Texture> GetTextureFace() { return texture_face_; }
 
+	void SetObj(ObjEnemy* obj) { obj_ = obj; }
+	ObjEnemy* GetObj() { return obj_; }
 
 private:
 
@@ -50,6 +54,9 @@ private:
 
 	bool is_picked_ = false;
 	
+
+	//Obj
+	ObjEnemy* obj_ = nullptr;
 
 	//Texture
 	Shared<dxe::Texture> texture_battle_;

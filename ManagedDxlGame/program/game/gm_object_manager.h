@@ -4,7 +4,6 @@
 #include "gm_object_square.h"
 #include "gm_object_move_select_flame.h"
 
-#include "gm_enemydata_manager.h"
 
 //memo
 //マジックスタティックを用いて作成
@@ -58,16 +57,11 @@ private:
 	ObjectManager() = default;
 	~ObjectManager() = default;
 
-	//membervariable
-	//std::vector<Shared<ObjAlly>> obj_allys_;
 
 	std::vector<ObjAlly*> obj_allies_;
 	std::vector<ObjEnemy*> obj_enemies_;
 
 
-
-
-	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
 
 	ObjSquare* obj_square_ = nullptr;
 

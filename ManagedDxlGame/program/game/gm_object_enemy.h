@@ -18,6 +18,9 @@ public:
 
 
 	static ObjEnemy* Create(EnemyData* enemydata);
+	static ObjEnemy* CreateEnemy(int id, std::string texture_path);
+
+
 	void SetObjEnemyID(int id) { enemy_id_ = id; }
 	int GetObjEnemyId() { return enemy_id_; }
 

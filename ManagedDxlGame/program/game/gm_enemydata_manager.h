@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "gm_data_enemy.h"
+#include "gm_object_manager.h"
 
 
 
@@ -28,6 +29,8 @@ private:
 	~EnemyDataManager(){}
 
 	static EnemyDataManager* instance_;
+
+	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 
 
 	std::vector<EnemyData*> all_enemy_data_;
