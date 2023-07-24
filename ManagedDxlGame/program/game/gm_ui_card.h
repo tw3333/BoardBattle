@@ -2,29 +2,36 @@
 #include "gm_ui_component.h"
 #include "gm_font_manager.h"
 
+
 class Card;
 
 class UICard : public UIComponent {
 public:
 
-	UICard(int x, int y, int width, int height)
-	: pos_x_(x), pos_y_(y), width_(width), height_(height)
+	UICard(int posx, int posy, int width, int height)
+	:pos_x_(posx), pos_y_(posy), width_(width), height_(height)
 	{}
 	~UICard(){}
 
 	void Update(float delta_time) override;
 	void Render() override;
-	void SetIsRender(bool flag) { is_render_ = flag; }
+	void SetIsEnable(bool flag) { is_enable_ = flag; }
+	bool GetIsEnable() { return is_enable_; }
 	void SetIsCardUp(bool flag) { card_up_ = flag; }
 	bool GetIsCardUp() { return card_up_; }
 	void SetPos(int pos_x, int pos_y) { pos_x_ = pos_x; pos_y_ = pos_y; }
+	int GetStartPosX() { return pos_x_; }
+	int GetEndPosX() { return pos_x_ + width_; }
 	bool IsMouseInside(int mx, int my);
+	
+	void SetCard(Card* card) { card_ = card; }
+
 
 private:
 
 	Card* card_ = nullptr;
 
-	bool is_render_ = true;
+	bool is_enable_ = true;
 
 	int pos_x_;
 	int pos_y_;

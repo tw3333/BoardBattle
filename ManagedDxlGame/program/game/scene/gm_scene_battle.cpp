@@ -57,8 +57,9 @@ void SceneBattle::Initialzie() {
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
 
-	ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
+	//ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
 	ui_card_hand_ = new UICardHand(w1*4, h1 * 7 + (h1 / 2),0,0);
+	ui_card_hand_->Update(0);
 	
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
@@ -90,7 +91,7 @@ void SceneBattle::Update(float delta_time) {
 	ui_turn_view_->Update(delta_time);
 
 	ui_turn_ally_state_->Update(delta_time);
-	ui_card_->Update(delta_time);
+	//ui_card_->Update(delta_time);
 	ui_card_hand_->Update(delta_time);
 
 	phase_.update(delta_time);
@@ -117,7 +118,7 @@ void SceneBattle::Render() {
 	ui_action_buttons_->Render();
 	ui_turn_ally_state_->Render();
 	ui_turn_view_->Render();
-	ui_card_->Render();
+	//ui_card_->Render();
 	ui_card_hand_->Render();
 }
 

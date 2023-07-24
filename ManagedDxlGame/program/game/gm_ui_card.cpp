@@ -1,6 +1,7 @@
 #include "gm_ui_card.h"
 
 #include "../dxlib_ext/dxlib_ext.h"
+#include "gm_card.h"
 
 void UICard::Update(float delta_time) {
 
@@ -24,12 +25,13 @@ void UICard::Update(float delta_time) {
 		pos_y_ = pre_pos_y_;
 	}
 
+	SetPos(pos_x_, pos_y_);
 
 }
 
 void UICard::Render() {
 
-	if (is_render_) {
+	if (is_enable_) {
 
 		//‘S‘Ì‰º’n
 		DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, color_black_, true);
