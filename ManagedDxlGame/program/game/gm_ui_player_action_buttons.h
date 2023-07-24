@@ -13,6 +13,9 @@ public:
 	//arg3,4...UI‘S‘Ì‚ðŽlŠp‚Æ‚µ‚½‚Æ‚«‚ÌAwidth,height
 	UIPlayerActionButtons(int x, int y, int width, int height) {
 
+		pos_x_ = x;
+		width_ = width;
+
 		//ui_components_[MoveButton] = new UIButton(x,y,width/2 -5,height/2 -5);
 		//ui_components_[MoveButton]->SetMediator(this->mediator_);
 		//ui_components_[MoveButton]->SetNotifyTag("MoveButton");
@@ -82,11 +85,15 @@ public:
 		return nullptr;
 	}
 
+	int GetEndPosX() { return pos_x_ + width_; }
 
 
 private:
 
 	UIComponent* ui_components_[PartsMax];
+
+	int pos_x_ = 0;
+	int width_ = 0;
 
 	int g_move_ = LoadGraph("graphics/ui/move_button.png");
 	int g_card_ = LoadGraph("graphics/ui/card_button.png");

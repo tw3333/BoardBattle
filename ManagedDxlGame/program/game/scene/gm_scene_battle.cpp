@@ -58,7 +58,7 @@ void SceneBattle::Initialzie() {
 	ui_action_buttons_->SetMediators();
 
 	//ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
-	ui_card_hand_ = new UICardHand(w1*4, h1 * 7 + (h1 / 2),0,0);
+	ui_card_hand_ = new UICardHand(ui_action_buttons_->GetEndPosX(), h1 * 7 + (h1 / 2), 0, 0);
 	ui_card_hand_->Update(0);
 	
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));

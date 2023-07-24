@@ -74,22 +74,16 @@ void UICardHand::AdjustCardPos(int card_num) {
 		}
 
 	}
-	else if (6 <= card_num) {
-		
-		overlap_ = card_w * (card_num - 5) / card_num -1;
+	else if (6 <= card_num && card_num <= 10) {
+		float totalwidth = pos_x_ + card_w * 5; // Assuming the total width is the position x plus the width of 5 cards
+		overlap_ = (card_w * (card_num - 5)) / card_num; // Calculate the overlap
 
 		ui_hand_[0]->SetPos(pos_x_, pos_y_);
-
-		for (int i = 1; i <= card_num; ++i) {
-
-			ui_hand_[i]->SetPos(ui_hand_[i-1]->GetEndPosX() - overlap_, pos_y_);
-
-
-
+		for (int i = 1; i < card_num; ++i) {
+			ui_hand_[i]->SetPos(ui_hand_[i - 1]->GetEndPosX() - overlap_, pos_y_);
 		}
-
 	}
-	else if (10< card_num) {
+	else {
 		return;
 	}
 

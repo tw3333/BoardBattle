@@ -69,8 +69,8 @@ private:
 	int width_ = card_w * 5;
 	int height_ = 0;
 
-	int overlap_ = 0;
-	int total_width_ = card_w *5;
+	float overlap_ = 0;
+	int total_width_ = pos_x_ + card_w *5;
 
 	UICard* select_card_ = nullptr;
 
