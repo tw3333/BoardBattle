@@ -4,6 +4,12 @@
 #include "../gm_slime_behavior_strategy.h"
 #include <queue>
 
+#include <random>     // for std::default_random_engine and std::uniform_int_distribution
+#include <algorithm>  // for std::shuffle
+#include <chrono>     // for std::chrono::system_clock
+#include <vector>     // for std::vector
+#include <numeric> 
+
 void SceneBattle::Initialzie() {
 //---
 	camera_ = new SceneBattleCamera();
@@ -21,6 +27,10 @@ void SceneBattle::Initialzie() {
 	party_[0] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(1), 0, 0);
 	party_[1] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(2), 0, 1);
 	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 0, 2);
+
+	for (int i = 0; i < 3; ++i) {
+		party_[i]->SetBaseDeck(cmgr_->GetDebugDeck());
+	}
 
 	party_[0]->SetTauntValue(500);
 	party_units_.push_back(party_[0]);
@@ -399,6 +409,40 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
+
+	//Å‰‚Ì5–‡ƒhƒ[
+	if (!turn_ally_->GetIsDrewInitCard()) {
+		
+		std::vector<int> indices(turn_ally_->GetUseDeck().size());
+		std::iota(indices.begin(), indices.end(), 0);
+
+		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		std::default_random_engine engine(seed);
+
+		std::shuffle(indices.begin(), indices.end(), engine); // shuffle the indices
+
+		if (turn_ally_->GetUseDeck().size() >= 5) { // only copy if there are at least 5 elements
+			for (int i = 0; i < 5; ++i) { // copy the first 5 elements to the new vector
+				turn_ally_->GetHand().push_back(turn_ally_->GetUseDeck()[indices[i]]);
+			}
+		}
+
+		turn_ally_->SetIsDrewInitCard(true);
+	}
+	else if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetUseDeck().empty()) {
+		
+		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		std::default_random_engine engine(seed);
+
+		std::uniform_int_distribution<int> distribution(0, turn_ally_->GetUseDeck().size() - 1);
+		int random_index = distribution(engine); // generate a random index
+
+		turn_ally_->GetHand().emplace_back(turn_ally_->GetUseDeck()[random_index]);
+	}
+
+
+	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+
 
 	card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
 

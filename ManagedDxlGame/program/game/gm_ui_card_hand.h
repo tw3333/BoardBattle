@@ -55,6 +55,8 @@ public:
 	void SetHandCards(std::vector<Card*> hand_cards) { hand_cards_ = hand_cards; }
 	UICard* GetMouseInsideTopCard(int mx, int my);
 
+	void SetAllyHand(std::vector<std::shared_ptr<Card>> ally_hand) { ally_hand_ = ally_hand; }
+	std::vector<std::shared_ptr<Card>> GetAllyHand() { return ally_hand_; }
 
 private:
 
@@ -76,6 +78,8 @@ private:
 
 	std::vector<UICard*> ui_cards_;
 	std::vector<UICard*> ui_hand_;
+
+	std::vector<std::shared_ptr<Card>> ally_hand_;
 
 
 	std::vector<Card*> hand_cards_;
