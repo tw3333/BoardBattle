@@ -25,4 +25,7 @@ void UIPlayerActionButtons::Render() {
 
 	}
 
+	DrawExtendGraph(action_button_pos_.x,action_button_pos_.y,
+	action_button_pos_.x+action_button_pos_.w, action_button_pos_.y + action_button_pos_.h,g_select_flame_,true);
+
 }

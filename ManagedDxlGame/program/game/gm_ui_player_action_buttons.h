@@ -5,6 +5,15 @@
 //memo
 //UI全体を四角にし、そこからレイアウトが設定される
 
+//座標格納用
+struct UIButtonPos {
+	int x;
+	int y;
+	int w;
+	int h;
+};
+
+
 
 class UIPlayerActionButtons : public UIComponent{
 public:
@@ -35,8 +44,9 @@ public:
 		int w1 = width / 3;
 		int y1 = height / 3;
 
-		auto ui_move_button = new UIButton(x, y, width, y1*1);
+		auto ui_move_button = new UIButton(x, y, width, y1 * 1);
 		ui_move_button->setGraphHandle(g_move_);
+		action_button_pos_ = {x,y,width, y1*1};
 
 		auto ui_card_button = new UIButton(x, y + y1*1, width, y1 * 1);
 		ui_card_button->setGraphHandle(g_card_);
@@ -95,9 +105,16 @@ private:
 	int pos_x_ = 0;
 	int width_ = 0;
 
-	int g_move_ = LoadGraph("graphics/ui/move_button.png");
-	int g_card_ = LoadGraph("graphics/ui/card_button.png");
-	int g_turn_end_ = LoadGraph("graphics/ui/turn_end_button.png");
+	UIButtonPos action_button_pos_;
+	UIButtonPos card_button_pos_;
+	UIButtonPos turn_end_button_pos_;
+
+	
+
+	int g_move_ = LoadGraph("graphics/ui/move.png");
+	int g_card_ = LoadGraph("graphics/ui/card.png");
+	int g_turn_end_ = LoadGraph("graphics/ui/turnend.png");
+	int g_select_flame_ = LoadGraph("graphics/ui/select.png");
 
 
 };

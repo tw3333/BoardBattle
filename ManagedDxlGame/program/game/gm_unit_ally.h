@@ -86,7 +86,11 @@ public:
 		current_card_cost_ = (std::max)(0, current_card_cost_ - value);
 	}
 	
-	
+	void SetBaseDeck(std::vector<std::shared_ptr<Card>> deck) { base_deck_ = deck; }
+	std::vector<std::shared_ptr<Card>> GetUseDeck() { return use_deck_; }
+	std::vector<std::shared_ptr<Card>> GetHand() { return hand_; }
+
+
 
 	int GetTauntValue() { return taunt_value_; }
 	void SetTauntValue(int value) { taunt_value_ = value; }
@@ -123,9 +127,9 @@ private:
 	std::vector<Card*> deck_; //デッキ
 	//std::vector<Card*> hand_; //手札
 
-	std::vector <std::shared_ptr<Card*>> base_deck_; //デッキの元
-	std::vector <std::shared_ptr<Card*>> use_deck_; //実際に使用するデッキ
-	std::vector <std::shared_ptr<Card*>> hand_; //手札
+	std::vector <std::shared_ptr<Card>> base_deck_; //デッキの元
+	std::vector <std::shared_ptr<Card>> use_deck_ = base_deck_; //実際に使用するデッキ
+	std::vector <std::shared_ptr<Card>> hand_; //手札
 
 
 

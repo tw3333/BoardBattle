@@ -400,6 +400,11 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 
+	card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
+
+	card_play_->RenderSelectCardRange(turn_ally_,board_);
+
+
 	
 	return true;
 }

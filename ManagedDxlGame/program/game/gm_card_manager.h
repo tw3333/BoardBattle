@@ -34,7 +34,7 @@ public:
 	void CreateDebugCardData();
 	void CreateDebugCardDeck();
 	void CreateDebugCard();
-
+	std::vector<std::shared_ptr<Card>> GetDebugDeck() { return debug_deck_;	}
 
 	//get,set
 	//Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }
