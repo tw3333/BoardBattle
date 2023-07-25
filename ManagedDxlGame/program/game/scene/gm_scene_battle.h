@@ -113,7 +113,7 @@ private:
 	SceneBattleCamera* camera_ = nullptr;
 	//CardView* cardview_ = nullptr;
 	//mgrインスタンス
-	CardManager* cmgr_ = nullptr;
+	CardManager& cmgr_ = CardManager::GetInstance();
 	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
 	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
 

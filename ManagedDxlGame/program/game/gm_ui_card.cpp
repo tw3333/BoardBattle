@@ -35,43 +35,45 @@ void UICard::Render() {
 
 	if (is_enable_) {
 
-		//全体下地
-		DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, color_black_, true);
+		if (card_) {
 
-		DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + width_ - 4, pos_y_ + height_ - 4, color_ground_work_, true);
+			//全体下地
+			DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, color_black_, true);
+			DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + width_ - 4, pos_y_ + height_ - 4, color_ground_work_, true);
 
-		//画像下地
-		//DrawBox(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ -5, pos_y_ + h1_*6 -5, color_black_, false);
-		DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, debug_graph_, true);
+			//画像下地
+			//DrawBox(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ -5, pos_y_ + h1_*6 -5, color_black_, false);
+			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, debug_graph_, true);
+			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, card_->GetCardData()->GetCardTexture()->getDxLibGraphHandle(), true);
 
-		//効果文Box
-		DrawBox(pos_x_ + 5, pos_y_ + h1_ * 6, pos_x_ + w1_ * 10 - 5, pos_y_ + h1_ * 10 - 1, color_black_, true);
-		DrawBox(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, pos_x_ + w1_ * 10 - 7, pos_y_ + h1_ * 10 - 3, color_effect_back_, true);
+			//効果文Box
+			DrawBox(pos_x_ + 5, pos_y_ + h1_ * 6, pos_x_ + w1_ * 10 - 5, pos_y_ + h1_ * 10 - 1, color_black_, true);
+			DrawBox(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, pos_x_ + w1_ * 10 - 7, pos_y_ + h1_ * 10 - 3, color_effect_back_, true);
 
-		for (int i = 0; i < 5; ++i) {
-			int n = i * 15;
-			DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", debug_text_.c_str());
+			for (int i = 0; i < 5; ++i) {
+				int n = i * 15;
+				DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", debug_text_.c_str());
+
+			}
+
+
+			//for (int i = 0; i < split_explanation_.size(); ++i) {
+			//	DrawFormatStringToHandle(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, -1, font_mgr_.GetCardExplanationFont(),"%s", split_explanation_[i]);
+
+
+			//}
+
+			//Costを表示するBox
+			DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + 34, pos_y_ + 34, color_orange_, true);
+			DrawFormatStringToHandle(pos_x_ + 4, pos_y_ + 4, -1, font_mgr_.GetCardCostFont(), "a%d");
+
+
+			//カード名下地
+			DrawBox(pos_x_ + w1_ * 0.5, pos_y_ + h1_ * 5, pos_x_ + w1_ * 9.5, pos_y_ + h1_ * 6, color_cardname_back_, true);
+			DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "デバックカード");
 
 		}
 
-
-		//for (int i = 0; i < split_explanation_.size(); ++i) {
-		//	DrawFormatStringToHandle(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, -1, font_mgr_.GetCardExplanationFont(),"%s", split_explanation_[i]);
-
-
-		//}
-
-
-
-
-		//Costを表示するBox
-		DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + 34, pos_y_ + 34, color_orange_, true);
-		DrawFormatStringToHandle(pos_x_ + 4, pos_y_ + 4, -1, font_mgr_.GetCardCostFont(), "a%d");
-
-
-		//カード名下地
-		DrawBox(pos_x_ + w1_ * 0.5, pos_y_ + h1_ * 5, pos_x_ + w1_ * 9.5, pos_y_ + h1_ * 6, color_cardname_back_, true);
-		DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "デバックカード");
 
 	}
 

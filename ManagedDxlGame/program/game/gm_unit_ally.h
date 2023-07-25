@@ -127,9 +127,9 @@ private:
 	std::vector<Card*> deck_; //デッキ
 	//std::vector<Card*> hand_; //手札
 
-	std::vector <std::shared_ptr<Card>> base_deck_; //デッキの元
-	std::vector <std::shared_ptr<Card>> use_deck_ = base_deck_; //実際に使用するデッキ
-	std::vector <std::shared_ptr<Card>> hand_; //手札
+	std::vector<std::shared_ptr<Card>> base_deck_; //デッキの元
+	std::vector<std::shared_ptr<Card>> use_deck_ = base_deck_; //実際に使用するデッキ
+	std::vector<std::shared_ptr<Card>> hand_; //手札
 
 
 

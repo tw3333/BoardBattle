@@ -29,7 +29,7 @@ void SceneBattle::Initialzie() {
 	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 0, 2);
 
 	for (int i = 0; i < 3; ++i) {
-		party_[i]->SetBaseDeck(cmgr_->GetDebugDeck());
+		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
 	}
 
 	party_[0]->SetTauntValue(500);
@@ -444,9 +444,9 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
 
-	card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
+	//card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
 
-	card_play_->RenderSelectCardRange(turn_ally_,board_);
+	//card_play_->RenderSelectCardRange(turn_ally_,board_);
 
 
 	
