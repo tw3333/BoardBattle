@@ -25,7 +25,9 @@ public:
 	bool IsMouseInside(int mx, int my);
 	
 	void SetCard(Card* card) { card_ = card; }
+	Card* GetCard() { return card_; }
 
+	std::vector<std::string> SplitCardExplanation(std::string explanation, int n);
 
 private:
 
@@ -47,7 +49,9 @@ private:
 	int w1_ = width_ / 10;
 	int h1_ = height_ / 10;
 
-	
+	std::string debug_text_ = "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ";
+
+	std::vector<std::string> split_explanation_;
 
 	FontManager& font_mgr_ = FontManager::GetInstance();
 

@@ -25,6 +25,8 @@ void UICard::Update(float delta_time) {
 		pos_y_ = pre_pos_y_;
 	}
 
+
+
 	SetPos(pos_x_, pos_y_);
 
 }
@@ -45,7 +47,19 @@ void UICard::Render() {
 		//å¯â ï∂Box
 		DrawBox(pos_x_ + 5, pos_y_ + h1_ * 6, pos_x_ + w1_ * 10 - 5, pos_y_ + h1_ * 10 - 1, color_black_, true);
 		DrawBox(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, pos_x_ + w1_ * 10 - 7, pos_y_ + h1_ * 10 - 3, color_effect_back_, true);
-		DrawFormatStringToHandle(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, -1, font_mgr_.GetCardExplanationFont(), "debugÇÊÇ§ÉJÅ[ÉhÇ≈Ç∑");
+
+		for (int i = 0; i < 5; ++i) {
+			int n = i * 15;
+			DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", debug_text_.c_str());
+
+		}
+
+
+		//for (int i = 0; i < split_explanation_.size(); ++i) {
+		//	DrawFormatStringToHandle(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, -1, font_mgr_.GetCardExplanationFont(),"%s", split_explanation_[i]);
+
+
+		//}
 
 
 
@@ -71,4 +85,18 @@ bool UICard::IsMouseInside(int mx, int my) {
 	}
 
 	return false;
+}
+
+std::vector<std::string> UICard::SplitCardExplanation(std::string explanation, int n)
+{
+
+	std::vector<std::string> split;
+	
+	for (int i = 0; i < explanation.size(); ++i) {
+
+		split.push_back(explanation.substr(i,n));
+
+	}
+
+	return split;
 }

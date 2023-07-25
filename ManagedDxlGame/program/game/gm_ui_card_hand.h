@@ -50,7 +50,7 @@ public:
 	void Update(float delta_time) override;
 	void Render() override;
 	void AdjustCardPos(int card_num);
-
+	Card* GetSelectCard() { return select_card_->GetCard(); }
 
 	void SetHandCards(std::vector<Card*> hand_cards) { hand_cards_ = hand_cards; }
 	UICard* GetMouseInsideTopCard(int mx, int my);
@@ -76,18 +76,6 @@ private:
 
 	std::vector<UICard*> ui_cards_;
 	std::vector<UICard*> ui_hand_;
-
-	std::vector<UICard*> ui_hand_1_;
-	std::vector<UICard*> ui_hand_2_;
-	std::vector<UICard*> ui_hand_3_;
-	std::vector<UICard*> ui_hand_4_;
-	std::vector<UICard*> ui_hand_5_;
-	std::vector<UICard*> ui_hand_6_;
-	std::vector<UICard*> ui_hand_7_;
-	std::vector<UICard*> ui_hand_8_;
-	std::vector<UICard*> ui_hand_9_;
-	std::vector<UICard*> ui_hand_10_;
-
 
 
 	std::vector<Card*> hand_cards_;
