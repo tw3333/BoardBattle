@@ -87,6 +87,7 @@ public:
 	}
 	
 	void SetBaseDeck(std::vector<std::shared_ptr<Card>> deck) { base_deck_ = deck; }
+	void SetUseDeck(std::vector<std::shared_ptr<Card>> deck) { use_deck_ = deck; }
 	std::vector<std::shared_ptr<Card>> GetUseDeck() { return use_deck_; }
 	std::vector<std::shared_ptr<Card>> GetHand() { return hand_; }
 
@@ -128,7 +129,7 @@ private:
 	//std::vector<Card*> hand_; //手札
 
 	std::vector<std::shared_ptr<Card>> base_deck_; //デッキの元
-	std::vector<std::shared_ptr<Card>> use_deck_ = base_deck_; //実際に使用するデッキ
+	std::vector<std::shared_ptr<Card>> use_deck_; //実際に使用するデッキ
 	std::vector<std::shared_ptr<Card>> hand_; //手札
 
 

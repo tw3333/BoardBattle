@@ -7,32 +7,36 @@ void UICardHand::Update(float delta_time) {
 	tnl::Vector3 msv = tnl::Input::GetMousePosition();
 
 
-	for (int i = 0; i < debug_count_; ++i) {
+	for (int i = 0; i < ally_hand_.size(); ++i) {
+		ui_hand_[i]->SetCardPtr(ally_hand_[i]);
 		ui_hand_[i]->SetIsEnable(true);
 	}
-	for (int i = debug_count_; i < ui_hand_.size(); ++i) {
-		ui_hand_[i]->SetIsEnable(false);
-	}
 
+	for (int i = ally_hand_.size(); i < ui_hand_.size(); ++i) {
+		//ui_hand_[i]->SetIsEnable(false);
+	}
 	
 	for (auto uc : ui_hand_) {
 
 		if (GetMouseInsideTopCard(msv.x, msv.y) == uc) {
-			continue;
+			uc->SetIsCardUp(true);
 		}
-		uc->SetIsCardUp(false);
+		else {
+			uc->SetIsCardUp(false);
+		}
+
 	}
 
 
 	select_card_ = GetMouseInsideTopCard(msv.x, msv.y);
 	
-	if (select_card_) {
+	//if (select_card_) {
 
-		select_card_->SetIsCardUp(true);
-	}
+	//	select_card_->SetIsCardUp(true);
+	//}
 
 	//AdjustCardPos(hand_cards_.size());
-	AdjustCardPos(debug_count_);
+	AdjustCardPos(ally_hand_.size());
 
 
 
@@ -42,15 +46,15 @@ void UICardHand::Update(float delta_time) {
 		uh->Update(delta_time);
 	}
 
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_R)) {
-		debug_count_ += 1;
-	}
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_R)) {
+	//	debug_count_ += 1;
+	//}
 
 }
 
 void UICardHand::Render() {
 
-	for (int i = 0; i < debug_count_; ++i) {
+	for (int i = 0; i < ally_hand_.size(); ++i) {
 
 		ui_hand_[i]->Render();
 

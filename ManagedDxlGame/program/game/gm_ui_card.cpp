@@ -2,6 +2,7 @@
 
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_card.h"
+#include <vector>
 
 void UICard::Update(float delta_time) {
 
@@ -35,7 +36,7 @@ void UICard::Render() {
 
 	if (is_enable_) {
 
-		if (card_) {
+		if (card_ptr_) {
 
 			//全体下地
 			DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, color_black_, true);
@@ -44,23 +45,21 @@ void UICard::Render() {
 			//画像下地
 			//DrawBox(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ -5, pos_y_ + h1_*6 -5, color_black_, false);
 			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, debug_graph_, true);
-			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, card_->GetCardData()->GetCardTexture()->getDxLibGraphHandle(), true);
+			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, card_ptr_->GetCardData()->GetCardTexture()->getDxLibGraphHandle(), true);
 
 			//効果文Box
 			DrawBox(pos_x_ + 5, pos_y_ + h1_ * 6, pos_x_ + w1_ * 10 - 5, pos_y_ + h1_ * 10 - 1, color_black_, true);
 			DrawBox(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, pos_x_ + w1_ * 10 - 7, pos_y_ + h1_ * 10 - 3, color_effect_back_, true);
 
-			for (int i = 0; i < 5; ++i) {
+			split_explanation_ = SplitCardExplanation(card_ptr_->GetCardData()->GetCardExplanation(), 10);
+
+			for (int i = 0; i < split_explanation_.size(); ++i) {
 				int n = i * 15;
-				DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", debug_text_.c_str());
-
+				DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", split_explanation_[i].c_str());
 			}
-
 
 			//for (int i = 0; i < split_explanation_.size(); ++i) {
 			//	DrawFormatStringToHandle(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, -1, font_mgr_.GetCardExplanationFont(),"%s", split_explanation_[i]);
-
-
 			//}
 
 			//Costを表示するBox
@@ -70,7 +69,8 @@ void UICard::Render() {
 
 			//カード名下地
 			DrawBox(pos_x_ + w1_ * 0.5, pos_y_ + h1_ * 5, pos_x_ + w1_ * 9.5, pos_y_ + h1_ * 6, color_cardname_back_, true);
-			DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "デバックカード");
+			//DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "デバックカード");
+			DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "%s",card_ptr_->GetCardData()->GetCardName().c_str());
 
 		}
 
@@ -89,12 +89,12 @@ bool UICard::IsMouseInside(int mx, int my) {
 	return false;
 }
 
-std::vector<std::string> UICard::SplitCardExplanation(std::string explanation, int n)
+std::vector<std::string> UICard::SplitCardExplanation(std::string explanation, size_t n)
 {
 
 	std::vector<std::string> split;
 	
-	for (int i = 0; i < explanation.size(); ++i) {
+	for (size_t i = 0; i < explanation.length(); i += n) {
 
 		split.push_back(explanation.substr(i,n));
 

@@ -30,6 +30,7 @@ void SceneBattle::Initialzie() {
 
 	for (int i = 0; i < 3; ++i) {
 		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
+		party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
 	}
 
 	party_[0]->SetTauntValue(500);
@@ -67,8 +68,10 @@ void SceneBattle::Initialzie() {
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
 
-	//ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
+	ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
+	ui_card_->SetCardPtr(cmgr_.GetDebugDeck()[0]);
 	ui_card_hand_ = new UICardHand(ui_action_buttons_->GetEndPosX(), h1 * 7 + (h1 / 2), 0, 0);
+	ui_card_hand_->SetAllyHand(cmgr_.GetDebugDeck());
 	ui_card_hand_->Update(0);
 	
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
@@ -101,7 +104,7 @@ void SceneBattle::Update(float delta_time) {
 	ui_turn_view_->Update(delta_time);
 
 	ui_turn_ally_state_->Update(delta_time);
-	//ui_card_->Update(delta_time);
+	ui_card_->Update(delta_time);
 	ui_card_hand_->Update(delta_time);
 
 	phase_.update(delta_time);
@@ -128,7 +131,7 @@ void SceneBattle::Render() {
 	ui_action_buttons_->Render();
 	ui_turn_ally_state_->Render();
 	ui_turn_view_->Render();
-	//ui_card_->Render();
+	ui_card_->Render();
 	ui_card_hand_->Render();
 }
 
@@ -143,6 +146,16 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1*8,60,-1,"MouseX:%d", debug_mp_x);
 	DrawStringEx(w1 * 8, 80, -1, "MouseY:%d", debug_mp_y);
 	DrawStringEx(w1*8,100,-1,"selectsquare[%d][%d]",select_square_->GetSelectSquareRow(),select_square_->GetSelectSquareCol());
+
+	DrawStringEx(w1*8,120,-1,"party1decknum:%d",party_[0]->GetUseDeck().size());
+	DrawStringEx(w1 * 8, 140, -1, "party2decknum:%d", party_[1]->GetUseDeck().size());
+	DrawStringEx(w1 * 8, 160, -1, "party3decknum:%d", party_[2]->GetUseDeck().size());
+
+	DrawStringEx(w1 * 8, 180, -1, "party1decknum:%d", party_[0]->GetHand().size());
+	DrawStringEx(w1 * 8, 200, -1, "party2decknum:%d", party_[1]->GetHand().size());
+	DrawStringEx(w1 * 8, 220, -1, "party3decknum:%d", party_[2]->GetHand().size());
+
+
 	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
 	//DrawStringEx(w1 * 8, 120, -1, "selectSquare[%d][%d]",ss_->getSelectSquareRow(),ss_->getSelectSquareCol());
 
@@ -428,6 +441,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		}
 
 		turn_ally_->SetIsDrewInitCard(true);
+		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 	}
 	else if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetUseDeck().empty()) {
 		
@@ -438,7 +452,9 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		int random_index = distribution(engine); // generate a random index
 
 		turn_ally_->GetHand().emplace_back(turn_ally_->GetUseDeck()[random_index]);
+		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 	}
+
 
 
 	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
@@ -448,7 +464,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 	//card_play_->RenderSelectCardRange(turn_ally_,board_);
 
-
+	ui_card_hand_->Update(delta_time);
 	
 	return true;
 }

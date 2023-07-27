@@ -26,22 +26,31 @@ public:
 	
 	void SetCard(Card* card) { card_ = card; }
 	Card* GetCard() { return card_; }
+	void SetCardPtr(std::shared_ptr<Card> card_ptr) { card_ptr_ = card_ptr; }
 
-	std::vector<std::string> SplitCardExplanation(std::string explanation, int n);
+	std::vector<std::string> SplitCardExplanation(std::string explanation, size_t n);
 
 private:
 
 	Card* card_ = nullptr;
+	std::shared_ptr<Card> card_ptr_ = nullptr;
 
 	bool is_enable_ = true;
 
-	int pos_x_;
-	int pos_y_;
-	int width_;
-	int height_;
+	//int pos_x_;
+	//int pos_y_;
+	//int width_;
+	//int height_;
+	//int pre_pos_y_ = pos_y_; //規定位置
+	//int card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
 
-	int pre_pos_y_ = pos_y_; //規定位置
-	int card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
+	float pos_x_;
+	float pos_y_;
+	float width_;
+	float height_;
+	float pre_pos_y_ = pos_y_; //規定位置
+	float card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
+
 
 
 	bool card_up_ = false;
@@ -49,7 +58,8 @@ private:
 	int w1_ = width_ / 10;
 	int h1_ = height_ / 10;
 
-	std::string debug_text_ = "ああああああああああ";
+	std::string debug_text_ = "デバック用";
+	std::string debug_text2_ = "カードです";
 
 	std::vector<std::string> split_explanation_;
 

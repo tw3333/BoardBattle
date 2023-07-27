@@ -21,7 +21,7 @@ void CardManager::CreateDebugCardData() {
 
 
 
-	debug_card_data_.emplace_back(new CardData(0,1,false,0,"debug1","debug用カードです。","graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(0,1,false,0,"debug1","ああああああああああああああああああああ","graphics/card/c1/beeding-heart.png"));
 
 	debug_card_data_[0]->AddCardEffect(std::make_shared<CardEffectHeal>(5));
 	debug_card_data_[0]->AddCardRange(std::make_shared<CardRangeSelf>());

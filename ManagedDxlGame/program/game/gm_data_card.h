@@ -56,6 +56,8 @@ private:
 	
 	std::string card_name_;
 	std::string card_explanation_; //カードの効果文
+	std::vector<std::string> split_explanation_; //カードの効果文を分割したもの
+
 
 	std::shared_ptr <dxe::Texture> card_texture_;
 	//std::vector<std::shared_ptr	<CardEffect*>> card_effect_list_;
