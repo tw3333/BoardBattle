@@ -88,6 +88,8 @@ public:
 	
 	void SetBaseDeck(std::vector<std::shared_ptr<Card>> deck) { base_deck_ = deck; }
 	void SetUseDeck(std::vector<std::shared_ptr<Card>> deck) { use_deck_ = deck; }
+	void SetHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
+	void AddCardToHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
 	std::vector<std::shared_ptr<Card>> GetUseDeck() { return use_deck_; }
 	std::vector<std::shared_ptr<Card>> GetHand() { return hand_; }
 
@@ -101,6 +103,8 @@ public:
 	//Card
 	void SetIsDrewInitCard(bool flag) { is_drew_init_card_ = flag; }
 	bool GetIsDrewInitCard() { return is_drew_init_card_; }
+	void SetIsDrew(bool flag) { is_drew_ = flag; }
+	bool GetIsDrew() { return is_drew_; }
 
 
 private:
@@ -124,7 +128,8 @@ private:
 
 	
 	//Card
-	bool is_drew_init_card_ = false; //初期カードを引いたかどうか
+	bool is_drew_ = false;
+	bool is_drew_init_card_ = false; //初期手札を引いたかどうか
 	std::vector<Card*> deck_; //デッキ
 	//std::vector<Card*> hand_; //手札
 

@@ -34,6 +34,8 @@ void UICard::Update(float delta_time) {
 
 void UICard::Render() {
 
+	DrawStringEx(500,40,-1,"Render:UICard");
+
 	if (is_enable_) {
 
 		if (card_ptr_) {

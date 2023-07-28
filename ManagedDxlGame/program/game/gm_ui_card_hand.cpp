@@ -7,13 +7,22 @@ void UICardHand::Update(float delta_time) {
 	tnl::Vector3 msv = tnl::Input::GetMousePosition();
 
 
-	for (int i = 0; i < ally_hand_.size(); ++i) {
-		ui_hand_[i]->SetCardPtr(ally_hand_[i]);
-		ui_hand_[i]->SetIsEnable(true);
-	}
+	//for (int i = 0; i < ally_hand_.size(); ++i) {
+	//	ui_hand_[i]->SetCardPtr(ally_hand_[i]);
+	//	//ui_hand_[i]->SetIsEnable(true); 
+	//}
 
-	for (int i = ally_hand_.size(); i < ui_hand_.size(); ++i) {
-		//ui_hand_[i]->SetIsEnable(false);
+	//for (int i = ally_hand_.size(); i < ui_hand_.size(); ++i) {
+	//	//ui_hand_[i]->SetIsEnable(false);
+	//}
+
+	for (int i = 0; i < ui_hand_.size(); ++i) {
+		if (i < ally_hand_.size()) {
+			ui_hand_[i]->SetIsEnable(true);
+		}
+		else {
+			ui_hand_[i]->SetIsEnable(false);
+		}
 	}
 	
 	for (auto uc : ui_hand_) {

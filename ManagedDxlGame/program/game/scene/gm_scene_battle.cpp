@@ -68,11 +68,11 @@ void SceneBattle::Initialzie() {
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
 
-	ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
-	ui_card_->SetCardPtr(cmgr_.GetDebugDeck()[0]);
+	//ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
+	//ui_card_->SetCardPtr(cmgr_.GetDebugDeck()[0]);
 	ui_card_hand_ = new UICardHand(ui_action_buttons_->GetEndPosX(), h1 * 7 + (h1 / 2), 0, 0);
-	ui_card_hand_->SetAllyHand(cmgr_.GetDebugDeck());
-	ui_card_hand_->Update(0);
+	ui_card_hand_->SetAllyHand(party_[2]->GetUseDeck());
+	//ui_card_hand_->Update(0);
 	
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
@@ -84,7 +84,8 @@ void SceneBattle::Initialzie() {
 }
 
 void SceneBattle::Update(float delta_time) {
-
+	phase_.update(delta_time);
+	
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 	msv_ = tnl::Input::GetMousePosition(); 
 	board_->Update(delta_time);
@@ -104,11 +105,10 @@ void SceneBattle::Update(float delta_time) {
 	ui_turn_view_->Update(delta_time);
 
 	ui_turn_ally_state_->Update(delta_time);
-	ui_card_->Update(delta_time);
+	//ui_card_->Update(delta_time);
 	ui_card_hand_->Update(delta_time);
 
-	phase_.update(delta_time);
-	
+
 }
 
 void SceneBattle::Render() {
@@ -131,7 +131,7 @@ void SceneBattle::Render() {
 	ui_action_buttons_->Render();
 	ui_turn_ally_state_->Render();
 	ui_turn_view_->Render();
-	ui_card_->Render();
+	//ui_card_->Render();
 	ui_card_hand_->Render();
 }
 
@@ -151,9 +151,9 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 140, -1, "party2decknum:%d", party_[1]->GetUseDeck().size());
 	DrawStringEx(w1 * 8, 160, -1, "party3decknum:%d", party_[2]->GetUseDeck().size());
 
-	DrawStringEx(w1 * 8, 180, -1, "party1decknum:%d", party_[0]->GetHand().size());
-	DrawStringEx(w1 * 8, 200, -1, "party2decknum:%d", party_[1]->GetHand().size());
-	DrawStringEx(w1 * 8, 220, -1, "party3decknum:%d", party_[2]->GetHand().size());
+	DrawStringEx(w1 * 8, 180, -1, "party1handnum:%d", party_[0]->GetHand().size());
+	DrawStringEx(w1 * 8, 200, -1, "party2handnum:%d", party_[1]->GetHand().size());
+	DrawStringEx(w1 * 8, 220, -1, "party3handnum:%d", party_[2]->GetHand().size());
 
 
 	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
@@ -423,9 +423,9 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 
-	//最初の5枚ドロー
+		//最初の5枚ドロー
 	if (!turn_ally_->GetIsDrewInitCard()) {
-		
+
 		std::vector<int> indices(turn_ally_->GetUseDeck().size());
 		std::iota(indices.begin(), indices.end(), 0);
 
@@ -436,35 +436,40 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 		if (turn_ally_->GetUseDeck().size() >= 5) { // only copy if there are at least 5 elements
 			for (int i = 0; i < 5; ++i) { // copy the first 5 elements to the new vector
-				turn_ally_->GetHand().push_back(turn_ally_->GetUseDeck()[indices[i]]);
+				turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[indices[i]]);
 			}
 		}
+	
+			//ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
+			ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
-		turn_ally_->SetIsDrewInitCard(true);
-		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+			turn_ally_->SetIsDrewInitCard(true);
+			turn_ally_->SetIsDrew(true);
 	}
-	else if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetUseDeck().empty()) {
-		
+	
+	if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew() && !turn_ally_->GetUseDeck().empty()) {
+
 		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 		std::default_random_engine engine(seed);
-
+			
 		std::uniform_int_distribution<int> distribution(0, turn_ally_->GetUseDeck().size() - 1);
 		int random_index = distribution(engine); // generate a random index
 
-		turn_ally_->GetHand().emplace_back(turn_ally_->GetUseDeck()[random_index]);
+		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[random_index]);
+		//turn_ally_->SetHand();
 		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		turn_ally_->SetIsDrew(true);
 	}
 
 
-
-	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+	//ここだと代入できる
+	//turn_ally_->SetHand(ui_card_hand_->GetAllyHand());
+	ui_card_hand_->SetAllyHand(turn_ally_->GetHand()); 
 
 
 	//card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
 
 	//card_play_->RenderSelectCardRange(turn_ally_,board_);
-
-	ui_card_hand_->Update(delta_time);
 	
 	return true;
 }
@@ -482,13 +487,13 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 
-	turn_ally_->SetIsActed(true);
+	//各Allyのflagリセット
+	turn_ally_->SetIsDrew(false);
 
+	turn_ally_->SetIsActed(true);
 
 	phase_.change(&SceneBattle::ResetActedCal);
 
-
-	
 	return true;
 }
 

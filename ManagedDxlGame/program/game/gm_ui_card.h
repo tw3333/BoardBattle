@@ -37,19 +37,19 @@ private:
 
 	bool is_enable_ = true;
 
-	//int pos_x_;
-	//int pos_y_;
-	//int width_;
-	//int height_;
-	//int pre_pos_y_ = pos_y_; //規定位置
-	//int card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
+	int pos_x_;
+	int pos_y_;
+	int width_;
+	int height_;
+	int pre_pos_y_ = pos_y_; //規定位置
+	int card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
 
-	float pos_x_;
-	float pos_y_;
-	float width_;
-	float height_;
-	float pre_pos_y_ = pos_y_; //規定位置
-	float card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
+	//float pos_x_;
+	//float pos_y_;
+	//float width_;
+	//float height_;
+	//float pre_pos_y_ = pos_y_; //規定位置
+	//float card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
 
 
 
