@@ -58,6 +58,8 @@ public:
 	void SetAllyHand(std::vector<std::shared_ptr<Card>> ally_hand) { ally_hand_ = ally_hand; }
 	std::vector<std::shared_ptr<Card>> GetAllyHand() { return ally_hand_; }
 
+	void ResetAllyHand() { ally_hand_.clear(); }
+
 private:
 
 

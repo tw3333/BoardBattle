@@ -15,8 +15,8 @@ public:
 
 	void Update(float delta_time) override;
 	void Render() override;
-	void SetIsEnable(bool flag) { is_enable_ = flag; }
-	bool GetIsEnable() { return is_enable_; }
+	void SetIsRender(bool flag) { is_render_ = flag; }
+	bool GetIsRender() { return is_render_; }
 	void SetIsCardUp(bool flag) { card_up_ = flag; }
 	bool GetIsCardUp() { return card_up_; }
 	void SetPos(int pos_x, int pos_y) { pos_x_ = pos_x; pos_y_ = pos_y; }
@@ -30,12 +30,17 @@ public:
 
 	std::vector<std::string> SplitCardExplanation(std::string explanation, size_t n);
 
+	int debug_cnt_ = 0;
+	int debug_txt_y_ = 0;
+
 private:
 
 	Card* card_ = nullptr;
 	std::shared_ptr<Card> card_ptr_ = nullptr;
 
-	bool is_enable_ = true;
+	
+	bool is_render_ = false;
+
 
 	int pos_x_;
 	int pos_y_;

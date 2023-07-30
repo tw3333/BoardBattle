@@ -18,10 +18,14 @@ void UICardHand::Update(float delta_time) {
 
 	for (int i = 0; i < ui_hand_.size(); ++i) {
 		if (i < ally_hand_.size()) {
-			ui_hand_[i]->SetIsEnable(true);
+			ui_hand_[i]->SetCardPtr(ally_hand_[i]);
+			ui_hand_[i]->SetIsRender(true);
+			ui_hand_[i]->debug_cnt_ = i;
+			ui_hand_[i]->debug_txt_y_ = i * 20;
 		}
 		else {
-			ui_hand_[i]->SetIsEnable(false);
+			ui_hand_[i]->SetCardPtr(nullptr);
+			ui_hand_[i]->SetIsRender(false);
 		}
 	}
 	
@@ -96,9 +100,7 @@ void UICardHand::AdjustCardPos(int card_num) {
 			ui_hand_[i]->SetPos(ui_hand_[i - 1]->GetEndPosX() - overlap_, pos_y_);
 		}
 	}
-	else {
-		return;
-	}
+
 
 }
 
@@ -107,7 +109,7 @@ UICard* UICardHand::GetMouseInsideTopCard(int mx, int my)
 	for (auto it = ui_hand_.rbegin(); it != ui_hand_.rend(); ++it) {
 		
 		if ((*it)->IsMouseInside(mx,my)) {
-			if ((*it)->GetIsEnable() == true) {
+			if ((*it)->GetIsRender() == true) {
 				return *it;
 
 			}		

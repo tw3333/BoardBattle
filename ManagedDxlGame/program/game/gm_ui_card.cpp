@@ -1,5 +1,6 @@
 #include "gm_ui_card.h"
 
+#include "DxLib.h"
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_card.h"
 #include <vector>
@@ -36,9 +37,12 @@ void UICard::Render() {
 
 	DrawStringEx(500,40,-1,"Render:UICard");
 
-	if (is_enable_) {
+
+	if (is_render_) {
 
 		if (card_ptr_) {
+
+			DrawStringEx(500, 60 + debug_txt_y_, -1, "RenderUICard[%d]", debug_cnt_);
 
 			//‘S‘Ì‰º’n
 			DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, color_black_, true);
@@ -46,7 +50,7 @@ void UICard::Render() {
 
 			//‰æ‘œ‰º’n
 			//DrawBox(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ -5, pos_y_ + h1_*6 -5, color_black_, false);
-			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, debug_graph_, true);
+			//DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, debug_graph_, true);
 			DrawExtendGraph(pos_x_ + 5, pos_y_ + 5, pos_x_ + width_ - 5, pos_y_ + h1_ * 6 - 5, card_ptr_->GetCardData()->GetCardTexture()->getDxLibGraphHandle(), true);
 
 			//Œø‰Ê•¶Box

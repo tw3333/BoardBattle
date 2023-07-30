@@ -22,6 +22,16 @@ void CardManager::CreateDebugCardData() {
 
 
 	debug_card_data_.emplace_back(new CardData(0,1,false,0,"debug1","‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ","graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(1, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/bird-claw.png"));
+	debug_card_data_.emplace_back(new CardData(2, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/bloody-stash.png"));
+	debug_card_data_.emplace_back(new CardData(3, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/circle-claws.png"));
+	debug_card_data_.emplace_back(new CardData(4, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/claw-slashes.png"));
+	debug_card_data_.emplace_back(new CardData(5, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/cross-mark.png"));
+	debug_card_data_.emplace_back(new CardData(6, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/flaming-claw.png"));
+	debug_card_data_.emplace_back(new CardData(7, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/foot-trip.png"));
+	debug_card_data_.emplace_back(new CardData(8, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/grasping-claws.png"));
+	debug_card_data_.emplace_back(new CardData(9, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/healing.png"));
+
 
 	debug_card_data_[0]->AddCardEffect(std::make_shared<CardEffectHeal>(5));
 	debug_card_data_[0]->AddCardRange(std::make_shared<CardRangeSelf>());
@@ -29,7 +39,7 @@ void CardManager::CreateDebugCardData() {
 
 	for (int i = 0; i < 10; ++i) {
 
-		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
+		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[i])));
 	}
 
 
@@ -39,7 +49,7 @@ void CardManager::CreateDebugCardDeck() {
 
 	for (int i = 0; i < 10; ++i) {
 		
-		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[0])));
+		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[i])));
 	}
 
 

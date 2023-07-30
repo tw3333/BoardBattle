@@ -71,7 +71,6 @@ void SceneBattle::Initialzie() {
 	//ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
 	//ui_card_->SetCardPtr(cmgr_.GetDebugDeck()[0]);
 	ui_card_hand_ = new UICardHand(ui_action_buttons_->GetEndPosX(), h1 * 7 + (h1 / 2), 0, 0);
-	ui_card_hand_->SetAllyHand(party_[2]->GetUseDeck());
 	//ui_card_hand_->Update(0);
 	
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
@@ -340,6 +339,8 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 
+	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
 		phase_.change(&SceneBattle::PhaseDebug);
 
@@ -423,7 +424,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 
-		//最初の5枚ドロー
+	//最初の5枚ドロー
 	if (!turn_ally_->GetIsDrewInitCard()) {
 
 		std::vector<int> indices(turn_ally_->GetUseDeck().size());
@@ -440,13 +441,14 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 			}
 		}
 	
-			//ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
-			ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		//ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
+		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
-			turn_ally_->SetIsDrewInitCard(true);
-			turn_ally_->SetIsDrew(true);
+		turn_ally_->SetIsDrewInitCard(true);
+		turn_ally_->SetIsDrew(true);
 	}
 	
+	//１枚ドロー
 	if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew() && !turn_ally_->GetUseDeck().empty()) {
 
 		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -456,7 +458,6 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		int random_index = distribution(engine); // generate a random index
 
 		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[random_index]);
-		//turn_ally_->SetHand();
 		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 		turn_ally_->SetIsDrew(true);
 	}
@@ -464,8 +465,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 	//ここだと代入できる
 	//turn_ally_->SetHand(ui_card_hand_->GetAllyHand());
-	ui_card_hand_->SetAllyHand(turn_ally_->GetHand()); 
-
+	//ui_card_hand_->SetAllyHand(turn_ally_->GetHand()); 
 
 	//card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
 
