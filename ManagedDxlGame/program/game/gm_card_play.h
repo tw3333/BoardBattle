@@ -1,4 +1,7 @@
 #pragma once
+#include <memory>
+#include <vector>
+
 #include "gm_card.h"
 
 #include "gm_card_effect.h"
@@ -20,19 +23,20 @@ public:
 	void Render();
 
 	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board);
+	void DebugRender();
 
 	void EffectExecute();
 
 
-	void SetSelectCard(Card* card) { select_card_ = card; }
+	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
 	void SetCard(Card* card) { play_card_ = card; }
 
 
 
 private:
 
-
-	Card* select_card_ = nullptr;
+	std::shared_ptr<Card> select_card_ = nullptr;
+	
 	Card* play_card_ = nullptr;
 
 	std::vector<CardEffect*> card_effect_list_;

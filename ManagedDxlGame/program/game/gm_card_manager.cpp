@@ -22,15 +22,15 @@ void CardManager::CreateDebugCardData() {
 
 
 	debug_card_data_.emplace_back(new CardData(0,1,false,0,"debug1","‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ","graphics/card/c1/beeding-heart.png"));
-	debug_card_data_.emplace_back(new CardData(1, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/bird-claw.png"));
-	debug_card_data_.emplace_back(new CardData(2, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/bloody-stash.png"));
-	debug_card_data_.emplace_back(new CardData(3, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/circle-claws.png"));
-	debug_card_data_.emplace_back(new CardData(4, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/claw-slashes.png"));
-	debug_card_data_.emplace_back(new CardData(5, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/cross-mark.png"));
-	debug_card_data_.emplace_back(new CardData(6, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/flaming-claw.png"));
-	debug_card_data_.emplace_back(new CardData(7, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/foot-trip.png"));
-	debug_card_data_.emplace_back(new CardData(8, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/grasping-claws.png"));
-	debug_card_data_.emplace_back(new CardData(9, 1, false, 0, "debug1", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/healing.png"));
+	debug_card_data_.emplace_back(new CardData(1, 1, false, 0, "debug2", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/bird-claw.png"));
+	debug_card_data_.emplace_back(new CardData(2, 1, false, 0, "debug3", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/bloody-stash.png"));
+	debug_card_data_.emplace_back(new CardData(3, 1, false, 0, "debug4", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/circle-claws.png"));
+	debug_card_data_.emplace_back(new CardData(4, 1, false, 0, "debug5", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/claw-slashes.png"));
+	debug_card_data_.emplace_back(new CardData(5, 1, false, 0, "debug6", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/cross-mark.png"));
+	debug_card_data_.emplace_back(new CardData(6, 1, false, 0, "debug7", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/flaming-claw.png"));
+	debug_card_data_.emplace_back(new CardData(7, 1, false, 0, "debug8", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/foot-trip.png"));
+	debug_card_data_.emplace_back(new CardData(8, 1, false, 0, "debug9", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/grasping-claws.png"));
+	debug_card_data_.emplace_back(new CardData(9, 1, false, 0, "debug10", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/healing.png"));
 
 
 	debug_card_data_[0]->AddCardEffect(std::make_shared<CardEffectHeal>(5));

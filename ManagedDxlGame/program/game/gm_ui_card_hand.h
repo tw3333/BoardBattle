@@ -51,6 +51,7 @@ public:
 	void Render() override;
 	void AdjustCardPos(int card_num);
 	Card* GetSelectCard() { return select_card_->GetCard(); }
+	std::shared_ptr<Card> GetSelectCardPtr() { if (select_card_) { return select_card_->GetCardPtr();} }
 
 	void SetHandCards(std::vector<Card*> hand_cards) { hand_cards_ = hand_cards; }
 	UICard* GetMouseInsideTopCard(int mx, int my);
@@ -77,6 +78,7 @@ private:
 	int total_width_ = pos_x_ + card_w *5;
 
 	UICard* select_card_ = nullptr;
+
 
 	std::vector<UICard*> ui_cards_;
 	std::vector<UICard*> ui_hand_;

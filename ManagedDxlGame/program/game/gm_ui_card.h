@@ -27,6 +27,7 @@ public:
 	void SetCard(Card* card) { card_ = card; }
 	Card* GetCard() { return card_; }
 	void SetCardPtr(std::shared_ptr<Card> card_ptr) { card_ptr_ = card_ptr; }
+	std::shared_ptr<Card> GetCardPtr() { if (card_ptr_) { return card_ptr_;} }
 
 	std::vector<std::string> SplitCardExplanation(std::string explanation, size_t n);
 

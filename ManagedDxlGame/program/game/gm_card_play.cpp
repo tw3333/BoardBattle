@@ -17,13 +17,26 @@ void CardPlay::RenderSelectCardRange(UnitAlly* turn_ally, Board* board) {
 
 	if (select_card_) {
 
-		for (auto r : select_card_->GetCardRangeList()) {
+		if (!select_card_->GetCardEffectList().empty()) {
 
-			r->DisplayRange(turn_ally, board);
+			for (auto r : select_card_->GetCardRangeList()) {
+
+				r->DisplayRange(turn_ally, board);
+
+			}
 
 		}
 
 	}
 
+
+}
+
+void CardPlay::DebugRender() {
+
+	if (select_card_) {
+
+		DrawStringEx(300,0,-1,"選択されているカード：%s",select_card_->GetCardData()->GetCardName());
+	}
 
 }

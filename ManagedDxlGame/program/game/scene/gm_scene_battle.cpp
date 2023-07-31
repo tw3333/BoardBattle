@@ -420,11 +420,12 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	return true;
 }
 
+
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 
-	//最初の5枚ドロー
+	//最初の5枚ドロー処理
 	if (!turn_ally_->GetIsDrewInitCard()) {
 
 		std::vector<int> indices(turn_ally_->GetUseDeck().size());
@@ -448,7 +449,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		turn_ally_->SetIsDrew(true);
 	}
 	
-	//１枚ドロー
+	//１枚ドロー処理
 	if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew() && !turn_ally_->GetUseDeck().empty()) {
 
 		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -463,13 +464,13 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	}
 
 
-	//ここだと代入できる
-	//turn_ally_->SetHand(ui_card_hand_->GetAllyHand());
-	//ui_card_hand_->SetAllyHand(turn_ally_->GetHand()); 
+	if (ui_card_hand_->GetSelectCardPtr()) {
 
-	//card_play_->SetSelectCard(ui_card_hand_->GetSelectCard());
+		card_play_->SetSelectCard(ui_card_hand_->GetSelectCardPtr());
+		card_play_->DebugRender();
 
-	//card_play_->RenderSelectCardRange(turn_ally_,board_);
+	}
+
 	
 	return true;
 }
