@@ -1,5 +1,6 @@
 #pragma once
 
+
 class SoundManager {
 public:
 
@@ -11,9 +12,10 @@ public:
 	//コピーコンストラクタ削除
 	SoundManager(const SoundManager&) = delete;
 	SoundManager& operator=(const SoundManager&) = delete;
+
 	//ムーブコンストラクタ削除
 	SoundManager(SoundManager&&) = delete;
-	SoundManager& operator = (SoundManager&&) = delete;
+	SoundManager& operator=(SoundManager&&) = delete;
 
 
 
@@ -22,12 +24,10 @@ public:
 
 private:
 
-
-
 	SoundManager() = default;
 	~SoundManager() = default;
 
 
 
-	
+
 };

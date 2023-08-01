@@ -215,6 +215,7 @@
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
     <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp" />
+    <ClCompile Include="program\game\gm_sound_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_ally_action.cpp" />
     <ClCompile Include="program\game\gm_ui_card.cpp" />
     <ClCompile Include="program\game\gm_ui_card_cost.cpp" />
@@ -320,6 +321,7 @@
     <ClInclude Include="program\game\gm_phase_manager.h" />
     <ClInclude Include="program\game\gm_scene_debug_battle_.h" />
     <ClInclude Include="program\game\gm_slime_behavior_strategy.h" />
+    <ClInclude Include="program\game\gm_sound_,manager.h" />
     <ClInclude Include="program\game\gm_ui_ally_action.h" />
     <ClInclude Include="program\game\gm_ui_card.h" />
     <ClInclude Include="program\game\gm_ui_card_cost.h" />
