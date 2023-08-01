@@ -65,7 +65,14 @@ void CardPlay::RenderSelectCardRange(UnitAlly* turn_ally, Board* board) {
 
 	//ŽŽ‚µˆ—
 	if (select_uicard_) {
-		select_uicard_->GetCardPtr()->GetCardData()->card_range_->DisplayRange(turn_ally, board);
+
+		for (auto a: select_uicard_->GetCardPtr()->GetCardData()->GetCardRangeList()) {
+			a->DisplayRange(turn_ally,board);
+
+		}
+
+
+		//select_uicard_->GetCardPtr()->GetCardData()->card_range_->DisplayRange(turn_ally, board);
 	}
 	else if(!select_uicard_) {
 		board->ResetRangeTile();

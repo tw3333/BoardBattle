@@ -34,7 +34,9 @@ void CardManager::CreateDebugCardData() {
 
 	for (auto dcd : debug_card_data_) {
 
-		dcd->AddCardRange(std::make_shared<CardRangeSelf>());
+		//dcd->AddCardRange(std::make_shared<CardRangeSelf>());
+		dcd->AddCardRange(std::make_shared<CardRangeLeft>(0,3,Target::All));
+
 		dcd->card_range_ = new CardRangeSelf();
 		dcd->AddCardEffect(std::make_shared<CardEffectHeal>(5));
 
