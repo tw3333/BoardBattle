@@ -433,15 +433,18 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		card_play_->SetSelectCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
 	}
 
+	card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
+
 
 
 	card_play_->RenderSelectCardRange(turn_ally_, board_);
-
+	
 
 
 	return true;
 }
 
+//PhasePlayerCardへ移行する前にカードを引いてなかったら、処理を行うPhase
 bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
 	DrawStringEx(500, 0, -1, "PhaseDrawCard");

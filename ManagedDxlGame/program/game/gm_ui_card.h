@@ -8,6 +8,8 @@ class Card;
 class UICard : public UIComponent {
 public:
 
+	//左頂点座標を指定、そこからw,hの大きさに描写
+	//arg1,2...左頂点座標 arg3,4...UICardの大きさ
 	UICard(int posx, int posy, int width, int height)
 	:pos_x_(posx), pos_y_(posy), width_(width), height_(height)
 	{}

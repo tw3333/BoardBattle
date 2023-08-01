@@ -130,6 +130,10 @@ void Board::ResetRangeTile() {
 		for (int j = 0; j < 10; ++j) {
 
 			board_squares_[i][j]->SetRenderRangeTile(false);
+			board_squares_[i][j]->SetRenderCandidateTile(false);
+			board_squares_[i][j]->SetRenderTargetTile(false);
+
+
 
 		}
 	}

@@ -9,6 +9,8 @@ void CardRangeSelf::DisplayRange(UnitAlly* act_ally, Board* board)
 {
 	//actally‚Ì‚¢‚éˆÊ’u‚ðŽË’ö‚É
 	board->getBoardSquares()[act_ally->GetBoardPos().row][act_ally->GetBoardPos().col]->SetRenderRangeTile(true);
+	board->getBoardSquares()[act_ally->GetBoardPos().row][act_ally->GetBoardPos().col]->SetRenderCandidateTile(true);
+	board->getBoardSquares()[act_ally->GetBoardPos().row][act_ally->GetBoardPos().col]->SetRenderTargetTile(true);
 
 
 

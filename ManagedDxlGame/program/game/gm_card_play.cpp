@@ -11,6 +11,7 @@
 #include "gm_unit_enemy.h"
 
 #include "gm_board.h"
+#include "gm_ui_card.h"
 
 void CardPlay::Render() {
 
@@ -34,32 +35,40 @@ void CardPlay::RenderSelectCardRange(UnitAlly* turn_ally, Board* board) {
 
 	//}
 
-	if (select_card_) {
+	//if (select_card_) {
 
-		//if (!select_card_->GetCardData()->debug_card_range_list_.empty()) {
-		//	
-		//	DrawStringEx(0,400,-1,"RangeList‚É‚Í‰½‚©“ü‚Á‚Ä‚¢‚Ü‚·");
+	//	//if (!select_card_->GetCardData()->debug_card_range_list_.empty()) {
+	//	//	
+	//	//	DrawStringEx(0,400,-1,"RangeList‚É‚Í‰½‚©“ü‚Á‚Ä‚¢‚Ü‚·");
 
-		//	//for (auto r : select_card_->GetCardData()->debug_card_range_list_) {
+	//	//	//for (auto r : select_card_->GetCardData()->debug_card_range_list_) {
 
-		//	//	r->DisplayRange(turn_ally, board);
+	//	//	//	r->DisplayRange(turn_ally, board);
 
-		//	//}
+	//	//	//}
 
-		//	for (int i = 0; i < select_card_->GetCardData()->debug_card_range_list_.size(); ++i) {
+	//	//	for (int i = 0; i < select_card_->GetCardData()->debug_card_range_list_.size(); ++i) {
 
-		//		select_card_->GetCardData()->debug_card_range_list_[i]->DisplayRange(turn_ally, board);
-		//	}
+	//	//		select_card_->GetCardData()->debug_card_range_list_[i]->DisplayRange(turn_ally, board);
+	//	//	}
 
-		//}
+	//	//}
 
-		select_card_->GetCardData()->card_range_->DisplayRange(turn_ally, board);
+	//	select_card_->GetCardData()->card_range_->DisplayRange(turn_ally, board);
 
+	//}
+	//else if (!select_card_) {
+
+	//	board->ResetRangeTile();
+
+	//}
+
+	//ŽŽ‚µˆ—
+	if (select_uicard_) {
+		select_uicard_->GetCardPtr()->GetCardData()->card_range_->DisplayRange(turn_ally, board);
 	}
-	else if (!select_card_) {
-
+	else if(!select_uicard_) {
 		board->ResetRangeTile();
-
 	}
 
 

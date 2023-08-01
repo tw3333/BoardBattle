@@ -11,6 +11,7 @@
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"
 
+class UICard;
 
 class CardPlay {
 public:
@@ -30,12 +31,14 @@ public:
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
 	void SetCard(Card* card) { play_card_ = card; }
-
+	void SetSelectUICard(UICard* uicard) { select_uicard_ = uicard; }
 
 
 private:
 
 	std::shared_ptr<Card> select_card_ = nullptr;
+
+	UICard* select_uicard_ = nullptr;
 	
 
 
