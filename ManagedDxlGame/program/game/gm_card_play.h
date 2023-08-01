@@ -13,6 +13,8 @@
 
 class UICard;
 
+//射程の表示、効果の発動、SEの再生、Animの再生をこのクラスで行う
+
 class CardPlay {
 public:
 
