@@ -24,7 +24,8 @@ void UISceneBattleMediator::NotifyPlayerActionButton(bool is_enable, std::string
 		if (tag == "CardButton") {
 
 			DrawStringEx(0, 500, -1, "CardButton");
-			phase_->change(&SceneBattle::PhasePlayerActionCard);
+			phase_->change(&SceneBattle::PhaseDrawCard);
+
 
 			
 		}

@@ -1,6 +1,8 @@
 #include "gm_ui_card_hand.h"
 
 #include <algorithm>
+#include "gm_data_card.h"
+#include "gm_card_range.h"
 
 void UICardHand::Update(float delta_time) {
 
@@ -41,14 +43,12 @@ void UICardHand::Update(float delta_time) {
 	}
 
 
-	select_card_ = GetMouseInsideTopCard(msv.x, msv.y);
+	select_uicard_ = GetMouseInsideTopCard(msv.x, msv.y);
+
 	
-	//if (select_card_) {
 
-	//	select_card_->SetIsCardUp(true);
-	//}
 
-	//AdjustCardPos(hand_cards_.size());
+
 	AdjustCardPos(ally_hand_.size());
 
 
@@ -73,8 +73,9 @@ void UICardHand::Render() {
 
 	}
 
-	if (select_card_) {
-		select_card_->Render();
+	if (select_uicard_) {
+		select_uicard_->Render();
+
 	}
 
 

@@ -24,10 +24,8 @@ public:
 	int GetEndPosX() { return pos_x_ + width_; }
 	bool IsMouseInside(int mx, int my);
 	
-	void SetCard(Card* card) { card_ = card; }
-	Card* GetCard() { return card_; }
 	void SetCardPtr(std::shared_ptr<Card> card_ptr) { card_ptr_ = card_ptr; }
-	std::shared_ptr<Card> GetCardPtr() { if (card_ptr_) { return card_ptr_;} }
+	std::shared_ptr<Card> GetCardPtr() { return card_ptr_; }
 
 	std::vector<std::string> SplitCardExplanation(std::string explanation, size_t n);
 
@@ -36,8 +34,7 @@ public:
 
 private:
 
-	Card* card_ = nullptr;
-	std::shared_ptr<Card> card_ptr_ = nullptr;
+	std::shared_ptr<Card> card_ptr_ = nullptr; //UICardに格納するCardのインスタンス
 
 	
 	bool is_render_ = false;

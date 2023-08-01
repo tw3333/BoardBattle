@@ -120,3 +120,18 @@ bool Board::IsAllyNearby(UnitEnemy* unit_enemy, std::vector<UnitAlly*> party)
 
 	return false;
 }
+
+
+
+//”Õ–Êã‚ÌRangeTile‚ÌRender‚ğÁ‚·
+void Board::ResetRangeTile() {
+
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 10; ++j) {
+
+			board_squares_[i][j]->SetRenderRangeTile(false);
+
+		}
+	}
+
+}

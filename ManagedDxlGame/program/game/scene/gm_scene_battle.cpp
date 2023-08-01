@@ -132,6 +132,9 @@ void SceneBattle::Render() {
 	ui_turn_view_->Render();
 	//ui_card_->Render();
 	ui_card_hand_->Render();
+
+	//card_play_->RenderSelectCardRange(turn_ally_,board_);
+
 }
 
 
@@ -425,6 +428,24 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 
+
+	if (ui_card_hand_->GetSelectUICard()) {
+		card_play_->SetSelectCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
+	}
+
+
+
+	card_play_->RenderSelectCardRange(turn_ally_, board_);
+
+
+
+	return true;
+}
+
+bool SceneBattle::PhaseDrawCard(const float delta_time) {
+
+	DrawStringEx(500, 0, -1, "PhaseDrawCard");
+
 	//最初の5枚ドロー処理
 	if (!turn_ally_->GetIsDrewInitCard()) {
 
@@ -441,37 +462,33 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 				turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[indices[i]]);
 			}
 		}
-	
+
 		//ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
 		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
 		turn_ally_->SetIsDrewInitCard(true);
 		turn_ally_->SetIsDrew(true);
 	}
-	
+
 	//１枚ドロー処理
 	if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew() && !turn_ally_->GetUseDeck().empty()) {
 
 		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 		std::default_random_engine engine(seed);
-			
+
 		std::uniform_int_distribution<int> distribution(0, turn_ally_->GetUseDeck().size() - 1);
 		int random_index = distribution(engine); // generate a random index
 
 		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[random_index]);
 		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		
 		turn_ally_->SetIsDrew(true);
 	}
 
 
-	if (ui_card_hand_->GetSelectCardPtr()) {
 
-		card_play_->SetSelectCard(ui_card_hand_->GetSelectCardPtr());
-		card_play_->DebugRender();
 
-	}
-
-	
+	phase_.change(&SceneBattle::PhasePlayerActionCard);
 	return true;
 }
 

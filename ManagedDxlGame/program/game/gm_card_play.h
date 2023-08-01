@@ -37,6 +37,12 @@ private:
 
 	std::shared_ptr<Card> select_card_ = nullptr;
 	
+
+
+
+
+
+
 	Card* play_card_ = nullptr;
 
 	std::vector<CardEffect*> card_effect_list_;

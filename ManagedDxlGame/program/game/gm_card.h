@@ -29,16 +29,13 @@ public:
 
 	
 	//g,s
-	std::vector<CardRange*> GetCardRangeList() { return card_range_list_; }
-	std::vector<CardEffect*> GetCardEffectList() { return card_effect_list_; }
-	void AddCardRange(CardRange* card_range) { card_range_list_.push_back(card_range); }
-	void AddCardEffect(CardEffect* card_effect) { card_effect_list_.push_back(card_effect); }
 
 
 	
 	bool GetIsSpecifyTarget() { return is_specify_target_; }
 	int GetTargetNum() { return target_num_; }
-	CardData* GetCardData() { return card_data_; }
+
+	CardData* GetCardData() { if (card_data_) { return card_data_; } }
 	
 
 
@@ -51,10 +48,6 @@ private:
 
 	int base_card_cost_ = 0;
 	int current_card_cost_ = 0;
-
-
-	std::vector<CardRange*> card_range_list_;
-	std::vector<CardEffect*> card_effect_list_;
 
 
 };

@@ -57,6 +57,8 @@ public:
 		return 0 <= row && row < 10 && 0 <= col && col < 10;
 	}
 
+	void ResetRangeTile();
+
 
 private:
 

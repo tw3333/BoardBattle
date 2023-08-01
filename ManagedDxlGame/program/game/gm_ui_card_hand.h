@@ -41,17 +41,20 @@ public:
 			ui_hand_.push_back(new UICard(pos_x_, pos_y_,card_w, card_h));
 
 		}
-
-
+		
 	}
-	~UICardHand() {}
+
+	~UICardHand() { 
+		for (auto uh : ui_hand_) { delete uh; } 
+	}
 
 
 	void Update(float delta_time) override;
 	void Render() override;
 	void AdjustCardPos(int card_num);
-	Card* GetSelectCard() { return select_card_->GetCard(); }
-	std::shared_ptr<Card> GetSelectCardPtr() { if (select_card_) { return select_card_->GetCardPtr();} }
+
+	std::shared_ptr<Card> GetSelectCardPtr() { return select_uicard_->GetCardPtr();}
+	UICard* GetSelectUICard() { return select_uicard_;  }
 
 	void SetHandCards(std::vector<Card*> hand_cards) { hand_cards_ = hand_cards; }
 	UICard* GetMouseInsideTopCard(int mx, int my);
@@ -77,7 +80,7 @@ private:
 	float overlap_ = 0;
 	int total_width_ = pos_x_ + card_w *5;
 
-	UICard* select_card_ = nullptr;
+	UICard* select_uicard_ = nullptr; //選択中のUICardインスタンス
 
 
 	std::vector<UICard*> ui_cards_;

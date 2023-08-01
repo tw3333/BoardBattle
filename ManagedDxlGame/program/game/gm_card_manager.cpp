@@ -32,14 +32,24 @@ void CardManager::CreateDebugCardData() {
 	debug_card_data_.emplace_back(new CardData(8, 1, false, 0, "debug9", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/grasping-claws.png"));
 	debug_card_data_.emplace_back(new CardData(9, 1, false, 0, "debug10", "‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ", "graphics/card/c1/healing.png"));
 
+	for (auto dcd : debug_card_data_) {
 
-	debug_card_data_[0]->AddCardEffect(std::make_shared<CardEffectHeal>(5));
-	debug_card_data_[0]->AddCardRange(std::make_shared<CardRangeSelf>());
+		dcd->AddCardRange(std::make_shared<CardRangeSelf>());
+		dcd->card_range_ = new CardRangeSelf();
+		dcd->AddCardEffect(std::make_shared<CardEffectHeal>(5));
+
+	}
 
 
 	for (int i = 0; i < 10; ++i) {
 
 		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[i])));
+	}
+
+	for (auto dcd : debug_card_data_) {
+
+		dcd->debug_card_range_list_.emplace_back(new CardRangeSelf());
+
 	}
 
 

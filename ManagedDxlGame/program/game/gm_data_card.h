@@ -31,10 +31,10 @@ public:
 	
 	std::shared_ptr<dxe::Texture> GetCardTexture() const { return card_texture_; }
 	
-	const std::vector<std::shared_ptr<CardEffect>>& GetCardEffectList() const {
+	std::vector<std::shared_ptr<CardEffect>>GetCardEffectList() {
 		return card_effect_list_;
 	}
-	const std::vector<std::shared_ptr<CardRange>>& GetCardRangeList() const {
+	std::vector<std::shared_ptr<CardRange>> GetCardRangeList() {
 		return card_range_list_;
 	}
 
@@ -45,6 +45,10 @@ public:
 		card_range_list_.push_back(card_range);
 	}
 
+	std::vector<CardEffect*> debug_card_effect_list_;
+	std::vector<CardRange*> debug_card_range_list_;
+
+	CardRange* card_range_ = nullptr;
 
 private:
 
@@ -60,8 +64,7 @@ private:
 
 
 	std::shared_ptr <dxe::Texture> card_texture_;
-	//std::vector<std::shared_ptr	<CardEffect*>> card_effect_list_;
-	//std::vector<std::shared_ptr <CardRange*>> card_range_list_;
+
 	
 	std::vector<std::shared_ptr	<CardEffect>> card_effect_list_;
 	std::vector<std::shared_ptr <CardRange>> card_range_list_;
