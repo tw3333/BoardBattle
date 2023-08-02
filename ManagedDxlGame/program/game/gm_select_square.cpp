@@ -43,6 +43,9 @@ void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 				select_square_row_ = i;
 				select_square_col_ = j;
 
+				//選択されているSquareのポインタを取得
+				select_square_ = board_squares_[i][j];
+
 				select_square_obj_pos_.x = board_squares_[i][j]->getObj()->pos_.x;
 				select_square_obj_pos_.z = board_squares_[i][j]->getObj()->pos_.z;
 
@@ -55,7 +58,20 @@ void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 
 void SelectSquare::Render(dxe::Camera* camera) {
 
-	obj_->Render(camera);
+	//obj_->Render(camera);
+
+	if (select_square_) {
+
+		if (select_square_->GetAllyPtrInSquare()) {
+			DrawStringEx(0,0,-1,"ここには味方がいるよ！");
+		}
+		else if (select_square_->GetEnemyPtrInSquare()) {
+			DrawStringEx(0,0,-1,"ここには敵がいるよ！");
+		}
+	}
+	else {
+		DrawStringEx(0,0,-1,"このコードは失敗してる");
+	}
 
 	//DrawStringEx(0,100,-1,"test:%f",board_squares_[0][0]->getObj()->getBeginPos().x);
 

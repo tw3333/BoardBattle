@@ -60,6 +60,7 @@ void SceneBattle::Initialzie() {
 	//UI�̍쐬
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
+
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetScene(this);
 	ui_mediator_->SetSequence(&phase_);
@@ -123,6 +124,7 @@ void SceneBattle::Render() {
 	unit_enemy_->GetObj()->Render(camera_);
 
 	board_->Render(camera_);
+	select_square_->Render(camera_);
 
 	obj_target_circle_->Render(camera_);
 

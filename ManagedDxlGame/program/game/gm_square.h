@@ -14,8 +14,8 @@ class UnitEnemy;
 class Square {
 public:
 
-	Square(int row, int col, ObjSquare* obj){
-		
+	Square(int row, int col, ObjSquare* obj) {
+
 		obj_ = obj;
 		SetSquarePos(row, col);
 
@@ -37,7 +37,7 @@ public:
 	void SetEnemyInSquare(bool flag) { enemy_in_square_ = flag; }
 	bool GetAllyInSquare() { return ally_in_square_; }
 	void SetAllyInSquare(bool flag) { ally_in_square_ = flag; }
-	
+
 	void SetRenderRangeTile(bool flag) { obj_->parts_[ObjSquare::RangeTile]->is_render_ = flag; }
 	bool GetRenderRangeTile() { return obj_->parts_[ObjSquare::RangeTile]->is_render_; }
 	void SetRenderCandidateTile(bool flag) { obj_->parts_[ObjSquare::CandidateTile]->is_render_ = flag; }
@@ -45,22 +45,23 @@ public:
 	void SetRenderTargetTile(bool flag) { obj_->parts_[ObjSquare::TargetTile]->is_render_ = flag; }
 	bool GetRenderTargetTile() { return obj_->parts_[ObjSquare::TargetTile]->is_render_; }
 
+	UnitAlly* GetAllyPtrInSquare() { return ally_ptr_in_square_; }
+	void SetAllyPtrInSquare(UnitAlly* ptr) { ally_ptr_in_square_ = ptr; }
+	UnitEnemy* GetEnemyPtrInSquare() { return enemy_ptr_in_square_; }
+	void SetEnemyPtrInSquare(UnitEnemy* ptr) { enemy_ptr_in_square_ = ptr; }
 
-	//UnitEnemy* GetUnitEnemy() { return unit_enemy_; }
-	//UnitAlly* GetUnitAlly() { return unit_ally_; }
-	//void SetUnitEnemy(UnitEnemy* unit);
-	//void SetUnitAlly(UnitAlly* unit);
 
 private:
 
+	SquarePos square_pos_ = { 0,0 };
+
 	bool is_can_move_ = true;
-	bool enemy_in_square_  = false;
+	bool enemy_in_square_ = false;
 	bool ally_in_square_ = false;
 
 	ObjSquare* obj_;
 
-
-	SquarePos square_pos_ = {0,0};
-
+	UnitAlly* ally_ptr_in_square_ = nullptr;
+	UnitEnemy* enemy_ptr_in_square_ = nullptr;
 
 };

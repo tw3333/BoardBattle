@@ -21,6 +21,7 @@ void Board::Update(float delta_time) {
 
 	//Squareの状態を更新
 	UpdateSquareState();
+	UpdateUnitPtrInSquare();
 
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
@@ -55,6 +56,9 @@ void Board::Render(dxe::Camera* camera) {
 		DrawLine3D({ 0,0,0 + (mas_z * i) }, { float(w1 * 8),0,0 + (mas_z * i) }, gray_);
 		DrawLine3D({ 0 + (mas_x * i),0,0 }, { 0 + (mas_x * i),0,(float)(h1 * 8) }, gray_);
 	}
+
+
+	
 
 }
 
@@ -94,6 +98,29 @@ void Board::UpdateSquareState() {
 	for (auto eu : enemy_units_) {
 		board_squares_[eu->GetBoardPos().row][eu->GetBoardPos().col]->SetEnemyInSquare(true);
 	}
+
+}
+
+void Board::UpdateUnitPtrInSquare() {
+
+	//Squareに格納してある、各Unitのポインタを更新
+	for (int row = 0; row < 10; ++row) {
+		for (int col = 0; col < 10; ++col) {
+			
+			board_squares_[row][col]->SetAllyPtrInSquare(nullptr);
+			board_squares_[row][col]->SetEnemyPtrInSquare(nullptr);
+
+		}
+	}
+
+	for (auto pu : party_units_) {
+		board_squares_[pu->GetBoardPos().row][pu->GetBoardPos().col]->SetAllyPtrInSquare(pu);
+	}
+	for (auto eu : enemy_units_) {
+		board_squares_[eu->GetBoardPos().row][eu->GetBoardPos().col]->SetEnemyPtrInSquare(eu);
+	}
+
+
 
 }
 

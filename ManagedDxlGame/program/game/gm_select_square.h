@@ -30,6 +30,8 @@ public:
 	int GetSelectSquareCol() { return select_square_col_; }
 	tnl::Vector3 GetSelectSquareObjPos() { return select_square_obj_pos_; }
 
+	Square* GetSelectSquare() { return select_square_; }
+
 
 private:
 
@@ -46,6 +48,9 @@ private:
 
 	int select_square_row_ = 0; //‘I‘ð‚³‚ê‚Ä‚¢‚ésquare‚Ìrow
 	int select_square_col_ = 0; //‘I‘ð‚³‚ê‚Ä‚¢‚ésquare‚Ìcol
+	
+	Square* select_square_ = nullptr;
+	
 	tnl::Vector3 select_square_obj_pos_; //‘I‘ð‚³‚ê‚Ä‚¢‚éSquare‚ÌObjPos\
 	 
 };

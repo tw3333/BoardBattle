@@ -41,6 +41,7 @@ public:
 
 	void UpdateCanMoveSquare();
 	void UpdateSquareState();
+	void UpdateUnitPtrInSquare();
 	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
 
 	void SetPartyUnits(std::vector<UnitAlly*> party_units) { party_units_ = party_units; }
@@ -58,6 +59,7 @@ public:
 	}
 
 	void ResetRangeTile();
+
 
 
 private:
