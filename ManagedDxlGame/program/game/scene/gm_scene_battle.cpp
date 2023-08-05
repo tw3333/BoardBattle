@@ -31,6 +31,7 @@ void SceneBattle::Initialzie() {
 	for (int i = 0; i < 3; ++i) {
 		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
 		party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
+		party_[i]->AssignDeckOrder();
 	}
 
 	party_[0]->SetTauntValue(500);
@@ -142,7 +143,7 @@ void SceneBattle::Render() {
 	//ui_card_->Render();
 	ui_card_hand_->Render();
 
-	//card_play_->RenderSelectCardRange(turn_ally_,board_);
+	card_play_->Render();
 
 }
 
@@ -473,11 +474,12 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 		if (turn_ally_->GetUseDeck().size() >= 5) { // only copy if there are at least 5 elements
 			for (int i = 0; i < 5; ++i) { // copy the first 5 elements to the new vector
 				turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[indices[i]]);
+				turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().begin() + indices[i]);
 			}
 		}
 
 		//ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
-		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		//ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
 		turn_ally_->SetIsDrewInitCard(true);
 		turn_ally_->SetIsDrew(true);
@@ -493,7 +495,10 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 		int random_index = distribution(engine); // generate a random index
 
 		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[random_index]);
-		ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().begin() + random_index);
+		
+		//ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+
 		
 		turn_ally_->SetIsDrew(true);
 	}

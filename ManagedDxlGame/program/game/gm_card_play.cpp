@@ -16,7 +16,7 @@
 
 void CardPlay::Render() {
 
-	
+	DebugRender();
 
 }
 
@@ -61,15 +61,16 @@ void CardPlay::UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<U
 
 void CardPlay::DebugRender() {
 
-	if (select_card_) {
+	if (select_uicard_) {
 
-		DrawStringEx(0,300,-1,"選択されているカードID：%d",select_card_->GetCardData()->GetCardID());
-	}
-
-	if (!select_card_) {
-		DrawStringEx(0, 300, -1, "選択されているカードID:選択されていません");
+		DrawStringEx(0,650,-1,"このカードは[%d]です",select_uicard_->debug_cnt_);
 
 	}
+	else {
+		DrawStringEx(0,650,-1,"select_uicard_がnullです");
+	}
+
+
 
 
 }
@@ -104,36 +105,11 @@ void CardPlay::EffectExecute()
 			for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardEffectList()) {
 
 				a->Effect(total_units_in_range_);
-			}
-
-
-			//カードを捨てる処理
-			if (turn_ally_->GetHand().empty()) {
-				DrawStringEx(0,550,-1,"手札は空です");
-			}
-			else if (!turn_ally_->GetHand().empty()) {
-				turn_ally_->GetHand().pop_back();
-				return;
-				//for (auto it = turn_ally_->GetHand().begin(); it != turn_ally_->GetHand().end(); /* no increment here */) {
-				//	if (*it == turn_ally_->GetHand()[select_uicard_->debug_cnt_]) {
-				//		it = turn_ally_->GetHand().erase(it);
-				//		return;
-				//	}
-				//	else {
-				//		++it;
-				//	}
-				//}
-				//turn_ally_->GetHand().resize(turn_ally_->GetHand().size() - 1);
-				//select_uicard_->SetCardPtr(nullptr);
-			}
-			//ally_hand_.erase(ally_hand_.begin() + select_uicard_->debug_cnt_);
-			//select_uicard_->SetCardPtr(nullptr);
-			//ally_hand_.erase(ally_hand_.begin() + select_uicard_->debug_cnt_);
-			//auto it = std::find(turn_ally_->GetHand().begin(), turn_ally_->GetHand().begin();
-
-
+			}			
 		}
-
-
 	}
+
+
+
+
 }

@@ -37,11 +37,16 @@ public:
 
 	CardData* GetCardData() { if (card_data_) { return card_data_; } }
 	
+	void SetDeckOrder(int deck_order) { deck_order_ = deck_order; }
+	int GetDeckOrder() { return deck_order_; }
 
 
 private:
 
 	CardData* card_data_ = nullptr;
+
+	int deck_order_ = 0; //デッキの何番目にあるか
+
 
 	bool is_specify_target_ = false; //指定ターゲットかどうか
 	int target_num_ = 0; //指定ターゲットの数

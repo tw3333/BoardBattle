@@ -90,9 +90,11 @@ public:
 	void SetUseDeck(std::vector<std::shared_ptr<Card>> deck) { use_deck_ = deck; }
 	void SetHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
 	void AddCardToHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
+
 	std::vector<std::shared_ptr<Card>> GetUseDeck() { return use_deck_; }
 	std::vector<std::shared_ptr<Card>> GetHand() { return hand_; }
 
+	void AssignDeckOrder();
 
 
 	int GetTauntValue() { return taunt_value_; }
