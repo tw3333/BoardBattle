@@ -26,6 +26,8 @@ public:
 	void Render();
 
 	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board);
+	void UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<Unit*> all_untis);
+
 	void DebugRender();
 
 	void EffectExecute();
@@ -33,29 +35,26 @@ public:
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
 	void SetCard(Card* card) { play_card_ = card; }
-	void SetSelectUICard(UICard* uicard) { select_uicard_ = uicard; }
+	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
 
+	void SetSelectUICard(UICard* uicard) { select_uicard_ = uicard; }
+	void SetAllyHand(std::vector<std::shared_ptr<Card>> ally_hand) { ally_hand_ = ally_hand; }
 
 private:
 
 	std::shared_ptr<Card> select_card_ = nullptr;
+	UnitAlly* turn_ally_ = nullptr;
 
 	UICard* select_uicard_ = nullptr;
 	
 
-
+	std::vector<std::shared_ptr<Card>> ally_hand_;
+	std::vector<Unit*> total_units_in_range_;
 
 
 
 
 	Card* play_card_ = nullptr;
 
-	std::vector<CardEffect*> card_effect_list_;
-	std::vector<CardRange*> card_range_list_;
-
-	std::vector<Unit*> in_range_units_;
-	std::vector<Unit*> target_units_;
 	
-	
-
 };

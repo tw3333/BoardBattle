@@ -7,16 +7,16 @@
 
 
 
-class CardRangeUP : public CardRange {
+class CardRangeUp : public CardRange {
 public:
 
-	CardRangeUP(int leave, int range_, Target target)
+	CardRangeUp(int leave, int range_, Target target)
 	:leave_(leave), range_(range_)
 	{
 		target_ = target;
 		
 	}
-	~CardRangeUP(){}
+	~CardRangeUp(){}
 
 	void DisplayRange(UnitAlly* act_allly, Board* board) override;
 	std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) override;

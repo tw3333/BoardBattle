@@ -4,6 +4,7 @@
 #include "gm_ui_card.h"
 
 
+class UnitAlly;
 //memo
 //インスタンス化の際、カードを表示する場所を四角形で決め、その範囲内にカードを表示するようにする
 //カードの上限は10枚、５枚を表示するカードの幅に上に被せてカードを詰める形で表示
@@ -62,6 +63,8 @@ public:
 	void SetAllyHand(std::vector<std::shared_ptr<Card>> ally_hand) { ally_hand_ = ally_hand; }
 	std::vector<std::shared_ptr<Card>> GetAllyHand() { return ally_hand_; }
 
+	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
+
 	void ResetAllyHand() { ally_hand_.clear(); }
 
 private:
@@ -81,6 +84,8 @@ private:
 	int total_width_ = pos_x_ + card_w *5;
 
 	UICard* select_uicard_ = nullptr; //選択中のUICardインスタンス
+	
+	UnitAlly* turn_ally_ = nullptr;
 
 
 	std::vector<UICard*> ui_cards_;

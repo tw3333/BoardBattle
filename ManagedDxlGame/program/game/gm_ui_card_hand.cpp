@@ -1,8 +1,10 @@
 #include "gm_ui_card_hand.h"
 
 #include <algorithm>
+
 #include "gm_data_card.h"
 #include "gm_card_range.h"
+#include "gm_unit_ally.h"
 
 void UICardHand::Update(float delta_time) {
 
@@ -18,18 +20,36 @@ void UICardHand::Update(float delta_time) {
 	//	//ui_hand_[i]->SetIsEnable(false);
 	//}
 
-	for (int i = 0; i < ui_hand_.size(); ++i) {
-		if (i < ally_hand_.size()) {
-			ui_hand_[i]->SetCardPtr(ally_hand_[i]);
-			ui_hand_[i]->SetIsRender(true);
-			ui_hand_[i]->debug_cnt_ = i;
-			ui_hand_[i]->debug_txt_y_ = i * 20;
-		}
-		else {
-			ui_hand_[i]->SetCardPtr(nullptr);
-			ui_hand_[i]->SetIsRender(false);
+	if (!turn_ally_->GetHand().empty()) {
+
+		for (int i = 0; i < ui_hand_.size(); ++i) {
+
+			//if (i < ally_hand_.size()) {
+			//	ui_hand_[i]->SetCardPtr(ally_hand_[i]);
+			//	ui_hand_[i]->SetIsRender(true);
+			//	ui_hand_[i]->debug_cnt_ = i;
+			//	ui_hand_[i]->debug_txt_y_ = i * 20;
+			//}
+			//else {
+			//	ui_hand_[i]->SetCardPtr(nullptr);
+			//	ui_hand_[i]->SetIsRender(false);
+			//}
+
+			if (i < turn_ally_->GetHand().size()) {
+				ui_hand_[i]->SetCardPtr(ally_hand_[i]);
+				ui_hand_[i]->SetIsRender(true);
+				ui_hand_[i]->debug_cnt_ = i;
+				ui_hand_[i]->debug_txt_y_ = i * 20;
+			}
+			else {
+				ui_hand_[i]->SetCardPtr(nullptr);
+				ui_hand_[i]->SetIsRender(false);
+			}
+
 		}
 	}
+
+	
 	
 	for (auto uc : ui_hand_) {
 
@@ -49,16 +69,13 @@ void UICardHand::Update(float delta_time) {
 
 
 
-	AdjustCardPos(ally_hand_.size());
-
+	//AdjustCardPos(ally_hand_.size());
+	AdjustCardPos(turn_ally_->GetHand().size());
 
 
 	for (auto uh : ui_hand_) {
-
-
 		uh->Update(delta_time);
 	}
-
 	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_R)) {
 	//	debug_count_ += 1;
 	//}
@@ -67,16 +84,32 @@ void UICardHand::Update(float delta_time) {
 
 void UICardHand::Render() {
 
-	for (int i = 0; i < ally_hand_.size(); ++i) {
+	//for (int i = 0; i < ally_hand_.size(); ++i) {
 
-		ui_hand_[i]->Render();
+	//	ui_hand_[i]->Render();
+
+	//}
+
+
+	if (turn_ally_ && !turn_ally_->GetHand().empty()) {
+
+		for (int i = 0; i < turn_ally_->GetHand().size(); ++i) {
+
+			ui_hand_[i]->Render();
+
+		}
+
+		if (select_uicard_) {
+			select_uicard_->Render();
+
+		}
 
 	}
-
-	if (select_uicard_) {
-		select_uicard_->Render();
-
+	else if(!turn_ally_) {
+	
+		DrawStringEx(0,650,-1,"TurnAlly‹ó");
 	}
+
 
 
 }

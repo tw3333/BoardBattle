@@ -22,12 +22,13 @@ public:
 	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) = 0;
 
 
+	bool GetIsUnitInRange() { return is_unit_in_range_; }
 
 
 protected:
 
 	Target target_;
-
+	bool is_unit_in_range_ = false;
 
 
 };

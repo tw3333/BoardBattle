@@ -24,9 +24,9 @@ void SceneBattle::Initialzie() {
 	board_->SetCamera(camera_);
 
 	//Unit�̍쐬
-	party_[0] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(1), 0, 0);
-	party_[1] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(2), 0, 1);
-	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 0, 2);
+	party_[0] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(1), 5, 1);
+	party_[1] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(2), 5, 2);
+	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 5, 3);
 
 	for (int i = 0; i < 3; ++i) {
 		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
@@ -78,6 +78,8 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
 
+	ui_unit_state_view_ = new UIUnitStateView(0,0);
+
 	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
 
 	board_->Update(0);
@@ -105,10 +107,14 @@ void SceneBattle::Update(float delta_time) {
 	ui_turn_view_->Update(delta_time);
 
 	ui_turn_ally_state_->Update(delta_time);
+	ui_unit_state_view_->Update(delta_time);
+	ui_unit_state_view_->UpdateSelectSquare(select_square_->GetSelectSquare());
+
 	//ui_card_->Update(delta_time);
+	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
 
-
+	//phase_.update(delta_time);
 }
 
 void SceneBattle::Render() {
@@ -131,6 +137,7 @@ void SceneBattle::Render() {
 	//UI
 	ui_action_buttons_->Render();
 	ui_turn_ally_state_->Render();
+	ui_unit_state_view_->Render();
 	ui_turn_view_->Render();
 	//ui_card_->Render();
 	ui_card_hand_->Render();
@@ -429,18 +436,19 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
-
-
-	if (ui_card_hand_->GetSelectUICard()) {
-		card_play_->SetSelectCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
-	}
+	
 
 	card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
-
+	card_play_->SetTurnAlly(turn_ally_);
 
 
 	card_play_->RenderSelectCardRange(turn_ally_, board_);
+	card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
+	card_play_->EffectExecute();
 	
+	//if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+	//	turn_ally_->GetHand().erase(turn_ally_->GetHand().begin() + 1);
+	//}
 
 
 	return true;

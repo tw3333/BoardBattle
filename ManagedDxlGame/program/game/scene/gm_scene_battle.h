@@ -18,6 +18,7 @@
 #include "../gm_ui_move_cost.h"
 #include "../gm_ui_turn_ally_state.h"
 #include "../gm_ui_turn_view.h"
+#include "../gm_ui_unit_state_view.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -184,6 +185,7 @@ private:
 	UICard* ui_card_ = nullptr;
 	UICardHand* ui_card_hand_ = nullptr;
 	UITurnView* ui_turn_view_ = nullptr;
+	UIUnitStateView* ui_unit_state_view_ = nullptr;
 
 
 

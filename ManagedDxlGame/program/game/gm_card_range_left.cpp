@@ -32,16 +32,48 @@ std::vector<Unit*> CardRangeLeft::GetUnitInRange(UnitAlly* act_ally, std::vector
 		int range_row = act_ally->GetBoardPos().row;
 		int range_col = act_ally->GetBoardPos().col - leave_ - i;
 
-		if (0 <= range_col && range_col <= 9) {
+		if (0 <= range_row && range_row <= 9) {
 
-			for (auto unit : all_units) {
+			if (target_ == Target::Ally) {
 
-				if (unit->GetBoardPos().row == range_row && unit->GetBoardPos().col == range_col) {
+				for (auto u : all_units) {
+					if (u->GetUnitType() == UnitType::Ally
+						&& u->GetBoardPos().row == range_row && u->GetBoardPos().col == range_col) {
 
-					range_units.push_back(unit);
-
+						is_unit_in_range_ = true;
+						range_units.push_back(u);
+					}
+					else {
+						is_unit_in_range_ = false;
+					}
 				}
+			}
+			else if (target_ == Target::Enemy) {
 
+				for (auto u : all_units) {
+					if (u->GetUnitType() == UnitType::Enemy && u->GetBoardPos().row == range_row && u->GetBoardPos().col == range_col) {
+
+						is_unit_in_range_ = true;
+						range_units.push_back(u);
+					}
+					else {
+						is_unit_in_range_ = false;
+					}
+				}
+			}
+			else if (target_ == Target::All) {
+
+				for (auto unit : all_units) {
+
+					if (unit->GetBoardPos().row == range_row && unit->GetBoardPos().col == range_col) {
+
+						is_unit_in_range_ = true;
+						range_units.push_back(unit);
+					}
+					else {
+						is_unit_in_range_ = false;
+					}
+				}
 			}
 
 		}
