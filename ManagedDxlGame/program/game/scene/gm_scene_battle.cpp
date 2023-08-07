@@ -31,7 +31,9 @@ void SceneBattle::Initialzie() {
 	for (int i = 0; i < 3; ++i) {
 		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
 		party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
-		party_[i]->AssignDeckOrder();
+		party_[i]->AssignSerialNumberToUseDeck();
+		party_[i]->ShuffleUseDeck();
+
 	}
 
 	party_[0]->SetTauntValue(500);
@@ -463,48 +465,43 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 	//最初の5枚ドロー処理
 	if (!turn_ally_->GetIsDrewInitCard()) {
 
-		std::vector<int> indices(turn_ally_->GetUseDeck().size());
-		std::iota(indices.begin(), indices.end(), 0);
+		std::vector<std::shared_ptr<Card>> to_remove; //移動・削除するカード用
 
-		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-		std::default_random_engine engine(seed);
+		//turn_ally_->GetHand().insert(turn_ally_->GetHand().end(), turn_ally_->GetUseDeck().end() -5, turn_ally_->GetUseDeck().end());
+		//turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().end() - 5, turn_ally_->GetUseDeck().end());
+		
+		int cnt = 0;
 
-		std::shuffle(indices.begin(), indices.end(), engine); // shuffle the indices
+		for (int i = turn_ally_->GetUseDeck().size() -1; i >= 0; --i) {
+			
+			if (cnt < 5) {
+				turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[i]);
+				to_remove.push_back(turn_ally_->GetUseDeck()[i]);
 
-		if (turn_ally_->GetUseDeck().size() >= 5) { // only copy if there are at least 5 elements
-			for (int i = 0; i < 5; ++i) { // copy the first 5 elements to the new vector
-				turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[indices[i]]);
-				turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().begin() + indices[i]);
 			}
+			cnt++;
 		}
 
-		//ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
-		//ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		for (auto& card : to_remove) {
+			turn_ally_->GetUseDeck().erase(std::remove(turn_ally_->GetUseDeck().begin(), turn_ally_->GetUseDeck().end(), card), turn_ally_->GetUseDeck().end());
+		}
+
+		to_remove.clear();
 
 		turn_ally_->SetIsDrewInitCard(true);
 		turn_ally_->SetIsDrew(true);
+		phase_.change(&SceneBattle::PhasePlayerActionCard);
 	}
 
 	//１枚ドロー処理
 	if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew() && !turn_ally_->GetUseDeck().empty()) {
 
-		unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-		std::default_random_engine engine(seed);
-
-		std::uniform_int_distribution<int> distribution(0, turn_ally_->GetUseDeck().size() - 1);
-		int random_index = distribution(engine); // generate a random index
-
-		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[random_index]);
-		turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().begin() + random_index);
 		
-		//ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck().back());
+		turn_ally_->GetUseDeck().pop_back();
 
-		
 		turn_ally_->SetIsDrew(true);
 	}
-
-
-
 
 	phase_.change(&SceneBattle::PhasePlayerActionCard);
 	return true;

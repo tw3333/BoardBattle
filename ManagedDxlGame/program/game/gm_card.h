@@ -39,13 +39,15 @@ public:
 	
 	void SetDeckOrder(int deck_order) { deck_order_ = deck_order; }
 	int GetDeckOrder() { return deck_order_; }
-
+	void SetSerialNum(int serial_num) { serial_num_ = serial_num; }
+	int GetSerialNum() { return serial_num_; }
 
 private:
 
 	CardData* card_data_ = nullptr;
 
 	int deck_order_ = 0; //デッキの何番目にあるか
+	int serial_num_ = 0; //デッキ内で識別用の番号
 
 
 	bool is_specify_target_ = false; //指定ターゲットかどうか

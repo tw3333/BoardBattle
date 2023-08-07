@@ -1,0 +1,44 @@
+		//std::vector<int> indices(turn_ally_->GetUseDeck().size());
+		//std::iota(indices.begin(), indices.end(), 0);
+		//unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		//std::default_random_engine engine(seed);
+		//std::shuffle(indices.begin(), indices.end(), engine); // shuffle the indices
+		//if (turn_ally_->GetUseDeck().size() >= 5) { // only copy if there are at least 5 elements
+		//	for (int i = 0; i < 5; ++i) { // copy the first 5 elements to the new vector			
+
+		//		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[indices[i]]);
+		//		turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().begin() + indices[i]);
+		//	}
+		//}
+
+		////ui_card_hand_->SetAllyHand(turn_ally_->GetUseDeck());
+		////ui_card_hand_->SetAllyHand(turn_ally_->GetHand());	
+		//turn_ally_->SetIsDrewInitCard(true);
+		//turn_ally_->SetIsDrew(true);
+
+		std::vector<std::shared_ptr<Card>> to_remove; //削除するカード用
+
+		//上から５枚引く
+		for (auto ud : turn_ally_->GetUseDeck()) {
+
+			if (ud->GetDeckOrder() < 5){
+				
+				//上から５枚を手札に
+				turn_ally_->AddCardToHand(ud);
+				to_remove.push_back(ud);
+				
+			}
+		}
+
+		for (auto tr : to_remove) {
+
+			auto& deck = turn_ally_->GetUseDeck();
+
+			auto it = std::find(deck.begin(), deck.end(), tr);
+
+			if (it != deck.end()) {
+				deck.erase(it);
+			}
+
+
+		}

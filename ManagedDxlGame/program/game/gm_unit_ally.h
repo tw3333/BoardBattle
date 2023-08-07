@@ -91,10 +91,15 @@ public:
 	void SetHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
 	void AddCardToHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
 
-	std::vector<std::shared_ptr<Card>> GetUseDeck() { return use_deck_; }
+	std::vector<std::shared_ptr<Card>>& GetUseDeck() { return use_deck_; }
 	std::vector<std::shared_ptr<Card>> GetHand() { return hand_; }
 
-	void AssignDeckOrder();
+	
+	void AssignRandomDeckOrderToUseDeck();
+	void AssignDeckOrderToUseDeck();
+	void AssignSerialNumberToUseDeck();
+
+	void ShuffleUseDeck(); //UseDeck‚ðƒVƒƒƒbƒtƒ‹‚·‚é
 
 
 	int GetTauntValue() { return taunt_value_; }

@@ -23,8 +23,8 @@ void UnitAlly::SetBoardPos(int row, int col) {
 }
 
 
-//UseDeckに山札の順番を割り振る
-void UnitAlly::AssignDeckOrder() {
+//UseDeckに山札の順番を割り振る(シャッフル)
+void UnitAlly::AssignRandomDeckOrderToUseDeck() {
 
 	if (!use_deck_.empty()) {
 
@@ -41,6 +41,55 @@ void UnitAlly::AssignDeckOrder() {
 		//orderの順番にuse_deck_内のCardに順番を割り振る
 		for (size_t i = 0; i < use_deck_.size(); ++i) {
 			use_deck_[i]->SetDeckOrder(order[i]);
+		}
+
+	}
+
+}
+
+
+//UseDeckの先頭から順番を割り振る
+void UnitAlly::AssignDeckOrderToUseDeck() {
+
+	if (!use_deck_.empty()) {
+
+		for (size_t i = 0; i < use_deck_.size(); ++i) {
+			use_deck_[i]->SetDeckOrder(i);
+		}
+	}
+}
+
+
+
+
+//UseDeckにシリアルナンバーを割り振る
+void UnitAlly::AssignSerialNumberToUseDeck() {
+
+	if (!use_deck_.empty()) {
+
+		for (size_t i = 0; i < use_deck_.size(); ++i) {
+			use_deck_[i]->SetSerialNum(i);
+		}
+
+	}
+
+}
+
+
+
+void UnitAlly::ShuffleUseDeck() {
+
+	if (!use_deck_.empty()) {
+
+		//乱数生成
+		std::random_device rd;
+		std::mt19937 gen(rd());
+
+		// Fisher-Yatesシャッフルアルゴリズム
+		for (int i = use_deck_.size() - 1; i >= 0; --i) {
+			std::uniform_int_distribution<int> dist(0, i);
+			int j = dist(gen);
+			std::swap(use_deck_[i], use_deck_[j]);
 		}
 
 	}

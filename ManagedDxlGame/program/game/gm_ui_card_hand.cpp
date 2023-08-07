@@ -36,7 +36,7 @@ void UICardHand::Update(float delta_time) {
 			//}
 
 			if (i < turn_ally_->GetHand().size()) {
-				ui_hand_[i]->SetCardPtr(ally_hand_[i]);
+				ui_hand_[i]->SetCardPtr(turn_ally_->GetHand()[i]);
 				ui_hand_[i]->SetIsRender(true);
 				ui_hand_[i]->debug_cnt_ = i;
 				ui_hand_[i]->debug_txt_y_ = i * 20;
