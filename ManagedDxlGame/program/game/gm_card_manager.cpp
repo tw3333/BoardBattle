@@ -50,7 +50,15 @@ void CardManager::CreateDebugCardData() {
 	for (int i = 0; i < 10; ++i) {
 
 		debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[i])));
+
 	}
+
+	debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[1])));
+	debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[1])));
+	debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[1])));
+	debug_deck_.push_back(std::make_shared<Card>(Card(debug_card_data_[1])));
+
+
 
 	for (auto dcd : debug_card_data_) {
 

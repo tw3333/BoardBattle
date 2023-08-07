@@ -83,7 +83,7 @@ private:
 	float overlap_ = 0;
 	int total_width_ = pos_x_ + card_w *5;
 
-	UICard* select_uicard_ = nullptr; //選択中のUICardインスタンス
+	UICard* select_uicard_; //選択中のUICardインスタンス
 	
 	UnitAlly* turn_ally_ = nullptr;
 

@@ -14,6 +14,10 @@
 #include "gm_ui_card.h"
 #include "../dxlib_ext/dxlib_ext.h"
 
+#include <algorithm>
+#include <vector>
+
+
 void CardPlay::Render() {
 
 	DebugRender();
@@ -105,11 +109,21 @@ void CardPlay::EffectExecute()
 			for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardEffectList()) {
 
 				a->Effect(total_units_in_range_);
-			}			
+			}
+
+			int select_serial_num = select_uicard_->GetCardPtr()->GetSerialNum();
+
+			
+
+			//turn_ally_->GetHand().pop_back();
+			//UI‚Æ“¯‚¶ƒJ[ƒhPtr‚ðHand‚©‚çíœ
+			turn_ally_->GetHand().erase(std::remove_if(turn_ally_->GetHand().begin(), turn_ally_->GetHand().end(),
+				[select_serial_num](const std::shared_ptr<Card>& card) {
+				return card->GetSerialNum() == select_serial_num;
+				}), turn_ally_->GetHand().end());
+		
 		}
+
 	}
-
-
-
 
 }

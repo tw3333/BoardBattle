@@ -1,4 +1,4 @@
-#include "gm_ui_card_hand.h"
+ #include "gm_ui_card_hand.h"
 
 #include <algorithm>
 
