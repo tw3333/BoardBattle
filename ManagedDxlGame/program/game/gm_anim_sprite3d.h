@@ -2,6 +2,10 @@
 #include "gm_object.h"
 
 //memo
+// 改定
+//コンストラクタでCameraを設定
+//画像の縦割りに対応
+
 
 
 class AnimUnit {
@@ -32,6 +36,9 @@ public:
 
 	//Cameraのセット
 	void SetCamera(dxe::Camera* camera) { billboard_target_ = camera; }
+
+	void AnimIsRender(bool flag) { for (auto& p : this->parts_) { p->is_render_ = flag; } }
+	void Play(); //Animの最後が残る対策。後で根本から修正
 
 	//------------------------------------------------------------------------------------------
 	// アニメーションの切り替え

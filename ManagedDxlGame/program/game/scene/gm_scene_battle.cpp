@@ -86,6 +86,8 @@ void SceneBattle::Initialzie() {
 	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
 
 	board_->Update(0);
+
+	anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 }
 
 void SceneBattle::Update(float delta_time) {
@@ -117,6 +119,14 @@ void SceneBattle::Update(float delta_time) {
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
 
+	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
+	anim_mgr_.GetDebugAnim()->Update(delta_time);
+	
+
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
+		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
+	}
+
 	//phase_.update(delta_time);
 }
 
@@ -146,6 +156,10 @@ void SceneBattle::Render() {
 	ui_card_hand_->Render();
 
 	card_play_->Render();
+
+	anim_mgr_.GetDebugAnim()->Render(camera_);
+
+
 
 }
 

@@ -112,6 +112,8 @@ namespace tnl {
 		// arg1... eFrameType
 		uint32_t getSeekFrame(const eFrameType& e_frame);
 
+		bool GetIsPlaying() { return is_playing_; }
+
 	private:
 		bool is_playing_ = false;
 		double fix_fps_ = 60.0f;

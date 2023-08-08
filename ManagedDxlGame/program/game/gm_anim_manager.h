@@ -1,6 +1,18 @@
 #pragma once
 #include "gm_anim_sprite3d.h"
 
+//シングルトン
+
+
+
+struct CardEffectAnim {
+
+	int id_; //CardのIDと照合する用
+	std::shared_ptr<AnimSprite3D> card_effect_anim_ = std::make_shared<AnimSprite3D>();
+
+};
+
+
 class AnimManager {
 public:
 
@@ -22,6 +34,8 @@ public:
 	void CreateDebugAnim();
 
 
+	std::shared_ptr<AnimSprite3D> GetDebugAnim() {	return debug_anim_; }
+
 
 
 private:
@@ -29,8 +43,11 @@ private:
 	AnimManager() = default;
 	~AnimManager() = default;
 
-	AnimSprite3D* anim_sprite3d_ = new AnimSprite3D();
+	//AnimSprite3D* anim_sprite3d_ = new AnimSprite3D();
 
+	std::shared_ptr<AnimSprite3D> debug_anim_ = std::make_shared<AnimSprite3D>();
+
+	std::vector<std::shared_ptr<AnimSprite3D>> card_effect_list_;
 
 
 };

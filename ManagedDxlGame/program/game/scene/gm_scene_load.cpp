@@ -21,6 +21,8 @@ void SceneLoad::Initialzie() {
 	
 	card_mgr_.CreateDebugCardData();
 
+	anim_mgr_.CreateDebugAnim();
+
 
 
 }

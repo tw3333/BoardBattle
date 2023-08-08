@@ -11,6 +11,7 @@
 #include "../gm_object_manager.h"
 #include "../gm_card_manager.h"
 #include "../gm_font_manager.h"
+#include "../gm_anim_manager.h"
 
 
 //memo
@@ -37,7 +38,7 @@ private:
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 	CardManager& card_mgr_ = CardManager::GetInstance();
 	FontManager& font_mgr_ = FontManager::GetInstance();
-
+	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 
 
 

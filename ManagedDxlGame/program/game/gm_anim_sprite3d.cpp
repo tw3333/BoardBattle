@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------------------------------------------------
 void AnimSprite3D::setCurrentAnim(const std::string& anim_name) {
+	
 	int idx = 0;
 
 	// これまで表示していたアニメーションを非表示にする
@@ -24,27 +25,48 @@ void AnimSprite3D::setCurrentAnim(const std::string& anim_name) {
 	idx += anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
 	parts_[idx]->is_render_ = true;
 	anim_current_->seek_->play();
+
 }
 
 
 //--------------------------------------------------------------------------------------------------------
 void AnimSprite3D::Update(float delta_time) {
 
-	// 更新前のフレームを非表示にする
-	int idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
-	parts_[idx]->is_render_ = false;
+	if (anim_current_->seek_->GetIsPlaying()) {
+		// 更新前のフレームを非表示にする
+		int idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
+		parts_[idx]->is_render_ = false;
 
-	// アニメーションのフレームを更新
-	anim_current_->seek_->update(delta_time);
+		// アニメーションのフレームを更新
+		anim_current_->seek_->update(delta_time);
 
-	// 新しいフレームを表示状態にする
-	idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
-	parts_[idx]->is_render_ = true;
+		// 新しいフレームを表示状態にする
+		idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
+		parts_[idx]->is_render_ = true;
 
-	// パーツ座標の更新
-	parts_[idx]->mesh_->pos_ = pos_;
-	parts_[idx]->mesh_->rot_ = tnl::Quaternion::LookAtAxisY(billboard_target_->pos_, billboard_target_->target_);
-	parts_[idx]->mesh_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
+		// パーツ座標の更新
+		parts_[idx]->mesh_->pos_ = pos_;
+		parts_[idx]->mesh_->rot_ = tnl::Quaternion::LookAtAxisY(billboard_target_->pos_, billboard_target_->target_);
+		parts_[idx]->mesh_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
+	}
+	else if(!anim_current_->seek_->GetIsPlaying())  {
+
+		for (auto p : this->parts_) {
+			p->is_render_ = false;
+		}
+	}
+
+
+
+	//// パーツ座標の更新
+	//parts_[idx]->mesh_->pos_ = pos_;
+	//parts_[idx]->mesh_->rot_ = tnl::Quaternion::LookAtAxisY(billboard_target_->pos_, billboard_target_->target_);
+	//parts_[idx]->mesh_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
+
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
+		this->AnimIsRender(false);
+	}
+
 
 }
 

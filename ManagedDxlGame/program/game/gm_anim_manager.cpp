@@ -2,7 +2,9 @@
 
 void AnimManager::CreateDebugAnim() {
 
-	//anim_sprite3d_->regist();
+	debug_anim_->regist(40, 40, "debug_anim", "graphics/effect/anim_flame.png", tnl::SeekUnit::ePlayMode::SINGLE,1.0f,8,240,0,1);
+
+
 
 
 

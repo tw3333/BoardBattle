@@ -7,6 +7,7 @@
 #include "../gm_enemydata_manager.h"
 #include "../gm_scene_battle_camera.h"
 #include "../gm_object_manager.h"
+#include "../gm_anim_manager.h"
 
 #include "../gm_ui_card.h"
 #include "../gm_ui_card_hand.h"
@@ -118,6 +119,8 @@ private:
 	//CardView* cardview_ = nullptr;
 	//mgrインスタンス
 	CardManager& cmgr_ = CardManager::GetInstance();
+	AnimManager& anim_mgr_ = AnimManager::GetInstance();
+
 	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
 	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
 
