@@ -14,6 +14,8 @@ void SceneBattle::Initialzie() {
 //---
 	camera_ = new SceneBattleCamera();
 
+	sound_mgr_.PlayBattleBGM(1);
+
 //---
 	card_play_= new CardPlay();
 
@@ -107,6 +109,8 @@ void SceneBattle::Update(float delta_time) {
 
 	obj_target_circle_->Update(delta_time);
 
+	card_play_->Update(delta_time);
+
 	//UI
 	ui_action_buttons_->Update(delta_time);
 	ui_turn_view_->Update(delta_time);
@@ -121,6 +125,11 @@ void SceneBattle::Update(float delta_time) {
 
 	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
 	anim_mgr_.GetDebugAnim()->Update(delta_time);
+
+	for (auto a : anim_mgr_.GetDebugAnimList()) {
+		a->SetCamera(camera_);
+		a->Update(delta_time);
+	}
 	
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
@@ -155,9 +164,13 @@ void SceneBattle::Render() {
 	//ui_card_->Render();
 	ui_card_hand_->Render();
 
-	card_play_->Render();
+	card_play_->Render(camera_);
 
 	anim_mgr_.GetDebugAnim()->Render(camera_);
+
+	for (auto a : anim_mgr_.GetDebugAnimList()) {
+		a->Render(camera_);
+	}
 
 
 

@@ -11,6 +11,8 @@
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"
 
+#include "gm_anim_manager.h"
+
 class UICard;
 
 //射程の表示、効果の発動、SEの再生、Animの再生をこのクラスで行う
@@ -22,8 +24,8 @@ public:
 	~CardPlay() {}
 
 
-	void Update();
-	void Render();
+	void Update(float delta_time);
+	void Render(dxe::Camera* camera);
 
 	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board);
 	void UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<Unit*> all_untis);
@@ -55,6 +57,8 @@ private:
 
 
 	Card* play_card_ = nullptr;
+
+	AnimManager& anim_manager_ = AnimManager::GetInstance();
 
 	
 };

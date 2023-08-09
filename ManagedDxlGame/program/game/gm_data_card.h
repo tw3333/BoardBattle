@@ -49,6 +49,7 @@ public:
 	std::vector<CardRange*> debug_card_range_list_;
 
 	CardRange* card_range_ = nullptr;
+	std::string debug_anim_name_ = "debug_anim";
 
 private:
 
@@ -61,7 +62,8 @@ private:
 	std::string card_name_;
 	std::string card_explanation_; //カードの効果文
 	std::vector<std::string> split_explanation_; //カードの効果文を分割したもの
-
+	
+	
 
 	std::shared_ptr <dxe::Texture> card_texture_;
 

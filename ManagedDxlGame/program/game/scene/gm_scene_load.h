@@ -12,6 +12,7 @@
 #include "../gm_card_manager.h"
 #include "../gm_font_manager.h"
 #include "../gm_anim_manager.h"
+#include "../gm_sound_manager.h"
 
 
 //memo
@@ -39,7 +40,7 @@ private:
 	CardManager& card_mgr_ = CardManager::GetInstance();
 	FontManager& font_mgr_ = FontManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
-
+	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 
 
 

@@ -18,9 +18,29 @@
 #include <vector>
 
 
-void CardPlay::Render() {
+void CardPlay::Update(float delta_time) {
+
+	for (auto a : anim_manager_.GetDebugAnimList()) {
+
+		a->Update(delta_time);
+
+	}
+
+
+
+}
+
+void CardPlay::Render(dxe::Camera* camera) {
 
 	DebugRender();
+
+	for (auto a : anim_manager_.GetDebugAnimList()) {
+
+		a->SetCamera(camera);
+		a->Render(camera);
+
+	}
+
 
 }
 
@@ -75,7 +95,15 @@ void CardPlay::DebugRender() {
 	}
 
 
+	for (int i = 0; i < total_units_in_range_.size(); ++i) {
 
+
+		DrawStringEx(0, 250 + 20 * i, -1, "AnimPosX:%d", anim_manager_.GetDebugAnimList()[i]->pos_.x);
+
+
+		
+
+	}
 
 }
 
@@ -110,6 +138,35 @@ void CardPlay::EffectExecute()
 
 				a->Effect(total_units_in_range_);
 			}
+
+			for (int i = 0; i < total_units_in_range_.size(); ++i) {
+
+				if (total_units_in_range_[i]->GetUnitType() == UnitType::Ally) {
+
+					UnitAlly* unit_ally = dynamic_cast<UnitAlly*>(total_units_in_range_[i]);
+					anim_manager_.GetDebugAnimList()[i]->pos_ = unit_ally->GetObj()->pos_;
+
+				}
+				else if (total_units_in_range_[i]->GetUnitType() == UnitType::Enemy) {
+
+					UnitEnemy* unit_enemy = dynamic_cast<UnitEnemy*>(total_units_in_range_[i]);
+					anim_manager_.GetDebugAnimList()[i]->pos_ = unit_enemy->GetObj()->pos_;
+
+				}
+
+				anim_manager_.GetDebugAnimList()[i]->setCurrentAnim(select_uicard_->GetCardPtr()->GetCardData()->debug_anim_name_);
+
+			}
+			
+			for (int i = 0; i < total_units_in_range_.size(); ++i) {
+
+				anim_manager_.GetDebugAnimList()[i]->getCurrentAnimSeekUnit()->play();
+
+			}
+
+
+
+
 
 			int select_serial_num = select_uicard_->GetCardPtr()->GetSerialNum();
 

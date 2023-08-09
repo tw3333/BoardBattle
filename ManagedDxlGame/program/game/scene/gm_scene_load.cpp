@@ -23,6 +23,8 @@ void SceneLoad::Initialzie() {
 
 	anim_mgr_.CreateDebugAnim();
 
+	sound_mgr_.CreateBattleBGMList();
+
 
 
 }

@@ -374,6 +374,9 @@
     <ClCompile Include="program\game\gm_sound_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_unit_state_view.cpp">
+      <Filter>program</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -740,8 +743,15 @@
     <ClInclude Include="program\game\gm_anim_manager.h">
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_sound_,manager.h">
+    <ClInclude Include="program\game\gm_sound_manager.h">
       <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_unit_state_view.h" />
+    <ClInclude Include="program\game\gm_data_bgm.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_data_sound.h">
+      <Filter>program\[003] game\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

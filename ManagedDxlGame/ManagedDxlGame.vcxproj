@@ -310,8 +310,10 @@
     <ClInclude Include="program\game\gm_card_range_upper_left.h" />
     <ClInclude Include="program\game\gm_card_range_upper_right.h" />
     <ClInclude Include="program\game\gm_card_renge_self.h" />
+    <ClInclude Include="program\game\gm_data_bgm.h" />
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
+    <ClInclude Include="program\game\gm_data_sound.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
     <ClInclude Include="program\game\gm_enemy_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
@@ -322,7 +324,7 @@
     <ClInclude Include="program\game\gm_phase_manager.h" />
     <ClInclude Include="program\game\gm_scene_debug_battle_.h" />
     <ClInclude Include="program\game\gm_slime_behavior_strategy.h" />
-    <ClInclude Include="program\game\gm_sound_,manager.h" />
+    <ClInclude Include="program\game\gm_sound_manager.h" />
     <ClInclude Include="program\game\gm_ui_ally_action.h" />
     <ClInclude Include="program\game\gm_ui_card.h" />
     <ClInclude Include="program\game\gm_ui_card_cost.h" />

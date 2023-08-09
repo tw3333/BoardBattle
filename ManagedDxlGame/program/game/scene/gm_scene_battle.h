@@ -8,6 +8,7 @@
 #include "../gm_scene_battle_camera.h"
 #include "../gm_object_manager.h"
 #include "../gm_anim_manager.h"
+#include "../gm_sound_manager.h"
 
 #include "../gm_ui_card.h"
 #include "../gm_ui_card_hand.h"
@@ -120,6 +121,8 @@ private:
 	//mgrインスタンス
 	CardManager& cmgr_ = CardManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
+	SoundManager& sound_mgr_ = SoundManager::GetInstance();
+
 
 	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
 	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
