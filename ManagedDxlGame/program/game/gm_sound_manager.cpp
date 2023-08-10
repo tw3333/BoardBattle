@@ -18,6 +18,19 @@ void SoundManager::CreateBattleBGMList() {
 
 }
 
+void SoundManager::CreateCardSEList() {
+
+	card_se_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::CardSE,"sound/se/cardse_fire.mp3"));
+
+
+
+
+
+}
+
+
+
+
 void SoundManager::PlayBattleBGM(int id) {
 
 	for (auto bbl : battle_bgm_list_) {
@@ -30,3 +43,30 @@ void SoundManager::PlayBattleBGM(int id) {
 	}
 
 }
+
+void SoundManager::PlayCardSE(int id) {
+
+	if (!card_se_list_.empty()) {
+
+		for (auto csl : card_se_list_) {
+
+			if (csl->GetID() == id) {
+
+				PlaySoundMem(csl->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+				break;
+			}
+		}
+
+
+
+	}
+
+
+
+
+
+
+
+}
+
+

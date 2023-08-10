@@ -26,7 +26,9 @@ public:
 
 
 	void CreateBattleBGMList();
+	void CreateCardSEList();
 	void PlayBattleBGM(int id);
+	void PlayCardSE(int id);
 
 
 

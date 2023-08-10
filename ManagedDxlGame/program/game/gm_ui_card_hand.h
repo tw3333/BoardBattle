@@ -67,8 +67,12 @@ public:
 
 	void ResetAllyHand() { ally_hand_.clear(); }
 
+	bool GetIsEnable() { return is_enable_; }
+	void etIsEnable(bool is_enable) { is_enable_ = is_enable; }
+
 private:
 
+	bool is_enable_ = false;
 
 
 	int pos_x_ = 0;

@@ -83,13 +83,21 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
 
+	ui_notice_target_box_ = new UINoticeTargetBox(w1 * 4, h1 * 1 - 15, w1 * 2, h1 * 1 / 2);
+
 	ui_unit_state_view_ = new UIUnitStateView(0,0);
 
 	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
 
 	board_->Update(0);
 
-	anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
+	anim_mgr_.GetDebugAnim()->setCurrentAnim("none");
+	
+
+
+	//card_play_->SetCameraToCardEffectAnim(camera_);
+
+
 }
 
 void SceneBattle::Update(float delta_time) {
@@ -109,7 +117,8 @@ void SceneBattle::Update(float delta_time) {
 
 	obj_target_circle_->Update(delta_time);
 
-	card_play_->Update(delta_time);
+	//card_play_->SetCameraToCardEffectAnim(camera_);
+	//card_play_->Update(delta_time);
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
@@ -126,14 +135,15 @@ void SceneBattle::Update(float delta_time) {
 	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
 	anim_mgr_.GetDebugAnim()->Update(delta_time);
 
-	for (auto a : anim_mgr_.GetDebugAnimList()) {
-		a->SetCamera(camera_);
-		a->Update(delta_time);
-	}
+	
 	
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
-		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
+		anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
+	
+		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0);
+
+		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->play();
 	}
 
 	//phase_.update(delta_time);
@@ -161,6 +171,7 @@ void SceneBattle::Render() {
 	ui_turn_ally_state_->Render();
 	ui_unit_state_view_->Render();
 	ui_turn_view_->Render();
+	ui_notice_target_box_->Render();
 	//ui_card_->Render();
 	ui_card_hand_->Render();
 
@@ -168,12 +179,7 @@ void SceneBattle::Render() {
 
 	anim_mgr_.GetDebugAnim()->Render(camera_);
 
-	for (auto a : anim_mgr_.GetDebugAnimList()) {
-		a->Render(camera_);
-	}
-
-
-
+	ui_notice_target_box_->Render();
 }
 
 
@@ -220,47 +226,8 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 }
 
-//各Phaseの実装=====================================================================================
-
-void SceneBattle::InitialTurnCal() {
-
-	turn_count_ += 1;
-
-	//素早さ順に降順ソート
-	std::sort(all_units_.begin(), all_units_.end(),[](Unit* a, Unit* b) {
-			return a->GetSpeed() > b->GetSpeed();
-	});
-
-	turn_unit_ = all_units_.front();
-
-
-	if (turn_unit_->GetUnitType() == UnitType::Ally) {
-		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
-		phase_.change(&SceneBattle::PhaseAllyTurn);
-
-	}
-	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
-		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
-
-		phase_.change(&SceneBattle::PhaseEnemyTurn);
-	}
-
-}
-
-void SceneBattle::ChangeBattlePhase(BattlePhase* new_phase) {
-
-	if (current_phase_) {
-		current_phase_->EndPhase();
-	}
-
-	current_phase_ = new_phase;
-
-	if (current_phase_) {
-		current_phase_->BeginPhase();
-	}
-
-}
-
+//各Phaseの実装=======================================================================================================
+//戦闘開始時のターン決め
 bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
 	//素早さ順に降順ソート
@@ -270,7 +237,7 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
 	turn_unit_ = all_units_.front();
 
-
+	//turn_unitをキャスト。対応したPhaseに移行
 	if (turn_unit_->GetUnitType() == UnitType::Ally) {
 		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
 		
@@ -282,11 +249,11 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
-
-
 	return true;
 }
 
+
+//
 bool SceneBattle::TurnCal(const float delta_time) {
 
 	turn_count_ += 1;
@@ -411,6 +378,8 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	return true;
 }
 
+
+//Move実装
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhasePlayerActionMove");

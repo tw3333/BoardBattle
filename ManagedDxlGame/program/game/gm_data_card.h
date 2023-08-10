@@ -9,6 +9,11 @@
 class CardEffect;
 class CardRange;
 
+enum class TargetType {
+	SpecifyTarget, //対象指定
+	SpecifyRange, //範囲指定
+	AllRange, //射程ないのすべてを指定に
+};
 
 
 class CardData {
@@ -57,7 +62,10 @@ private:
 	int card_cost_;
 
 	bool is_specify_target_ = false; //指定ターゲットかどうか
+	TargetType target_type_;
 	int target_num_ = 0;
+
+
 	
 	std::string card_name_;
 	std::string card_explanation_; //カードの効果文

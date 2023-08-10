@@ -28,6 +28,7 @@ public:
 	int GetCardNameFont () const { return card_name_font_; }
 	int GetCardCostFont () const { return card_cost_font_; }
 	int GetCardExplanationFont () const { return card_explanation_font_; }
+	int GetNoticeTargetNumFont () const { return notice_target_num_font_; }
 
 private:
 
@@ -37,6 +38,7 @@ private:
 	int card_name_font_;
 	int card_cost_font_;
 	int card_explanation_font_;
+	int notice_target_num_font_;
 
 
 

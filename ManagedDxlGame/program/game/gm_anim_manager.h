@@ -35,7 +35,7 @@ public:
 
 
 	std::shared_ptr<AnimSprite3D> GetDebugAnim() {	return debug_anim_; }
-	std::vector<std::shared_ptr<AnimSprite3D>>& GetDebugAnimList() { return debug_anim_list_; }
+	std::vector<std::shared_ptr<AnimSprite3D>> GetDebugAnimList() { return debug_anim_list_; }
 
 
 

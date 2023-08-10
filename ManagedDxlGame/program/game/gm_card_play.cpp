@@ -20,10 +20,14 @@
 
 void CardPlay::Update(float delta_time) {
 
-	for (auto a : anim_manager_.GetDebugAnimList()) {
+	//for (auto a : anim_manager_.GetDebugAnimList()) {
 
-		a->Update(delta_time);
+	//	a->Update(delta_time);
 
+	//}
+
+	if (!card_effect_anim_.empty()) {
+		for (auto cea : card_effect_anim_) { cea->Update(delta_time); }
 	}
 
 
@@ -34,12 +38,11 @@ void CardPlay::Render(dxe::Camera* camera) {
 
 	DebugRender();
 
-	for (auto a : anim_manager_.GetDebugAnimList()) {
-
-		a->SetCamera(camera);
-		a->Render(camera);
-
+	if (!card_effect_anim_.empty()) {
+		for (auto cea : card_effect_anim_) { cea->Render(camera); }
 	}
+
+
 
 
 }
@@ -144,26 +147,29 @@ void CardPlay::EffectExecute()
 				if (total_units_in_range_[i]->GetUnitType() == UnitType::Ally) {
 
 					UnitAlly* unit_ally = dynamic_cast<UnitAlly*>(total_units_in_range_[i]);
-					anim_manager_.GetDebugAnimList()[i]->pos_ = unit_ally->GetObj()->pos_;
+					card_effect_anim_[i]->pos_ = unit_ally->GetObj()->pos_;
 
 				}
 				else if (total_units_in_range_[i]->GetUnitType() == UnitType::Enemy) {
 
 					UnitEnemy* unit_enemy = dynamic_cast<UnitEnemy*>(total_units_in_range_[i]);
-					anim_manager_.GetDebugAnimList()[i]->pos_ = unit_enemy->GetObj()->pos_;
+					card_effect_anim_[i]->pos_ = unit_enemy->GetObj()->pos_;
 
 				}
 
-				anim_manager_.GetDebugAnimList()[i]->setCurrentAnim(select_uicard_->GetCardPtr()->GetCardData()->debug_anim_name_);
+				card_effect_anim_[i]->setCurrentAnim(select_uicard_->GetCardPtr()->GetCardData()->debug_anim_name_);
 
 			}
 			
 			for (int i = 0; i < total_units_in_range_.size(); ++i) {
 
-				anim_manager_.GetDebugAnimList()[i]->getCurrentAnimSeekUnit()->play();
+				card_effect_anim_[i]->getCurrentAnimSeekUnit()->play();
 
 			}
 
+			//SeÄ¶
+			//sound_manager_.PlayCardSE(select_uicard_->GetCardPtr()->GetCardData()->GetCardID());
+			sound_manager_.PlayCardSE(1);
 
 
 
@@ -179,6 +185,19 @@ void CardPlay::EffectExecute()
 				return card->GetSerialNum() == select_serial_num;
 				}), turn_ally_->GetHand().end());
 		
+		}
+
+	}
+
+}
+
+void CardPlay::SetCameraToCardEffectAnim(dxe::Camera* camera) {
+
+	if (!card_effect_anim_.empty()) {
+
+		for (auto cra : card_effect_anim_) {
+			cra->SetCamera(camera);
+			cra->setCurrentAnim("none");
 		}
 
 	}

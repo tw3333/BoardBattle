@@ -19,18 +19,16 @@
 
 void CardManager::CreateDebugCardData() {
 
-
-
-	debug_card_data_.emplace_back(new CardData(0,1,false,0,"debug1","ああああああああああああああああああああ","graphics/card/c1/beeding-heart.png"));
-	debug_card_data_.emplace_back(new CardData(1, 1, false, 0, "debug2", "ああああああああああああああああああああ", "graphics/card/c1/bird-claw.png"));
-	debug_card_data_.emplace_back(new CardData(2, 1, false, 0, "debug3", "ああああああああああああああああああああ", "graphics/card/c1/bloody-stash.png"));
-	debug_card_data_.emplace_back(new CardData(3, 1, false, 0, "debug4", "ああああああああああああああああああああ", "graphics/card/c1/circle-claws.png"));
-	debug_card_data_.emplace_back(new CardData(4, 1, false, 0, "debug5", "ああああああああああああああああああああ", "graphics/card/c1/claw-slashes.png"));
-	debug_card_data_.emplace_back(new CardData(5, 1, false, 0, "debug6", "ああああああああああああああああああああ", "graphics/card/c1/cross-mark.png"));
-	debug_card_data_.emplace_back(new CardData(6, 1, false, 0, "debug7", "ああああああああああああああああああああ", "graphics/card/c1/flaming-claw.png"));
-	debug_card_data_.emplace_back(new CardData(7, 1, false, 0, "debug8", "ああああああああああああああああああああ", "graphics/card/c1/foot-trip.png"));
-	debug_card_data_.emplace_back(new CardData(8, 1, false, 0, "debug9", "ああああああああああああああああああああ", "graphics/card/c1/grasping-claws.png"));
-	debug_card_data_.emplace_back(new CardData(9, 1, false, 0, "debug10", "ああああああああああああああああああああ", "graphics/card/c1/healing.png"));
+	debug_card_data_.emplace_back(new CardData(0, 1,TargetType::SpecifyTarget,1,"debug1","対象指定カード１","graphics/card/c1/beeding-heart.png"));
+	debug_card_data_.emplace_back(new CardData(1, 1, TargetType::SpecifyTarget, 1, "debug2", "対象指定カード1", "graphics/card/c1/bird-claw.png"));
+	debug_card_data_.emplace_back(new CardData(2, 1, TargetType::SpecifyTarget, 1, "debug3", "対象指定カード1", "graphics/card/c1/bloody-stash.png"));
+	debug_card_data_.emplace_back(new CardData(3, 1, TargetType::SpecifyTarget, 1, "debug4", "対象指定カード１", "graphics/card/c1/circle-claws.png"));
+	debug_card_data_.emplace_back(new CardData(4, 1, TargetType::SpecifyTarget, 1, "debug5", "対象指定カード１", "graphics/card/c1/claw-slashes.png"));
+	debug_card_data_.emplace_back(new CardData(5, 1, TargetType::AllRange, 0, "debug6", "AoE", "graphics/card/c1/cross-mark.png"));
+	debug_card_data_.emplace_back(new CardData(6, 1, TargetType::AllRange, 0, "debug7", "AoE", "graphics/card/c1/flaming-claw.png"));
+	debug_card_data_.emplace_back(new CardData(7, 1, TargetType::AllRange, 0, "debug8", "AoE", "graphics/card/c1/foot-trip.png"));
+	debug_card_data_.emplace_back(new CardData(8, 1, TargetType::AllRange, 0, "debug9", "AoE", "graphics/card/c1/grasping-claws.png"));
+	debug_card_data_.emplace_back(new CardData(9, 1, TargetType::AllRange, 0, "debug10", "AoE", "graphics/card/c1/healing.png"));
 
 	for (auto dcd : debug_card_data_) {
 
