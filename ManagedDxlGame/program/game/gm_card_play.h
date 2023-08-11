@@ -28,12 +28,14 @@ public:
 	void Update(float delta_time);
 	void Render(dxe::Camera* camera);
 
-	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board);
+	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board); 
 	void UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<Unit*> all_untis);
+	void RemovePlayCardFromHand();
 
 	void DebugRender();
 
 	void EffectExecute();
+	void CardExecute(Card* card_data);
 
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
@@ -50,6 +52,9 @@ private:
 	bool is_target_num_box_render_ = false;
 
 	std::shared_ptr<Card> select_card_ = nullptr;
+	std::shared_ptr<Card> play_card_ = nullptr; //実行するCardのインスタンス
+
+
 	UnitAlly* turn_ally_ = nullptr;
 
 	UICard* select_uicard_ = nullptr;
@@ -57,6 +62,7 @@ private:
 
 	std::vector<std::shared_ptr<Card>> ally_hand_;
 	std::vector<Unit*> total_units_in_range_;
+	std::vector<Unit*> select_target_units_;
 
 
 

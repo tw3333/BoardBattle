@@ -30,6 +30,30 @@ void CardPlay::Update(float delta_time) {
 		for (auto cea : card_effect_anim_) { cea->Update(delta_time); }
 	}
 
+	if (select_uicard_) {
+
+		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+
+			if (select_uicard_->GetCardPtr()->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
+
+
+
+
+
+			}
+
+
+
+
+		}
+
+
+
+
+	}
+
+
+
 
 
 }
@@ -47,6 +71,7 @@ void CardPlay::Render(dxe::Camera* camera) {
 
 }
 
+//選択されているUICardの射程を盤面に表示
 void CardPlay::RenderSelectCardRange(UnitAlly* turn_ally, Board* board) {
 
 	if (select_uicard_) {
@@ -67,6 +92,8 @@ void CardPlay::RenderSelectCardRange(UnitAlly* turn_ally, Board* board) {
 
 }
 
+
+//Cardの持つ射程内のUnitを配列に格納
 void CardPlay::UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<Unit*> all_units) {
 
 	if (select_uicard_) {
@@ -188,6 +215,59 @@ void CardPlay::EffectExecute()
 		}
 
 	}
+
+}
+
+
+//カードの効果を実行
+void CardPlay::CardExecute(Card* card) {
+
+	if (select_uicard_ && turn_ally_) {
+		
+		if (card->GetCardData()->GetTargetType() == TargetType::AllRange) {
+
+			if (total_units_in_range_.empty()) {
+
+				//debugcode
+				DrawStringEx(0, 500, -1, "射程に誰もいないよ！");
+
+				return;
+			}
+
+			//効果実行処理
+			for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardEffectList()) {
+
+				a->Effect(total_units_in_range_);
+			}
+
+
+
+
+		}
+		else if (card->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
+
+			if (select_target_units_.size() < card->GetTargetNum()) {
+
+				return;
+			}
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
 
 }
 

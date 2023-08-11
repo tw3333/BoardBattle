@@ -91,6 +91,7 @@ public:
 	
 	bool PhasePlayerActionCard(const float delta_time);
 	bool PhaseDrawCard(const float delta_time);
+	bool PhaseTargetSelect(const float delta_time);
 
 	bool PhasePlayerActionTool(const float delta_time);
 	bool PhasePlayerActionTurnEnd(const float delta_time);

@@ -67,12 +67,13 @@ public:
 
 	void ResetAllyHand() { ally_hand_.clear(); }
 
-	bool GetIsEnable() { return is_enable_; }
-	void etIsEnable(bool is_enable) { is_enable_ = is_enable; }
+	void SetEnableSelectCard(bool enable) { enable_select_card_ = enable; }
+	bool GetEnableSelectCard() { return enable_select_card_; }
 
 private:
 
-	bool is_enable_ = false;
+	bool enable_select_card_ = true;
+	
 
 
 	int pos_x_ = 0;
@@ -87,7 +88,8 @@ private:
 	float overlap_ = 0;
 	int total_width_ = pos_x_ + card_w *5;
 
-	UICard* select_uicard_; //選択中のUICardインスタンス
+	UICard* select_uicard_ = nullptr; //選択中のUICardインスタンス
+	std::shared_ptr<Card> play_card_ = nullptr; //実行するCardのインスタンス
 	
 	UnitAlly* turn_ally_ = nullptr;
 

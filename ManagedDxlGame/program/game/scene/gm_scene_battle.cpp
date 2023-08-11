@@ -431,7 +431,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	return true;
 }
 
-
+//Card‚ð‘I‘ð‚·‚é’iŠK‚Ìˆ—
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
@@ -443,6 +443,23 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 	card_play_->RenderSelectCardRange(turn_ally_, board_);
 	card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
+
+	if (ui_card_hand_->GetSelectUICard()) {
+
+		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+
+			
+
+			card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
+			
+			ui_card_hand_->SetEnableSelectCard(false);
+			phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+		}
+
+
+	}
+
+
 	card_play_->EffectExecute();
 	
 	//if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
@@ -500,6 +517,35 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 	}
 
 	phase_.change(&SceneBattle::PhasePlayerActionCard);
+	return true;
+}
+
+bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
+
+	if (card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::AllRange) {
+
+
+
+	}
+
+
+
+
+
+
+
+
+	return true;
+}
+
+bool SceneBattle::PhaseExecutePlayCard(const float delta_time)
+{
+
+
+
+
+
+
 	return true;
 }
 
