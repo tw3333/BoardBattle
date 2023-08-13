@@ -3,20 +3,30 @@
 //memo
 //カードの対象を格納するクラス
 
-enum InRangeToTarget {
-	Ally,
-	Enemy,
-	All,
+enum TARGETTYPE {
+	InRange,
+	Specify,
 	None
 };
+
+enum TOTARGET {
+	Ally,
+	Enemy,
+	Self, //自身を指定
+	All, //各Unitに
+	None //初期パラメータ
+};
+
+
 
 
 class CardTarget {
 public:
 
-	CardTarget(InRangeToTarget in_range_to_target,int target_num = 0) {
+	CardTarget(TARGETTYPE target_type, TOTARGET to_target, int target_num = 0) {
 	
-		in_range_to_target_ = in_range_to_target;
+		target_type_ = target_type;
+		to_target_ = to_target;
 		target_num_ = target_num;
 	
 	}
@@ -27,7 +37,10 @@ public:
 
 private:
 
-	InRangeToTarget in_range_to_target_ = InRangeToTarget::None;
+	TARGETTYPE target_type_ = TARGETTYPE::None;
+	TOTARGET to_target_ = TOTARGET::None;
+
+
 	int target_num_;
 	
 
