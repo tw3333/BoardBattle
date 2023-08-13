@@ -220,22 +220,14 @@ void CardPlay::EffectExecute()
 
 
 //カードの効果を実行
-void CardPlay::CardExecute(Card* card) {
+void CardPlay::PlayCardExecute() {
 
-	if (select_uicard_ && turn_ally_) {
+	if (play_card_ && turn_ally_) {
 		
-		if (card->GetCardData()->GetTargetType() == TargetType::AllRange) {
-
-			if (total_units_in_range_.empty()) {
-
-				//debugcode
-				DrawStringEx(0, 500, -1, "射程に誰もいないよ！");
-
-				return;
-			}
+		if (play_card_->GetCardData()->GetTargetType() == TargetType::AllRange) {
 
 			//効果実行処理
-			for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardEffectList()) {
+			for (auto a : play_card_->GetCardData()->GetCardEffectList()) {
 
 				a->Effect(total_units_in_range_);
 			}
@@ -244,14 +236,9 @@ void CardPlay::CardExecute(Card* card) {
 
 
 		}
-		else if (card->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
+		else if (play_card_->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
 
-			if (select_target_units_.size() < card->GetTargetNum()) {
-
-				return;
-			}
-
-
+				
 
 
 

@@ -72,7 +72,7 @@ public:
 
 private:
 
-	bool enable_select_card_ = true;
+	bool enable_select_card_ = true; //UICard選択の有効化
 	
 
 
@@ -89,7 +89,7 @@ private:
 	int total_width_ = pos_x_ + card_w *5;
 
 	UICard* select_uicard_ = nullptr; //選択中のUICardインスタンス
-	std::shared_ptr<Card> play_card_ = nullptr; //実行するCardのインスタンス
+	
 	
 	UnitAlly* turn_ally_ = nullptr;
 

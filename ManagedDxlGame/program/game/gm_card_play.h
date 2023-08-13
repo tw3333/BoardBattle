@@ -35,17 +35,20 @@ public:
 	void DebugRender();
 
 	void EffectExecute();
-	void CardExecute(Card* card_data);
+	void PlayCardExecute();
 
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
-	void SetCard(Card* card) { play_card_ = card; }
 	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
 
 	void SetSelectUICard(UICard* uicard) { select_uicard_ = uicard; }
 	void SetAllyHand(std::vector<std::shared_ptr<Card>> ally_hand) { ally_hand_ = ally_hand; }
 
 	void SetCameraToCardEffectAnim(dxe::Camera* camera);
+
+	void SetPlayCard(std::shared_ptr<Card> card) { play_card_ = card; }
+	std::shared_ptr<Card> GetPlayCard() { return play_card_; }
+
 
 private:
 
@@ -67,7 +70,7 @@ private:
 
 
 
-	Card* play_card_ = nullptr;
+	//Card* play_card_ = nullptr;
 
 	AnimManager& anim_manager_ = AnimManager::GetInstance();
 	SoundManager& sound_manager_ = SoundManager::GetInstance();

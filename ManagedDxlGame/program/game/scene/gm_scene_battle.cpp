@@ -524,8 +524,22 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
 	if (card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::AllRange) {
 
+		phase_.change(&SceneBattle::PhaseExecutePlayCard);
+
+	}
+	else if (card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
+
+		DrawStringEx(0,400,-1,"対象選択中");
 
 
+
+
+
+
+	}
+	else if ((card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::None)) {
+
+		DrawStringEx(0, 400, -1, "射程無しカード");
 	}
 
 
@@ -538,13 +552,14 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 	return true;
 }
 
-bool SceneBattle::PhaseExecutePlayCard(const float delta_time)
-{
 
+//PlayCardを実行
+bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
-
-
-
+	card_play_->PlayCardExecute();
+	card_play_->SetPlayCard(nullptr);
+	ui_card_hand_->SetEnableSelectCard(true);
+	phase_.change(&SceneBattle::PhasePlayerActionCard);
 
 	return true;
 }

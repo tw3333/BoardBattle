@@ -49,7 +49,7 @@ void UICardHand::Update(float delta_time) {
 		}
 	}
 
-	if (can_select_) {
+	if (enable_select_card_) {
 
 		for (auto uc : ui_hand_) {
 
@@ -64,6 +64,14 @@ void UICardHand::Update(float delta_time) {
 
 		select_uicard_ = GetMouseInsideTopCard(msv.x, msv.y);
 
+
+	} else if(!enable_select_card_) {
+
+		for (auto uc : ui_hand_) {
+			uc->SetIsCardUp(false);
+		}
+
+		select_uicard_ = nullptr;
 
 	}
 

@@ -759,5 +759,8 @@
     <ClInclude Include="program\game\gm_ui_notice_target_box.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_card_target.h">
+      <Filter>program\[003] game\card</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

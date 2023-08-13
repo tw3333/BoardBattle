@@ -19,6 +19,4 @@ private:
 
 	int damage_;
 
-
-
 };

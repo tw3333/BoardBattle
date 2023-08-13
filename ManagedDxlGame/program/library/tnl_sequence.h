@@ -62,6 +62,7 @@ void gameMain(float delta_time) {
 		std::stack<p_prev_> p_prevs_;
 		bool is_start_ = true;
 		bool is_change_ = false;
+
 		float sum_time_ = 0;
 		Sequence() {}
 	public:
