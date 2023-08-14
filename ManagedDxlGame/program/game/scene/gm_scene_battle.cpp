@@ -10,6 +10,9 @@
 #include <vector>     // for std::vector
 #include <numeric> 
 
+#include "../gm_card_target.h"
+
+
 void SceneBattle::Initialzie() {
 //---
 	camera_ = new SceneBattleCamera();
@@ -448,19 +451,29 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
-			
+			if (!card_play_->IsSelectCardCostEnough()) {
 
-			card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
-			
-			ui_card_hand_->SetEnableSelectCard(false);
-			phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+				DrawStringEx(0,400,-1,"コストが足りません");
+
+			}
+			else if (!card_play_->IsSelectCardTargetInRange()) {
+
+				DrawStringEx(0,400,-1,"射程に対象がいません");
+			}
+			else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange()) {
+				
+				card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
+				ui_card_hand_->SetEnableSelectCard(false);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+
+			}
 		}
 
 
 	}
 
 
-	card_play_->EffectExecute();
+	//card_play_->EffectExecute();
 	
 	//if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 	//	turn_ally_->GetHand().erase(turn_ally_->GetHand().begin() + 1);
@@ -522,24 +535,26 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
 bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
-	if (card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::AllRange) {
+	for (auto ctl : card_play_->GetPlayCard()->GetCardData()->GetCardTargetList()) {
 
-		phase_.change(&SceneBattle::PhaseExecutePlayCard);
+		if (ctl->GetTargetType() == TARGETTYPE::InRange) {
 
-	}
-	else if (card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
-
-		DrawStringEx(0,400,-1,"対象選択中");
+			if (ctl->GetToTarget() == TOTARGET::Ally) {
 
 
 
 
 
 
-	}
-	else if ((card_play_->GetPlayCard()->GetCardData()->GetTargetType() == TargetType::None)) {
+			}
 
-		DrawStringEx(0, 400, -1, "射程無しカード");
+
+
+
+
+		}
+
+
 	}
 
 

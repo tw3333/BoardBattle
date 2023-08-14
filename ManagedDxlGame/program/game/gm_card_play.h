@@ -36,6 +36,10 @@ public:
 
 	void EffectExecute();
 	void PlayCardExecute();
+	bool CanPlaySelectCard();
+
+	bool IsSelectCardCostEnough();
+	bool IsSelectCardTargetInRange();
 
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
@@ -49,6 +53,8 @@ public:
 	void SetPlayCard(std::shared_ptr<Card> card) { play_card_ = card; }
 	std::shared_ptr<Card> GetPlayCard() { return play_card_; }
 
+	std::vector<Unit*> GetTotalUnitsInRange() { return total_units_in_range_; }
+	std::vector<Unit*> GetTargetUnits() { return target_units_; }
 
 private:
 
@@ -65,7 +71,7 @@ private:
 
 	std::vector<std::shared_ptr<Card>> ally_hand_;
 	std::vector<Unit*> total_units_in_range_;
-	std::vector<Unit*> select_target_units_;
+	std::vector<Unit*> target_units_;
 
 
 

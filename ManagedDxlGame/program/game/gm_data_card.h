@@ -8,13 +8,18 @@
 //各カードのデータを表すクラス
 class CardEffect;
 class CardRange;
+class CardTarget;
 
 enum class TargetType {
 	SpecifyTarget, //対象指定
 	SpecifyRange, //範囲指定
 	AllRange, //射程内すべてを指定に
+	Self, //自分自身
 	None //射程無し
 };
+
+
+
 
 
 class CardData {
@@ -37,18 +42,19 @@ public:
 	
 	std::shared_ptr<dxe::Texture> GetCardTexture() const { return card_texture_; }
 	
-	std::vector<std::shared_ptr<CardEffect>>GetCardEffectList() {
-		return card_effect_list_;
-	}
-	std::vector<std::shared_ptr<CardRange>> GetCardRangeList() {
-		return card_range_list_;
-	}
+	std::vector<std::shared_ptr<CardEffect>>GetCardEffectList() { return card_effect_list_; }
+	std::vector<std::shared_ptr<CardRange>> GetCardRangeList() { return card_range_list_; }
+	std::vector<std::shared_ptr<CardTarget>> GetCardTargetList() { return card_target_list_; }
 
 	void AddCardEffect(std::shared_ptr<CardEffect> card_effect) {
 		card_effect_list_.push_back(card_effect);
 	}
 	void AddCardRange(std::shared_ptr<CardRange> card_range) {
 		card_range_list_.push_back(card_range);
+	}
+
+	void AddCardTarget(std::shared_ptr<CardTarget> card_target) {
+		card_target_list_.push_back(card_target);
 	}
 
 	std::vector<CardEffect*> debug_card_effect_list_;
@@ -79,6 +85,9 @@ private:
 	std::shared_ptr <dxe::Texture> card_texture_;
 
 	
-	std::vector<std::shared_ptr	<CardEffect>> card_effect_list_;
-	std::vector<std::shared_ptr <CardRange>> card_range_list_;
+	std::vector<std::shared_ptr<CardEffect>> card_effect_list_;
+	std::vector<std::shared_ptr<CardRange>> card_range_list_;
+	std::vector<std::shared_ptr<CardTarget>> card_target_list_;
+
+
 };

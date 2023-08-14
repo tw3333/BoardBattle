@@ -3,13 +3,13 @@
 //memo
 //カードの対象を格納するクラス
 
-enum TARGETTYPE {
+enum class TARGETTYPE {
 	InRange,
 	Specify,
 	None
 };
 
-enum TOTARGET {
+enum class TOTARGET {
 	Ally,
 	Enemy,
 	Self, //自身を指定
@@ -33,6 +33,8 @@ public:
 	~CardTarget(){}
 
 
+	TARGETTYPE GetTargetType() { return target_type_; }
+	TOTARGET GetToTarget() { return to_target_; }
 	int GetTargetNum() { return target_num_; }
 
 private:
@@ -41,7 +43,7 @@ private:
 	TOTARGET to_target_ = TOTARGET::None;
 
 
-	int target_num_;
+	int target_num_ = 0;
 	
 
 

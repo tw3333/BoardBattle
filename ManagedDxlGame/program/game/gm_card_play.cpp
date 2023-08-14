@@ -5,6 +5,7 @@
 
 #include "gm_card_range.h"
 #include "gm_card_range_self.h"
+#include "gm_card_target.h"
 
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
@@ -256,6 +257,102 @@ void CardPlay::PlayCardExecute() {
 
 
 
+}
+
+bool CardPlay::CanPlaySelectCard() {
+
+	//コスト判定
+	if (select_uicard_->GetCardPtr()->GetCardData()->GetCardCost() > turn_ally_->GetCurrentCardCost()) {
+
+		return false;
+	}
+
+	//射程判定
+
+
+
+
+
+
+	return true;
+}
+
+bool CardPlay::IsSelectCardCostEnough() {
+
+	//コスト判定
+	if (select_uicard_->GetCardPtr()->GetCardData()->GetCardCost() > turn_ally_->GetCurrentCardCost()) {
+		return false;
+	}
+
+	return true;
+}
+
+bool CardPlay::IsSelectCardTargetInRange()
+{
+	if (total_units_in_range_.empty()) {
+		return false;
+	}
+
+	for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardTargetList()) {
+
+		//InRange判定
+		if (a->GetTargetType() == TARGETTYPE::InRange) {
+
+			if (a->GetToTarget() == TOTARGET::All) {
+				if (total_units_in_range_.empty()) {
+					return false;
+				}
+			}
+			else if (a->GetToTarget() == TOTARGET::Ally) {
+				
+				for (auto tuir : total_units_in_range_) {
+					if (tuir->GetUnitType() == UnitType::Ally) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+			else if (a->GetToTarget() == TOTARGET::Enemy) {
+				
+				for (auto tuir : total_units_in_range_) {
+					if (tuir->GetUnitType() == UnitType::Enemy) {
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+
+		//Specify判定
+		if (a->GetTargetType() == TARGETTYPE::Specify) {
+
+			if (a->GetToTarget() == TOTARGET::All) {
+				if (total_units_in_range_.empty()) {
+					return false;
+				}
+			}
+			else if (a->GetToTarget() == TOTARGET::Ally) {
+
+				for (auto tuir : total_units_in_range_) {
+					if (tuir->GetUnitType() == UnitType::Ally) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+			else if (a->GetToTarget() == TOTARGET::Enemy) {
+
+				for (auto tuir : total_units_in_range_) {
+					if (tuir->GetUnitType() == UnitType::Enemy) {
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+	}
 }
 
 void CardPlay::SetCameraToCardEffectAnim(dxe::Camera* camera) {

@@ -15,6 +15,8 @@
 #include "gm_card_range_left.h"
 #include "gm_card_range_right.h"
 
+#include "gm_card_target.h"
+
 
 
 void CardManager::CreateDebugCardData() {
@@ -29,6 +31,23 @@ void CardManager::CreateDebugCardData() {
 	debug_card_data_.emplace_back(new CardData(7, 1, TargetType::AllRange, 0, "debug8", "AoE", "graphics/card/c1/foot-trip.png"));
 	debug_card_data_.emplace_back(new CardData(8, 1, TargetType::AllRange, 0, "debug9", "AoE", "graphics/card/c1/grasping-claws.png"));
 	debug_card_data_.emplace_back(new CardData(9, 1, TargetType::AllRange, 0, "debug10", "AoE", "graphics/card/c1/healing.png"));
+
+
+	for (int i = 0; i < 10; ++i) {
+
+		if (i < 6) {
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(TARGETTYPE::Specify, TOTARGET::Enemy, 1));
+
+		}
+		else if (6 <= i) {
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(TARGETTYPE::InRange, TOTARGET::Enemy));
+		}
+
+	}
+
+
+
+
 
 	for (auto dcd : debug_card_data_) {
 
