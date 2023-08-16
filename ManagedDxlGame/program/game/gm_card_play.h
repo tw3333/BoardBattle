@@ -6,6 +6,7 @@
 
 #include "gm_card_effect.h"
 #include "gm_card_range.h"
+#include "gm_card_target.h"
 
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
@@ -41,6 +42,8 @@ public:
 	bool IsSelectCardCostEnough();
 	bool IsSelectCardTargetInRange();
 
+	std::vector<Unit*> ExtractUnitInRange(TOTARGET to_target); //total_units_in_range_から各Unitを抽出する関数
+
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
 	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
@@ -54,7 +57,10 @@ public:
 	std::shared_ptr<Card> GetPlayCard() { return play_card_; }
 
 	std::vector<Unit*> GetTotalUnitsInRange() { return total_units_in_range_; }
-	std::vector<Unit*> GetTargetUnits() { return target_units_; }
+	std::vector<Unit*>& GetTargetUnits() { return target_units_; }
+
+	std::shared_ptr<CardTarget> GetCurrentCardTarget() { return current_card_target_; }
+	void SetCurrentCardTarget(std::shared_ptr<CardTarget> card_target) { current_card_target_ = card_target; }
 
 private:
 
@@ -62,18 +68,22 @@ private:
 
 	std::shared_ptr<Card> select_card_ = nullptr;
 	std::shared_ptr<Card> play_card_ = nullptr; //実行するCardのインスタンス
-
+	std::shared_ptr<CardTarget> current_card_target_ = nullptr; //実行するCardのTargetのインスタンス
 
 	UnitAlly* turn_ally_ = nullptr;
 
 	UICard* select_uicard_ = nullptr;
+
+
 	
 
 	std::vector<std::shared_ptr<Card>> ally_hand_;
 	std::vector<Unit*> total_units_in_range_;
 	std::vector<Unit*> target_units_;
 
+	int units_cnt_ = 0;
 
+	
 
 
 	//Card* play_card_ = nullptr;

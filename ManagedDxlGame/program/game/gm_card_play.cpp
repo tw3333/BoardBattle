@@ -355,6 +355,33 @@ bool CardPlay::IsSelectCardTargetInRange()
 	}
 }
 
+std::vector<Unit*> CardPlay::ExtractUnitInRange(TOTARGET to_target) {
+
+	std::vector<Unit*> extract_unit;
+
+	for (auto a : total_units_in_range_) {
+
+		if (to_target == TOTARGET::Ally) {
+
+			if (a->GetUnitType() == UnitType::Ally) {
+
+				extract_unit.push_back(a);
+			}
+
+		}
+		else if (to_target == TOTARGET::Enemy) {
+
+			if (a->GetUnitType() == UnitType::Enemy) {
+
+				extract_unit.push_back(a);
+			}
+
+		}
+	}
+
+	return extract_unit;
+}
+
 void CardPlay::SetCameraToCardEffectAnim(dxe::Camera* camera) {
 
 	if (!card_effect_anim_.empty()) {

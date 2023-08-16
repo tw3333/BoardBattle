@@ -537,23 +537,35 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
 	for (auto ctl : card_play_->GetPlayCard()->GetCardData()->GetCardTargetList()) {
 
-		if (ctl->GetTargetType() == TARGETTYPE::InRange) {
+		if (ctl->GetTargetType() == TARGETTYPE::InRange && !ctl->GetIsSpecified()) {
 
 			if (ctl->GetToTarget() == TOTARGET::Ally) {
+				
+				card_play_->GetTargetUnits().insert(card_play_->GetTargetUnits().end(),
+					card_play_->ExtractUnitInRange(TOTARGET::Ally).begin(), 
+					card_play_->ExtractUnitInRange(TOTARGET::Ally).end());
 
-
-
-
-
-
+				ctl->SetIsSpecified(true);
 			}
+			else if (ctl->GetToTarget() == TOTARGET::Enemy) {
 
+				card_play_->GetTargetUnits().insert(card_play_->GetTargetUnits().end(),
+					card_play_->ExtractUnitInRange(TOTARGET::Enemy).begin(),
+					card_play_->ExtractUnitInRange(TOTARGET::Enemy).end());
 
-
-
-
+				ctl->SetIsSpecified(true);
+			}
 		}
 
+		if (ctl->GetTargetType() == TARGETTYPE::Specify && !ctl->GetIsSpecified()) {
+
+			DrawStringEx(0,400,-1,"‘I‘ð’†");
+
+			
+			card_play_->SetCurrentCardTarget(ctl);
+			ctl->SetIsSpecified(true);
+			phase_.change(&SceneBattle::PhaseSpecifyTargetProc);
+		}
 
 	}
 
@@ -561,6 +573,115 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
 
 
+
+
+
+
+
+	return true;
+}
+
+bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
+{
+	int ally_cnt = 0;
+	int enemy_cnt = 0;
+
+	for (auto a : card_play_->GetTotalUnitsInRange()) {
+
+		if (a->GetUnitType() == UnitType::Ally) {
+
+			ally_cnt++;
+		}
+		else if (a->GetUnitType() == UnitType::Enemy) {
+			enemy_cnt++;
+		}
+
+	}
+
+	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+
+		if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
+
+			for (auto a : card_play_->GetTotalUnitsInRange()) {
+
+				if (a == select_square_->GetSelectSquare()->GetUnitPtrInSquare() && a->GetUnitType() == UnitType::Ally) {
+
+					card_play_->GetTargetUnits().push_back(a);
+
+				}
+
+			}
+
+		}
+		else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
+			
+			for (auto a : card_play_->GetTotalUnitsInRange()) {
+
+				if (a == select_square_->GetSelectSquare()->GetUnitPtrInSquare() && a->GetUnitType() == UnitType::Enemy) {
+
+					card_play_->GetTargetUnits().push_back(a);
+
+				}
+
+			}
+
+		}
+	}
+
+
+	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
+
+		if (!card_play_->GetTargetUnits().empty()) {
+
+			card_play_->GetTargetUnits().pop_back();
+
+		}
+	}
+
+
+	//I—¹”»’è
+	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
+
+		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > ally_cnt) {
+
+			if (ally_cnt == card_play_->GetTargetUnits().size()) {
+
+				phase_.change(&SceneBattle::PhaseExecutePlayCard);
+
+			}
+		}
+		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= ally_cnt) {
+
+			if (card_play_->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
+
+				phase_.change(&SceneBattle::PhaseExecutePlayCard);
+
+			}
+		}
+
+
+
+	}
+	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
+
+		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > enemy_cnt) {
+
+			if (enemy_cnt == card_play_->GetTargetUnits().size()) {
+
+				phase_.change(&SceneBattle::PhaseExecutePlayCard);
+
+			}
+			else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= enemy_cnt) {
+
+				if (card_play_->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
+
+					phase_.change(&SceneBattle::PhaseExecutePlayCard);
+
+				}
+			}
+
+		}
+	}
 
 
 

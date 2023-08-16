@@ -49,7 +49,8 @@ public:
 	void SetAllyPtrInSquare(UnitAlly* ptr) { ally_ptr_in_square_ = ptr; }
 	UnitEnemy* GetEnemyPtrInSquare() { return enemy_ptr_in_square_; }
 	void SetEnemyPtrInSquare(UnitEnemy* ptr) { enemy_ptr_in_square_ = ptr; }
-
+	Unit* GetUnitPtrInSquare() { return unit_ptr_in_square_; }
+	void SetUnitPtrInSquare(Unit* ptr) { unit_ptr_in_square_ = ptr; }
 
 private:
 
@@ -61,6 +62,7 @@ private:
 
 	ObjSquare* obj_;
 
+	Unit* unit_ptr_in_square_ = nullptr;
 	UnitAlly* ally_ptr_in_square_ = nullptr;
 	UnitEnemy* enemy_ptr_in_square_ = nullptr;
 

@@ -93,6 +93,7 @@ public:
 	bool PhaseDrawCard(const float delta_time);
 
 	bool PhaseSpecifyPlayCardTarget(const float delta_time);
+	bool PhaseSpecifyTargetProc(const float delta_time);
 	bool PhaseExecutePlayCard(const float delta_time);
 
 	bool PhasePlayerActionTool(const float delta_time);

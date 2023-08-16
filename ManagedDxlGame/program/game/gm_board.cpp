@@ -107,6 +107,7 @@ void Board::UpdateUnitPtrInSquare() {
 	for (int row = 0; row < 10; ++row) {
 		for (int col = 0; col < 10; ++col) {
 			
+			board_squares_[row][col]->SetUnitPtrInSquare(nullptr);
 			board_squares_[row][col]->SetAllyPtrInSquare(nullptr);
 			board_squares_[row][col]->SetEnemyPtrInSquare(nullptr);
 
@@ -114,9 +115,11 @@ void Board::UpdateUnitPtrInSquare() {
 	}
 
 	for (auto pu : party_units_) {
+		board_squares_[pu->GetBoardPos().row][pu->GetBoardPos().col]->SetUnitPtrInSquare(pu);
 		board_squares_[pu->GetBoardPos().row][pu->GetBoardPos().col]->SetAllyPtrInSquare(pu);
 	}
 	for (auto eu : enemy_units_) {
+		board_squares_[eu->GetBoardPos().row][eu->GetBoardPos().col]->SetUnitPtrInSquare(eu);
 		board_squares_[eu->GetBoardPos().row][eu->GetBoardPos().col]->SetEnemyPtrInSquare(eu);
 	}
 

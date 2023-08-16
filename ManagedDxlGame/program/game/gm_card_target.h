@@ -36,14 +36,18 @@ public:
 	TARGETTYPE GetTargetType() { return target_type_; }
 	TOTARGET GetToTarget() { return to_target_; }
 	int GetTargetNum() { return target_num_; }
+	bool GetIsSpecified() { return is_specified_; }
+	void SetIsSpecified(bool is_specified) { is_specified_ = is_specified; }
 
 private:
 
 	TARGETTYPE target_type_ = TARGETTYPE::None;
 	TOTARGET to_target_ = TOTARGET::None;
-
+	bool is_specified_ = false;
 
 	int target_num_ = 0;
+	
+
 	
 
 
