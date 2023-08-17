@@ -10,10 +10,6 @@ public:
 
 	virtual void Effect(std::vector<Unit*> untis) = 0;
 	
-
-
-
-
-
+	int effect_ref_num_ = 0;
 
 };

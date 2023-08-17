@@ -583,8 +583,31 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
 bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 {
+
+	board_->ResetRangeTile();
+
 	int ally_cnt = 0;
 	int enemy_cnt = 0;
+
+	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
+		for (auto a: card_play_->GetTotalUnitsInRange()) {
+			if (a->GetUnitType() == UnitType::Ally) {
+				board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderCandidateTile(true);
+			}
+		}
+	}
+	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
+		for (auto a : card_play_->GetTotalUnitsInRange()) {
+			if (a->GetUnitType() == UnitType::Enemy) {
+				board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderCandidateTile(true);
+			}
+		}
+	}
+
+	for (auto a : card_play_->GetTargetUnits()) {
+		board_->getBoardSquare(a->GetBoardPos().row,a->GetBoardPos().col)->SetRenderTargetTile(true);
+	}
+
 
 	for (auto a : card_play_->GetTotalUnitsInRange()) {
 
@@ -682,6 +705,16 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 		}
 	}
+
+	//if (!card_play_->GetTargetUnits().empty()) {
+
+	//	for (auto a : card_play_->GetTargetUnits()) {
+
+	//		board_->
+
+	//	}
+
+	//}
 
 
 

@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 
 //memo
 //カードの対象を格納するクラス
@@ -17,6 +19,7 @@ enum class TOTARGET {
 	None //初期パラメータ
 };
 
+class Unit;
 
 
 
@@ -39,6 +42,13 @@ public:
 	bool GetIsSpecified() { return is_specified_; }
 	void SetIsSpecified(bool is_specified) { is_specified_ = is_specified; }
 
+	int GetTargetRefNum() { return target_ref_num_; }
+
+	std::vector<Unit*>& GetTargetUnits() { return target_units_; }
+	void SetTargetUnits(std::vector<Unit*> target_units) { target_units_ = target_units; }
+	void AddTargetUnit(Unit* target_unit) { target_units_.push_back(target_unit); }
+
+
 private:
 
 	TARGETTYPE target_type_ = TARGETTYPE::None;
@@ -47,9 +57,8 @@ private:
 
 	int target_num_ = 0;
 	
+	int target_ref_num_ = 0;
 
-	
-
-
+	std::vector<Unit*> target_units_;
 
 };
