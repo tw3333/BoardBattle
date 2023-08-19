@@ -5,7 +5,8 @@
 class CardEffectHeal : public CardEffect {
 public:
 
-	CardEffectHeal(int heal_amount) : heal_amount_(heal_amount) {}
+	CardEffectHeal(int ref_num, int heal_amount) 
+	: heal_amount_(heal_amount), CardEffect(ref_num){}
 	~CardEffectHeal() {}
 
 	void Effect(std::vector<Unit*> units) override;

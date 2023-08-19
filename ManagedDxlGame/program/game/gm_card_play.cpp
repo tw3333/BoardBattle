@@ -225,35 +225,37 @@ void CardPlay::PlayCardExecute() {
 
 	if (play_card_ && turn_ally_) {
 		
-		if (play_card_->GetCardData()->GetTargetType() == TargetType::AllRange) {
+		//ref_num‚ªˆê’v‚µ‚½Target‚ÉŠi”[‚³‚ê‚Ä‚¢‚éUnit‚ÉEffect
+		for (auto a : play_card_->GetCardData()->GetCardEffectList()) {
 
-			//Œø‰ÊÀsˆ—
-			for (auto a : play_card_->GetCardData()->GetCardEffectList()) {
+			for (auto b : play_card_->GetCardData()->GetCardTargetList()) {
 
-				a->Effect(total_units_in_range_);
+				if (a->GetEffectRefNum() == b->GetTargetRefNum()) {
+
+					a->Effect(b->GetTargetUnits());
+
+
+				}
 			}
-
-
-
-
 		}
-		else if (play_card_->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
 
-				
+		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
 
-
+			a->GetTargetUnits().clear();
 
 		}
 
 
+		int select_serial_num = play_card_->GetSerialNum();
 
 
-
-
+		//play_card‚Æ“¯‚¶ƒJ[ƒhPtr‚ğHand‚©‚çíœ
+		turn_ally_->GetHand().erase(std::remove_if(turn_ally_->GetHand().begin(), turn_ally_->GetHand().end(),
+			[select_serial_num](const std::shared_ptr<Card>& card) {
+				return card->GetSerialNum() == select_serial_num;
+			}), turn_ally_->GetHand().end());
 
 	}
-
-
 
 
 

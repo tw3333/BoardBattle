@@ -4,7 +4,8 @@
 class CardEffectAddTaunt : public CardEffect {
 public:
 
-	CardEffectAddTaunt(int add_taunt_value) : add_taunt_value_(add_taunt_value){}
+	CardEffectAddTaunt(int ref_num, int add_taunt_value) 
+	: add_taunt_value_(add_taunt_value), CardEffect(ref_num) {};
 	~CardEffectAddTaunt(){};
 
 	void Effect(std::vector<Unit*> untis) override;

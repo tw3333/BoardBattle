@@ -8,7 +8,9 @@
 class CardEffectDamage : public CardEffect {
 public:
 
-	CardEffectDamage(int damage) : damage_(damage) {}
+	
+	CardEffectDamage(int ref_num, int damage) 
+	: damage_(damage), CardEffect(ref_num) {}
 
 
 	void Effect(std::vector<Unit*> units) override;
@@ -17,6 +19,8 @@ public:
 
 private:
 
-	int damage_;
+	int damage_ = 0;
+
+
 
 };

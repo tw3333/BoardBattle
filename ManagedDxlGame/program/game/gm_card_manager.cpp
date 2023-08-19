@@ -36,11 +36,11 @@ void CardManager::CreateDebugCardData() {
 	for (int i = 0; i < 10; ++i) {
 
 		if (i < 6) {
-			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(TARGETTYPE::Specify, TOTARGET::Enemy, 1));
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,TARGETTYPE::Specify, TOTARGET::Enemy, 1));
 
 		}
 		else if (6 <= i) {
-			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(TARGETTYPE::InRange, TOTARGET::Enemy));
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,TARGETTYPE::InRange, TOTARGET::Enemy));
 		}
 
 	}
@@ -59,7 +59,7 @@ void CardManager::CreateDebugCardData() {
 
 
 		
-		dcd->AddCardEffect(std::make_shared<CardEffectDamage>(5));
+		dcd->AddCardEffect(std::make_shared<CardEffectDamage>(1,5));
 
 	}
 

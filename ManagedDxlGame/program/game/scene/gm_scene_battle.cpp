@@ -447,6 +447,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	card_play_->RenderSelectCardRange(turn_ally_, board_);
 	card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
 
+	//カード使用判定
 	if (ui_card_hand_->GetSelectUICard()) {
 
 		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
@@ -537,45 +538,50 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
 	for (auto ctl : card_play_->GetPlayCard()->GetCardData()->GetCardTargetList()) {
 
-		if (ctl->GetTargetType() == TARGETTYPE::InRange && !ctl->GetIsSpecified()) {
+		//範囲攻撃処理
+		if (ctl->GetTargetType() == TARGETTYPE::InRange && !ctl->GetIsDetermined()) {
 
 			if (ctl->GetToTarget() == TOTARGET::Ally) {
-				
-				card_play_->GetTargetUnits().insert(card_play_->GetTargetUnits().end(),
-					card_play_->ExtractUnitInRange(TOTARGET::Ally).begin(), 
-					card_play_->ExtractUnitInRange(TOTARGET::Ally).end());
+					
+				ctl->SetTargetUnits(card_play_->ExtractUnitInRange(TOTARGET::Ally));
+				ctl->SetIsDetermined(true);
 
-				ctl->SetIsSpecified(true);
 			}
 			else if (ctl->GetToTarget() == TOTARGET::Enemy) {
 
-				card_play_->GetTargetUnits().insert(card_play_->GetTargetUnits().end(),
-					card_play_->ExtractUnitInRange(TOTARGET::Enemy).begin(),
-					card_play_->ExtractUnitInRange(TOTARGET::Enemy).end());
+				//memoDebugように残してる
+				//card_play_->GetTargetUnits().insert(card_play_->GetTargetUnits().end(),
+				//card_play_->ExtractUnitInRange(TOTARGET::Enemy).begin(),
+				//card_play_->ExtractUnitInRange(TOTARGET::Enemy).end());
 
-				ctl->SetIsSpecified(true);
+				ctl->SetTargetUnits(card_play_->ExtractUnitInRange(TOTARGET::Enemy));
+				ctl->SetIsDetermined(true);
 			}
 		}
 
-		if (ctl->GetTargetType() == TARGETTYPE::Specify && !ctl->GetIsSpecified()) {
+		//対象指定攻撃処理
+		if (ctl->GetTargetType() == TARGETTYPE::Specify && !ctl->GetIsDetermined()) {
 
 			DrawStringEx(0,400,-1,"選択中");
 
 			
 			card_play_->SetCurrentCardTarget(ctl);
-			ctl->SetIsSpecified(true);
 			phase_.change(&SceneBattle::PhaseSpecifyTargetProc);
 		}
 
 	}
+	
+	//全ての対象指定が終わったら、実行フェーズへ
+	for (auto a : card_play_->GetPlayCard()->GetCardData()->GetCardTargetList()) {
 
-
-
-
-
-
-
-
+		if (!a->GetIsDetermined()) {
+			break;
+		}
+		else {
+			phase_.change(&SceneBattle::PhaseExecutePlayCard);
+		}
+		
+	}
 
 
 	return true;
@@ -583,16 +589,29 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
 bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 {
+	//memo TODO
+	//より柔軟にカードの効果を実装するためにTargetにここの指定を関数で実装したい
+	//「絶対に敵2体と味方１体を指定しなければいけない」という効果は現段階で実装できないので
+	//だったらカード実行有無判定の際にそれを判定できるようにすればいいのでは
 
+	//タイルのリセット
 	board_->ResetRangeTile();
 
 	int ally_cnt = 0;
 	int enemy_cnt = 0;
 
+	//指定候補のタイルを表示
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
 		for (auto a: card_play_->GetTotalUnitsInRange()) {
 			if (a->GetUnitType() == UnitType::Ally) {
 				board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderCandidateTile(true);
+
+				if (select_square_->GetSelectSquare()->GetUnitPtrInSquare() == a) {
+
+					board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderTargetTile(true);
+
+
+				}
 			}
 		}
 	}
@@ -600,15 +619,23 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		for (auto a : card_play_->GetTotalUnitsInRange()) {
 			if (a->GetUnitType() == UnitType::Enemy) {
 				board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderCandidateTile(true);
+
+				if (select_square_->GetSelectSquare()->GetUnitPtrInSquare() == a) {
+
+					board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderTargetTile(true);
+
+
+				}
 			}
 		}
 	}
 
-	for (auto a : card_play_->GetTargetUnits()) {
+	//対象指定されたタイルを表示
+	for (auto a : card_play_->GetCurrentCardTarget()->GetTargetUnits()) {
 		board_->getBoardSquare(a->GetBoardPos().row,a->GetBoardPos().col)->SetRenderTargetTile(true);
 	}
 
-
+	//指定対象の数をカウント
 	for (auto a : card_play_->GetTotalUnitsInRange()) {
 
 		if (a->GetUnitType() == UnitType::Ally) {
@@ -621,6 +648,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 	}
 
+	//左クリックで指定
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
 		if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
@@ -629,7 +657,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 				if (a == select_square_->GetSelectSquare()->GetUnitPtrInSquare() && a->GetUnitType() == UnitType::Ally) {
 
-					card_play_->GetTargetUnits().push_back(a);
+					card_play_->GetCurrentCardTarget()->GetTargetUnits().push_back(a);
 
 				}
 
@@ -642,7 +670,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 				if (a == select_square_->GetSelectSquare()->GetUnitPtrInSquare() && a->GetUnitType() == UnitType::Enemy) {
 
-					card_play_->GetTargetUnits().push_back(a);
+					card_play_->GetCurrentCardTarget()->GetTargetUnits().push_back(a);
 
 				}
 
@@ -651,12 +679,12 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		}
 	}
 
-
+	//右クリックで指定を取り消し
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
 
-		if (!card_play_->GetTargetUnits().empty()) {
+		if (!card_play_->GetCurrentCardTarget()->GetTargetUnits().empty()) {
 
-			card_play_->GetTargetUnits().pop_back();
+			card_play_->GetCurrentCardTarget()->GetTargetUnits().pop_back();
 
 		}
 	}
@@ -665,58 +693,51 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	//終了判定
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
 
+		//指定対象数が指定候補より多い場合
 		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > ally_cnt) {
 
-			if (ally_cnt == card_play_->GetTargetUnits().size()) {
+			if (ally_cnt == card_play_->GetCurrentCardTarget()->GetTargetUnits().size()) {
 
-				phase_.change(&SceneBattle::PhaseExecutePlayCard);
-
-			}
-		}
-		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= ally_cnt) {
-
-			if (card_play_->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
-
-				phase_.change(&SceneBattle::PhaseExecutePlayCard);
+				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 
 			}
 		}
+		//指定対象数が指定数候補数より少ない場合	
+		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= ally_cnt) { 
 
+			if (card_play_->GetCurrentCardTarget()->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
 
+				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+
+			}
+		}
 
 	}
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
 
+		//指定対象数が指定候補より多い場合
 		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > enemy_cnt) {
 
-			if (enemy_cnt == card_play_->GetTargetUnits().size()) {
+			if (ally_cnt == card_play_->GetCurrentCardTarget()->GetTargetUnits().size()) {
 
-				phase_.change(&SceneBattle::PhaseExecutePlayCard);
+				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 
 			}
-			else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= enemy_cnt) {
+		}
+		//指定対象数が指定数候補数より少ない場合	
+		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= enemy_cnt) {
 
-				if (card_play_->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
+			if (card_play_->GetCurrentCardTarget()->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
 
-					phase_.change(&SceneBattle::PhaseExecutePlayCard);
+				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 
-				}
 			}
-
 		}
 	}
-
-	//if (!card_play_->GetTargetUnits().empty()) {
-
-	//	for (auto a : card_play_->GetTargetUnits()) {
-
-	//		board_->
-
-	//	}
-
-	//}
-
-
 
 	return true;
 }
