@@ -762,5 +762,8 @@
     <ClInclude Include="program\game\gm_card_target.h">
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_data_board.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

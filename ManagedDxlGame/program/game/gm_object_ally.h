@@ -28,6 +28,7 @@ public:
 	void SetObjAllyID(int id) { ally_id_ = id; }
 	const int GetObjAllyID() { return ally_id_; }
 
+
 private:
 	
 	int ally_id_; //Obj‚ğ‚½‚¹‚½‚¢ally‚ÌID‚ğİ’è

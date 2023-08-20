@@ -313,6 +313,7 @@
     <ClInclude Include="program\game\gm_card_renge_self.h" />
     <ClInclude Include="program\game\gm_card_target.h" />
     <ClInclude Include="program\game\gm_data_bgm.h" />
+    <ClInclude Include="program\game\gm_data_board.h" />
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_data_sound.h" />
