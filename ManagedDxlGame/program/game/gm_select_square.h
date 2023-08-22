@@ -5,6 +5,8 @@
 #include "gm_square.h"
 #include <array>
 
+#include "gm_data_board.h"
+
 //memo
 //盤面上の１マスをマウスで選択できるようにするクラス
 //
@@ -32,6 +34,8 @@ public:
 
 	Square* GetSelectSquare() { return select_square_; }
 
+	SquarePos GetSelectSquarePos() { return select_square_pos_; }
+
 
 private:
 
@@ -48,6 +52,8 @@ private:
 
 	int select_square_row_ = 0; //選択されているsquareのrow
 	int select_square_col_ = 0; //選択されているsquareのcol
+
+	SquarePos select_square_pos_; //選択されているsquareのpos
 	
 	Square* select_square_ = nullptr;
 	

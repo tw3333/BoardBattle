@@ -25,6 +25,7 @@ void Square::SetSquarePos(int row, int col) {
 
 }
 
+
 ////SquareにUnitEnemyを持たせる。その際UnitAllyのポインタをnullptrに
 //void Square::SetUnitEnemy(UnitEnemy* unit) {
 //

@@ -52,6 +52,8 @@ public:
 	Unit* GetUnitPtrInSquare() { return unit_ptr_in_square_; }
 	void SetUnitPtrInSquare(Unit* ptr) { unit_ptr_in_square_ = ptr; }
 
+
+
 private:
 
 	SquarePos square_pos_ = { 0,0 };
