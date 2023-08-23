@@ -1,4 +1,5 @@
 #pragma once
+#include "gm_data_board.h"
 
 //memo
 //Boardã‚É’u‚©‚ê‚éUnit‚ÌŠî’êƒNƒ‰ƒX
@@ -42,12 +43,17 @@ public:
 	void SetBoardPos(int row, int col) { board_pos_.row = row; board_pos_.col = col; }
 	BoardPos GetBoardPos() { return board_pos_; }
 
+	void SetUnitSquarePos(int row, int col) { unit_square_pos_.row = row; unit_square_pos_.col = col; }
+	SquarePos GetUnitSquarePos() { return unit_square_pos_; }
+
+
 private:
 
 
 protected:
 
-	
+	SquarePos unit_square_pos_; 
+
 	BoardPos board_pos_;
 	UnitType unit_type = UnitType::None;
 	int speed_ = 0;

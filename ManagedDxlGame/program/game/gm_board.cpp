@@ -69,6 +69,9 @@ void Board::UpdateCanMoveSquare() {
 
 		board_squares_[au->GetBoardPos().row][au->GetBoardPos().col]->SetIsCanMove(false);
 
+		board_squares_[au->GetUnitSquarePos().row][au->GetUnitSquarePos().row]->SetIsCanMove(false);
+
+
 	}
 
 	

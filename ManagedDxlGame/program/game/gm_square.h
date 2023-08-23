@@ -2,7 +2,7 @@
 #include "gm_object_square.h"
 #include "gm_object_manager.h"
 
-
+#include "gm_data_board.h"
 
 //memo
 //盤面の１マスを表すクラス
@@ -18,14 +18,11 @@ public:
 
 		obj_ = obj;
 		SetSquarePos(row, col);
+		InitObjPos();
 
 	}
 
-	struct SquarePos {
-		int row;
-		int col;
-	};
-
+	void InitObjPos(); //盤面性にするためのObjPosの初期化
 	void SetSquarePos(int row, int col);
 	void SetObj(ObjSquare* obj) { obj_ = obj; }
 	ObjSquare* getObj() { return obj_; }
@@ -52,11 +49,12 @@ public:
 	Unit* GetUnitPtrInSquare() { return unit_ptr_in_square_; }
 	void SetUnitPtrInSquare(Unit* ptr) { unit_ptr_in_square_ = ptr; }
 
+	SquarePos GetSquarePos() { return square_pos_; }
 
 
 private:
 
-	SquarePos square_pos_ = { 0,0 };
+	SquarePos square_pos_; //盤面の座標
 
 	bool is_can_move_ = true;
 	bool enemy_in_square_ = false;

@@ -31,7 +31,10 @@ public:
 
 		obj_ = ally_data->GetObj();
 		
-		SetBoardPos(row, col);
+		SetUnitSquarePos(row, col);
+
+		//SetBoardPos(row, col);
+		InitAllyObjPos();
 
 		obj_->Update(0);
 
@@ -50,6 +53,9 @@ public:
 
 	void SetBoardPos(int row, int col);
 	BoardPos GetBoardPos() { return board_pos_; }
+	void InitAllyObjPos();
+
+	
 
 	//getter
 	AllyData* GetAllyData() { return ally_data_; }

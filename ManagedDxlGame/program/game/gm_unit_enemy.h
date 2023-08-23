@@ -32,7 +32,9 @@ public:
 
 		obj_ = enemy_data->GetObj();
 
-		SetBoardPos(row, col);
+		//SetBoardPos(row, col);
+		SetUnitSquarePos(row,col);
+		InitEnemyObjPos();
 
 		obj_->Update(0);
 
@@ -42,6 +44,7 @@ public:
 
 	void Update();
 
+	void InitEnemyObjPos();
 	void SetBoardPos(int row, int col);
 
 	UnitType GetUnitType() const override { return UnitType::Enemy; }
