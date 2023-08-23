@@ -16,5 +16,4 @@ private:
 	int add_shield_value_ = 0;
 
 
-
 };

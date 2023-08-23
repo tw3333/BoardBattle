@@ -1,5 +1,8 @@
 #pragma once
+#include <memory>
+
 #include "gm_data_board.h"
+#include "gm_object.h"
 
 //memo
 //Board上に置かれるUnitの基底クラス
@@ -40,6 +43,9 @@ private:
 
 
 protected:
+
+	std::shared_ptr<GameObject> unit_obj_;
+
 
 	SquarePos unit_square_pos_; //盤面上のUnitの位置
 

@@ -30,6 +30,8 @@ public:
 		speed_ = ally_data_->GetSpeed();
 
 		obj_ = ally_data->GetObj();
+
+		unit_obj_ = std::make_shared<ObjAlly>(ally_data->GetObj());
 		
 		SetUnitSquarePos(row, col);
 

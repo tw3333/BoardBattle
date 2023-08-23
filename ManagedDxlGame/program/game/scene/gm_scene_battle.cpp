@@ -114,6 +114,7 @@ void SceneBattle::Update(float delta_time) {
 
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 
+	//TODO:‚±‚±‚Í‚Ì‚¿‚ÉUnit‚ÌUpdate‚É“ˆê
 	party_[0]->GetObj()->Update(delta_time);
 	party_[1]->GetObj()->Update(delta_time);
 	party_[2]->GetObj()->Update(delta_time);

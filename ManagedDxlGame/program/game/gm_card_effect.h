@@ -3,11 +3,6 @@
 
 class Unit;
 
-struct EffectBoardPos {
-	int row = 0;
-	int col = 0;
-};
-
 
 class CardEffect {
 public:
@@ -23,7 +18,7 @@ public:
 
 protected:
 
-	int effect_ref_num_ = 0;
+	int effect_ref_num_ = 0; //CardTarget‚Æ‚ÌQÆ”Ô†
 
 
 };

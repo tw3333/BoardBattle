@@ -47,7 +47,7 @@ ObjAlly* ObjAlly::CreateAlly(int id,std::string texture) {
 
 }
 
-void ObjAlly::Update(float delta_time) {
-	GameObject::Update(delta_time);
-
-}
+//void ObjAlly::Update(float delta_time) {
+//	GameObject::Update(delta_time);
+//
+//}
