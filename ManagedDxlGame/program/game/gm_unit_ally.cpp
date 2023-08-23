@@ -106,6 +106,6 @@ void UnitAlly::Update() {
 
 
 	obj_->pos_.z = board_h - (h1 / 2) - (h1) * unit_square_pos_.row;
-	obj_->pos_.x = (w1 / 2) + ((w1)*unit_square_pos_.col);
+	obj_->pos_.x = (w1 / 2) + ((w1) * unit_square_pos_.col);
 
 }

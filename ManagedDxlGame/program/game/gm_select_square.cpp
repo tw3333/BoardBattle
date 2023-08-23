@@ -39,9 +39,12 @@ void SelectSquare::Update(float delta_time,dxe::Camera* camera) {
 			{	
 				obj_->pos_.x = board_squares_[i][j]->getObj()->pos_.x;
 				obj_->pos_.z = board_squares_[i][j]->getObj()->pos_.z;
-				//TODO:ここにクリック判定を入れる
+				
+				//選択されているSquareの座標を取得
 				select_square_row_ = i;
 				select_square_col_ = j;
+				select_square_pos_ = { i,j};
+
 
 				//選択されているSquareのポインタを取得
 				select_square_ = board_squares_[i][j];

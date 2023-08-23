@@ -104,6 +104,7 @@ void SceneBattle::Initialzie() {
 }
 
 void SceneBattle::Update(float delta_time) {
+	
 	phase_.update(delta_time);
 	
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
@@ -117,6 +118,8 @@ void SceneBattle::Update(float delta_time) {
 	party_[1]->GetObj()->Update(delta_time);
 	party_[2]->GetObj()->Update(delta_time);
 	unit_enemy_->GetObj()->Update(delta_time);
+	for (auto pu : party_units_) { pu->Update(); }
+	for (auto eu : enemy_units_) { eu->Update(); }
 
 	obj_target_circle_->Update(delta_time);
 
@@ -349,7 +352,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
-	//ui_mediator_->SetIsPlayerActionButtonEnabled(true);
+	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 
 	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
