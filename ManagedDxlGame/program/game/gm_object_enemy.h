@@ -16,6 +16,8 @@ public:
 		PartsMax
 	};
 
+	void Update(float delta_time) override;
+	void Render(dxe::Camera* camera) override;
 
 	static ObjEnemy* Create(EnemyData* enemydata);
 	static ObjEnemy* CreateEnemy(int id, std::string texture_path);

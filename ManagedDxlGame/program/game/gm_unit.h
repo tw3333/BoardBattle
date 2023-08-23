@@ -21,6 +21,7 @@ public:
 	virtual ~Unit(){}
 
 	virtual UnitType GetUnitType() const = 0;
+	virtual void Update(float delta_time) = 0;
 
 	//UnitType unit_type_ = Unit::UnitType::None;
 	
@@ -38,13 +39,16 @@ public:
 	void SetUnitSquarePos(int row, int col) { unit_square_pos_.row = row; unit_square_pos_.col = col; }
 	SquarePos GetUnitSquarePos() { return unit_square_pos_; }
 
+	//std::shared_ptr<GameObject> GetUnitObj() { return unit_obj_; }
+	GameObject* GetUnitObj() { return unit_obj_; }
 
 private:
 
 
 protected:
 
-	std::shared_ptr<GameObject> unit_obj_;
+	//std::shared_ptr<GameObject> unit_obj_;
+	GameObject* unit_obj_;
 
 
 	SquarePos unit_square_pos_; //î’ñ è„ÇÃUnitÇÃà íu

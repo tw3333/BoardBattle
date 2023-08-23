@@ -3,6 +3,14 @@
 
 
 
+void ObjEnemy::Update(float delta_time) {
+	GameObject::Update(delta_time);
+}
+
+void ObjEnemy::Render(dxe::Camera* camera) {
+	GameObject::Render(camera);
+}
+
 ObjEnemy* ObjEnemy::Create(EnemyData* enemydata) {
 	
 	ObjEnemy* obj = new ObjEnemy();

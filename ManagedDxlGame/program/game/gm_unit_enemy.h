@@ -32,6 +32,8 @@ public:
 
 		obj_ = enemy_data->GetObj();
 
+		unit_obj_ = enemy_data->GetObj();
+
 		//SetBoardPos(row, col);
 		SetUnitSquarePos(row,col);
 		InitEnemyObjPos();
@@ -42,7 +44,7 @@ public:
 	~UnitEnemy(){}
 
 
-	void Update();
+	void Update(float delta_time) override;
 
 	void InitEnemyObjPos();
 	void SetBoardPos(int row, int col);

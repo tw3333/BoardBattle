@@ -18,6 +18,7 @@ public:
 
 
 	void Update(float delta_time) override;
+	void Render(dxe::Camera* camera) override;
 
 	//static ObjAlly* Create(AllyData* allydata);
 	float getAlphaNum() { return alpha_; }

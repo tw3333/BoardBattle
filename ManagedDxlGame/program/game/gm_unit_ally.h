@@ -31,7 +31,7 @@ public:
 
 		obj_ = ally_data->GetObj();
 
-		unit_obj_ = std::make_shared<ObjAlly>(ally_data->GetObj());
+		unit_obj_ = ally_data->GetObj();
 		
 		SetUnitSquarePos(row, col);
 
@@ -44,7 +44,8 @@ public:
 	~UnitAlly(){}
 
 	UnitType GetUnitType() const override { return UnitType::Ally; }
-	void Update();
+	void Update(float delta_time) override;
+
 	//void InitializeBoardAndObjPos(int row, int col);
 
 	//setter

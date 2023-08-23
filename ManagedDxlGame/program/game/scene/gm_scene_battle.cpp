@@ -115,12 +115,15 @@ void SceneBattle::Update(float delta_time) {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 
 	//TODO:‚±‚±‚Í‚Ì‚¿‚ÉUnit‚ÌUpdate‚É“ˆê
-	party_[0]->GetObj()->Update(delta_time);
-	party_[1]->GetObj()->Update(delta_time);
-	party_[2]->GetObj()->Update(delta_time);
-	unit_enemy_->GetObj()->Update(delta_time);
-	for (auto pu : party_units_) { pu->Update(); }
-	for (auto eu : enemy_units_) { eu->Update(); }
+	//party_[0]->GetObj()->Update(delta_time);
+	//party_[1]->GetObj()->Update(delta_time);
+	//party_[2]->GetObj()->Update(delta_time);
+	//unit_enemy_->GetObj()->Update(delta_time);
+	//for (auto pu : party_units_) { pu->Update(delta_time); }
+	//for (auto eu : enemy_units_) { eu->Update(delta_time); }
+
+	for (auto au : all_units_) { au->Update(delta_time); }
+
 
 	obj_target_circle_->Update(delta_time);
 
@@ -163,10 +166,16 @@ void SceneBattle::Render() {
 	DrawDebugLayOut(true);
 	//DrawStringEx(0, 0, -1, "SceneBattle");
 
-	party_[0]->GetObj()->Render(camera_);
-	party_[1]->GetObj()->Render(camera_);
-	party_[2]->GetObj()->Render(camera_);
-	unit_enemy_->GetObj()->Render(camera_);
+	//party_[0]->GetObj()->Render(camera_);
+	//party_[1]->GetObj()->Render(camera_);
+	//party_[2]->GetObj()->Render(camera_);
+	//unit_enemy_->GetObj()->Render(camera_);
+
+	for (auto au : all_units_) {
+
+		au->GetUnitObj()->Render(camera_);
+
+	}
 
 	board_->Render(camera_);
 	select_square_->Render(camera_);
