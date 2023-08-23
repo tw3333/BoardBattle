@@ -33,7 +33,7 @@ public:
 		
 		SetUnitSquarePos(row, col);
 
-		//SetBoardPos(row, col);
+
 		InitAllyObjPos();
 
 		obj_->Update(0);
@@ -51,12 +51,10 @@ public:
 	//	board_pos_.col = col;
 	//}
 
-	void SetBoardPos(int row, int col);
-	BoardPos GetBoardPos() { return board_pos_; }
+
 	void InitAllyObjPos();
 
 	
-
 	//getter
 	AllyData* GetAllyData() { return ally_data_; }
 	ObjAlly* GetObj() {

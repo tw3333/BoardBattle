@@ -10,8 +10,8 @@ void CardRangeRight::DisplayRange(UnitAlly* act_ally, Board* board) {
 
 	for (int i = 1; i <= range_; ++i) {
 
-		int display_tile_row = act_ally->GetBoardPos().row;
-		int display_tile_col = act_ally->GetBoardPos().col + leave_ + i;
+		int display_tile_row = act_ally->GetUnitSquarePos().row;
+		int display_tile_col = act_ally->GetUnitSquarePos().col + leave_ + i;
 
 		if (0 <= display_tile_col && display_tile_col <= 9) {
 
@@ -31,8 +31,8 @@ std::vector<Unit*> CardRangeRight::GetUnitInRange(UnitAlly* act_ally, std::vecto
 
 	for (int i = 1; i <= range_; ++i) {
 
-		int range_row = act_ally->GetBoardPos().row;
-		int range_col = act_ally->GetBoardPos().col + leave_ + i;
+		int range_row = act_ally->GetUnitSquarePos().row;
+		int range_col = act_ally->GetUnitSquarePos().col + leave_ + i;
 
 		if (0 <= range_row && range_row <= 9) {
 
@@ -40,7 +40,7 @@ std::vector<Unit*> CardRangeRight::GetUnitInRange(UnitAlly* act_ally, std::vecto
 
 				for (auto u : all_units) {
 					if (u->GetUnitType() == UnitType::Ally
-						&& u->GetBoardPos().row == range_row && u->GetBoardPos().col == range_col) {
+						&& u->GetUnitSquarePos().row == range_row && u->GetUnitSquarePos().col == range_col) {
 
 						is_unit_in_range_ = true;
 						range_units.push_back(u);
@@ -53,7 +53,7 @@ std::vector<Unit*> CardRangeRight::GetUnitInRange(UnitAlly* act_ally, std::vecto
 			else if (target_ == Target::Enemy) {
 
 				for (auto u : all_units) {
-					if (u->GetUnitType() == UnitType::Enemy && u->GetBoardPos().row == range_row && u->GetBoardPos().col == range_col) {
+					if (u->GetUnitType() == UnitType::Enemy && u->GetUnitSquarePos().row == range_row && u->GetUnitSquarePos().col == range_col) {
 
 						is_unit_in_range_ = true;
 						range_units.push_back(u);
@@ -67,7 +67,7 @@ std::vector<Unit*> CardRangeRight::GetUnitInRange(UnitAlly* act_ally, std::vecto
 
 				for (auto unit : all_units) {
 
-					if (unit->GetBoardPos().row == range_row && unit->GetBoardPos().col == range_col) {
+					if (unit->GetUnitSquarePos().row == range_row && unit->GetUnitSquarePos().col == range_col) {
 
 						is_unit_in_range_ = true;
 						range_units.push_back(unit);

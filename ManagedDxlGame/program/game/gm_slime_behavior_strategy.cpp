@@ -1,4 +1,5 @@
 #include "gm_slime_behavior_strategy.h"
+
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"
 #include "gm_board.h"
@@ -38,8 +39,8 @@ void SlimeBehaviorStrategy::Move(UnitEnemy* act_enemy, Board* board) {
     UnitAlly* target = highestTauntAllies[dist(engine)];
 
     // Calculate direction towards the ally with highest taunt
-    int dx = target->GetBoardPos().col - act_enemy->GetBoardPos().col;
-    int dy = target->GetBoardPos().row - act_enemy->GetBoardPos().row;
+    int dx = target->GetUnitSquarePos().col - act_enemy->GetUnitSquarePos().col;
+    int dy = target->GetUnitSquarePos().row - act_enemy->GetUnitSquarePos().row;
 
 
     // Normalize direction
@@ -52,11 +53,11 @@ void SlimeBehaviorStrategy::Move(UnitEnemy* act_enemy, Board* board) {
     
     while (remaining_cost > 0 && board->IsAllyNearby(act_enemy,board->GetPartyUnits())) {
        
-        int nextRow = act_enemy->GetBoardPos().row + dy;
-        int nextCol = act_enemy->GetBoardPos().col + dx;
+        int nextRow = act_enemy->GetUnitSquarePos().row + dy;
+        int nextCol = act_enemy->GetUnitSquarePos().col + dx;
         
         if (board->IsValidPosition(nextRow, nextCol)) {
-            act_enemy->SetBoardPos(nextRow, nextCol);
+            act_enemy->SetUnitSquarePos(nextRow, nextCol);
             remaining_cost--;
         }
     }

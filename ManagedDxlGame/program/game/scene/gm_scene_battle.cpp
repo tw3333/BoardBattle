@@ -349,7 +349,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
-	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
+	//ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 
 	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
 
@@ -391,8 +391,8 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	int target_row = select_square_->GetSelectSquareRow();
 	int target_col = select_square_->GetSelectSquareCol();
 
-	int ally_row = turn_ally_->GetBoardPos().row;
-	int ally_col = turn_ally_->GetBoardPos().col;
+	int ally_row = turn_ally_->GetUnitSquarePos().row;
+	int ally_col = turn_ally_->GetUnitSquarePos().col;
 
 	board_->getBoardSquare(ally_row,ally_col)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
 
@@ -412,7 +412,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 				//移動コストが負にならないかチェック
 				if (move_cost > 0) {
 
-					turn_ally_->SetBoardPos(target_row, target_col);
+					turn_ally_->SetUnitSquarePos(target_row, target_col);
 
 					move_cost -= reachable[target_row][target_col];  // 移動コストを減らす
 					turn_ally_->SetCurrentMoveCost(move_cost);  // 移動コストを更新
@@ -604,11 +604,11 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
 		for (auto a: card_play_->GetTotalUnitsInRange()) {
 			if (a->GetUnitType() == UnitType::Ally) {
-				board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderCandidateTile(true);
+				board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderCandidateTile(true);
 
 				if (select_square_->GetSelectSquare()->GetUnitPtrInSquare() == a) {
 
-					board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderTargetTile(true);
+					board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderTargetTile(true);
 
 
 				}
@@ -618,11 +618,11 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
 		for (auto a : card_play_->GetTotalUnitsInRange()) {
 			if (a->GetUnitType() == UnitType::Enemy) {
-				board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderCandidateTile(true);
+				board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderCandidateTile(true);
 
 				if (select_square_->GetSelectSquare()->GetUnitPtrInSquare() == a) {
 
-					board_->getBoardSquare(a->GetBoardPos().row, a->GetBoardPos().row)->SetRenderTargetTile(true);
+					board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderTargetTile(true);
 
 
 				}
@@ -632,7 +632,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 	//対象指定されたタイルを表示
 	for (auto a : card_play_->GetCurrentCardTarget()->GetTargetUnits()) {
-		board_->getBoardSquare(a->GetBoardPos().row,a->GetBoardPos().col)->SetRenderTargetTile(true);
+		board_->getBoardSquare(a->GetUnitSquarePos().row,a->GetUnitSquarePos().col)->SetRenderTargetTile(true);
 	}
 
 	//指定対象の数をカウント
@@ -790,8 +790,8 @@ bool SceneBattle::PhaseDebug(const float delta_time) {
 std::array<std::array<int, 10>, 10> SceneBattle::GetReachableSquares(UnitAlly* unit) {
 
 	// 移動元の位置を取得
-	int ally_row = unit->GetBoardPos().row;
-	int ally_col = unit->GetBoardPos().col;
+	int ally_row = unit->GetUnitSquarePos().row;
+	int ally_col = unit->GetUnitSquarePos().col;
 
 	// 移動コストを取得
 	int move_cost = unit->GetCurrentMoveCost();
@@ -847,7 +847,7 @@ void SceneBattle::UpdateRender(std::array<std::array<int, 10>, 10> reachable, Un
 	// 移動可能範囲の描画を更新
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
-			if ((i != unit->GetBoardPos().row || j != unit->GetBoardPos().col) && reachable[i][j] != -1) {
+			if ((i != unit->GetUnitSquarePos().row || j != unit->GetUnitSquarePos().col) && reachable[i][j] != -1) {
 				board_->getBoardSquare(i,j)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = true;
 			}
 			else {

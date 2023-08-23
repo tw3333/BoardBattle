@@ -33,7 +33,7 @@ public:
 	void Update(float delta_time);
 	void Render(dxe::Camera* camera);
 
-	std::array<std::array<Square*, 10>, 10> getBoardSquares() { return board_squares_;}
+	std::array<std::array<Square*, 10>, 10>& getBoardSquares() { return board_squares_;}
 	Square* getBoardSquare(int row, int col) { return board_squares_[row][col]; }
 	void SetCamera(dxe::Camera* camera) { camera_ = camera; }
 

@@ -54,9 +54,6 @@
     <Filter Include="program\[003] game\twr">
       <UniqueIdentifier>{f9a267e9-1323-4f83-88fd-726b364a8841}</UniqueIdentifier>
     </Filter>
-    <Filter Include="program\[003] game\battle">
-      <UniqueIdentifier>{a271a620-a737-4733-bdaa-8f4288e0bfa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="program\[003] game\enemyaction">
       <UniqueIdentifier>{ce3d3087-2385-41f0-9bcd-f0e98c556491}</UniqueIdentifier>
     </Filter>
@@ -290,17 +287,8 @@
     <ClCompile Include="program\game\gm_ui_move_cost.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_battle_player_action_move.cpp">
-      <Filter>program\[003] game\battle</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_battle_phase_player_action_move.cpp">
-      <Filter>program\[003] game\battle</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp">
       <Filter>program\[003] game\object</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_battle_phase_player_action_card.cpp">
-      <Filter>program\[003] game\battle</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_enemydata_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
@@ -310,18 +298,6 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_ui_card.cpp">
       <Filter>program\[003] game\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_battle_phase_unit_speed_cal.cpp">
-      <Filter>program\[003] game\battle</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_battle_phase_turn_ally.cpp">
-      <Filter>program\[003] game\battle</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_battle_phase_turn_enemy.cpp">
-      <Filter>program\[003] game\battle</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_battle_phase_turn_end.cpp">
-      <Filter>program\[003] game\battle</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_font_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
@@ -635,26 +611,8 @@
     <ClInclude Include="program\game\gm_ui_move_cost.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_battle_player_action_move.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase_player_action_move.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\gm_object_move_select_flame.h">
       <Filter>program\[003] game\object</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase_player_action_card.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_player_action_tool.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_player_action_turn_end.h">
-      <Filter>program\[003] game\battle</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_enemydata_manager.h">
       <Filter>program\[003] game\manager</Filter>
@@ -667,18 +625,6 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_card.h">
       <Filter>program\[003] game\data</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase_unit_speed_cal.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase_turn_ally.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase_turn_enemy.h">
-      <Filter>program\[003] game\battle</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_battle_phase_turn_end.h">
-      <Filter>program\[003] game\battle</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_font_manager.h">
       <Filter>program\[003] game\manager</Filter>

@@ -35,11 +35,6 @@
 #include "../gm_board.h"
 #include "../gm_card_play.h"
 
-#include "../gm_battle_phase.h"
-#include "../gm_battle_phase_unit_speed_cal.h"
-#include "../gm_battle_phase_turn_ally.h"
-#include "../gm_battle_phase_player_action_move.h"
-#include "../gm_battle_player_action_move.h"
 
 
 
@@ -71,9 +66,6 @@ public:
 
 
 	void InitialTurnCal();
-
-	//BattlePhase
-	void ChangeBattlePhase(BattlePhase* new_phase);
 
 	//
 	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal);
@@ -165,13 +157,8 @@ private:
 	CardPlay* card_play_ = nullptr;
 
 	//BattlePhase
-	BattlePhase* current_phase_ = nullptr;
-	PhaseUnitSpeedCal* phase_unit_speed_cal_ = nullptr;
-	PhaseTurnAlly* phase_turn_ally_ = nullptr;
+
 	//PhasePlayerActionMove* phase_player_action_move_ = nullptr;
-
-
-	PlayerActionMove* player_action_move_ = nullptr;
 
 	AnimSprite3D* sprite_ = nullptr;
 

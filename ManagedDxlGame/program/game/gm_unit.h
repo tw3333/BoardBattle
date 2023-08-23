@@ -19,15 +19,6 @@ public:
 
 	virtual UnitType GetUnitType() const = 0;
 
-	//[0]~[9]の10x10マス盤面上の座標
-	//盤面の左上頂点座標起点,row*col
-	//この座標を元に、Unitが所持するObjのposが変更
-	struct BoardPos {
-		int row;
-		int col;
-	};
-
-
 	//UnitType unit_type_ = Unit::UnitType::None;
 	
 	//void setType(Type type) { type_ = type; }
@@ -40,8 +31,6 @@ public:
 	void SetIsActed(bool flag) { is_acted_ = flag; }
 	void SetIsTurn(bool flag) { is_turn_ = flag; }
 	
-	void SetBoardPos(int row, int col) { board_pos_.row = row; board_pos_.col = col; }
-	BoardPos GetBoardPos() { return board_pos_; }
 
 	void SetUnitSquarePos(int row, int col) { unit_square_pos_.row = row; unit_square_pos_.col = col; }
 	SquarePos GetUnitSquarePos() { return unit_square_pos_; }
@@ -52,9 +41,8 @@ private:
 
 protected:
 
-	SquarePos unit_square_pos_; 
+	SquarePos unit_square_pos_; //盤面上のUnitの位置
 
-	BoardPos board_pos_;
 	UnitType unit_type = UnitType::None;
 	int speed_ = 0;
 	int shield_value_ = 0; //シールド値
