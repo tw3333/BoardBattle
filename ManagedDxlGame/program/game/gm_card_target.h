@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+
 #include "gm_data_board.h"
 
 //memo

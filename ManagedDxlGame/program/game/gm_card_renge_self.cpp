@@ -27,3 +27,12 @@ std::vector<Unit*> CardRangeSelf::GetUnitInRange(UnitAlly* act_ally, std::vector
 	return units_in_range;
 
 }
+
+std::vector<SquarePos> CardRangeSelf::GetRangeSquarePos(SquarePos axis_pos)
+{
+	std::vector<SquarePos> range_square_pos;
+	
+	range_square_pos.push_back(axis_pos);
+
+	return range_square_pos;
+}

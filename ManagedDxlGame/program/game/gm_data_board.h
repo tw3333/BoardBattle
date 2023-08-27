@@ -13,7 +13,9 @@ struct BoardPos
 //[0]~[9]の10x10マス盤面上の座標
 //盤面の左上頂点座標起点,row*col
 struct SquarePos {
-
+	
+	SquarePos(int r, int c) : row(r), col(c) {}
+	
 	int row = 0;
 	int col = 0;
 

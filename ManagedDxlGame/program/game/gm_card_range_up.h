@@ -21,7 +21,7 @@ public:
 	void DisplayRange(UnitAlly* act_allly, Board* board) override;
 	std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) override;
 
-
+	std::vector<SquarePos> GetRangeSquarePos(SquarePos axis_pos) override;
 
 
 

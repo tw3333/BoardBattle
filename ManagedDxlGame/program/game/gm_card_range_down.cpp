@@ -83,5 +83,23 @@ std::vector<Unit*> CardRangeDown::GetUnitInRange(UnitAlly* act_ally, std::vector
 	}
 
 	return range_units;
+} 
+
+std::vector<SquarePos> CardRangeDown::GetRangeSquarePos(SquarePos axis_pos) {
+
+	std::vector<SquarePos> range_square_pos;
+
+	for (int i = 1; i <= range_; ++i) {
+
+		int range_row = axis_pos.row + leave_ + i;
+		int range_col = axis_pos.col;
+
+		if (0 <= range_row && range_row <= 9) {
+
+			range_square_pos.push_back(SquarePos(range_row, range_col));
+		}
+	}
+
+
 }
 
