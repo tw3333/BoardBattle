@@ -2,8 +2,6 @@
 #include <string>
 #include "../dxlib_ext/dxlib_ext.h"
 
-
-
 //memo
 //各カードのデータを表すクラス
 class CardEffect;
@@ -17,7 +15,6 @@ enum class TargetType {
 	Self, //自分自身
 	None //射程無し
 };
-
 
 
 

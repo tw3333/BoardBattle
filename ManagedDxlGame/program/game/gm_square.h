@@ -18,6 +18,7 @@ public:
 
 		obj_ = obj;
 		SetSquarePos(row, col);
+		//square_pos_ = SquarePos(row, col);
 		InitObjPos();
 
 	}

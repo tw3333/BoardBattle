@@ -3,6 +3,7 @@
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"
+#include "gm_board.h"
 
 
 void CardEffectDamage::Effect(std::vector<Unit*> units) {
@@ -28,4 +29,38 @@ void CardEffectDamage::Effect(std::vector<Unit*> units) {
 
 
 
+}
+
+void CardEffectDamage::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
+
+	for (auto pos : target_square_pos) {
+
+		if (board->getBoardSquare(pos.row,pos.col)->GetAllyPtrInSquare()) {
+
+			board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()->DecreaseCurrentHp(damage_);
+
+		}
+		else if(board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
+
+			board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()->DecreaseCurrentHp(damage_);
+		}
+
+	}
+
+}
+
+bool CardEffectDamage::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
+{
+
+	for (auto pos : target_square_pos) {
+
+		if (!board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare() && 
+			!board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
+			
+			return false;
+		}
+
+	}
+
+	return true;
 }

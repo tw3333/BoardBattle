@@ -96,10 +96,10 @@ std::vector<SquarePos> CardRangeDown::GetRangeSquarePos(SquarePos axis_pos) {
 
 		if (0 <= range_row && range_row <= 9) {
 
-			range_square_pos.push_back(SquarePos(range_row, range_col));
+			range_square_pos.emplace_back(SquarePos(range_row, range_col));
 		}
 	}
 
-
+	return range_square_pos;
 }
 

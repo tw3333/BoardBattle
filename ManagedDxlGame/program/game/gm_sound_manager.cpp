@@ -28,6 +28,15 @@ void SoundManager::CreateCardSEList() {
 
 }
 
+void SoundManager::CreateSystemSEList()
+{
+
+	system_se_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::SystemSE,"sound/se/system_se/beep_1.mp3"));
+
+
+
+} bv
+
 
 
 
@@ -62,10 +71,24 @@ void SoundManager::PlayCardSE(int id) {
 	}
 
 
+}
 
+void SoundManager::PlaySystemSE(int id)
+{
+	if (!system_se_list_.empty()) {
 
+		for (auto ssl : system_se_list_) {
 
+			if (ssl->GetID() == id) {
 
+				PlaySoundMem(ssl->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+				break;
+
+			}
+
+		}
+
+	}
 
 }
 

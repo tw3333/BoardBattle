@@ -27,9 +27,11 @@ public:
 
 	void CreateBattleBGMList();
 	void CreateCardSEList();
+	void CreateSystemSEList();
+
 	void PlayBattleBGM(int id);
 	void PlayCardSE(int id);
-
+	void PlaySystemSE(int id);
 
 
 private:
@@ -42,7 +44,6 @@ private:
 	std::vector<std::shared_ptr<SoundData>> battle_bgm_list_;
 	std::vector<std::shared_ptr<SoundData>> card_se_list_;
 	std::vector<std::shared_ptr<SoundData>> ui_se_list_;
-
-
+	std::vector<std::shared_ptr<SoundData>> system_se_list_;
 
 };

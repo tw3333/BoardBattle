@@ -2,6 +2,7 @@
 
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
+#include "gm_board.h"
 
 void CardEffectAddShield::Effect(std::vector<Unit*> units) {
 
@@ -19,4 +20,20 @@ void CardEffectAddShield::Effect(std::vector<Unit*> units) {
 
 
 
+}
+
+bool CardEffectAddShield::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
+{
+
+	for (auto pos : target_square_pos) {
+
+		if (!board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare() && 
+			!board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
+
+			return false;
+		}
+
+	}
+
+	return true;
 }

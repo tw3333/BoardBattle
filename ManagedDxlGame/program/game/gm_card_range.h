@@ -14,13 +14,15 @@ class Board;
 enum class Target{
 	Ally,
 	Enemy,
-	All
+	All,
+	None
 };
 
 //どこを軸にするか
 enum class RangeAxis {
 	ActAlly,
-	SelectSquare
+	SelectSquare,
+	None
 };
 
 
@@ -29,7 +31,8 @@ public:
 
 	virtual void DisplayRange(UnitAlly* act_ally, Board* board) = 0;
 	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) = 0;
-	_axis_pos) = 0; //範囲のマスの座標を返す
+	
+	virtual std::vector<SquarePos> GetRangeSquarePos(SquarePos range_axis) = 0; //範囲のマスの座標を返す
 
 	bool GetIsUnitInRange() { return is_unit_in_range_; }
 	std::vector<SquarePos> GetTargetSquarePos() { return range_square_pos_; }
@@ -37,11 +40,9 @@ public:
 
 protected:
 
-	Target target_;
-
-	RangeAxis axis_;
+	Target target_ = Target::None;
+	RangeAxis range_axis_ = RangeAxis::None;
 	bool is_unit_in_range_ = false;
-
-
 	std::vector<SquarePos> range_square_pos_;
+
 };

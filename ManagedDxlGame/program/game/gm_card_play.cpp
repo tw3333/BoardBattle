@@ -15,6 +15,8 @@
 #include "gm_ui_card.h"
 #include "../dxlib_ext/dxlib_ext.h"
 
+#include "gm_data_board.h"
+
 #include <algorithm>
 #include <vector>
 
@@ -109,6 +111,23 @@ void CardPlay::UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<U
 
 		//debugcode
 		DrawStringEx(0,600,-1,"対象が%d人います",total_units_in_range_.size());
+
+	}
+
+}
+
+//選択されているCardのRangePosを格納、その更新
+void CardPlay::UpdateSelectCardRangeSquarePos(SquarePos axis_pos) {
+
+	if (select_uicard_) 
+	{
+		card_range_square_pos_.clear();
+
+		for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardRangeList())
+		{
+			std::vector<SquarePos> range_square_pos = a->GetRangeSquarePos(axis_pos);
+			card_range_square_pos_.insert(card_range_square_pos_.end(), range_square_pos.begin(), range_square_pos.end());
+		}
 
 	}
 

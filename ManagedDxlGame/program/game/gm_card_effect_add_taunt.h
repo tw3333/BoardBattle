@@ -9,7 +9,8 @@ public:
 	~CardEffectAddTaunt(){};
 
 	void Effect(std::vector<Unit*> untis) override;
-
+	void EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) override;
+	bool CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) override;
 
 
 private:

@@ -10,6 +10,7 @@ enum class SoundType{
 	BGM,
 	CardSE,
 	UISE,
+	SystemSE
 };
 
 

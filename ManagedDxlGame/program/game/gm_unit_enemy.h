@@ -85,6 +85,9 @@ public:
 	void DecreaseCurrentHp(int value) {
 		current_hp_ = (std::max)(0, current_hp_ - value);
 	}
+	void IncreareCurrentHp(int value) {
+		current_hp_ = (std::min)(max_hp_, current_hp_ + value);
+	}
 
 private:
 	

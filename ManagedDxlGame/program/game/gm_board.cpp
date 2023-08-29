@@ -5,6 +5,7 @@
 #include "gm_select_square.h"
 
 
+
 void Board::Create() {
 
 	for (int i = 0; i < 10; ++i) {
@@ -59,6 +60,29 @@ void Board::Render(dxe::Camera* camera) {
 
 
 	
+
+}
+
+//“n‚µ‚½Pos‚ÌRangeTile‚ğ•\¦‚·‚é
+void Board::DisplayRangePosRangeTile(std::vector<SquarePos> range_square_pos) {
+
+	for (auto pos : range_square_pos) {
+		board_squares_[pos.row][pos.col]->SetRenderRangeTile(true);
+	}
+
+}
+
+//boardã‚ÌRangeTile‚ğ‘S‚Ä”ñ•\¦‚É‚·‚é
+void Board::ResetDisplayRangeTile() {
+
+	for (int row = 0; row < 10; ++row) {
+		for (int col = 0; col < 10; ++col) {
+
+			board_squares_[row][col]->SetRenderRangeTile(false);
+
+		}
+	}
+
 
 }
 

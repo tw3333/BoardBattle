@@ -5,13 +5,13 @@
 #include "gm_square.h"
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_object_manager.h"
+#include "gm_data_board.h"
+
 
 class Unit;
 class UnitAlly;
 class UnitEnemy;
 class SelectSquare;
-
-
 
 //memo
 //SceneBattle‚Ì”Õ–Êã‚ğŠÇ—‚·‚éƒNƒ‰ƒX
@@ -37,7 +37,8 @@ public:
 	Square* getBoardSquare(int row, int col) { return board_squares_[row][col]; }
 	void SetCamera(dxe::Camera* camera) { camera_ = camera; }
 
-
+	void DisplayRangePosRangeTile(std::vector<SquarePos> range_square_pos);
+	void ResetDisplayRangeTile();
 
 	void UpdateCanMoveSquare();
 	void UpdateSquareState();

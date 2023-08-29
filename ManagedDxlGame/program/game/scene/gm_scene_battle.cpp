@@ -457,12 +457,21 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	card_play_->SetTurnAlly(turn_ally_);
 
 
-	card_play_->RenderSelectCardRange(turn_ally_, board_);
+	//card_play_->RenderSelectCardRange(turn_ally_, board_);
 	card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
 
-	//カード使用判定
+	//card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
+	//board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
+
+
+	//UICardを選択している時
 	if (ui_card_hand_->GetSelectUICard()) {
 
+		card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
+		//Cardの射程範囲を表示
+		board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
+
+		//クリックでCardを決定したら
 		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
 			if (!card_play_->IsSelectCardCostEnough()) {
@@ -482,6 +491,15 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 			}
 		}
+
+	} else {
+
+		board_->ResetDisplayRangeTile();
+	}
+
+
+	if (ui_card_hand_->GetSelectUICard()) {
+		
 
 
 	}
