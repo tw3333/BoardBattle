@@ -82,9 +82,7 @@ public:
 
 	void SetCurrentHp(int value) { current_hp_ = value; }
 	
-	void DecreaseCurrentHp(int value) {
-		current_hp_ = (std::max)(0, current_hp_ - value);
-	}
+	void DecreaseCurrentHp(int value);
 	void IncreareCurrentHp(int value) {
 		current_hp_ = (std::min)(max_hp_, current_hp_ + value);
 	}
@@ -157,6 +155,6 @@ private:
 
 	//補正値
 	int taunt_value_ = 0; //タウント値
-	//int shield_value_ = 0; //シールド値
+	//int shield_value_ = 0; //シールド値 
 
 };

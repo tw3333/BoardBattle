@@ -308,9 +308,13 @@ bool CardPlay::IsSelectCardCostEnough() {
 	return true;
 }
 
-bool CardPlay::IsSelectCardTargetInRange()
+bool CardPlay::IsSelectCardTargetInRange(Board* board)
 {
-	if (total_units_in_range_.empty()) {
+	//if (total_units_in_range_.empty()) {
+	//	return false;
+	//}
+
+	if (card_range_square_pos_.empty()) {
 		return false;
 	}
 
@@ -320,14 +324,29 @@ bool CardPlay::IsSelectCardTargetInRange()
 		if (a->GetTargetType() == TARGETTYPE::InRange) {
 
 			if (a->GetToTarget() == TOTARGET::All) {
-				if (total_units_in_range_.empty()) {
-					return false;
+				//if (total_units_in_range_.empty()) {
+				//	return false;
+				//}
+			
+				for (auto pos : card_range_square_pos_) {
+
+					if (board->getBoardSquare(pos.row, pos.col)->GetUnitPtrInSquare()) {
+						return true;
+					}
 				}
+
 			}
 			else if (a->GetToTarget() == TOTARGET::Ally) {
 				
-				for (auto tuir : total_units_in_range_) {
-					if (tuir->GetUnitType() == UnitType::Ally) {
+				//for (auto tuir : total_units_in_range_) {
+				//	if (tuir->GetUnitType() == UnitType::Ally) {
+				//		return true;
+				//	}
+				//}
+
+				for (auto pos : card_range_square_pos_) {
+
+					if (board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()) {
 						return true;
 					}
 				}
@@ -336,27 +355,50 @@ bool CardPlay::IsSelectCardTargetInRange()
 			}
 			else if (a->GetToTarget() == TOTARGET::Enemy) {
 				
-				for (auto tuir : total_units_in_range_) {
-					if (tuir->GetUnitType() == UnitType::Enemy) {
+				//for (auto tuir : total_units_in_range_) {
+				//	if (tuir->GetUnitType() == UnitType::Enemy) {
+				//		return true;
+				//	}
+				//}
+
+				for (auto pos : card_range_square_pos_) {
+
+					if (board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
 						return true;
 					}
+
 				}
 				return false;
 			}
+
 		}
 
 		//Specify”»’è
 		if (a->GetTargetType() == TARGETTYPE::Specify) {
 
 			if (a->GetToTarget() == TOTARGET::All) {
-				if (total_units_in_range_.empty()) {
-					return false;
+				//if (total_units_in_range_.empty()) {
+				//	return false;
+				//}
+
+				for (auto pos : card_range_square_pos_) {
+					if (board->getBoardSquare(pos.row, pos.col)->GetUnitPtrInSquare()) {
+						return true;
+					}	
 				}
+
 			}
 			else if (a->GetToTarget() == TOTARGET::Ally) {
 
-				for (auto tuir : total_units_in_range_) {
-					if (tuir->GetUnitType() == UnitType::Ally) {
+				//for (auto tuir : total_units_in_range_) {
+				//	if (tuir->GetUnitType() == UnitType::Ally) {
+				//		return true;
+				//	}
+				//}
+
+				for (auto pos : card_range_square_pos_) {
+
+					if (board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()) {
 						return true;
 					}
 				}
@@ -365,10 +407,18 @@ bool CardPlay::IsSelectCardTargetInRange()
 			}
 			else if (a->GetToTarget() == TOTARGET::Enemy) {
 
-				for (auto tuir : total_units_in_range_) {
-					if (tuir->GetUnitType() == UnitType::Enemy) {
+				//for (auto tuir : total_units_in_range_) {
+				//	if (tuir->GetUnitType() == UnitType::Enemy) {
+				//		return true;
+				//	}
+				//}
+
+				for (auto pos : card_range_square_pos_) {
+
+					if (board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
 						return true;
 					}
+
 				}
 				return false;
 			}
@@ -401,6 +451,82 @@ std::vector<Unit*> CardPlay::ExtractUnitInRange(TOTARGET to_target) {
 	}
 
 	return extract_unit;
+}
+
+//Range‚©‚çŠeíTarget‚ÌÀ•W‚ğ’Šo
+std::vector<SquarePos> CardPlay::ExtractTargetSquarePosInRange(TOTARGET to_target, Board* board)
+{
+	std::vector<SquarePos> target_square_pos;
+
+	for (auto pos : card_range_square_pos_) {
+
+		if (to_target == TOTARGET::All) {
+
+			if (board->getBoardSquare(pos.row, pos.col)->GetUnitPtrInSquare()) {
+
+				target_square_pos.push_back(pos);
+
+			}
+
+		}
+		else if (to_target == TOTARGET::Ally) {
+
+			if (board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()) {
+
+				target_square_pos.push_back(pos);
+
+			}
+
+		}
+		else if (to_target == TOTARGET::Enemy) {
+
+			if (board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
+
+				target_square_pos.push_back(pos);
+
+			}
+
+		}
+
+	}
+
+}
+
+int CardPlay::GetSpecifyTargetNum(TOTARGET to_target, Board* board)
+{
+	int cnt = 0;
+
+	if (to_target == TOTARGET::All) {
+
+		for (auto range_pos : card_range_square_pos_) {
+			if (board->getBoardSquare(range_pos.row, range_pos.col)->GetUnitPtrInSquare()) {
+				cnt++;
+			}
+		}
+
+		return cnt;
+	}
+	else if (to_target == TOTARGET::Ally) {
+		
+		for (auto range_pos : card_range_square_pos_) {
+			if (board->getBoardSquare(range_pos.row, range_pos.col)->GetAllyPtrInSquare()) {
+				cnt++;
+			}
+		}
+			
+		return cnt;
+	}
+	else  if (to_target == TOTARGET::Enemy) {
+
+		for (auto range_pos : card_range_square_pos_) {
+			if (board->getBoardSquare(range_pos.row, range_pos.col)->GetEnemyPtrInSquare()) {
+				cnt++;
+			}
+		}
+
+		return cnt;
+	}
+
 }
 
 void CardPlay::SetCameraToCardEffectAnim(dxe::Camera* camera) {

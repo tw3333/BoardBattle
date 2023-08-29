@@ -36,6 +36,8 @@ void CardEffectHeal::EffectExcute(std::vector<SquarePos> target_square_pos, Boar
 		}
 
 	}
+
+	
 }
 
 bool CardEffectHeal::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board)

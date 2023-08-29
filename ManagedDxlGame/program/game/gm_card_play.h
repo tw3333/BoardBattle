@@ -31,7 +31,7 @@ public:
 	void Update(float delta_time);
 	void Render(dxe::Camera* camera);
 
-	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board); 
+	void RenderSelectCardRange(UnitAlly* turn_ally, Board* board);
 	void UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<Unit*> all_untis);
 	void UpdateSelectCardRangeSquarePos(SquarePos axis_pos);
 
@@ -44,7 +44,7 @@ public:
 	bool CanPlaySelectCard();
 
 	bool IsSelectCardCostEnough();
-	bool IsSelectCardTargetInRange();
+	bool IsSelectCardTargetInRange(Board* board);
 
 	std::vector<Unit*> ExtractUnitInRange(TOTARGET to_target); //total_units_in_range_Ç©ÇÁäeUnitÇíäèoÇ∑ÇÈä÷êî
 	std::vector<SquarePos> ExtractTargetSquarePosInRange(TOTARGET to_target); 

@@ -38,7 +38,11 @@ public:
 	void SetCamera(dxe::Camera* camera) { camera_ = camera; }
 
 	void DisplayRangePosRangeTile(std::vector<SquarePos> range_square_pos);
+	
 	void ResetDisplayRangeTile();
+	void ResetDisPlayCandidateTile();
+	void ResetDisPlayTargetTile();
+	void ResetAllTile();
 
 	void UpdateCanMoveSquare();
 	void UpdateSquareState();

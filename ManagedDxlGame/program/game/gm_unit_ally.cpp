@@ -22,6 +22,23 @@ void UnitAlly::InitAllyObjPos() {
 }
 
 
+//Damage計算
+void UnitAlly::DecreaseCurrentHp(int value) {
+
+	//シールドがあればシールドを優先して減らす
+	if (shield_value_ >= value) {
+
+		shield_value_ -= value;
+		return;
+	}
+
+	//シールドがなければHPを減らす
+	int actual_damage = value - shield_value_;
+	shield_value_ = 0;
+	current_hp_ = (std::max)(0, current_hp_ - actual_damage);
+
+}
+
 //UseDeckに山札の順番を割り振る(シャッフル)
 void UnitAlly::AssignRandomDeckOrderToUseDeck() {
 

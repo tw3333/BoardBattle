@@ -86,6 +86,38 @@ void Board::ResetDisplayRangeTile() {
 
 }
 
+void Board::ResetDisPlayCandidateTile()
+{
+	for (int row = 0; row < 10; ++row) {
+		for (int col = 0; col < 10; ++col) {
+
+			board_squares_[row][col]->SetRenderCandidateTile(false);
+
+		}
+	}
+}
+
+void Board::ResetDisPlayTargetTile()
+{
+	for (int row = 0; row < 10; ++row) {
+		for (int col = 0; col < 10; ++col) {
+
+			board_squares_[row][col]->SetRenderTargetTile(false);
+
+		}
+	}
+
+
+}
+
+//全てのTileの表示をリセットする
+void Board::ResetAllTile()
+{
+	ResetDisplayRangeTile();
+	ResetDisPlayCandidateTile();
+	ResetDisPlayTargetTile();
+}
+
 void Board::UpdateCanMoveSquare() {
 
 	//Unitのいる位置を移動禁止にする
