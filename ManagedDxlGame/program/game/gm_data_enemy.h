@@ -17,6 +17,7 @@ public:
 
 
 
+
 	//accessor
 	void SetIsPicked(bool flag) { is_picked_ = flag; }
 	bool GetIsPicked() { return is_picked_; }

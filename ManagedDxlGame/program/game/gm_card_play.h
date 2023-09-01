@@ -40,14 +40,16 @@ public:
 	void DebugRender();
 
 	void EffectExecute();
-	void PlayCardExecute();
+	
+	void PlayCardExecute(Board* board);
 	bool CanPlaySelectCard();
 
 	bool IsSelectCardCostEnough();
 	bool IsSelectCardTargetInRange(Board* board);
 
 	std::vector<Unit*> ExtractUnitInRange(TOTARGET to_target); //total_units_in_range_‚©‚çŠeUnit‚ğ’Šo‚·‚éŠÖ”
-	std::vector<SquarePos> ExtractTargetSquarePosInRange(TOTARGET to_target); 
+	std::vector<SquarePos> ExtractTargetSquarePosInRange(TOTARGET to_target, Board* board); 
+	int GetInRangeTargetNum(TOTARGET to_target, Board* board); //Range“à‚É‚¢‚éŠeíUnit‚Ì”‚ğ•Ô‚·ŠÖ”
 
 	void SetSelectCard(std::shared_ptr<Card> card) { select_card_ = card; }
 	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }

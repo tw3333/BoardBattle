@@ -356,6 +356,12 @@
     <ClCompile Include="program\game\gm_ui_notice_target_box.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_slime_move.cpp">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_slime_act.cpp">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -710,6 +716,18 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_board.h">
       <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemy_move.h">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemy_act.h">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_slime_act.h">
+      <Filter>program\[003] game\enemyaction</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_slime_move.h">
+      <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

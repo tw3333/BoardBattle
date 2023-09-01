@@ -475,9 +475,6 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
 		
 		
-
-
-
 		//クリックでCardを決定したら
 		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
@@ -820,25 +817,21 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
 
 		//指定対象数が指定候補より多い場合
-		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > enemy_cnt) {
-
-			if (ally_cnt == card_play_->GetCurrentCardTarget()->GetTargetUnits().size()) {
-
+		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > card_play_->GetInRangeTargetNum(TOTARGET::Enemy, board_)) {
+			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetInRangeTargetNum(TOTARGET::Enemy, board_)) {
 				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
-
 			}
 		}
-		//指定対象数が指定数候補数より少ない場合	
-		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= enemy_cnt) {
+		//指定対象数が指定候補数より少ない場合
+		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= card_play_->GetInRangeTargetNum(TOTARGET::Enemy, board_)) {
 
-			if (card_play_->GetCurrentCardTarget()->GetTargetUnits().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
-
+			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
 				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
-
 			}
 		}
+
 	}
 
 	return true;
@@ -848,7 +841,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 //PlayCardを実行
 bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
-	card_play_->PlayCardExecute();
+	card_play_->PlayCardExecute(board_);
 	card_play_->SetPlayCard(nullptr);
 	ui_card_hand_->SetEnableSelectCard(true);
 	phase_.change(&SceneBattle::PhasePlayerActionCard);

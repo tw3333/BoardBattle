@@ -239,8 +239,10 @@ void CardPlay::EffectExecute()
 }
 
 
+
+
 //カードの効果を実行
-void CardPlay::PlayCardExecute() {
+void CardPlay::PlayCardExecute(Board* board) {
 
 	if (play_card_ && turn_ally_) {
 		
@@ -251,16 +253,17 @@ void CardPlay::PlayCardExecute() {
 
 				if (a->GetEffectRefNum() == b->GetTargetRefNum()) {
 
-					a->Effect(b->GetTargetUnits());
-
-
+					//a->Effect(b->GetTargetUnits());
+					a->EffectExcute(b->GetTargetSquaresPos(), board);
 				}
 			}
 		}
 
+		//CardTargeに格納したSquarePosをリセット
 		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
 
-			a->GetTargetUnits().clear();
+			//a->GetTargetUnits().clear();
+			a->GetTargetSquaresPos().clear();
 
 		}
 
@@ -490,9 +493,10 @@ std::vector<SquarePos> CardPlay::ExtractTargetSquarePosInRange(TOTARGET to_targe
 
 	}
 
+	return target_square_pos;
 }
 
-int CardPlay::GetSpecifyTargetNum(TOTARGET to_target, Board* board)
+int CardPlay::GetInRangeTargetNum(TOTARGET to_target, Board* board)
 {
 	int cnt = 0;
 
