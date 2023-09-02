@@ -75,6 +75,11 @@ private:
 	std::vector<UnitEnemy*> enemy_units_;
 	std::vector<Unit*> all_units_;
 
+	//Boardã‚ÌŠeUnit
+	std::vector<UnitAlly*> party_units_in_board_;
+	std::vector<UnitEnemy*> enemy_units_in_board_;
+	std::vector<Unit*> all_units_in_board_;
+
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 

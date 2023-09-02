@@ -7,8 +7,9 @@ class ObjEnemy;
 class EnemyData {
 public:
 
-	EnemyData(int enemy_id, std::string name, int hp, int speed, int move_cost, int action_cost)
-	:enemy_id_(enemy_id), name_(name), hp_(hp), speed_(speed),move_cost_(move_cost)
+
+	EnemyData(int enemy_id, std::string name, int hp, int power, int speed, int move_cost, int action_cost)
+	:enemy_id_(enemy_id), name_(name), hp_(hp),power_(power), speed_(speed),move_cost_(move_cost)
 	, action_cost_(action_cost)
 	{}
 	~EnemyData(){}
@@ -25,6 +26,7 @@ public:
 	int GetEnemyDataID() { return enemy_id_; }
 	std::string GetName() { return name_; }
 	int GetHp() { return hp_; }
+	int GetPower() { return power_; }
 	int GetSpeed() { return speed_; }
 	int GetMoveCost() { return move_cost_; }
 	int GetActionCost() { return action_cost_; }
@@ -48,6 +50,7 @@ private:
 	int enemy_id_;
 	std::string name_;
 	int hp_;
+	int power_; //UŒ‚‚â‰ñ•œ‚Ég‚¤”’l
 	int speed_;
 	int move_cost_;
 	int action_cost_;

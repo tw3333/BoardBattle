@@ -68,7 +68,8 @@ void SlimeAct::Act(UnitEnemy* turn_enemy, Board* board) {
 
 	//damage‚ð—^‚¦‚é
 	if (target_ally) {
-		target_ally->DecreaseCurrentHp(damage_);
+		target_ally->DecreaseCurrentHp(turn_enemy->GetEnemyData()->GetPower());
 	}
 
 }
+
