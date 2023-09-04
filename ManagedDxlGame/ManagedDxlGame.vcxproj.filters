@@ -729,5 +729,8 @@
     <ClInclude Include="program\game\gm_slime_move.h">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_unit_obstacle.h">
+      <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

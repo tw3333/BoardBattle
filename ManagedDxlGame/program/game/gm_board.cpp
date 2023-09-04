@@ -58,9 +58,6 @@ void Board::Render(dxe::Camera* camera) {
 		DrawLine3D({ 0 + (mas_x * i),0,0 }, { 0 + (mas_x * i),0,(float)(h1 * 8) }, gray_);
 	}
 
-
-	
-
 }
 
 //“n‚µ‚½Pos‚ÌRangeTile‚ð•\Ž¦‚·‚é

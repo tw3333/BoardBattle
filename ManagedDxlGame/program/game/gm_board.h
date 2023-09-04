@@ -81,6 +81,8 @@ private:
 	std::vector<Unit*> all_units_in_board_;
 
 
+
+
 	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
 	std::array<std::array<Square*, 10>, 10> board_squares_;//10x10‚Ìƒ}ƒX”z—ñ

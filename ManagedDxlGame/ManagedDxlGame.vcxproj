@@ -360,6 +360,7 @@
     <ClInclude Include="program\game\gm_object.h" />
     <ClInclude Include="program\game\gm_unit_ally.h" />
     <ClInclude Include="program\game\gm_unit_enemy.h" />
+    <ClInclude Include="program\game\gm_unit_obstacle.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />
     <ClInclude Include="program\game\scene\gm_scene_load.h" />
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h" />
