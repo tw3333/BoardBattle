@@ -128,6 +128,7 @@ void SceneBattle::Update(float delta_time) {
 	//for (auto eu : enemy_units_) { eu->Update(delta_time); }
 
 	for (auto au : all_units_) { au->Update(delta_time); }
+	BattleResultJudgment(board_);
 
 
 	obj_target_circle_->Update(delta_time);
@@ -257,8 +258,10 @@ void SceneBattle::BattleResultJudgment(Board* board) {
 	else if (board->GetEnemyUnitsInBoard().empty()) {
 
 		//SceneBattleResult‚Ö„ˆÚ
+		DrawStringEx(0,700,-1,"í“¬I—¹");
 
 	}
+
 
 
 
