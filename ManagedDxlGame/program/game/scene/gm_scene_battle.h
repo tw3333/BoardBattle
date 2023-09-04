@@ -67,9 +67,10 @@ public:
 
 	void InitialTurnCal();
 
+
 	//
 	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal);
-
+#
 
 
 	bool PhaseInitialTurnCal(const float delta_time);

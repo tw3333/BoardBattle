@@ -46,7 +46,8 @@ public:
 
 	void UpdateCanMoveSquare();
 	void UpdateSquareState();
-	void UpdateUnitPtrInSquare();
+	void UpdateUnitPtrInSquare(); //Boardè„ÇÃäeUnitÇÃçXêV
+	void UpdateUnitsInBoard();
 	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
 
 	void SetPartyUnits(std::vector<UnitAlly*> party_units) { party_units_ = party_units; }
@@ -65,12 +66,18 @@ public:
 
 	void ResetRangeTile();
 
+	void SetPartyUnitsInBoard(std::vector<UnitAlly*> party_units) { party_units_in_board_ = party_units; }
+	void SetEnemyUntisInBoard(std::vector<UnitEnemy*> enemy_units) { enemy_units_in_board_ = enemy_units; }
+	std::vector<UnitAlly*> GetPartyUnitsInBoard() { return party_units_in_board_; }
+	std::vector<UnitEnemy*> GetEnemyUnitsInBoard() { return enemy_units_in_board_; }
+	std::vector<Unit*> GetAllUnitsInBoard() { return all_units_in_board_; }
 
 
 private:
 
 	UnitAlly* party_[3];
-
+	
+	//
 	std::vector<UnitAlly*> party_units_;
 	std::vector<UnitEnemy*> enemy_units_;
 	std::vector<Unit*> all_units_;

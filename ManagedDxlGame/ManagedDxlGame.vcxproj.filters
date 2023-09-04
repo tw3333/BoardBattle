@@ -362,6 +362,9 @@
     <ClCompile Include="program\game\gm_slime_act.cpp">
       <Filter>program\[003] game\enemyaction</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene\gm_scene_battle_result.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -731,6 +734,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_unit_obstacle.h">
       <Filter>program\[003] game\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\gm_scene_battle_result.h">
+      <Filter>program\[003] game\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

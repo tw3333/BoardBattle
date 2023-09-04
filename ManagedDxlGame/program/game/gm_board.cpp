@@ -180,6 +180,32 @@ void Board::UpdateUnitPtrInSquare() {
 
 }
 
+void Board::UpdateUnitsInBoard() {
+
+	//Ž€–S‚µ‚½Unit‚ðBoard‚©‚çœŠO
+	for (auto& unit : party_units_in_board_) {
+		if (unit->GetIsDead()) {
+			party_units_in_board_.erase(std::remove(party_units_in_board_.begin(), party_units_in_board_.end(),unit),party_units_in_board_.end());
+		}
+	}
+
+	for (auto& unit: enemy_units_in_board_) {
+		if (unit->GetIsDead()) {
+			enemy_units_in_board_.erase(std::remove(enemy_units_in_board_.begin(), enemy_units_in_board_.end(), unit), enemy_units_in_board_.end());
+		}
+	}
+
+	for (auto& unit : all_units_in_board_) {
+		if (unit->GetIsDead()) {
+			all_units_in_board_.erase(std::remove(all_units_in_board_.begin(), all_units_in_board_.end(), unit), all_units_in_board_.end());
+
+		}
+	}
+
+
+
+}
+
 bool Board::IsAdjacentAlly(UnitEnemy* unit_enemy, UnitAlly* unit_ally)
 {
 	int row_diff = std::abs(unit_enemy->GetUnitSquarePos().row - unit_ally->GetUnitSquarePos().row);
