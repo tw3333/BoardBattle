@@ -58,6 +58,11 @@ void SceneBattle::Initialzie() {
 	board_->SetPartyUnits(party_units_);
 	board_->SetEnemyUnits(enemy_units_);
 	board_->SetAllUnits(all_units_);
+	board_->SetPartyUnitsInBoard(party_units_);
+	board_->SetEnemyUnitsInBoard(enemy_units_);
+	board_->SetAllUnitsInBoard(all_units_);
+
+
 
 	EnemyBehaviorStrategy* newBehavior = new SlimeBehaviorStrategy();
 	unit_enemy_->SetBehavior(newBehavior);
