@@ -88,26 +88,23 @@ void SlimeMove::Move(UnitEnemy* turn_enemy, Board* board) {
             nearest_target_pos = cur;
         }
 
-        //Ally‚É—×‚è‡‚Á‚½ê‡ˆÚ“®I—¹
-        if (std::abs(cur.row - target_ally->GetUnitSquarePos().row) + std::abs(cur.col - target_ally->GetUnitSquarePos().col) == 1) {
-            //turn_enemy->SetUnitSquarePos(cur.row, cur.col);
-            final_pos = cur;
-            break;
-        }
+        ////Ally‚É—×‚è‡‚Á‚½ê‡ˆÚ“®I—¹
+        //if (std::abs(cur.row - target_ally->GetUnitSquarePos().row) + std::abs(cur.col - target_ally->GetUnitSquarePos().col) == 1) {
+        //    //turn_enemy->SetUnitSquarePos(cur.row, cur.col);
+        //    final_pos = cur;
+        //    break;
+        //}
+
 
         for (SquarePos dir : directions) {
             SquarePos next = { cur.row + dir.row, cur.col + dir.col };
             if (next.row >= 0 && next.row < 10 && next.col >= 0 && next.col < 10) {
-                if (remaining_move - 1 >= 0) {
+                if (!visited[next.row][next.col] && remaining_move - 1 >= 0) {
                     q.push({ next, remaining_move - 1 });
                 }
             }
         }
 
-
-        if (nearest_distance <= remaining_move) {
-            final_pos = nearest_target_pos;
-        }
     }
 
     if (nearest_distance <= remaining_move) {
