@@ -1,5 +1,11 @@
 #include "gm_enemydata_manager.h"
 
+#include "gm_enemy_move.h"
+#include "gm_enemy_act.h"
+#include "gm_slime_move.h"
+#include "gm_slime_act.h"
+
+
 EnemyDataManager* EnemyDataManager::instance_ = nullptr;
 
 EnemyDataManager* EnemyDataManager::GetInstance() {
@@ -38,7 +44,10 @@ void EnemyDataManager::DebugLoadEnemyData() {
 
 
 	}
-
+	
+	//
+	all_enemy_data_[0]->SetEnemyMove(std::make_shared<SlimeMove>());
+	all_enemy_data_[0]->SetEnemyAct(std::make_shared<SlimeAct>());
 
 	//all_enemy_data_.emplace_back(new EnemyData(10, "ƒhƒ‰ƒSƒ“", 30, 30, 1, 1));
 	//all_enemy_data_.emplace_back(new EnemyData(11, "ƒNƒƒE", 30, 30, 1, 1));

@@ -47,7 +47,7 @@ void SceneBattle::Initialzie() {
 	party_units_.push_back(party_[2]);
 
 
-	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 5);
+	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 4);
 	enemy_units_.push_back(unit_enemy_);
 
 	all_units_.reserve(party_units_.size() + enemy_units_.size());

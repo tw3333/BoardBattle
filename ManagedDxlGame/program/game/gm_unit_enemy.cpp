@@ -46,13 +46,17 @@ void UnitEnemy::InitEnemyObjPos() {
 
 void UnitEnemy::Move(Board* board){
 
-	behavior_->Move(this,board);
+	//behavior_->Move(this,board);
+	enemy_data_->GetEnemyMove()->Move(this, board);
+
+	
 
 }
 
 void UnitEnemy::Act(Board* board) {
 
-	behavior_->Act(this,board);
+	//behavior_->Act(this,board);
+	enemy_data_->GetEnemyAct()->Act(this, board);
 
 }
 

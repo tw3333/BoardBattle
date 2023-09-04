@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include "../dxlib_ext/dxlib_ext.h"
+#include "gm_enemy_act.h"
+#include "gm_enemy_move.h"
 
 class ObjEnemy;
 
@@ -13,10 +15,6 @@ public:
 	, action_cost_(action_cost)
 	{}
 	~EnemyData(){}
-
-
-
-
 
 
 	//accessor
@@ -44,6 +42,11 @@ public:
 	void SetObj(ObjEnemy* obj) { obj_ = obj; }
 	ObjEnemy* GetObj() { return obj_; }
 
+	void SetEnemyMove(std::shared_ptr<EnemyMove> enemy_move) { enemy_move_ = enemy_move; }
+	void SetEnemyAct(std::shared_ptr<EnemyAct> enemy_act) { enemt_act_ = enemy_act; }
+	std::shared_ptr<EnemyMove> GetEnemyMove() { return enemy_move_; }
+	std::shared_ptr<EnemyAct> GetEnemyAct() { return enemt_act_; }
+
 private:
 
 	//status
@@ -57,6 +60,11 @@ private:
 
 
 	bool is_picked_ = false;
+	
+	std::shared_ptr<EnemyMove> enemy_move_ = nullptr;
+	std::shared_ptr<EnemyAct> enemt_act_ = nullptr;
+	
+	
 	
 
 	//Obj
