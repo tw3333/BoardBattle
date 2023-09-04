@@ -247,6 +247,24 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 }
 
+void SceneBattle::BattleResultJudgment(Board* board) {
+
+	if (board->GetPartyUnitsInBoard().empty()) {
+
+		//GameOver処理
+
+	}
+	else if (board->GetEnemyUnitsInBoard().empty()) {
+
+		//SceneBattleResultへ推移
+
+	}
+
+
+
+
+}
+
 //各Phaseの実装=======================================================================================================
 //戦闘開始時のターン決め
 bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {

@@ -66,7 +66,7 @@ public:
 
 
 	void InitialTurnCal();
-
+	void BattleResultJudgment(Board* board);
 
 	//
 	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal);
