@@ -350,9 +350,6 @@
     <ClCompile Include="program\game\gm_sound_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_ui_unit_state_view.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\gm_ui_notice_target_box.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
@@ -364,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="program\game\scene\gm_scene_battle_result.cpp">
       <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_unit_state_view.cpp">
+      <Filter>program\[003] game\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -704,7 +704,6 @@
     <ClInclude Include="program\game\gm_sound_manager.h">
       <Filter>program\[003] game\manager</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_ui_unit_state_view.h" />
     <ClInclude Include="program\game\gm_data_bgm.h">
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
@@ -737,6 +736,9 @@
     </ClInclude>
     <ClInclude Include="program\game\scene\gm_scene_battle_result.h">
       <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_unit_state_view.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

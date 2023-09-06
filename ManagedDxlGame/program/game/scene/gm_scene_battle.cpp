@@ -95,7 +95,7 @@ void SceneBattle::Initialzie() {
 
 	ui_notice_target_box_ = new UINoticeTargetBox(w1 * 4, h1 * 1 - 15, w1 * 2, h1 * 1 / 2);
 
-	ui_unit_state_view_ = new UIUnitStateView(0,0);
+	ui_unit_state_view_ = new UIUnitStateView(0,0,select_square_);
 
 	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
 
@@ -143,7 +143,7 @@ void SceneBattle::Update(float delta_time) {
 	ui_turn_view_->Update(delta_time);
 	ui_turn_ally_state_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);
-	ui_unit_state_view_->UpdateSelectSquare(select_square_->GetSelectSquare());
+	ui_unit_state_view_->Update(delta_time);
 
 	//ui_card_->Update(delta_time);
 	ui_card_hand_->SetTurnAlly(turn_ally_);

@@ -19,9 +19,11 @@ void UIUnitStateView::Render() {
 		
 		if (select_square_) {
 
-			if (select_square_->GetAllyPtrInSquare()) {
+			if (select_square_->GetSelectSquare()-) {
 
 				DrawStringEx(0,700,-1,"‚±‚Ì–¡•û‚ÌHP‚Í%d", select_square_->GetAllyPtrInSquare()->GetCurrentHp());
+
+
 
 			}
 			else if (select_square_->GetEnemyPtrInSquare()) {

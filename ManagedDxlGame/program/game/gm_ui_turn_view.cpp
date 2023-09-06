@@ -21,7 +21,7 @@ void UITurnView::Update(float delt_time) {
 			}
 
 		}
-
+		
 		reset_ = false;
 	}
 
