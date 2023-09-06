@@ -34,13 +34,12 @@ void SceneBattle::Initialzie() {
 	party_[0] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(1), 5, 1);
 	party_[1] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(2), 5, 2);
 	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 5, 3);
-
+	
 	for (int i = 0; i < 3; ++i) {
 		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
 		party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
 		party_[i]->AssignSerialNumberToUseDeck();
 		party_[i]->ShuffleUseDeck();
-
 	}
 
 	party_[0]->SetTauntValue(500);
@@ -142,7 +141,6 @@ void SceneBattle::Update(float delta_time) {
 	//UI
 	ui_action_buttons_->Update(delta_time);
 	ui_turn_view_->Update(delta_time);
-
 	ui_turn_ally_state_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);
 	ui_unit_state_view_->UpdateSelectSquare(select_square_->GetSelectSquare());
@@ -154,8 +152,6 @@ void SceneBattle::Update(float delta_time) {
 	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
 	anim_mgr_.GetDebugAnim()->Update(delta_time);
 
-	
-	
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
 		anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
@@ -327,14 +323,16 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		}
 	}
 
-	if (turn_unit_->GetUnitType() == UnitType::Ally) {
-		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
-		phase_.change(&SceneBattle::PhaseAllyTurn);
-	}
-	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
-		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+	if (turn_unit_) {
+		if (turn_unit_->GetUnitType() == UnitType::Ally) {
+			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+			phase_.change(&SceneBattle::PhaseAllyTurn);
+		}
+		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
+			turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
 
-		phase_.change(&SceneBattle::PhaseEnemyTurn);
+			phase_.change(&SceneBattle::PhaseEnemyTurn);
+		}
 	}
 
 	return true;
@@ -889,8 +887,18 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 
 	//各Allyのflagリセット
 	turn_ally_->SetIsDrew(false);
+    turn_ally_->SetIsActed(true);
 
-	turn_ally_->SetIsActed(true);
+
+	//Turnが経過するたびにCardコストも増える(Max15)
+	if (turn_ally_->GetMaxCardCost() < 10) {
+		turn_ally_->SetMaxCardCost(turn_ally_->GetMaxCardCost() + 1);
+	} 
+
+	//各コストのリセット
+	turn_ally_->SetCurrentMoveCost(turn_ally_->GetMaxMoveCost());
+	turn_ally_->SetCurrentCardCost(turn_ally_->GetMaxCardCost());
+	
 
 	phase_.change(&SceneBattle::ResetActedCal);
 

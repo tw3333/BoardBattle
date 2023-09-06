@@ -8,9 +8,9 @@ void UITurnAllyState::Update(float delta_time) {
 	}
 
 
-		ui_card_cost_->Update(delta_time);
-		ui_move_cost_->Update(delta_time);
-		ui_hp_bar_->Update(delta_time);
+	ui_card_cost_->Update(delta_time);
+	ui_move_cost_->Update(delta_time);
+	ui_hp_bar_->Update(delta_time);
 
 	
 

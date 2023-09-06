@@ -75,9 +75,14 @@ public:
 	int GetCurrentHp() { return current_hp_; }
 	int GetMaxCardCost() { return max_card_cost_;}
 	int GetCurrentCardCost() { return current_card_cost_; }
+	void SetCurrentCardCost(int cost) { current_card_cost_ = cost; }
 	int GetMaxMoveCost() { return max_move_cost_; }
 	int GetCurrentMoveCost() { return current_move_cost_; }
 	void SetCurrentMoveCost(int cost) { current_move_cost_ = cost; }
+
+	void SetMaxCardCost(int cost) { max_card_cost_ = cost; }
+
+
 	int GetSpeed() { return speed_; }
 
 	void SetCurrentHp(int value) { current_hp_ = value; }

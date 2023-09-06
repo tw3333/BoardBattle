@@ -210,6 +210,9 @@ void Board::UpdateUnitsInBoard() {
 		}
 	}
 
+	//各Unitの配列から盤面全体のUnitの配列を作成
+
+
 
 
 }
