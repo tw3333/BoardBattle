@@ -2,6 +2,8 @@
 
 #include "scene/gm_scene_battle.h"
 #include "scene/gm_scene_load.h"
+#include "scene//gm_scene_selectphase.h"
+#include "scene/gm_scene_battle_result.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
 

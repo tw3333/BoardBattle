@@ -117,6 +117,7 @@ private:
 	SceneBattleCamera* camera_ = nullptr;
 	//CardView* cardview_ = nullptr;
 	//mgrインスタンス
+	SceneManager* smgr_ = SceneManager::GetInstance();
 	CardManager& cmgr_ = CardManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();

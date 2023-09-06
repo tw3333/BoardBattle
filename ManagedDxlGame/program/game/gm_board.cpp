@@ -23,6 +23,7 @@ void Board::Update(float delta_time) {
 	//Square‚Ìó‘Ô‚ğXV
 	UpdateSquareState();
 	UpdateUnitPtrInSquare();
+	UpdateUnitsInBoard();
 
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
@@ -58,6 +59,13 @@ void Board::Render(dxe::Camera* camera) {
 		DrawLine3D({ 0 + (mas_x * i),0,0 }, { 0 + (mas_x * i),0,(float)(h1 * 8) }, gray_);
 	}
 
+	for (auto unit : party_units_in_board_) {
+		unit->GetObj()->Render(camera);
+	}
+
+	for (auto unit : enemy_units_in_board_) {
+		unit->GetObj()->Render(camera);
+	}
 }
 
 //“n‚µ‚½Pos‚ÌRangeTile‚ğ•\¦‚·‚é

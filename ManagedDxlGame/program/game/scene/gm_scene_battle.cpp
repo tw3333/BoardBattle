@@ -11,6 +11,8 @@
 #include <numeric> 
 
 #include "../gm_card_target.h"
+#include "gm_scene_battle_result.h"
+#include "gm_scene_selectphase.h"
 
 
 void SceneBattle::Initialzie() {
@@ -58,6 +60,7 @@ void SceneBattle::Initialzie() {
 	board_->SetPartyUnits(party_units_);
 	board_->SetEnemyUnits(enemy_units_);
 	board_->SetAllUnits(all_units_);
+
 	board_->SetPartyUnitsInBoard(party_units_);
 	board_->SetEnemyUnitsInBoard(enemy_units_);
 	board_->SetAllUnitsInBoard(all_units_);
@@ -177,11 +180,11 @@ void SceneBattle::Render() {
 	//party_[2]->GetObj()->Render(camera_);
 	//unit_enemy_->GetObj()->Render(camera_);
 
-	for (auto au : all_units_) {
+	//for (auto au : all_units_) {
 
-		au->GetUnitObj()->Render(camera_);
+	//	au->GetUnitObj()->Render(camera_);
 
-	}
+	//}
 
 	board_->Render(camera_);
 	select_square_->Render(camera_);
@@ -258,13 +261,9 @@ void SceneBattle::BattleResultJudgment(Board* board) {
 	else if (board->GetEnemyUnitsInBoard().empty()) {
 
 		//SceneBattleResult‚Ö„ˆÚ
-		DrawStringEx(0,700,-1,"í“¬I—¹");
+		smgr_->ChengeScene(new SceneBattleResult());
 
 	}
-
-
-
-
 
 }
 

@@ -115,6 +115,13 @@ void UnitAlly::ShuffleUseDeck() {
 
 void UnitAlly::Update(float delta_time) {
 
+	//ó‘ÔUpdate(Œã‚ÅØ‚è•ª‚¯)
+	if (current_hp_ == 0) {
+		is_dead_ = true;
+	}
+
+
+
 	//ObjUpdate(Œã‚ÅØ‚è•ª‚¯)
 	int w1 = ((DXE_WINDOW_WIDTH / 10) * 8) /10;
 	int h1 = ((DXE_WINDOW_HEIGHT / 10) * 8) / 10;
