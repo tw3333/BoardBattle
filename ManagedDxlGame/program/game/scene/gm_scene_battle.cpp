@@ -367,7 +367,16 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 
 		for (auto pu : party_units_) {
 
+			//pu->SetCurrentMoveCost(pu->GetMaxMoveCost());
+			
+			//Turnが経過するたびにCardコストも増える(Max15)
+			if (pu->GetMaxCardCost() < 15) {
+				pu->SetMaxCardCost(pu->GetMaxCardCost() + 1);
+			}
+
+			//各コストのリセット
 			pu->SetCurrentMoveCost(pu->GetMaxMoveCost());
+			pu->SetCurrentCardCost(pu->GetMaxCardCost());
 
 		}
 
@@ -375,6 +384,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 			eu->SetCurrentMoveCost(eu->GetCurrentMoveCost());
 
 		}
+
 	}
 
 	reset_acted_ = false;
@@ -384,6 +394,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
+
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 
@@ -885,20 +896,9 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 
-	//各Allyのflagリセット
+	//各Allyのflag変更
 	turn_ally_->SetIsDrew(false);
     turn_ally_->SetIsActed(true);
-
-
-	//Turnが経過するたびにCardコストも増える(Max15)
-	if (turn_ally_->GetMaxCardCost() < 15) {
-		turn_ally_->SetMaxCardCost(turn_ally_->GetMaxCardCost() + 1);
-	} 
-
-	//各コストのリセット
-	turn_ally_->SetCurrentMoveCost(turn_ally_->GetMaxMoveCost());
-	turn_ally_->SetCurrentCardCost(turn_ally_->GetMaxCardCost());
-	
 
 	phase_.change(&SceneBattle::ResetActedCal);
 
