@@ -31,8 +31,8 @@ private:
 
 	UnitAlly* unit_ally_ = nullptr;
 
-	int max_cost_;
-	int current_cost_;
+	int max_cost_ = 0;
+	int current_cost_ = 0;
 
 	int x_;
 	int y_;
@@ -45,6 +45,9 @@ private:
 
 	//ColorCode
 	int color_black_ = GetColor(0,0,0);
-	int color_orange_ = GetColor(255,165,0);
+	int color_yellow_ = GetColor(255,255,0);
+	int color_orange_ = GetColor(255,170,0);
+	int color_red_ = GetColor(255,85,0);
+
 
 };

@@ -891,7 +891,7 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 
 
 	//Turnが経過するたびにCardコストも増える(Max15)
-	if (turn_ally_->GetMaxCardCost() < 10) {
+	if (turn_ally_->GetMaxCardCost() < 15) {
 		turn_ally_->SetMaxCardCost(turn_ally_->GetMaxCardCost() + 1);
 	} 
 
