@@ -6,7 +6,10 @@
 enum class State {
 	Blood,
 	Poison,
-	Armor,
+	Shield,
+	Weak,
+	Snare,
+	Stun,
 	None
 };
 
@@ -24,7 +27,9 @@ public:
 	~BattleState(){}
 
 	void AddValue(int add_value) { value_ += add_value; }
-	void DcreaseValue(int dcrease_velue) { std::max(0, dcrease_velue); }
+	void DecreaseTurnCount(int cnt) { turn_count_ = (std::max)(0, turn_count_ - cnt); }
+	void DecreaseValue(int value) { value_ = (std::max)(0, value_ - value); }
+
 
 
 

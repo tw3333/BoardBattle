@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "gm_data_board.h"
+#include "gm_data_battle_state.h"
 #include "gm_object.h"
 
 //memo
@@ -41,6 +42,7 @@ public:
 
 	//std::shared_ptr<GameObject> GetUnitObj() { return unit_obj_; }
 	GameObject* GetUnitObj() { return unit_obj_; }
+	std::vector<BattleState>& GetBattleState() { return state_; }
 
 private:
 
@@ -57,6 +59,8 @@ protected:
 	int speed_ = 0;
 	int shield_value_ = 0; //シールド値
 
+	//状態
+	std::vector<BattleState> state_;
 
 	//Unit共通の状態
 	bool is_dead_ = false;

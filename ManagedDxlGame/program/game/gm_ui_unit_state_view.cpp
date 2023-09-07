@@ -13,6 +13,10 @@ void UIUnitStateView::Update(float delta_time) {
 
 }
 
+//Todomemo
+//ó‘ÔˆÙí‚Ì•\Œ»‚Íˆê‰ñUnit‚©‚ç’Šo‚µ‚Ä”z—ñ‚ÉŠi”[A‚»‚±‚Åstd::map‚Å—Dæ“x‚Æˆê‚ÉŠi”[‚µ‚Ä‚»‚ÌŒã•`Ê
+//‚Á‚Äˆ—‚ª‚æ‚³‚»‚¤
+
 void UIUnitStateView::Render() {
 
 	if (is_render_) {
