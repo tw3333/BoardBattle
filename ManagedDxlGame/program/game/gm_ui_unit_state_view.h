@@ -10,7 +10,11 @@ public:
 	
 	//arg1,2...éläpå`ÇÃïùÇ∆çÇÇ≥
 	UIUnitStateView(int w, int h,SelectSquare* select_square) 
-	: width_(w), height_(h), select_square_(select_square) {}
+	: width_(w), height_(h), select_square_(select_square) {
+	
+	
+	
+	}
 	~UIUnitStateView(){}
 
 
@@ -18,24 +22,35 @@ public:
 	void Update(float delta_time)override;
 	void Render() override;
 
-
-	void SetUpperLeftPos(int x, int y) { pos_x_ = x; pos_y_ = y; }
 	void SetIsRender(bool is_render) { is_render_ = is_render; }
-	
-	
+	void SetAllyBoxUpperLeftPos(int x, int y) {
+		ally_box_upper_left_x_ = x;
+		ally_box_upper_left_y_ = y;
+	};
+	void SetEnemyBoxUpperLeftPos(int x, int y){
+		enemy_box_upper_left_x_ = x;
+		enemy_box_upper_left_y_ = y;
+	}
+
 
 	
 
 private:
-
+	
 	bool is_render_ = true;
 	SelectSquare* select_square_ = nullptr;
-	Square* square_ = nullptr;
-
-	int pos_x_ = 0;
-	int pos_y_ = 0;
+	
+	int ally_box_upper_left_x_ = 0;
+	int ally_box_upper_left_y_ = 0;
+	int enemy_box_upper_left_x_ = 0;
+	int enemy_box_upper_left_y_ = 0;
 	int width_ = 0;
 	int height_ = 0;
+
+	//color
+	int box_color_ = GetColor(211,211,211);
+
+
 
 };
 

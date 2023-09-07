@@ -95,7 +95,9 @@ void SceneBattle::Initialzie() {
 
 	ui_notice_target_box_ = new UINoticeTargetBox(w1 * 4, h1 * 1 - 15, w1 * 2, h1 * 1 / 2);
 
-	ui_unit_state_view_ = new UIUnitStateView(0,0,select_square_);
+	ui_unit_state_view_ = new UIUnitStateView(w1*2,h1*1 + h1*1 /2 ,select_square_);
+	ui_unit_state_view_->SetAllyBoxUpperLeftPos(10,10);
+	ui_unit_state_view_->SetEnemyBoxUpperLeftPos((w1*8) - 10, 10);
 
 	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
 
