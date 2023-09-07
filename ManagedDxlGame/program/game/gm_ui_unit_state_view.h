@@ -5,8 +5,7 @@
 
 class Square;
 
-class UIUnitStateView : public UIComponent
-{
+class UIUnitStateView : public UIComponent {
 public:
 	
 	//arg1,2...éläpå`ÇÃïùÇ∆çÇÇ≥
@@ -31,7 +30,7 @@ private:
 
 	bool is_render_ = true;
 	SelectSquare* select_square_ = nullptr;
-	Square* 
+	Square* square_ = nullptr;
 
 	int pos_x_ = 0;
 	int pos_y_ = 0;

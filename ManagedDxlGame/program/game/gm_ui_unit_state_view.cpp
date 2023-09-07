@@ -8,7 +8,7 @@
 
 void UIUnitStateView::Update(float delta_time) {
 
-
+	
 
 
 }
@@ -17,32 +17,25 @@ void UIUnitStateView::Render() {
 
 	if (is_render_) {
 		
-		if (select_square_) {
+		//if (select_square_) {
 
-			if (select_square_->GetSelectSquare()-) {
+		//	if (select_square_->GetSelectSquare()-) {
 
-				DrawStringEx(0,700,-1,"‚±‚Ì–¡•û‚ÌHP‚Í%d", select_square_->GetAllyPtrInSquare()->GetCurrentHp());
+		//		DrawStringEx(0,700,-1,"‚±‚Ì–¡•û‚ÌHP‚Í%d", select_square_->GetAllyPtrInSquare()->GetCurrentHp());
 
 
 
-			}
-			else if (select_square_->GetEnemyPtrInSquare()) {
+		//	}
+		//	else if (select_square_->GetEnemyPtrInSquare()) {
 
-				DrawStringEx(0, 700, -1, "‚±‚Ì“G‚ÌHP‚Í%d", select_square_->GetEnemyPtrInSquare()->GetCurrentHp());
-			}
+		//		DrawStringEx(0, 700, -1, "‚±‚Ì“G‚ÌHP‚Í%d", select_square_->GetEnemyPtrInSquare()->GetCurrentHp());
+		//	}
 
-		}
+		//}
 
 
 		//‰º’n
 		//DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, -1, false);
-
-
-
-
-
-
-
 
 
 	}
