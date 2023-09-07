@@ -31,7 +31,7 @@ public:
 	void DecreaseValue(int value) { value_ = (std::max)(0, value_ - value); }
 
 
-
+	State GetState() { return state_; }
 
 
 private:
