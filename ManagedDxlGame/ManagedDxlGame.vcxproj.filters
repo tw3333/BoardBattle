@@ -740,5 +740,8 @@
     <ClInclude Include="program\game\gm_ui_unit_state_view.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_data_battle_state.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
