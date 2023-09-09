@@ -50,6 +50,7 @@ private:
 	//color
 	int box_color_ = GetColor(211,211,211);
 	int hp_bar_color_ = GetColor(255,0,0);
+	int hp_bar_back_color_ = GetColor(52,53,65);
 	int hp_bar_flame_color_ = GetColor(0,0,0);
 
 
