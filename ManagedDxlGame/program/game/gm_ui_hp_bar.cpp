@@ -22,6 +22,9 @@ void UIHpBar::Render() {
 		
 		DrawStringEx(x_, y_, color_black_, "HP:%d/%d", current_hp_, max_hp_);
 
+		//HpBarBack
+		DrawBox(x_, y_ + 25, x_ + width_, y_ + height_, hp_bar_back_color_, true);
+
 		//HpÇÃî‰ó¶Ç≈ïœå`Ç∑ÇÈHPÉoÅ[
 		DrawBox(x_, y_ + 25, x_ + (width_ * hp_ratio_), y_ + height_, color_red_, true);
 

@@ -42,6 +42,7 @@ private:
 	int height_;
 
 	//ColorCode
+	int hp_bar_back_color_ = GetColor(52, 53, 65);
 	int color_red_ = GetColor(255,0,0);
 	int color_black_ = GetColor(0, 0, 0);
 
