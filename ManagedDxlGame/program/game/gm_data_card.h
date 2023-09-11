@@ -8,34 +8,22 @@ class CardEffect;
 class CardRange;
 class CardTarget;
 
-enum class TargetType {
-	SpecifyTarget, //対象指定
-	SpecifyRange, //範囲指定
-	AllRange, //射程内すべてを指定に
-	Self, //自分自身
-	None //射程無し
-};
-
-
 
 
 class CardData {
 public:
 
-	CardData(int card_id, int card_cost, TargetType target_type, int target_num, std::string name, std::string card_explanation, std::string texture_path)
-	:card_id_(card_id), card_cost_(card_cost),target_type_(target_type),target_num_(target_num), card_name_(name), card_explanation_(card_explanation)
+	CardData(int card_id,int poss_ally_id, int card_cost, std::string name, std::string card_explanation, std::string texture_path)
+	:card_id_(card_id), poss_ally_id_(poss_ally_id), card_cost_(card_cost), card_name_(name), card_explanation_(card_explanation)
 	, card_texture_(dxe::Texture::CreateFromFile(texture_path))
 	{}
 	~CardData(){}
 
 	int GetCardID() { return card_id_; }
 	int GetCardCost() { return card_cost_; }
-	bool GetIsSpecifyTarget() { return is_specify_target_; }
-	int GetTargetNum() { return target_num_; }
 	
 	std::string GetCardName() { return card_name_; }
 	std::string GetCardExplanation() { return card_explanation_; }
-
 	
 	std::shared_ptr<dxe::Texture> GetCardTexture() const { return card_texture_; }
 	
@@ -60,17 +48,12 @@ public:
 	CardRange* card_range_ = nullptr;
 	std::string debug_anim_name_ = "debug_anim";
 
-	TargetType GetTargetType() { return target_type_; }
 
 private:
 
 	int card_id_;
 	int card_cost_;
-
-	bool is_specify_target_ = false; //指定ターゲットかどうか
-	TargetType target_type_ = TargetType::None;
-	int target_num_ = 0;
-
+	int poss_ally_id_; //カードを所持できる味方のID
 
 	
 	std::string card_name_;

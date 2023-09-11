@@ -10,6 +10,8 @@ enum class State {
 	Weak,
 	Snare,
 	Stun,
+	Counter,
+	Stand,
 	None
 };
 

@@ -37,13 +37,13 @@ void CardPlay::Update(float delta_time) {
 
 		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
-			if (select_uicard_->GetCardPtr()->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
+			//if (select_uicard_->GetCardPtr()->GetCardData()->GetTargetType() == TargetType::SpecifyTarget) {
 
 
 
 
 
-			}
+			//}
 
 
 
