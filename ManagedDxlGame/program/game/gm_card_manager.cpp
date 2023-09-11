@@ -1,7 +1,13 @@
 #include "gm_card_manager.h"
 
-#include "gm_card.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
 
+
+#include "gm_card.h"
 #include "gm_card_effect.h"
 #include "gm_card_effect_heal.h"
 #include "gm_card_effect_add_shield.h"
@@ -77,13 +83,6 @@ void CardManager::CreateDebugCardData() {
 
 
 
-	for (auto dcd : debug_card_data_) {
-
-		dcd->debug_card_range_list_.emplace_back(new CardRangeSelf());
-
-	}
-
-
 }
 
 void CardManager::CreateDebugCardDeck() {
@@ -108,3 +107,45 @@ void CardManager::CreateDebugCard() {
 
 
 }
+
+void CardManager::LoadCardDataFromCSV(const std::string& filepath) {
+
+	std::ifstream file(filepath);
+
+	if (!file.is_open()) {
+		std::cerr << "ファイルが開けませんでした" << std::endl;
+		return;
+	}
+
+	std::string line;
+	std::getline(file, line);  // ヘッダーラインをスキップ
+
+	while (std::getline(file, line)) {
+		std::stringstream ss(line);
+		std::string item;
+
+		std::getline(ss, item, ',');
+		int card_id = std::stoi(item);
+
+		std::getline(ss, item, ',');
+		int poss_ally_id = std::stoi(item);
+
+		std::getline(ss, item, ',');
+		int card_cost = std::stoi(item);
+
+		std::getline(ss, item, ',');
+		std::string name = item;
+
+		std::getline(ss, item, ',');
+		std::string card_explanation = item;
+
+		std::getline(ss, item, ',');
+		std::string texture_path = item;
+
+		all_card_data_.emplace_back(CardData(card_id, poss_ally_id, card_cost, name, card_explanation, texture_path));
+	}
+
+}
+
+
+

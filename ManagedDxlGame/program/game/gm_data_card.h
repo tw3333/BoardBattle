@@ -20,11 +20,10 @@ public:
 	~CardData(){}
 
 	int GetCardID() { return card_id_; }
+	int GetPossAllyID() { return poss_ally_id_; }
 	int GetCardCost() { return card_cost_; }
-	
 	std::string GetCardName() { return card_name_; }
 	std::string GetCardExplanation() { return card_explanation_; }
-	
 	std::shared_ptr<dxe::Texture> GetCardTexture() const { return card_texture_; }
 	
 	std::vector<std::shared_ptr<CardEffect>>GetCardEffectList() { return card_effect_list_; }
@@ -42,32 +41,20 @@ public:
 		card_target_list_.push_back(card_target);
 	}
 
-	std::vector<CardEffect*> debug_card_effect_list_;
-	std::vector<CardRange*> debug_card_range_list_;
-
-	CardRange* card_range_ = nullptr;
 	std::string debug_anim_name_ = "debug_anim";
-
 
 private:
 
 	int card_id_;
 	int card_cost_;
 	int poss_ally_id_; //カードを所持できる味方のID
-
-	
 	std::string card_name_;
 	std::string card_explanation_; //カードの効果文
+	std::shared_ptr <dxe::Texture> card_texture_;
 	std::vector<std::string> split_explanation_; //カードの効果文を分割したもの
 	
-	
-
-	std::shared_ptr <dxe::Texture> card_texture_;
-
-	
+		
 	std::vector<std::shared_ptr<CardEffect>> card_effect_list_;
 	std::vector<std::shared_ptr<CardRange>> card_range_list_;
 	std::vector<std::shared_ptr<CardTarget>> card_target_list_;
-
-
 };

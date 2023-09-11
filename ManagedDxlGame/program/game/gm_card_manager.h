@@ -1,10 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
-
-
-
-
+#include <string>
 
 //memo
 //Cardクラスのインスタンスを生成、保持、管理するクラス
@@ -34,7 +31,16 @@ public:
 	void CreateDebugCardData();
 	void CreateDebugCardDeck();
 	void CreateDebugCard();
+
+	void LoadCardDataFromCSV(const std::string& filepath);
+	void LoadCardRangeFromCSV(const std::string& filepath);
+	void LoadCardTargetFromCSV(const std::string& filepath);
+	void LoadCardEffectFromCSV(const std::string& filepath);
+
+
+
 	std::vector<std::shared_ptr<Card>> GetDebugDeck() { return debug_deck_;	}
+	std::vector<CardData>& GetAllCardData() { return all_card_data_; }
 
 	//get,set
 	//Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }
@@ -52,11 +58,12 @@ private:
 	std::vector<Card*> debug_card_;
 	std::vector<std::shared_ptr<Card>> debug_deck_;
 
-
-	std::vector<Card*> all_card_data_;
 	
 	std::vector<Card*> c1_card_data_;
 	std::vector<Card*> c2_card_data_;
 	std::vector<Card*> c3_card_data_;
 	std::vector<Card*> c4_card_data_;
+
+	std::vector<CardData> all_card_data_; //全てのカードのCardData
+
 };

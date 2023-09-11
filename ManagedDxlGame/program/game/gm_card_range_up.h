@@ -10,7 +10,7 @@
 class CardRangeUp : public CardRange {
 public:
 
-	CardRangeUp(int leave, int range_, Target target)
+	CardRangeUp(int leave, int range_)
 	:leave_(leave), range_(range_)
 	{}
 	~CardRangeUp(){}

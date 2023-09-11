@@ -365,6 +365,9 @@
     <ClCompile Include="program\game\gm_ui_unit_state_view.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene\gm_scene_debug_card_room.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -742,6 +745,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_battle_state.h">
       <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\gm_scene_debug_card_room.h">
+      <Filter>program\[003] game\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

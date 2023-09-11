@@ -1,6 +1,7 @@
 #include "gm_scene_load.h"
 #include "../../dxlib_ext/dxlib_ext.h"
 #include "gm_scene_battle.h"
+#include "gm_scene_debug_card_room.h"
 
 void SceneLoad::Initialzie() {
 
@@ -20,6 +21,7 @@ void SceneLoad::Initialzie() {
 	tmgr_->LoadTexture();
 	
 	card_mgr_.CreateDebugCardData();
+	card_mgr_.LoadCardDataFromCSV("csv/card/LoadCardData.csv");
 
 	anim_mgr_.CreateDebugAnim();
 
@@ -53,6 +55,18 @@ void SceneLoad::Update(float delta_time) {
 		}
 
 	}
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_3)) {
+
+		if (amgr_->is_loaded_) {
+
+			smgr->ChengeScene(new SceneDebugCardRoom());
+
+		}
+
+	}
+
+
+
 
 }
 
@@ -67,6 +81,7 @@ void SceneLoad::Render() {
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2, -1, "Load Finish!");
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 20, -1, "Push:[1]->Scenebattle");
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 40, -1, "Push:[2]->SceneSelectPhase");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 60, -1, "Push:[3]->SceneDebugCardRoom");
 
 	}
 
