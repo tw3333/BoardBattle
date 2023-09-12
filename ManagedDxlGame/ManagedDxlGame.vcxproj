@@ -200,6 +200,7 @@
     <ClCompile Include="program\game\gm_card_range_lower_left.cpp" />
     <ClCompile Include="program\game\gm_card_range_lower_right.cpp" />
     <ClCompile Include="program\game\gm_card_range_right.cpp" />
+    <ClCompile Include="program\game\gm_card_range_round.cpp" />
     <ClCompile Include="program\game\gm_card_range_up.cpp" />
     <ClCompile Include="program\game\gm_card_range_upper_left.cpp" />
     <ClCompile Include="program\game\gm_card_range_upper_right.cpp" />
@@ -298,6 +299,7 @@
     <ClInclude Include="program\game\gm_card_range_lower_left.h" />
     <ClInclude Include="program\game\gm_card_range_lower_right.h" />
     <ClInclude Include="program\game\gm_card_range_right.h" />
+    <ClInclude Include="program\game\gm_card_range_round.h" />
     <ClInclude Include="program\game\gm_card_range_up.h" />
     <ClInclude Include="program\game\gm_card_range_upper_left.h" />
     <ClInclude Include="program\game\gm_card_range_upper_right.h" />

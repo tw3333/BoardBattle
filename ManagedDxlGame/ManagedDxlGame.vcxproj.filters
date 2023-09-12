@@ -380,6 +380,9 @@
     <ClCompile Include="program\game\gm_card_range_lower_left.cpp">
       <Filter>program\[003] game\card\range</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_range_round.cpp">
+      <Filter>program\[003] game\card\range</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -760,6 +763,9 @@
     </ClInclude>
     <ClInclude Include="program\game\scene\gm_scene_debug_card_room.h">
       <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_range_round.h">
+      <Filter>program\[003] game\card\range</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

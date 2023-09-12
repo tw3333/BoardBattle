@@ -24,6 +24,8 @@
 #include "gm_card_range_upper_right.h"
 #include "gm_card_range_lower_left.h"
 #include "gm_card_range_lower_right.h"
+#include "gm_card_range_round.h"
+
 
 #include "gm_card_target.h"
 
@@ -62,14 +64,15 @@ void CardManager::CreateDebugCardData() {
 	for (auto dcd : debug_card_data_) {
 
 		//dcd->AddCardRange(std::make_shared<CardRangeSelf>());
-		dcd->AddCardRange(std::make_shared<CardRangeLeft>(0,1));
-		dcd->AddCardRange(std::make_shared<CardRangeRight>(0,1));
-		dcd->AddCardRange(std::make_shared<CardRangeUp>(0,1));
-		dcd->AddCardRange(std::make_shared<CardRangeDown>(0,1));
-		dcd->AddCardRange(std::make_shared<CardRangeUpperLeft>(0, 2));
-		dcd->AddCardRange(std::make_shared<CardRangeUpperRight>(0, 2));
-		dcd->AddCardRange(std::make_shared<CardRangeLowerRight>(0, 2));
-		dcd->AddCardRange(std::make_shared<CardRangeLowerLeft>(1, 2));
+		//dcd->AddCardRange(std::make_shared<CardRangeLeft>(0,1));
+		//dcd->AddCardRange(std::make_shared<CardRangeRight>(0,1));
+		//dcd->AddCardRange(std::make_shared<CardRangeUp>(0,1));
+		//dcd->AddCardRange(std::make_shared<CardRangeDown>(0,1));
+		//dcd->AddCardRange(std::make_shared<CardRangeUpperLeft>(0, 2));
+		//dcd->AddCardRange(std::make_shared<CardRangeUpperRight>(0, 2));
+		//dcd->AddCardRange(std::make_shared<CardRangeLowerRight>(0, 2));
+		//dcd->AddCardRange(std::make_shared<CardRangeLowerLeft>(1, 2));
+		dcd->AddCardRange(std::make_shared<CardRangeRound>(0, 5));
 
 
 
