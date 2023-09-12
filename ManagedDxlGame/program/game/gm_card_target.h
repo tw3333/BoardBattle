@@ -22,7 +22,9 @@ enum class TOTARGET {
 };
 
 class Unit;
-
+//memo
+//”ÍˆÍw’è‚¾‚Á‚½ê‡Atarget_num‚Í0‚Åİ’è‚·‚é
+//‘ÎÛw’è‚Í‚»‚Ì”‚Å
 
 class CardTarget {
 public:
