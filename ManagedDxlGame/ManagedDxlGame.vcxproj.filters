@@ -389,6 +389,9 @@
     <ClCompile Include="program\game\gm_card_effrct_move.cpp">
       <Filter>program</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_none.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -774,6 +777,9 @@
       <Filter>program\[003] game\card\range</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_card_effect_move.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_none.h">
       <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
   </ItemGroup>
