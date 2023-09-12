@@ -328,10 +328,13 @@ bool SceneBattle::TurnCal(const float delta_time) {
 	if (turn_unit_) {
 		if (turn_unit_->GetUnitType() == UnitType::Ally) {
 			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+			turn_ally_->SetIsTurn(true);
+
 			phase_.change(&SceneBattle::PhaseAllyTurn);
 		}
 		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 			turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+			turn_enemy_->SetIsTurn(true);
 
 			phase_.change(&SceneBattle::PhaseEnemyTurn);
 		}
@@ -419,6 +422,7 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	turn_enemy_->Move(board_);
 	turn_enemy_->Act(board_);
 
+	turn_enemy_->SetIsTurn(false);
 	turn_enemy_->SetIsActed(true);
 	phase_.change(&SceneBattle::ResetActedCal);
 
@@ -899,6 +903,7 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 
 	//ŠeAlly‚Ìflag•ÏX
+	turn_ally_->SetIsTurn(false);
 	turn_ally_->SetIsDrew(false);
     turn_ally_->SetIsActed(true);
 
