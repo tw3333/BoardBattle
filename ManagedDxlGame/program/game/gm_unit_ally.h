@@ -110,7 +110,8 @@ public:
 	void AssignSerialNumberToUseDeck();
 
 	void ShuffleUseDeck(); //UseDeck‚ðƒVƒƒƒbƒtƒ‹‚·‚é
-
+	void SetIsTurnAlly(bool flag) { is_turn_ally_ = flag; }
+	bool GetIsTurnAlly() { return is_turn_ally_; }
 
 	int GetTauntValue() { return taunt_value_; }
 	void SetTauntValue(int value) { taunt_value_ = value; }
@@ -126,7 +127,7 @@ public:
 
 private:
 
-	
+	bool is_turn_ally_ = false;
 
 	AllyData* ally_data_ = nullptr;
 	ObjAlly* obj_ = nullptr;

@@ -193,6 +193,8 @@
     <ClCompile Include="program\game\gm_card_effect_add_taunt.cpp" />
     <ClCompile Include="program\game\gm_card_effect_damage.cpp" />
     <ClCompile Include="program\game\gm_card_effect_heal.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_move.cpp" />
+    <ClCompile Include="program\game\gm_card_effrct_move.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_card_play.cpp" />
     <ClCompile Include="program\game\gm_card_range_down.cpp" />
@@ -292,6 +294,7 @@
     <ClInclude Include="program\game\gm_card_effect_add_taunt.h" />
     <ClInclude Include="program\game\gm_card_effect_damage.h" />
     <ClInclude Include="program\game\gm_card_effect_heal.h" />
+    <ClInclude Include="program\game\gm_card_effect_move.h" />
     <ClInclude Include="program\game\gm_card_play.h" />
     <ClInclude Include="program\game\gm_card_range.h" />
     <ClInclude Include="program\game\gm_card_range_down.h" />
