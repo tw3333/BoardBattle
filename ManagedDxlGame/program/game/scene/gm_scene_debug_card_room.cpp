@@ -30,18 +30,30 @@ void SceneDebugCardRoom::Render() {
 
 	for (int i = 0; i < cmgr_.GetAllCardData().size(); ++i) {
 
-
 		DrawStringEx(0,0 + i* 20,-1,"CardID:%d PossAllyID:%d CardCost:%d Name:%s,Explanation:%s"
-		,cmgr_.GetAllCardData()[i].GetCardID(), cmgr_.GetAllCardData()[i].GetPossAllyID(), cmgr_.GetAllCardData()[i].GetCardCost()
-		, cmgr_.GetAllCardData()[i].GetCardName().c_str(), cmgr_.GetAllCardData()[i].GetCardExplanation().c_str());
-
-
-
+		,cmgr_.GetAllCardData()[i]->GetCardID(), cmgr_.GetAllCardData()[i]->GetPossAllyID(), cmgr_.GetAllCardData()[i]->GetCardCost()
+		, cmgr_.GetAllCardData()[i]->GetCardName().c_str(), cmgr_.GetAllCardData()[i]->GetCardExplanation().c_str());
 
 	}
 
+	
+	for (auto target : cmgr_.GetAllCardData()) {
 
+		if (!target->GetCardTargetList().empty()) {
 
+			DrawStringEx(1000, 0 + cnt * 20, -1, "Target‚ ‚èI");
+
+			cnt++;
+		}
+		else
+		{
+			DrawStringEx(1000, 0 + cnt * 20, -1, "Target‚È‚µI");
+			cnt++;
+		}
+
+	}
+
+	cnt = 0;
 
 
 

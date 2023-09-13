@@ -22,6 +22,4 @@ private:
 	int heal_amount_ = 0;
 
 
-
-
 };

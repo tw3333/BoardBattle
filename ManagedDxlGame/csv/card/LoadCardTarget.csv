@@ -1,4 +1,4 @@
-CardID,RefNum,CardTarget,,
+CardID,RefNum,CardTarget,ToTarget,TargetNum
 0,1,None,None,0
 1,1,Specify,Enemy,1
 2,1,InRange,Enemy,0

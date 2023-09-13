@@ -11,6 +11,7 @@ public:
 	
 	CardEffectDamage(int ref_num, int damage) 
 	: damage_(damage), CardEffect(ref_num) {}
+	~CardEffectDamage() {}
 
 
 	void Effect(std::vector<Unit*> units) override;

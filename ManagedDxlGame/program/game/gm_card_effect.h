@@ -11,6 +11,9 @@ class CardEffect {
 public:
 
 	CardEffect(int ref_num) : effect_ref_num_(ref_num) {}
+	virtual ~CardEffect(){}
+
+	//virtual CardEffect* CreateClone() = 0;
 
 	virtual void Effect(std::vector<Unit*> untis) = 0;
 	//virtual void ExcuteEffect(std::vector<EffectBoardPos> effect_board_pos) = 0;

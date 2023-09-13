@@ -20,6 +20,6 @@ private:
 
 	CardManager& cmgr_ = CardManager::GetInstance();
 
-
+	int cnt = 0;
 
 };

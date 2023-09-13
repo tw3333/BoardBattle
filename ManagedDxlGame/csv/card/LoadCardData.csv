@@ -12,7 +12,7 @@ CardID,PossAllyID,Cost,Name,Explanation,Texture
 10,1,10,獣人の舞,指定マスに移動。範囲に30ダメージ,graphics/card/c1/10.png
 11,2,1,ファイア,指定した敵(1)に５ダメージ,graphics/card/c2/11.png
 12,2,2,ヒール,指定した味方(1)を3回復,graphics/card/c2/12.png
-13,2,3,サンダー,範囲内に３ダメージ,graphics/card/c2/13.png
+13,2,3,エアロ,範囲内に３ダメージ,graphics/card/c2/13.png
 14,2,5,テレポート,指定したマス(1)に移動,graphics/card/c2/14.png
 15,2,5,瞑想,次のターン、コスト２を得る,graphics/card/c2/15.png
 16,2,6,フロスタ,指定した敵(1)にスネアと7ダメージ,graphics/card/c2/16.png
@@ -27,8 +27,8 @@ CardID,PossAllyID,Cost,Name,Explanation,Texture
 25,3,4,挑発,タウント上昇,graphics/card/c3/25.png
 26,3,5,シルダ,シールド値10を得る,graphics/card/c3/26.png
 27,3,6,咆哮,指定した敵(1)をスネアにする,graphics/card/c3/27.png
-28,3,8,反撃の構え,カウンターを得る,graphics/card/c3/28.png
-29,3,7,シルガ,シールド値15を得る,graphics/card/c3/29.png
+28,3,7,シルガ,シールド値15を得る,graphics/card/c3/28.png
+29,3,7,盾神の加護,範囲内の味方にシールド値を半分分ける,graphics/card/c3/29.png
 30,3,10,最後の砦,自身を２ターンスネアにする。シールド値30を得る,graphics/card/c3/30.png
 31,0,1,犬,指定したマス(1)に犬を設置,graphics/card/c0/31.png
 32,0,1,トラばさみ,指定したマス(1)にトラばさみを設置,graphics/card/c0/32.png

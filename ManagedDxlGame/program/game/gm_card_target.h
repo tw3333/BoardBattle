@@ -29,7 +29,8 @@ class Unit;
 class CardTarget {
 public:
 
-	CardTarget(int ref_num, TARGETTYPE target_type, TOTARGET to_target, int target_num = 0) {
+	CardTarget(int card_id,int ref_num, TARGETTYPE target_type, TOTARGET to_target, int target_num = 0) {
+		card_id_ = card_id;
 		target_ref_num_ = ref_num;
 		target_type_ = target_type;
 		to_target_ = to_target;
@@ -48,7 +49,7 @@ public:
 	void SetIsDetermined(bool is_determined) { is_determined_ = is_determined; }
 
 
-
+	int GetCardId() { return card_id_; }
 	int GetTargetRefNum() { return target_ref_num_; }
 
 	std::vector<Unit*>& GetTargetUnits() { return target_units_; }
@@ -61,6 +62,8 @@ public:
 
 
 private:
+
+	int card_id_ = 0; //‘Î‰‚·‚éƒJ[ƒh‚ÌID
 
 	TARGETTYPE target_type_ = TARGETTYPE::None;
 	TOTARGET to_target_ = TOTARGET::None;

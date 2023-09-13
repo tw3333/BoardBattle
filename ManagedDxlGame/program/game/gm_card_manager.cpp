@@ -48,11 +48,11 @@ void CardManager::CreateDebugCardData() {
 	for (int i = 0; i < 10; ++i) {
 
 		if (i < 6) {
-			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,TARGETTYPE::Specify, TOTARGET::Enemy, 1));
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,1,TARGETTYPE::Specify, TOTARGET::Enemy, 1));
 
 		}
 		else if (6 <= i) {
-			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,TARGETTYPE::InRange, TOTARGET::Enemy));
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,1,TARGETTYPE::InRange, TOTARGET::Enemy));
 		}
 
 	}
@@ -122,6 +122,29 @@ void CardManager::CreateDebugCard() {
 
 }
 
+TARGETTYPE CardManager::StrToTargetType(const std::string& str) {
+
+	if (str == "None") { return TARGETTYPE::None; }
+	if (str == "InRange") {	return TARGETTYPE::InRange; }
+	if (str == "Specify") { return TARGETTYPE::Specify; }
+
+	return TARGETTYPE::None;
+}
+
+TOTARGET CardManager::StrToToTarget(const std::string& str) { 
+	
+	if (str == "None") { return TOTARGET::None; }
+	if (str == "Ally") { return TOTARGET::Ally; }
+	if (str == "Enemy") { return TOTARGET::Enemy; }
+	if (str == "Square") { return TOTARGET::Square; }
+	if (str == "All") { return TOTARGET::All; }
+	if (str == "Self") { return TOTARGET::Self; }
+	
+	return TOTARGET::None;
+}
+
+
+
 void CardManager::LoadCardDataFromCSV(const std::string& filepath) {
 
 	std::ifstream file(filepath);
@@ -156,8 +179,108 @@ void CardManager::LoadCardDataFromCSV(const std::string& filepath) {
 		std::getline(ss, item, ',');
 		std::string texture_path = item;
 
-		all_card_data_.emplace_back(CardData(card_id, poss_ally_id, card_cost, name, card_explanation, texture_path));
+		all_card_data_.emplace_back(new CardData(card_id, poss_ally_id, card_cost, name, card_explanation, texture_path));
 	}
+
+
+}
+
+void CardManager::LoadCardRangeFromCSV(const std::string& filepath) {
+
+
+
+
+}
+
+void CardManager::LoadCardTargetFromCSV(const std::string& filepath) {
+
+	if (!all_card_data_.empty()) {
+
+		std::ifstream file(filepath);
+		
+		if (!file.is_open()) {
+			std::cerr << "Failed to open the CSV file." << std::endl;
+			return;
+		}
+
+		std::string line;
+		// Skip the header line
+		std::getline(file, line);
+
+		while (std::getline(file, line)) {
+			std::istringstream ss(line);
+			std::string token;
+
+			int card_id, ref_num, target_num;
+			TARGETTYPE target_type;
+			TOTARGET to_target;
+
+			// CardID
+			std::getline(ss, token, ',');
+			card_id = std::stoi(token);
+
+			// RefNum
+			std::getline(ss, token, ',');
+			ref_num = std::stoi(token);
+
+			// CardTarget
+			std::getline(ss, token, ',');
+			target_type = StrToTargetType(token);
+
+			// ToTarget
+			std::getline(ss, token, ',');
+			to_target = StrToToTarget(token);
+
+			// TargetNum
+			std::getline(ss, token, ',');
+			target_num = std::stoi(token);
+
+			all_card_target_.emplace_back(std::make_shared<CardTarget>(CardTarget(card_id, ref_num, target_type, to_target, target_num)));
+		}
+		
+		file.close();
+	}
+
+	for (auto& target : all_card_target_) {
+
+		for (auto& data : all_card_data_) {
+
+			if (target->GetCardId() == data->GetCardID()) {
+
+				data->AddCardTarget(target);
+			}
+		}
+	}
+
+}
+
+void CardManager::LoadCardEffectFromCSV(const std::string& filepath) {
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+void CardManager::CreateAllInitCard() {
+
+
+	//for (auto data : all_card_data_) {
+
+	//	all_card_.emplace_back(std::make_shared<Card>(data));
+
+
+	//}
+
+
+
 
 }
 

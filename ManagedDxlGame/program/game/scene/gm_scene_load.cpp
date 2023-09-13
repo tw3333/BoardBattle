@@ -22,6 +22,8 @@ void SceneLoad::Initialzie() {
 	
 	card_mgr_.CreateDebugCardData();
 	card_mgr_.LoadCardDataFromCSV("csv/card/LoadCardData.csv");
+	card_mgr_.LoadCardTargetFromCSV("csv/card/LoadCardTarget.csv");
+	//card_mgr_.CreateAllInitCard();
 
 	anim_mgr_.CreateDebugAnim();
 
