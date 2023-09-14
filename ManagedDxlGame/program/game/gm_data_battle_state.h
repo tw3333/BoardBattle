@@ -29,11 +29,15 @@ public:
 	~BattleState(){}
 
 	void AddValue(int add_value) { value_ += add_value; }
-	void DecreaseTurnCount(int cnt) { turn_count_ = (std::max)(0, turn_count_ - cnt); }
 	void DecreaseValue(int value) { value_ = (std::max)(0, value_ - value); }
 
+	void AddTrunCount(int cnt) { turn_count_ += cnt; }
+	void DecreaseTurnCount(int cnt) { turn_count_ = (std::max)(0, turn_count_ - cnt); }
 
 	State GetState() { return state_; }
+
+	int GetValue() { return value_; }
+	int GetTurnCount() { return turn_count_; }
 
 
 private:
@@ -43,6 +47,4 @@ private:
 	int turn_count_ = 0;
 	int value_ = 0;
 
-
-	
 };

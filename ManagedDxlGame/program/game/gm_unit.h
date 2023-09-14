@@ -43,6 +43,8 @@ public:
 	//std::shared_ptr<GameObject> GetUnitObj() { return unit_obj_; }
 	GameObject* GetUnitObj() { return unit_obj_; }
 	std::vector<BattleState>& GetBattleState() { return state_; }
+	void AddBattleState(BattleState state) { state_.emplace_back(state); }
+
 
 private:
 
