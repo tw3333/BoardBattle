@@ -97,7 +97,7 @@ bool CardEffectAddStun::CanEffectExcute(std::vector<SquarePos> target_square_pos
 		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
 			return true;
 		}
-		if (board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()) {
+		else if (board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()) {
 			return true;
 		}
 	}

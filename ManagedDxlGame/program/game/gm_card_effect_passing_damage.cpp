@@ -10,12 +10,30 @@ void CardEffectPassingDamage::Effect(std::vector<Unit*> untis)
 {
 }
 
-void CardEffectPassingDamage::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
-{
+void CardEffectPassingDamage::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
+
+	SquarePos turn_ally_pos;
+	
+	for (auto ally : board->GetPartyUnitsInBoard()) {
+
+		if (ally->GetIsTurn()) {
+			turn_ally_pos = ally->GetUnitSquarePos();
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
 }
 
-bool CardEffectPassingDamage::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
-{	
+bool CardEffectPassingDamage::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {	
 
 	for (auto square : target_square_pos) {
 

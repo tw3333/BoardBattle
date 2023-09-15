@@ -4,7 +4,7 @@
 //í“¬‚Ég‚¤ó‘Ô‚È‚Ç
 
 enum class State {
-	Blood,
+	Blood, 
 	Poison,
 	Shield,
 	Weak,
@@ -30,9 +30,11 @@ public:
 
 	void AddValue(int add_value) { value_ += add_value; }
 	void DecreaseValue(int value) { value_ = (std::max)(0, value_ - value); }
-
+	void SetValue(int value) { value_ = value; }
+	
 	void AddTrunCount(int cnt) { turn_count_ += cnt; }
 	void DecreaseTurnCount(int cnt) { turn_count_ = (std::max)(0, turn_count_ - cnt); }
+	void SetTurnCount(int turn_count) { turn_count_ = turn_count; }
 
 	State GetState() { return state_; }
 
