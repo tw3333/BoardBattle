@@ -95,7 +95,7 @@ std::vector<SquarePos> CardRangeRight::GetRangeSquarePos(SquarePos axis_pos)
 		int range_row = axis_pos.row;
 		int range_col = axis_pos.col + leave_ + i;
 
-		if (0 <= range_row && range_row <= 9) {
+		if (0 <= range_col && range_col <= 9) {
 
 			range_square_pos.emplace_back(SquarePos(range_row, range_col));
 
