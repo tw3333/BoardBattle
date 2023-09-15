@@ -24,11 +24,14 @@ public:
 
 	//menber
 	bool IsClicked(int mouse_x, int mouse_y);
+	bool IsOverMousePointer(int mouse_x , int mouse_y);
 	//void SetClickLeftOrRight();
+
+	bool GetIsOverMousePointer() { return is_over_mouse_p; }
 
 private:
 
-
+	bool is_over_mouse_p = false;
 	//tnl::Input::eMouse input_click_ = tnl::Input::eMouseTrigger:;
 
 

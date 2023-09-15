@@ -13,7 +13,9 @@
 class CardEffectPassingDamage : public CardEffect {
 public:
 
-	CardEffectPassingDamage(int ref_num) : CardEffect(ref_num) {}
+	CardEffectPassingDamage(int ref_num,int damage) : CardEffect(ref_num) {
+		damage_ = damage;
+	}
 	~CardEffectPassingDamage() {}
 
 	void Effect(std::vector<Unit*> untis) override;
@@ -24,8 +26,6 @@ public:
 
 private:
 
-	int test = 0;
-	int test2 = 0;
-
+	int damage_ = 0;
 
 };

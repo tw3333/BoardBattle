@@ -20,7 +20,7 @@ public:
 	virtual void EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) = 0; //Œø‰Ê‚ÌÀs
 	virtual bool CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) = 0; //Œø‰Ê‚ªÀs‚Å‚«‚é‚©”»’è
 
-
+	
 
 	//int effect_ref_num_ = 0;
 

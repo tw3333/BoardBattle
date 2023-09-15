@@ -109,7 +109,7 @@ private:
 	UIButtonPos card_button_pos_;
 	UIButtonPos turn_end_button_pos_;
 
-	
+	bool is_button_pushrd_ = false;
 
 	int g_move_ = LoadGraph("graphics/ui/move.png");
 	int g_card_ = LoadGraph("graphics/ui/card.png");

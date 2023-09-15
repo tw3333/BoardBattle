@@ -20,6 +20,13 @@ void UIButton::Update(float delta_time) {
 				
 			}
 
+			if (IsOverMousePointer(mouse_pos.x, mouse_pos.y)) {
+				is_over_mouse_p = true;
+			}
+			else {
+				is_over_mouse_p = false;
+			}
+
 		}
 
 		UIPanel::Update(delta_time);
@@ -37,6 +44,17 @@ bool UIButton::IsClicked(int mouse_x, int mouse_y) {
 
 			return true;
 		}
+	}
+
+	return false;
+}
+
+bool UIButton::IsOverMousePointer(int mouse_x, int mouse_y) {
+
+	if (x_ < mouse_x && mouse_x < x_ + width_
+		&& y_ < mouse_y && mouse_y < y_ + height_) {
+
+		return true;
 	}
 
 	return false;

@@ -13,6 +13,8 @@
 #include "gm_card_effect_add_shield.h"
 #include "gm_card_effect_add_taunt.h"
 #include "gm_card_effect_damage.h"
+#include "gm_card_effect_passing_damage.h"
+#include "gm_card_effect_push_out.h"
 
 #include "gm_card_range.h"
 #include "gm_card_renge_self.h"
@@ -48,7 +50,7 @@ void CardManager::CreateDebugCardData() {
 	for (int i = 0; i < 10; ++i) {
 
 		if (i < 6) {
-			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,1,TARGETTYPE::Specify, TOTARGET::Enemy, 1));
+			debug_card_data_[i]->AddCardTarget(std::make_shared<CardTarget>(1,1,TARGETTYPE::Specify, TOTARGET::Enemy,1));
 
 		}
 		else if (6 <= i) {
@@ -64,22 +66,26 @@ void CardManager::CreateDebugCardData() {
 	for (auto dcd : debug_card_data_) {
 
 		//dcd->AddCardRange(std::make_shared<CardRangeSelf>());
-		//dcd->AddCardRange(std::make_shared<CardRangeLeft>(0,1));
-		//dcd->AddCardRange(std::make_shared<CardRangeRight>(0,1));
-		//dcd->AddCardRange(std::make_shared<CardRangeUp>(0,1));
-		//dcd->AddCardRange(std::make_shared<CardRangeDown>(0,1));
+		dcd->AddCardRange(std::make_shared<CardRangeRight>(0,5));
+		dcd->AddCardRange(std::make_shared<CardRangeUp>(0,5));
+		dcd->AddCardRange(std::make_shared<CardRangeLeft>(0,5));
+		dcd->AddCardRange(std::make_shared<CardRangeDown>(0,5));
 		//dcd->AddCardRange(std::make_shared<CardRangeUpperLeft>(0, 2));
 		//dcd->AddCardRange(std::make_shared<CardRangeUpperRight>(0, 2));
 		//dcd->AddCardRange(std::make_shared<CardRangeLowerRight>(0, 2));
 		//dcd->AddCardRange(std::make_shared<CardRangeLowerLeft>(1, 2));
-		dcd->AddCardRange(std::make_shared<CardRangeRound>(0, 5));
+		//dcd->AddCardRange(std::make_shared<CardRangeRound>(0, 5));
 
 
 
 
 
 		
-		dcd->AddCardEffect(std::make_shared<CardEffectDamage>(1,5));
+		//dcd->AddCardEffect(std::make_shared<CardEffectDamage>(1,5));
+		//dcd->AddCardEffect(std::make_shared<CardEffectPassingDamage>(1,5));
+		dcd->AddCardEffect(std::make_shared<CardEffectPushOut>(1, 2));
+
+
 
 	}
 

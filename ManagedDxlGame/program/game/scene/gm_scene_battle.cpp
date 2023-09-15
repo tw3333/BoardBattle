@@ -190,13 +190,13 @@ void SceneBattle::Render() {
 	obj_target_circle_->Render(camera_);
 
 	//UI
-	ui_action_buttons_->Render();
 	ui_turn_ally_state_->Render();
 	ui_unit_state_view_->Render();
 	ui_turn_view_->Render();
 	ui_notice_target_box_->Render();
 	//ui_card_->Render();
 	ui_card_hand_->Render();
+	ui_action_buttons_->Render();
 
 	card_play_->Render(camera_);
 
@@ -738,8 +738,25 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				}
 			}
 		}
+	}
+	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Square) {
+
+		for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+			//CandidateTileの表示
+			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetIsCanMove()) {
+				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
+
+
+				//TargetTileの表示
+				if (select_square_->GetSelectSquarePos() == range_pos) {
+					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
+
+				}
+			}
+		}
 
 	}
+
 
 	//対象指定されたタイルを表示
 	//for (auto a : card_play_->GetCurrentCardTarget()->GetTargetUnits()) {
