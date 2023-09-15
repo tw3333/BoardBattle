@@ -401,6 +401,9 @@
     <ClCompile Include="program\game\gm_card_effect_push_out.cpp">
       <Filter>program\[003] game\card\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_passing_damage.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -801,6 +804,9 @@
       <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_card_effect_push_out.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_passing_damage.h">
       <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
   </ItemGroup>
