@@ -898,6 +898,30 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 }
 
 
+//Cardが使えるか判定。できなかったら指定まで戻す
+bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
+
+
+	if (card_play_->CanPlayCardExecute(board_)) {
+		phase_.change(&SceneBattle::PhaseExecutePlayCard);
+	}
+	else {
+
+
+
+
+		phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+	}
+
+
+
+
+
+
+	return true;
+}
+
+
 //PlayCardを実行
 bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 

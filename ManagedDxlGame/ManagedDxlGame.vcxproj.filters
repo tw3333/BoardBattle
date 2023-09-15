@@ -812,5 +812,8 @@
     <ClInclude Include="program\game\gm_data_scene_battle.h">
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_data_all_scene.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -319,6 +319,7 @@
     <ClInclude Include="program\game\gm_card_range_upper_right.h" />
     <ClInclude Include="program\game\gm_card_renge_self.h" />
     <ClInclude Include="program\game\gm_card_target.h" />
+    <ClInclude Include="program\game\gm_data_all_scene.h" />
     <ClInclude Include="program\game\gm_data_battle_state.h" />
     <ClInclude Include="program\game\gm_data_bgm.h" />
     <ClInclude Include="program\game\gm_data_board.h" />
