@@ -11,4 +11,7 @@ bool CardEffectNone::CanEffectExcute(std::vector<SquarePos> range_square_pos, Bo
 
 void CardEffectNone::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
 {
+
+	int test = 0;
+
 }
