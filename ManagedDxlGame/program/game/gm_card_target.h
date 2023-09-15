@@ -16,12 +16,15 @@ enum class TOTARGET {
 	Ally,
 	Enemy,
 	Square, //マス指定
+	CanMoveSqure, //移動できるマス指定
 	Self, //自身を指定
 	All, //各Unitに
 	None //初期化用
 };
 
 class Unit;
+class Board;
+
 //memo
 //範囲指定だった場合、target_numは0で設定する
 //対象指定はその数で
@@ -59,6 +62,8 @@ public:
 	void SetTargetSquaresPos(std::vector<SquarePos> target_squares_pos) { target_squares_pos_ = target_squares_pos; }
 	std::vector<SquarePos>& GetTargetSquaresPos() { return target_squares_pos_; }
 	void AddTargetSquarePos(SquarePos target_square_pos) { target_squares_pos_.push_back(target_square_pos); }
+
+	bool IsTargetInRange(std::vector<SquarePos> range, Board* board);
 
 
 private:

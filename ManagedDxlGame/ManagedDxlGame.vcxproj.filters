@@ -407,6 +407,9 @@
     <ClCompile Include="program\game\scene\gm_scene_deck_edit.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_card_target.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">

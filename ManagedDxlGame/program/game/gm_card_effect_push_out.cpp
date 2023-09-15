@@ -27,6 +27,7 @@ void CardEffectPushOut::EffectExcute(std::vector<SquarePos> target_square_pos, B
 		if (board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()) {
 
 			//Ž²‚©‚çã‰º¶‰E‚É‘Î‚µ‚Ä‚Ìˆ—
+			//‚Â‚Ü‚èAupper,lower‚É‚Í‘Î‰ž‚µ‚Ä‚È‚¢
 			if (board->getBoardSquare(square.row,square.col)->GetUnitPtrInSquare()->GetUnitSquarePos().row < ally_pos.row) {
 				
 				pushed_pos.row = (std::max)(0, board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->GetUnitSquarePos().row - push_num_);
