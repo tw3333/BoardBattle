@@ -820,6 +820,8 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 			}
 
 		}
+
+
 	}
 
 	//右クリックで指定を取り消し
@@ -890,6 +892,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		}
 
 	}
+
 
 	return true;
 }

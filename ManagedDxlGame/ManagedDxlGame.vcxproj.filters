@@ -809,5 +809,8 @@
     <ClInclude Include="program\game\gm_card_effect_passing_damage.h">
       <Filter>program\[003] game\card\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_data_scene_battle.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

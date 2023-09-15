@@ -40,8 +40,10 @@ public:
 	void DebugRender();
 
 	void EffectExecute();
-	
+
 	void PlayCardExecute(Board* board);
+	bool CanPlayCardExecute(Board* board);
+
 	bool CanPlaySelectCard();
 
 	bool IsSelectCardCostEnough();
@@ -69,6 +71,7 @@ public:
 	void SetCurrentCardTarget(std::shared_ptr<CardTarget> card_target) { current_card_target_ = card_target; }
 
 	std::vector<SquarePos> GetCardRangeSquarePos() { return card_range_square_pos_; }
+
 	
 
 private:

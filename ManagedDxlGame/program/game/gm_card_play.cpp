@@ -283,6 +283,35 @@ void CardPlay::PlayCardExecute(Board* board) {
 
 }
 
+
+
+bool CardPlay::CanPlayCardExecute(Board* board)
+{
+
+	if (play_card_ && turn_ally_) {
+
+		//ref_num‚ªˆê’v‚µ‚½Target‚ÉŠi”[‚³‚ê‚Ä‚¢‚éUnit‚ÉEffect
+		for (auto a : play_card_->GetCardData()->GetCardEffectList()) {
+
+			for (auto b : play_card_->GetCardData()->GetCardTargetList()) {
+
+				if (a->GetEffectRefNum() == b->GetTargetRefNum()) {
+
+					if (!a->CanEffectExcute(b->GetTargetSquaresPos(),board)) {
+
+						return false;
+					}
+
+				}
+			}
+
+		}
+
+	}
+
+	return true;
+}
+
 bool CardPlay::CanPlaySelectCard() {
 
 	//ƒRƒXƒg”»’è

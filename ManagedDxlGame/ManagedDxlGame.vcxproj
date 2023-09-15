@@ -324,6 +324,7 @@
     <ClInclude Include="program\game\gm_data_board.h" />
     <ClInclude Include="program\game\gm_data_card.h" />
     <ClInclude Include="program\game\gm_data_enemy.h" />
+    <ClInclude Include="program\game\gm_data_scene_battle.h" />
     <ClInclude Include="program\game\gm_data_sound.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
     <ClInclude Include="program\game\gm_enemy_act.h" />
