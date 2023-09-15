@@ -404,6 +404,9 @@
     <ClCompile Include="program\game\gm_card_effect_passing_damage.cpp">
       <Filter>program\[003] game\card\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene\gm_scene_deck_edit.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -814,6 +817,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_all_scene.h">
       <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\gm_scene_deck_edit.h">
+      <Filter>program\[003] game\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

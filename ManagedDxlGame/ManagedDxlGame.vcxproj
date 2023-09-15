@@ -257,6 +257,7 @@
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle_result.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_debug_card_room.cpp" />
+    <ClCompile Include="program\game\scene\gm_scene_deck_edit.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_load.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
     <ClCompile Include="program\game\gm_scene_manager.cpp" />
@@ -389,6 +390,7 @@
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle_result.h" />
     <ClInclude Include="program\game\scene\gm_scene_debug_card_room.h" />
+    <ClInclude Include="program\game\scene\gm_scene_deck_edit.h" />
     <ClInclude Include="program\game\scene\gm_scene_load.h" />
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h" />
     <ClInclude Include="program\game\scene\gm_scene_base.h" />
