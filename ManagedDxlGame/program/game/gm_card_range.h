@@ -30,7 +30,7 @@ class CardRange {
 public:
 
 	
-
+	//virtual void InitCardRange() = 0;
 	virtual void DisplayRange(UnitAlly* act_ally, Board* board) = 0;
 	virtual std::vector<Unit*> GetUnitInRange(UnitAlly* act_ally, std::vector<Unit*> all_units) = 0;
 	

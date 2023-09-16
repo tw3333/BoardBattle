@@ -77,8 +77,8 @@ private:
 	bool is_determined_ = false; //決定したかどうか
 
 	int target_num_ = 0;
-	
 	int target_ref_num_ = 0; //CardEffectとの照合番号
+
 
 	std::vector<Unit*> target_units_;
 	std::vector<SquarePos> target_squares_pos_; //効果を発動するマス目,各Unitの座標

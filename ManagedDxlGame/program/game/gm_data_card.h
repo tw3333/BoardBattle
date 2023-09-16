@@ -57,4 +57,6 @@ private:
 	std::vector<std::shared_ptr<CardEffect>> card_effect_list_;
 	std::vector<std::shared_ptr<CardRange>> card_range_list_;
 	std::vector<std::shared_ptr<CardTarget>> card_target_list_;
+
+
 };

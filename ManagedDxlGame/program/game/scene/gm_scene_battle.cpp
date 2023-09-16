@@ -543,14 +543,6 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 	}
 
-
-	if (ui_card_hand_->GetSelectUICard()) {
-		
-
-
-	}
-
-
 	//card_play_->EffectExecute();
 	
 	//if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
@@ -772,8 +764,6 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 	}
 
-
-
 	//指定対象の数をカウント
 	for (auto a : card_play_->GetTotalUnitsInRange()) {
 
@@ -813,6 +803,17 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 			for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
 
 				if (select_square_->GetSelectSquarePos() == range_pos && board_->getBoardSquare(range_pos.row, range_pos.col)->GetEnemyPtrInSquare()) {
+
+					card_play_->GetCurrentCardTarget()->AddTargetSquarePos(range_pos);
+				}
+
+			}
+		}
+		else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::CanMoveSqure) {
+
+			for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+
+				if (select_square_->GetSelectSquarePos() == range_pos && board_->getBoardSquare(range_pos.row, range_pos.col)->GetIsCanMove()) {
 
 					card_play_->GetCurrentCardTarget()->AddTargetSquarePos(range_pos);
 				}
@@ -906,9 +907,6 @@ bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
 		phase_.change(&SceneBattle::PhaseExecutePlayCard);
 	}
 	else {
-
-
-
 
 		phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 	}

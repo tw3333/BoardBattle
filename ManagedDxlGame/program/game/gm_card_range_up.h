@@ -29,6 +29,8 @@ private:
 	int range_ = 0;
 
 
+	const int init_leave_ = 0;
+	const int init_range_ = 0;
 
 
 

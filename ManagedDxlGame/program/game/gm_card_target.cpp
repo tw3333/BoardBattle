@@ -32,18 +32,28 @@ bool CardTarget::IsTargetInRange(std::vector<SquarePos> range, Board* board)
 
 			}
 		}
+		else if (to_target_ == TOTARGET::All) {
+
+			for (auto square : range) {
+
+				if (board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()) {
+					return true;
+				}
+			}
+
+		}
+		else if (to_target_ == TOTARGET::CanMoveSqure) {
+
+			for (auto square : range) {
+
+				if (board->getBoardSquare(square.row, square.col)->GetIsCanMove()) {
+					return true;
+				}
+			}
+
+		}
 
 	}
-
-
-
-
-
-
-
-
-
-
 
 	return false;
 }
