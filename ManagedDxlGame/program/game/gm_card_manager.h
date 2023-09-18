@@ -52,6 +52,7 @@ public:
 
 	std::vector<std::shared_ptr<Card>> GetDebugDeck() { return debug_deck_;	}
 	std::vector<CardData*> GetAllCardData() { return all_card_data_; }
+	std::vector<std::shared_ptr<Card>> GetAllCard() { return all_card_; }
 
 	//get,set
 	//Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }
@@ -74,9 +75,15 @@ private:
 	//std::vector<Card> c3_deck_;
 	//std::vector<Card> c4_deck_;
 
+	std::vector<std::shared_ptr<Card>> c1_deck_;
+	std::vector<std::shared_ptr<Card>> c2_deck_;
+	std::vector<std::shared_ptr<Card>> c3_deck_;
+	std::vector<std::shared_ptr<Card>> c4_deck_;
+
 	//std::vector<std::shared_ptr<Card>> all_card_; //全てのカード
 
 	std::vector<CardData*> all_card_data_; //全てのカードのCardData
+	std::vector<std::shared_ptr<Card>> all_card_; //全てのカード
 
 
 

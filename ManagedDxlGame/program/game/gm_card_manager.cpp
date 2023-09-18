@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <memory>
 
 
 #include "gm_card.h"
@@ -193,14 +194,84 @@ void CardManager::LoadCardDataFromCSV(const std::string& filepath) {
 
 void CardManager::LoadCardRangeFromCSV(const std::string& filepath) {
 
+	std::ifstream file(filepath);
+	if (!file.is_open()) {
+		return;
+	}
 
+	// ヘッダー行をスキップ
+	std::string line;
+	std::getline(file, line);
 
+	while (std::getline(file, line)) {
+		std::istringstream ss(line);
+		std::string token;
+		std::vector<std::string> tokens;
 
+		while (std::getline(ss, token, ',')) {
+			tokens.push_back(token);
+		}
 
+		int card_id = std::stoi(tokens[0]);
 
+		CardData* card_data = nullptr;
 
+		for (auto carddata : all_card_data_) {
+			if (carddata->GetCardID() == card_id) {
+				card_data = carddata;
+				break;
+			}
+		}
 
+		for (size_t i = 1; i < tokens.size(); i += 3) {
+			std::string direction = tokens[i];
+			if (direction.empty()) {
+				break;
+			}
+
+			int leave = std::stoi(tokens[i + 1]);
+			int range = std::stoi(tokens[i + 2]);
+
+			std::shared_ptr<CardRange> cardRange;
+
+			//TODO:関数化
+			if (direction == "Right") {
+				cardRange = std::make_shared<CardRangeRight>(leave, range);
+			}
+			else if (direction == "Left") {
+				cardRange = std::make_shared<CardRangeLeft>(leave, range);
+			}
+			else if (direction == "Up") {
+				cardRange = std::make_shared<CardRangeUp>(leave, range);
+			}
+			else if (direction == "Down") {
+				cardRange = std::make_shared<CardRangeDown>(leave, range);
+			}
+			else if (direction == "UpperLeft") {
+				cardRange = std::make_shared<CardRangeUpperLeft>(leave, range);
+			}
+			else if (direction == "UpperRight") {
+				cardRange = std::make_shared<CardRangeUpperRight>(leave, range);
+			}
+			else if (direction == "LowerLeft") {
+				cardRange = std::make_shared<CardRangeLowerLeft>(leave, range);
+			}
+			else if (direction == "LowerRight") {
+				cardRange = std::make_shared<CardRangeLowerRight>(leave, range);
+			}
+			else if (direction == "Round") {
+				cardRange = std::make_shared<CardRangeRound>(leave, range);
+			}
+			else if (direction == "Self") {
+				cardRange = std::make_shared<CardRangeSelf>();
+			} 
+
+			card_data->AddCardRange(cardRange);
+		}
+	}
 }
+
+
 
 void CardManager::LoadCardTargetFromCSV(const std::string& filepath) {
 
@@ -282,14 +353,12 @@ void CardManager::LoadCardEffectFromCSV(const std::string& filepath) {
 void CardManager::CreateAllInitCard() {
 
 
-	//for (auto data : all_card_data_) {
+	for (auto data : all_card_data_) {
 
-	//	all_card_.emplace_back(std::make_shared<Card>(data));
-
-
-	//}
+		all_card_.emplace_back(std::make_shared<Card>(Card(data)));
 
 
+	}
 
 
 }

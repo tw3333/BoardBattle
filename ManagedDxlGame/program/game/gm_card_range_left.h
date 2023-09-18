@@ -4,8 +4,8 @@
 class CardRangeLeft : public CardRange {
 public:
 	
-	CardRangeLeft(int leave, int range_)
-	: leave_(leave), range_(range_)
+	CardRangeLeft(int leave, int range)
+	: leave_(leave), range_(range), init_leave_(leave), init_range_(range)
 	{}
 	~CardRangeLeft(){}
 

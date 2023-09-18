@@ -22,6 +22,8 @@ void SceneBattle::Initialzie() {
 	sound_mgr_.PlayBattleBGM(1);
 
 //---
+
+	std::setlocale(LC_ALL, "ja_JP.shiftjis");
 	card_play_= new CardPlay();
 
 	//Board�̍쐬
@@ -36,8 +38,12 @@ void SceneBattle::Initialzie() {
 	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 5, 3);
 	
 	for (int i = 0; i < 3; ++i) {
-		party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
-		party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
+		//party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
+		//party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
+		party_[i]->SetBaseDeck(cmgr_.GetAllCard());
+		party_[i]->SetUseDeck(cmgr_.GetAllCard());
+
+
 		party_[i]->AssignSerialNumberToUseDeck();
 		party_[i]->ShuffleUseDeck();
 	}
@@ -907,14 +913,8 @@ bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
 		phase_.change(&SceneBattle::PhaseExecutePlayCard);
 	}
 	else {
-
 		phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 	}
-
-
-
-
-
 
 	return true;
 }

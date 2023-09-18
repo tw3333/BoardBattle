@@ -5,7 +5,8 @@
 
 void SceneLoad::Initialzie() {
 
-	
+	std::setlocale(LC_ALL, "ja_JP.shiftjis");
+
 	font_mgr_.CreateFontData();
 
 	obj_mgr_.CreateObjAllys();
@@ -23,7 +24,10 @@ void SceneLoad::Initialzie() {
 	card_mgr_.CreateDebugCardData();
 	card_mgr_.LoadCardDataFromCSV("csv/card/LoadCardData.csv");
 	card_mgr_.LoadCardTargetFromCSV("csv/card/LoadCardTarget.csv");
-	//card_mgr_.CreateAllInitCard();
+	card_mgr_.LoadCardRangeFromCSV("csv/card/LoadCardRange.csv");
+
+
+	card_mgr_.CreateAllInitCard();
 
 	anim_mgr_.CreateDebugAnim();
 

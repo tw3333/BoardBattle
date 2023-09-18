@@ -21,5 +21,6 @@ private:
 	CardManager& cmgr_ = CardManager::GetInstance();
 
 	int cnt = 0;
+	int cnt2 = 0;
 
 };

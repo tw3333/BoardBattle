@@ -53,7 +53,24 @@ void SceneDebugCardRoom::Render() {
 
 	}
 
+	for (auto range : cmgr_.GetAllCardData()) {
+		
+		if (!range->GetCardRangeList().empty()) {
+
+			DrawStringEx(1200, 0 + cnt2 * 20, -1, "Range‚ ‚èI");
+
+			cnt2++;
+		}
+		else {
+			DrawStringEx(1200, 0 + cnt2 * 20, -1 , "Range‚È‚µI");
+
+			cnt2++;
+		}
+
+	}
+
 	cnt = 0;
+	cnt2 = 0;
 
 
 

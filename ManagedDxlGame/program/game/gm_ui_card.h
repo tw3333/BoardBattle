@@ -29,7 +29,10 @@ public:
 	void SetCardPtr(std::shared_ptr<Card> card_ptr) { card_ptr_ = card_ptr; }
 	std::shared_ptr<Card> GetCardPtr() { return card_ptr_; }
 
-	std::vector<std::string> SplitCardExplanation(std::string explanation, size_t n);
+	std::vector<std::string> SplitCardExplanation(const std::string &explanation, int n);
+	int GetCharW(const std::string&s, size_t& i); //•¶š—ñ‚Ì•‚ğæ“¾
+	std::vector<std::string> SplitStringConsideringWidth(const std::string& s, int interval);
+
 
 	int debug_cnt_ = 0;
 	int debug_txt_y_ = 0;

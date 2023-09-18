@@ -3,7 +3,11 @@
 #include "DxLib.h"
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_card.h"
+
 #include <vector>
+#include <locale>
+#include <clocale>
+#include <cwchar>
 
 void UICard::Update(float delta_time) {
 
@@ -57,11 +61,18 @@ void UICard::Render() {
 			DrawBox(pos_x_ + 5, pos_y_ + h1_ * 6, pos_x_ + w1_ * 10 - 5, pos_y_ + h1_ * 10 - 1, color_black_, true);
 			DrawBox(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, pos_x_ + w1_ * 10 - 7, pos_y_ + h1_ * 10 - 3, color_effect_back_, true);
 
-			split_explanation_ = SplitCardExplanation(card_ptr_->GetCardData()->GetCardExplanation(), 10);
+			split_explanation_ = SplitStringConsideringWidth(card_ptr_->GetCardData()->GetCardExplanation(), 10);
 
 			for (int i = 0; i < split_explanation_.size(); ++i) {
 				int n = i * 15;
 				DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", split_explanation_[i].c_str());
+			}
+
+			int cnt = 0;
+			for (auto& e : split_explanation_) {
+
+				DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + (cnt * 15), -1, font_mgr_.GetCardExplanationFont(), "%s", e.c_str());
+				cnt++;
 			}
 
 			//for (int i = 0; i < split_explanation_.size(); ++i) {
@@ -95,12 +106,11 @@ bool UICard::IsMouseInside(int mx, int my) {
 	return false;
 }
 
-std::vector<std::string> UICard::SplitCardExplanation(std::string explanation, size_t n)
-{
+std::vector<std::string> UICard::SplitCardExplanation(const std::string &explanation, int n) {
 
 	std::vector<std::string> split;
 	
-	for (size_t i = 0; i < explanation.length(); i += n) {
+	for (int i = 0; i < explanation.size(); i += n) {
 
 		split.push_back(explanation.substr(i,n));
 
@@ -108,3 +118,47 @@ std::vector<std::string> UICard::SplitCardExplanation(std::string explanation, s
 
 	return split;
 }
+
+
+
+//gpt
+int UICard::GetCharW(const std::string& s, size_t& i) {
+	wchar_t wc;
+	mbstate_t state = {};
+	const char* ptr = s.data() + i;
+	int len = std::mbtowc(&wc, ptr, s.size() - i);
+	if (len == -1) {
+		// エラーが発生。通常は適切に処理すべきですが、ここではエラーとして扱います。
+		throw std::runtime_error("Invalid multibyte character.");
+	}
+	i += len;
+	return (wc >= 0x0100) ? 2 : 1;
+}
+
+std::vector<std::string> UICard::SplitStringConsideringWidth(const std::string& s, int interval) {
+	
+	std::vector<std::string> result;
+	int width_counter = 0;
+	size_t start_index = 0;
+
+	for (size_t i = 0; i < s.size(); ) {
+		int char_width = GetCharW(s, i);
+
+		if (width_counter + char_width > interval) {
+			result.push_back(s.substr(start_index, i - start_index));
+			start_index = i;
+			width_counter = 0;
+		}
+		else {
+			width_counter += char_width;
+		}
+
+	}
+
+	if (start_index != s.size()) {
+		result.push_back(s.substr(start_index));
+	}
+
+	return result;
+}
+
