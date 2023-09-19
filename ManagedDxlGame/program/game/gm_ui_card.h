@@ -32,6 +32,7 @@ public:
 	std::vector<std::string> SplitCardExplanation(const std::string &explanation, int n);
 	int GetCharW(const std::string&s, size_t& i); //•¶š—ñ‚Ì•‚ğæ“¾
 	std::vector<std::string> SplitStringConsideringWidth(const std::string& s, int interval);
+	int GetCharWidthAndAdvance(const std::string& s, size_t& i);
 
 
 	int debug_cnt_ = 0;

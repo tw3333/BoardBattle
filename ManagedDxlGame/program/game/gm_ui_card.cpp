@@ -61,7 +61,10 @@ void UICard::Render() {
 			DrawBox(pos_x_ + 5, pos_y_ + h1_ * 6, pos_x_ + w1_ * 10 - 5, pos_y_ + h1_ * 10 - 1, color_black_, true);
 			DrawBox(pos_x_ + 7, pos_y_ + h1_ * 6 + 2, pos_x_ + w1_ * 10 - 7, pos_y_ + h1_ * 10 - 3, color_effect_back_, true);
 
-			split_explanation_ = SplitStringConsideringWidth(card_ptr_->GetCardData()->GetCardExplanation(), 10);
+			//split_explanation_ = SplitStringConsideringWidth(card_ptr_->GetCardData()->GetCardExplanation(), 10);
+			split_explanation_ = SplitStringConsideringWidth(card_ptr_->GetCardData()->GetCardExplanation(), 18);
+
+
 
 			for (int i = 0; i < split_explanation_.size(); ++i) {
 				int n = i * 15;
@@ -135,6 +138,8 @@ int UICard::GetCharW(const std::string& s, size_t& i) {
 	return (wc >= 0x0100) ? 2 : 1;
 }
 
+
+
 std::vector<std::string> UICard::SplitStringConsideringWidth(const std::string& s, int interval) {
 	
 	std::vector<std::string> result;
@@ -142,7 +147,7 @@ std::vector<std::string> UICard::SplitStringConsideringWidth(const std::string& 
 	size_t start_index = 0;
 
 	for (size_t i = 0; i < s.size(); ) {
-		int char_width = GetCharW(s, i);
+		int char_width = GetCharWidthAndAdvance(s, i);
 
 		if (width_counter + char_width > interval) {
 			result.push_back(s.substr(start_index, i - start_index));
@@ -152,7 +157,6 @@ std::vector<std::string> UICard::SplitStringConsideringWidth(const std::string& 
 		else {
 			width_counter += char_width;
 		}
-
 	}
 
 	if (start_index != s.size()) {
@@ -160,5 +164,27 @@ std::vector<std::string> UICard::SplitStringConsideringWidth(const std::string& 
 	}
 
 	return result;
+}
+
+int UICard::GetCharWidthAndAdvance(const std::string& s, size_t& i) {
+
+	unsigned char c = static_cast<unsigned char>(s[i]);
+	// ASCIIや半角カタカナの場合
+	if (c <= 0x7F || (c >= 0xA1 && c <= 0xDF)) {
+		i++;
+		return 1;
+	}
+	
+	// 全角文字の場合（Shift-JIS の先頭バイトとして有効な範囲）
+	else if ((c >= 0x81 && c <= 0x9F) || (c >= 0xE0 && c <= 0xFC)) {
+		if (i + 1 >= s.size()) {
+			throw std::runtime_error("Invalid Shift-JIS sequence.");
+		}
+		i += 2;
+		return 2;
+	}
+	else {
+		throw std::runtime_error("Invalid Shift-JIS character.");
+	}
 }
 
