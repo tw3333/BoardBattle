@@ -17,6 +17,8 @@ public:
 private:
 
 	int add_shield_value_ = 0;
+	int init_add_shield_value_ = 0;
+
 
 
 };

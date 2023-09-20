@@ -32,4 +32,5 @@ void CardEffectMove::EffectExcute(std::vector<SquarePos> target_square_pos, Boar
 
 	}
 
+
 }

@@ -502,9 +502,11 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
 	card_play_->SetTurnAlly(turn_ally_);
 
+	board_->ResetDisplayRangeTile();
+	board_->ResetAllTile();
 
 	//card_play_->RenderSelectCardRange(turn_ally_, board_);
-	card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
+	//card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
 
 	//card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
 	//board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
@@ -515,6 +517,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 		//Cardの射程を統合、格納
 		card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
+
 		//Cardの射程範囲を表示
 		//TODO:軸をTurnAlly中心かSelectSquare中心にするかを選択できるようにする
 		//処理が一通りできるまでAlly中心で進める
@@ -544,10 +547,13 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 	} else {
 
-		board_->ResetDisplayRangeTile();
-		board_->ResetAllTile();
+		//board_->ResetDisplayRangeTile();
+		//board_->ResetAllTile();
 
 	}
+
+	//board_->ResetDisplayRangeTile();
+	//board_->ResetAllTile();
 
 	//card_play_->EffectExecute();
 	

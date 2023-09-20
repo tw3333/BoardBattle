@@ -65,7 +65,6 @@ void UICard::Render() {
 			split_explanation_ = SplitStringConsideringWidth(card_ptr_->GetCardData()->GetCardExplanation(), 18);
 
 
-
 			for (int i = 0; i < split_explanation_.size(); ++i) {
 				int n = i * 15;
 				DrawFormatStringToHandle(pos_x_ + 7 + 3, pos_y_ + h1_ * 6 + 5 + n, -1, font_mgr_.GetCardExplanationFont(), "%s", split_explanation_[i].c_str());
@@ -83,14 +82,23 @@ void UICard::Render() {
 			//}
 
 			//Costを表示するBox
-			DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + 34, pos_y_ + 34, color_orange_, true);
-			DrawFormatStringToHandle(pos_x_ + 4, pos_y_ + 4, -1, font_mgr_.GetCardCostFont(), "a%d");
+			DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + 36, pos_y_ + 30, color_orange_, true);
+			DrawBox(pos_x_ + 4, pos_y_ + 4, pos_x_ + 36, pos_y_ + 30, color_black_, false);
+
+			if (card_ptr_->GetCardData()->GetCardCost() < 10) {
+				DrawFormatStringToHandle(pos_x_ + 4 + 7, pos_y_ + 5, color_black_, font_mgr_.GetCardCostFont(), "%d", card_ptr_->GetCardData()->GetCardCost());
+			}
+			else if (10 <= card_ptr_->GetCardData()->GetCardCost()) {
+				DrawFormatStringToHandle(pos_x_ + 4 + 2, pos_y_ + 5, color_black_, font_mgr_.GetCardCostFont(), "%d", card_ptr_->GetCardData()->GetCardCost());
+			}
+
+
 
 
 			//カード名下地
 			DrawBox(pos_x_ + w1_ * 0.5, pos_y_ + h1_ * 5, pos_x_ + w1_ * 9.5, pos_y_ + h1_ * 6, color_cardname_back_, true);
 			//DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "デバックカード");
-			DrawFormatStringToHandle(pos_x_ + w1_ * 2, pos_y_ + h1_ * 5, -1, font_mgr_.GetCardNameFont(), "%s",card_ptr_->GetCardData()->GetCardName().c_str());
+			DrawFormatStringToHandle(pos_x_ + w1_ * 0.5 + 10, pos_y_ + h1_ * 5 + 2, -1, font_mgr_.GetCardNameFont(), "%s",card_ptr_->GetCardData()->GetCardName().c_str());
 
 		}
 

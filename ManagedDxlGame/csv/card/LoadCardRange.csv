@@ -21,7 +21,7 @@ CardID,CardRange,,,,,,,,,,,
 19,Round,0,2,,,,,,,,,
 20,Round,0,3,,,,,,,,,
 21,Right,1,2,Left,1,2,Up,1,2,Down,1,2
-22,Right,0,1,Left,0,2,Up,0,1,Down,0,1
+22,Right,0,1,Left,0,1,Up,0,1,Down,0,1
 23,Right,0,1,Left,0,1,Up,0,1,Down,0,1
 24,Self,0,0,,,,,,,,,
 25,Self,0,0,,,,,,,,,

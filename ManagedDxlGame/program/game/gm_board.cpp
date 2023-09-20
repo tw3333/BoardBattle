@@ -71,7 +71,7 @@ void Board::Render(dxe::Camera* camera) {
 //“n‚µ‚½Pos‚ÌRangeTile‚ð•\Ž¦‚·‚é
 void Board::DisplayRangePosRangeTile(std::vector<SquarePos> range_square_pos) {
 
-	for (auto pos : range_square_pos) {
+	for (auto &pos : range_square_pos) {
 		board_squares_[pos.row][pos.col]->SetRenderRangeTile(true);
 	}
 

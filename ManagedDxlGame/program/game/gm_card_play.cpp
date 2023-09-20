@@ -119,15 +119,22 @@ void CardPlay::UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<U
 //‘I‘ð‚³‚ê‚Ä‚¢‚éCard‚ÌRangePos‚ðŠi”[A‚»‚ÌXV
 void CardPlay::UpdateSelectCardRangeSquarePos(SquarePos axis_pos) {
 
+	
 	if (select_uicard_) 
 	{
 		card_range_square_pos_.clear();
 
-		for (auto a : select_uicard_->GetCardPtr()->GetCardData()->GetCardRangeList())
-		{
-			std::vector<SquarePos> range_square_pos = a->GetRangeSquarePos(axis_pos);
-			card_range_square_pos_.insert(card_range_square_pos_.end(), range_square_pos.begin(), range_square_pos.end());
+		if (card_range_square_pos_.empty()) {
+
+			for (auto& a : select_uicard_->GetCardPtr()->GetCardData()->GetCardRangeList())
+			{
+				std::vector<SquarePos> range_square_pos = a->GetRangeSquarePos(axis_pos);
+				card_range_square_pos_.insert(card_range_square_pos_.end(), range_square_pos.begin(), range_square_pos.end());
+			}
+
+
 		}
+
 
 	}
 
