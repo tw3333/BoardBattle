@@ -23,13 +23,13 @@ void CardEffectAddSnare::EffectExcute(std::vector<SquarePos> target_square_pos, 
 
 				if (state.GetState() == State::Snare) {
 
-					state.SetTurnCount(1);
+					state.AddTrunCount(snare_turn_count_);
 					hit = true;
 				}
 			}
 
 			if (!hit) {
-				board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->AddBattleState(BattleState(State::Blood, 0, 1));
+				board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->AddBattleState(BattleState(State::Blood, 0, snare_turn_count_));
 			}
 		}
 	}
