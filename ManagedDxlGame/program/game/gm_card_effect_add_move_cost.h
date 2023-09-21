@@ -4,8 +4,8 @@
 class CardEffectAddMoveCost : public CardEffect {
 public:
 
-	CardEffectAddMoveCost(int ref_num, int add_card_cost) : CardEffect(ref_num) {
-		add_card_cost_ = add_card_cost;
+	CardEffectAddMoveCost(int ref_num, int add_move_cost) : CardEffect(ref_num) {
+		add_move_cost_ = add_move_cost;
 	}
 	~CardEffectAddMoveCost(){}
 	
@@ -15,7 +15,7 @@ public:
 
 private:
 
-	int add_card_cost_ = 0;
+	int add_move_cost_ = 0;
 
 
 

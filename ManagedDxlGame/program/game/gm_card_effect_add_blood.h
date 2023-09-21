@@ -12,8 +12,6 @@ public:
 	void EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) override;
 
 
-
-
 private:
 
 

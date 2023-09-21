@@ -3,7 +3,7 @@ CardID,PossAllyID,Cost,Name,Explanation,Texture
 1,1,1,爪の一撃,指定した敵(1)に５ダメージ,graphics/card/c1/1.png
 2,1,2,獣舞:昇,範囲内の敵に10ダメージ,graphics/card/c1/2.png
 3,1,2,獣舞:流,範囲内の敵に10ダメージ,graphics/card/c1/3.png
-4,1,3,獣人のステップ,move10を得る,graphics/card/c1/4.png
+4,1,3,獣人のステップ,move2を得る,graphics/card/c1/4.png
 5,1,5,血の潤い,5回復,graphics/card/c1/5.png
 6,1,5,モツ刺し,指定した敵(1)に出血を付与,graphics/card/c1/6.png
 7,1,6,獣舞:翔,指定したマスに移動。通り過ぎた敵に15ダメージ,graphics/card/c1/7.png
@@ -28,7 +28,7 @@ CardID,PossAllyID,Cost,Name,Explanation,Texture
 26,3,5,シルダ,シールド値10を得る,graphics/card/c3/26.png
 27,3,6,咆哮,指定した敵(1)をスネアにする,graphics/card/c3/27.png
 28,3,7,シルガ,シールド値15を得る,graphics/card/c3/28.png
-29,3,8,盾神の加護,範囲内の味方にシールド値を半分分ける,graphics/card/c3/29.png
+29,3,8,盾神の加護,範囲内の味方とシールド値を均等に分け合う,graphics/card/c3/29.png
 30,3,10,最後の砦,自身を２ターンスネアにする。シールド値30を得る,graphics/card/c3/30.png
 31,0,1,犬,指定したマス(1)に犬を設置,graphics/card/c0/31.png
 32,0,1,トラばさみ,指定したマス(1)にトラばさみを設置,graphics/card/c0/32.png
