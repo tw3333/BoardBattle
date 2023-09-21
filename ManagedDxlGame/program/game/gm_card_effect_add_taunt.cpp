@@ -41,6 +41,6 @@ bool CardEffectAddTaunt::CanEffectExcute(std::vector<SquarePos> target_square_po
 			return true;
 		}
 	}
-	]
+	
 	return false;
 }
