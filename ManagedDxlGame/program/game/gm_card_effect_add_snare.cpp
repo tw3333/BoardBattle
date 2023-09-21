@@ -13,86 +13,26 @@ void CardEffectAddSnare::Effect(std::vector<Unit*> untis)
 
 void CardEffectAddSnare::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
 
-	bool flag = false;
-
 	for (auto square : target_square_pos) {
 
-		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
-
-			for (auto state : board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()->GetBattleState()) {
-
-				if (state.GetState() == State::Snare) {
-
-					flag = true;
-
-				}
-
-			}
-
-			if (flag = true) {
-
-				for (auto state : board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()->GetBattleState()) {
-
-					if (state.GetState() == State::Snare) {
-
-						state.SetTurnCount(3);
-
-					}
-
-				}
-
-			}
-			else if (flag == false) {
-
-				board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()->AddBattleState(BattleState(State::Snare, 3, 3));
-
-			}
-
-		}
-
-		else if (board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()) {
-
-			for (auto state : board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()->GetBattleState()) {
+		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()
+			|| board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare())
+		{
+			bool hit = false;
+			for (auto state : board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->GetBattleState()) {
 
 				if (state.GetState() == State::Snare) {
 
-					flag = true;
-
+					state.SetTurnCount(1);
+					hit = true;
 				}
-
 			}
 
-			if (flag = true) {
-
-				for (auto state : board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()->GetBattleState()) {
-
-					if (state.GetState() == State::Snare) {
-
-						state.SetTurnCount(3);
-
-					}
-
-				}
-
+			if (!hit) {
+				board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->AddBattleState(BattleState(State::Blood, 0, 1));
 			}
-			else if (flag == false) {
-
-				board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()->AddBattleState(BattleState(State::Snare, 0, 3));
-
-			}
-
-
 		}
-
-		flag = false;
 	}
-
-
-
-
-
-
-
 
 }
 

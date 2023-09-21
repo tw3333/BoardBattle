@@ -37,3 +37,29 @@ bool CardEffectAddShield::CanEffectExcute(std::vector<SquarePos> target_square_p
 
 	return true;
 }
+
+void CardEffectAddShield::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
+{
+
+	for (auto square : target_square_pos) {
+
+		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare() 
+			|| board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare()) 
+		{
+			bool hit = false;
+			for (auto state : board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->GetBattleState()) {
+
+				if (state.GetState() == State::Shield) {
+
+					state.AddValue(add_shield_value_);
+					hit = true;
+				}
+			}
+
+			if (!hit) {
+				board->getBoardSquare(square.row, square.col)->GetUnitPtrInSquare()->AddBattleState(BattleState(State::Shield, add_shield_value_));
+			}
+		}
+	}
+
+}

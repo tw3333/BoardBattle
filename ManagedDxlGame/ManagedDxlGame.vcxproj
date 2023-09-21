@@ -194,7 +194,6 @@
     <ClCompile Include="program\game\gm_card_effect_add_shield.cpp" />
     <ClCompile Include="program\game\gm_card_effect_add_stun.cpp" />
     <ClCompile Include="program\game\gm_card_effect_add_taunt.cpp" />
-    <ClCompile Include="program\game\gm_card_effect_blood.cpp" />
     <ClCompile Include="program\game\gm_card_effect_damage.cpp" />
     <ClCompile Include="program\game\gm_card_effect_heal.cpp" />
     <ClCompile Include="program\game\gm_card_effect_move.cpp" />
@@ -305,7 +304,6 @@
     <ClInclude Include="program\game\gm_card_effect_add_snare.h" />
     <ClInclude Include="program\game\gm_card_effect_add_stun.h" />
     <ClInclude Include="program\game\gm_card_effect_add_taunt.h" />
-    <ClInclude Include="program\game\gm_card_effect_blood.h" />
     <ClInclude Include="program\game\gm_card_effect_damage.h" />
     <ClInclude Include="program\game\gm_card_effect_heal.h" />
     <ClInclude Include="program\game\gm_card_effect_move.h" />

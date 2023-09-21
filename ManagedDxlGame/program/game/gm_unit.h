@@ -46,6 +46,7 @@ public:
 	void AddBattleState(BattleState state) { state_.emplace_back(state); }
 
 
+
 private:
 
 

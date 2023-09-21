@@ -18,6 +18,13 @@ void CardEffectAddTaunt::Effect(std::vector<Unit*> untis) {
 
 }
 
-void CardEffectAddTaunt::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board)
-{
+void CardEffectAddTaunt::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
+
+
+
+
+
+
+
+
 }
