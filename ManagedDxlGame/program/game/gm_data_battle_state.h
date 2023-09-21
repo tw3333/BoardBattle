@@ -4,7 +4,7 @@
 //í“¬‚Ég‚¤ó‘Ô‚È‚Ç
 
 enum class State {
-	Blood, 
+	Blood,
 	Poison,
 	Shield,
 	Weak,
@@ -12,6 +12,8 @@ enum class State {
 	Stun,
 	Counter,
 	Stand,
+	AddMoveCost,
+	AddCardCost,
 	None
 };
 

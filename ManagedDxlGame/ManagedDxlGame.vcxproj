@@ -191,6 +191,8 @@
     <ClCompile Include="program\game\gm_board_manager.cpp" />
     <ClCompile Include="program\game\gm_card.cpp" />
     <ClCompile Include="program\game\gm_card_effect_add_blood.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_add_card_cost.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_add_move_cost.cpp" />
     <ClCompile Include="program\game\gm_card_effect_add_shield.cpp" />
     <ClCompile Include="program\game\gm_card_effect_add_stun.cpp" />
     <ClCompile Include="program\game\gm_card_effect_add_taunt.cpp" />
@@ -302,6 +304,8 @@
     <ClInclude Include="program\game\gm_board_manager.h" />
     <ClInclude Include="program\game\gm_card_effect.h" />
     <ClInclude Include="program\game\gm_card_effect_add_blood.h" />
+    <ClInclude Include="program\game\gm_card_effect_add_card_cost.h" />
+    <ClInclude Include="program\game\gm_card_effect_add_move_cost.h" />
     <ClInclude Include="program\game\gm_card_effect_add_shield.h" />
     <ClInclude Include="program\game\gm_card_effect_add_snare.h" />
     <ClInclude Include="program\game\gm_card_effect_add_stun.h" />

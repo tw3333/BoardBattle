@@ -22,6 +22,11 @@ bool CardEffectShareShield::CanEffectExcute(std::vector<SquarePos> range_square_
 
 	}
 
+	if (ally_cnt == 0) {
+		return false;
+	}
+
+
 
 	for (auto ally : board->GetPartyUnitsInBoard()) {
 
