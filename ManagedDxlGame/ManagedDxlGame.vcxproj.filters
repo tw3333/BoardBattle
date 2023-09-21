@@ -407,23 +407,23 @@
     <ClCompile Include="program\game\gm_card_target.cpp">
       <Filter>program\[003] game\card</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_battle_state_config.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_card_effect_add_blood.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_card_effect_add_move_cost.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_card_effect_share_shield.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_unit.cpp">
-      <Filter>program</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\gm_card_effect_add_card_cost.cpp">
       <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_battle_state_config.cpp">
+      <Filter>program\[003] game\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_add_blood.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_add_move_cost.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_card_effect_share_shield.cpp">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_unit.cpp">
+      <Filter>program\[003] game\unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -836,10 +836,20 @@
     <ClInclude Include="program\game\scene\gm_scene_deck_edit.h">
       <Filter>program\[003] game\scene</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\gm_battle_state_config.h" />
-    <ClInclude Include="program\game\gm_card_effect_add_blood.h" />
-    <ClInclude Include="program\game\gm_card_effect_add_card_cost.h" />
-    <ClInclude Include="program\game\gm_card_effect_add_move_cost.h" />
-    <ClInclude Include="program\game\gm_card_effect_share_shield.h" />
+    <ClInclude Include="program\game\gm_battle_state_config.h">
+      <Filter>program\[003] game\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_add_blood.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_add_card_cost.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_add_move_cost.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_card_effect_share_shield.h">
+      <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
