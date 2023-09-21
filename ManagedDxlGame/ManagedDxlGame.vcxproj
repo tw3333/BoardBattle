@@ -201,6 +201,7 @@
     <ClCompile Include="program\game\gm_card_effect_add_snare.cpp" />
     <ClCompile Include="program\game\gm_card_effect_passing_damage.cpp" />
     <ClCompile Include="program\game\gm_card_effect_push_out.cpp" />
+    <ClCompile Include="program\game\gm_card_effect_share_shield.cpp" />
     <ClCompile Include="program\game\gm_card_manager.cpp" />
     <ClCompile Include="program\game\gm_card_play.cpp" />
     <ClCompile Include="program\game\gm_card_range_down.cpp" />
@@ -254,6 +255,7 @@
     <ClCompile Include="program\game\gm_ui_turn_view.cpp" />
     <ClCompile Include="program\game\gm_ui_unit_state_view.cpp" />
     <ClCompile Include="program\game\gm_ui_window.cpp" />
+    <ClCompile Include="program\game\gm_unit.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />
     <ClCompile Include="program\game\gm_unit_enemy.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
@@ -310,6 +312,7 @@
     <ClInclude Include="program\game\gm_card_effect_none.h" />
     <ClInclude Include="program\game\gm_card_effect_passing_damage.h" />
     <ClInclude Include="program\game\gm_card_effect_push_out.h" />
+    <ClInclude Include="program\game\gm_card_effect_share_shield.h" />
     <ClInclude Include="program\game\gm_card_play.h" />
     <ClInclude Include="program\game\gm_card_range.h" />
     <ClInclude Include="program\game\gm_card_range_down.h" />

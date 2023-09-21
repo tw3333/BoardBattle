@@ -4,7 +4,9 @@
 class CardEffectAddSnare : public CardEffect {
 public:
 
-	CardEffectAddSnare(int ref_num) : CardEffect(ref_num) {}
+	CardEffectAddSnare(int ref_num,int snare_turn_count) : CardEffect(ref_num) {
+		snare_turn_count_ = snare_turn_count;
+	}
 	~CardEffectAddSnare() {}
 
 	void Effect(std::vector<Unit*> untis) override;
@@ -14,7 +16,7 @@ public:
 
 private:
 
-
+	int snare_turn_count_ = 0;
 
 
 };

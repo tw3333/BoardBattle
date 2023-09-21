@@ -4,7 +4,9 @@
 class CardEffectAddStun : public CardEffect {
 public:
 
-	CardEffectAddStun(int ref_num) :CardEffect(ref_num){}
+	CardEffectAddStun(int ref_num, int stun_turn_cnt) :CardEffect(ref_num){
+		stun_turn_count_ = stun_turn_cnt;
+	}
 	~CardEffectAddStun(){}
 
 	void Effect(std::vector<Unit*> untis) override;
@@ -14,6 +16,7 @@ public:
 
 private:
 
+	int stun_turn_count_ = 0;
 
 
 };

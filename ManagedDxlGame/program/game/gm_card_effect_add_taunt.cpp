@@ -1,7 +1,9 @@
 #include "gm_card_effect_add_taunt.h"
 
+#include "gm_board.h"
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
+#include "gm_unit_enemy.h"
 
 void CardEffectAddTaunt::Effect(std::vector<Unit*> untis) {
 
@@ -20,11 +22,25 @@ void CardEffectAddTaunt::Effect(std::vector<Unit*> untis) {
 
 void CardEffectAddTaunt::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
 
+	for (auto square : target_square_pos) {
 
+		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
 
+			board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()->AddTaundValue(add_taunt_value_);
 
+		}
+	}
 
+}
 
+bool CardEffectAddTaunt::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
 
+	for (auto square : target_square_pos) {
 
+		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
+			return true;
+		}
+	}
+	]
+	return false;
 }

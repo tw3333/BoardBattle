@@ -115,6 +115,9 @@ public:
 
 	int GetTauntValue() { return taunt_value_; }
 	void SetTauntValue(int value) { taunt_value_ = value; }
+	void AddTaundValue(int value) { taunt_value_ = taunt_value_ + value; }
+	void DecreaseTauntValue(int value) { taunt_value_ = (std::max)(0,taunt_value_ - value); }
+
 	int GetShieldValue() { return shield_value_; }
 	void SetShieldValue(int value) { shield_value_ = value; }
 

@@ -33,16 +33,31 @@ void CardEffectDamage::Effect(std::vector<Unit*> units) {
 
 void CardEffectDamage::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
 
+	bool ally_attack = false;
+
 	for (auto pos : target_square_pos) {
 
 		if (board->getBoardSquare(pos.row,pos.col)->GetAllyPtrInSquare()) {
 
 			board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()->DecreaseCurrentHp(damage_);
 
+
 		}
 		else if(board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
 
 			board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()->DecreaseCurrentHp(damage_);
+			ally_attack = true;
+		}
+	}
+
+	if (ally_attack) {
+
+		for (auto ally : board->GetPartyUnitsInBoard()) {
+
+			if (ally->GetIsTurn()) {
+				ally->AddTaundValue(3);
+			}
+
 		}
 
 	}
