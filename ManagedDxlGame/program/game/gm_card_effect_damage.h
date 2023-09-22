@@ -9,8 +9,8 @@ class CardEffectDamage : public CardEffect {
 public:
 
 	
-	CardEffectDamage(int ref_num, int damage) 
-	: damage_(damage), CardEffect(ref_num) {}
+	CardEffectDamage(int card_id, int ref_num, int damage) 
+	: damage_(damage), CardEffect(card_id, ref_num) {}
 	~CardEffectDamage() {}
 
 

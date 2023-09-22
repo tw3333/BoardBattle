@@ -4,7 +4,7 @@
 class CardEffectAddStun : public CardEffect {
 public:
 
-	CardEffectAddStun(int ref_num, int stun_turn_cnt) :CardEffect(ref_num){
+	CardEffectAddStun(int card_id, int ref_num, int stun_turn_cnt) :CardEffect(card_id, ref_num){
 		stun_turn_count_ = stun_turn_cnt;
 	}
 	~CardEffectAddStun(){}

@@ -88,6 +88,8 @@ private:
 
 
 	std::vector<std::shared_ptr<CardTarget>> all_card_target_; //全てのカードのCardTarget
+	std::vector<std::shared_ptr<CardTarget>> all_card_effect_; //全てのカードのCardTarget
+	std::vector<std::shared_ptr<CardTarget>> all_card_range_; //全てのカードのCardTarget
 
 
 };

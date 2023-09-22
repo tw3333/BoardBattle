@@ -4,7 +4,7 @@
 class CardEffectShareShield : public CardEffect {
 public:
 
-	CardEffectShareShield(int ref_num) : CardEffect(ref_num){}
+	CardEffectShareShield(int card_id, int ref_num) : CardEffect(card_id, ref_num){}
 	~CardEffectShareShield() {}
 
 	void Effect(std::vector<Unit*> untis) override;

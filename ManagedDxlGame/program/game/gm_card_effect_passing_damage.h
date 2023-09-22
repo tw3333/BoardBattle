@@ -13,7 +13,7 @@
 class CardEffectPassingDamage : public CardEffect {
 public:
 
-	CardEffectPassingDamage(int ref_num,int damage) : CardEffect(ref_num) {
+	CardEffectPassingDamage(int card_id, int ref_num,int damage) : CardEffect(card_id, ref_num) {
 		damage_ = damage;
 	}
 	~CardEffectPassingDamage() {}

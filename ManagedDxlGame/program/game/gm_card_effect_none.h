@@ -8,7 +8,7 @@
 class CardEffectNone : public CardEffect {
 public:
 
-	CardEffectNone(int ref_num) : CardEffect(ref_num) {}
+	CardEffectNone(int card_id, int ref_num) : CardEffect(card_id, ref_num) {}
 	~CardEffectNone() {}
 
 	void Effect(std::vector<Unit*> units) override;

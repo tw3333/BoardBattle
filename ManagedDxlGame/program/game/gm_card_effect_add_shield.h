@@ -4,8 +4,8 @@
 class CardEffectAddShield : public CardEffect {
 public:
 
-	CardEffectAddShield(int ref_num, int add_shield_value) 
-	: add_shield_value_(add_shield_value), CardEffect(ref_num){}
+	CardEffectAddShield(int card_id, int ref_num, int add_shield_value) 
+	: add_shield_value_(add_shield_value), CardEffect(card_id, ref_num){}
 	~CardEffectAddShield(){}
 
 	void Effect(std::vector<Unit*> units) override;

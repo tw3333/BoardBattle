@@ -7,7 +7,7 @@
 class CardEffectPushOut : public CardEffect {
 public:
 
-	CardEffectPushOut(int ref_num,int push_num) : CardEffect(ref_num) {
+	CardEffectPushOut(int card_id, int ref_num,int push_num) : CardEffect(card_id, ref_num) {
 		push_num_ = push_num;
 	}
 	~CardEffectPushOut() {}

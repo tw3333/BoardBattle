@@ -4,7 +4,7 @@
 class CardEffectAddBlood : public CardEffect {
 public:
 
-	CardEffectAddBlood(int ref_num) : CardEffect(ref_num) {}
+	CardEffectAddBlood(int card_id, int ref_num) : CardEffect(card_id, ref_num) {}
 	~CardEffectAddBlood(){}
 
 	void Effect(std::vector<Unit*> units) override;

@@ -4,8 +4,8 @@
 class CardEffectAddCardCost : public CardEffect {
 public:
 
-	CardEffectAddCardCost(int ref_num, int add_card_cost)
-	: CardEffect(ref_num), add_card_cost_(add_card_cost) {}
+	CardEffectAddCardCost(int card_id, int ref_num, int add_card_cost)
+	: CardEffect(card_id, ref_num), add_card_cost_(add_card_cost) {}
 	~CardEffectAddCardCost(){}
 
 	void Effect(std::vector<Unit*> units) override;

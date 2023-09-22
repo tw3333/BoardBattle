@@ -10,7 +10,7 @@ class Board;
 class CardEffect {
 public:
 
-	CardEffect(int ref_num) : effect_ref_num_(ref_num) {}
+	CardEffect(int card_id, int ref_num) : card_id_(card_id), effect_ref_num_(ref_num) {}
 	virtual ~CardEffect(){}
 
 	//virtual CardEffect* CreateClone() = 0;
@@ -24,11 +24,12 @@ public:
 	
 
 	//int effect_ref_num_ = 0;
-
+	int GetCardID() { return card_id_; }
 	int GetEffectRefNum() { return effect_ref_num_; }
 
 protected:
 
+	int card_id_ = 0; //効果を持つカードのID
 	int effect_ref_num_ = 0; //CardTargetとの参照番号
 
 

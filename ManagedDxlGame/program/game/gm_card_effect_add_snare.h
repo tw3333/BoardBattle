@@ -4,7 +4,7 @@
 class CardEffectAddSnare : public CardEffect {
 public:
 
-	CardEffectAddSnare(int ref_num,int snare_turn_count) : CardEffect(ref_num) {
+	CardEffectAddSnare(int card_id, int ref_num,int snare_turn_count) : CardEffect(card_id, ref_num) {
 		snare_turn_count_ = snare_turn_count;
 	}
 	~CardEffectAddSnare() {}

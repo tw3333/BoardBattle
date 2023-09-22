@@ -8,7 +8,7 @@
 class CardEffectMove : public CardEffect {
 public:
 
-	CardEffectMove(int ref_num) : CardEffect(ref_num) {}
+	CardEffectMove(int card_id, int ref_num) : CardEffect(card_id, ref_num) {}
 	~CardEffectMove() {}
 
 	void Effect(std::vector<Unit*> units) override;
