@@ -84,8 +84,8 @@ std::vector<Unit*> CardRangeLeft::GetUnitInRange(UnitAlly* act_ally, std::vector
 	return range_units;
 }
 
-std::vector<SquarePos> CardRangeLeft::GetRangeSquarePos(SquarePos axis_pos)
-{
+std::vector<SquarePos> CardRangeLeft::GetRangeSquarePos(SquarePos axis_pos) {
+
 	std::vector<SquarePos> range_square_pos;
 
 	for (int i = 1; i <= range_; ++i) {

@@ -425,6 +425,9 @@
     <ClCompile Include="program\game\gm_unit.cpp">
       <Filter>program\[003] game\unit</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene\gm_scene_create_card_range_room.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -850,6 +853,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_card_effect_share_shield.h">
       <Filter>program\[003] game\card\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\gm_scene_create_card_range_room.h">
+      <Filter>program\[003] game\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

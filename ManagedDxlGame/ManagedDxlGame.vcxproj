@@ -260,6 +260,7 @@
     <ClCompile Include="program\game\gm_unit.cpp" />
     <ClCompile Include="program\game\gm_unit_ally.cpp" />
     <ClCompile Include="program\game\gm_unit_enemy.cpp" />
+    <ClCompile Include="program\game\scene\gm_scene_create_card_range_room.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_battle_result.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_debug_card_room.cpp" />
@@ -399,6 +400,7 @@
     <ClInclude Include="program\game\gm_unit_obstacle.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle.h" />
     <ClInclude Include="program\game\scene\gm_scene_battle_result.h" />
+    <ClInclude Include="program\game\scene\gm_scene_create_card_range_room.h" />
     <ClInclude Include="program\game\scene\gm_scene_debug_card_room.h" />
     <ClInclude Include="program\game\scene\gm_scene_deck_edit.h" />
     <ClInclude Include="program\game\scene\gm_scene_load.h" />
