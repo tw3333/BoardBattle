@@ -42,6 +42,9 @@ public:
 	void LoadCardTargetFromCSV(const std::string& filepath);
 	void LoadCardEffectFromCSV(const std::string& filepath);
 
+	void LoadAllCardTargetFromCSV(const std::string& filepath);
+
+
 	void CreateAllInitCard();
 	void LoadC1DeckFromCSV(const std::string& filepath);
 	void LoadC2DeckFromCSV(const std::string& filepath);
