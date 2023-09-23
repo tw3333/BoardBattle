@@ -43,7 +43,7 @@ public:
 	void LoadCardEffectFromCSV(const std::string& filepath);
 
 	void LoadAllCardTargetFromCSV(const std::string& filepath);
-
+	void CombineCardData();
 
 	void CreateAllInitCard();
 	void LoadC1DeckFromCSV(const std::string& filepath);
@@ -56,6 +56,7 @@ public:
 	std::vector<std::shared_ptr<Card>> GetDebugDeck() { return debug_deck_;	}
 	std::vector<CardData*> GetAllCardData() { return all_card_data_; }
 	std::vector<std::shared_ptr<Card>> GetAllCard() { return all_card_; }
+	std::vector<std::shared_ptr<CardTarget>> GetAllCardTarget() { return all_card_target_; }
 
 	//get,set
 	//Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }

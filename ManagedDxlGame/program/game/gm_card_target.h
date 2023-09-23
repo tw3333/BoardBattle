@@ -52,7 +52,7 @@ public:
 	void SetIsDetermined(bool is_determined) { is_determined_ = is_determined; }
 
 
-	int GetCardId() { return card_id_; }
+	int GetCardID() { return card_id_; }
 	int GetTargetRefNum() { return target_ref_num_; }
 
 	std::vector<Unit*>& GetTargetUnits() { return target_units_; }

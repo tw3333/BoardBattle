@@ -37,7 +37,7 @@ void SceneDebugCardRoom::Render() {
 	}
 
 	
-	for (auto target : cmgr_.GetAllCardData()) {
+	for (auto &target : cmgr_.GetAllCardData()) {
 
 		if (!target->GetCardTargetList().empty()) {
 

@@ -327,7 +327,7 @@ void CardManager::LoadCardTargetFromCSV(const std::string& filepath) {
 
 		for (auto& data : all_card_data_) {
 
-			if (target->GetCardId() == data->GetCardID()) {
+			if (target->GetCardID() == data->GetCardID()) {
 
 				data->AddCardTarget(target);
 			}
@@ -352,7 +352,6 @@ void CardManager::LoadCardEffectFromCSV(const std::string& filepath) {
 }
 
 
-//óväwèK
 void CardManager::LoadAllCardTargetFromCSV(const std::string& filepath) {
 
 	std::ifstream file(filepath);
@@ -365,32 +364,45 @@ void CardManager::LoadAllCardTargetFromCSV(const std::string& filepath) {
 	// Skip header
 	std::getline(file, line);
 
-	std::regex card_target_regex(R"(CardTarget\((\d+),(\d+),(\w+),(\w+),(\d+)\))");
+	std::regex cardTargetRegex(R"(CardTarget\((\d+),(\d+),(\w+),(\w+),(\d+)\))");
 
 	while (std::getline(file, line)) {
-		std::stringstream ss(line);
-		std::string cell;
-		std::getline(ss, cell, ',');  // CardID, not really used since it's already in the CardTarget info
+		std::sregex_iterator it(line.begin(), line.end(), cardTargetRegex);
+		std::sregex_iterator it_end;
 
-		while (std::getline(ss, cell, ',')) {
-			std::smatch match;
-			if (std::regex_match(cell, match, card_target_regex)) {
-				
-				int card_id = std::stoi(match[1].str());
-				int ref_num = std::stoi(match[2].str());
-				
-				TARGETTYPE target_type = (match[3].str() == "Specify") ? TARGETTYPE::Specify :
-					(match[3].str() == "InRange") ? TARGETTYPE::InRange : TARGETTYPE::None;
-				
-				TOTARGET to_target = (match[4].str() == "Enemy") ? TOTARGET::Enemy :
-					(match[4].str() == "Ally") ? TOTARGET::Ally :
-					(match[4].str() == "Square") ? TOTARGET::Square : TOTARGET::None;
-				
-				int target_num = std::stoi(match[5].str());
+		for (; it != it_end; ++it) {
+			std::smatch match = *it;
+			int card_id = std::stoi(match[1].str());
+			int ref_num = std::stoi(match[2].str());
+			TARGETTYPE target_type = (match[3].str() == "Specify") ? TARGETTYPE::Specify :
+				(match[3].str() == "InRange") ? TARGETTYPE::InRange : TARGETTYPE::None;
+			TOTARGET to_target = (match[4].str() == "Enemy") ? TOTARGET::Enemy :
+				(match[4].str() == "Ally") ? TOTARGET::Ally :
+				(match[4].str() == "Square") ? TOTARGET::Square : TOTARGET::None;
+			int target_num = std::stoi(match[5].str());
 
-				all_card_target_.push_back(std::make_shared<CardTarget>(card_id, ref_num, target_type, to_target, target_num));
-			}
+			all_card_target_.push_back(std::make_shared<CardTarget>(card_id, ref_num, target_type, to_target, target_num));
 		}
+	}
+	file.close();
+}
+
+void CardManager::CombineCardData() {
+
+	if (!all_card_data_.empty() && !all_card_target_.empty()) {
+
+		for (auto& carddata : all_card_data_) {
+
+			for (auto &cardtarget : all_card_target_) {
+
+				if (carddata->GetCardID() == cardtarget->GetCardID()) {
+
+					carddata->AddCardTarget(cardtarget);
+				}
+			}
+
+		}
+
 	}
 
 }

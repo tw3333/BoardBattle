@@ -5,7 +5,7 @@
 
 void SceneLoad::Initialzie() {
 
-	std::setlocale(LC_ALL, "ja_JP.shiftjis");
+	std::setlocale(LC_ALL, "ja_JP.shiftjis"); 
 
 	font_mgr_.CreateFontData();
 
@@ -23,11 +23,13 @@ void SceneLoad::Initialzie() {
 	
 	card_mgr_.CreateDebugCardData();
 	card_mgr_.LoadCardDataFromCSV("csv/card/LoadCardData.csv");
-	card_mgr_.LoadCardTargetFromCSV("csv/card/LoadCardTarget.csv");
+	//card_mgr_.LoadCardTargetFromCSV("csv/card/LoadCardTarget.csv");
 	card_mgr_.LoadCardRangeFromCSV("csv/card/LoadCardRange.csv");
+	card_mgr_.LoadAllCardTargetFromCSV("csv/card/LoadCardTarget2.csv");
 
 
 	card_mgr_.CreateAllInitCard();
+	card_mgr_.CombineCardData();
 
 	anim_mgr_.CreateDebugAnim();
 
@@ -95,5 +97,12 @@ void SceneLoad::Render() {
 	DrawStringToHandle(0,0,"CardCostFont",-1,font_mgr_.GetCardCostFont());
 	DrawStringToHandle(0, 100, "CardNameFont", -1, font_mgr_.GetCardNameFont());
 	DrawStringToHandle(0, 200, "CardTextFont", -1, font_mgr_.GetCardExplanationFont());
+
+	if (card_mgr_.GetAllCardTarget().empty()) {
+
+		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 60, -1, "AllCardTarget‚Í‹ó‚Å‚·");
+
+	}
+
 
 }
