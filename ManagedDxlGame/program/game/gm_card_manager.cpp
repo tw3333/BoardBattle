@@ -374,7 +374,7 @@ void CardManager::LoadAllCardTargetFromCSV(const std::string& filepath) {
 			std::smatch match = *it;
 			int card_id = std::stoi(match[1].str());
 			int ref_num = std::stoi(match[2].str());
-			TARGETTYPE target_type = (match[3].str() == "Specify") ? TARGETTYPE::Specify :
+			TARGETTYPE target_type = (match[3].str() == "Specify") ? TARGETTYPE::Specify:
 				(match[3].str() == "InRange") ? TARGETTYPE::InRange : TARGETTYPE::None;
 			TOTARGET to_target = (match[4].str() == "Enemy") ? TOTARGET::Enemy :
 				(match[4].str() == "Ally") ? TOTARGET::Ally :
@@ -384,6 +384,7 @@ void CardManager::LoadAllCardTargetFromCSV(const std::string& filepath) {
 			all_card_target_.push_back(std::make_shared<CardTarget>(card_id, ref_num, target_type, to_target, target_num));
 		}
 	}
+
 	file.close();
 }
 
