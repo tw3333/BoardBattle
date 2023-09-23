@@ -64,6 +64,7 @@ public:
 	void AddTargetSquarePos(SquarePos target_square_pos) { target_squares_pos_.push_back(target_square_pos); }
 
 	bool IsTargetInRange(std::vector<SquarePos> range, Board* board);
+	void ResetTargetSquarePos() { if (!target_squares_pos_.empty()) { target_squares_pos_.clear(); } }
 
 
 private:

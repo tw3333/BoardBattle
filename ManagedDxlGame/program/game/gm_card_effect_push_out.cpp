@@ -5,6 +5,7 @@
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"
 
+
 void CardEffectPushOut::Effect(std::vector<Unit*> untis)
 {
 }

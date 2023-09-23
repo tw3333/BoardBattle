@@ -85,7 +85,7 @@ void CardManager::CreateDebugCardData() {
 		
 		//dcd->AddCardEffect(std::make_shared<CardEffectDamage>(1,5));
 		//dcd->AddCardEffect(std::make_shared<CardEffectPassingDamage>(1,5));
-		dcd->AddCardEffect(std::make_shared<CardEffectPushOut>(1, 2));
+		dcd->AddCardEffect(std::make_shared<CardEffectPushOut>(1,1, 2));
 
 
 

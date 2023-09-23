@@ -4,6 +4,7 @@
 //memo
 //²‚©‚çnƒ}ƒX‚¾‚¯‰Ÿ‚µo‚·‚Æ‚¢‚¤Œø‰Ê
 
+
 class CardEffectPushOut : public CardEffect {
 public:
 
@@ -15,7 +16,6 @@ public:
 	void Effect(std::vector<Unit*> untis) override;
 	void EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) override;
 	bool CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) override;
-
 
 
 private:
