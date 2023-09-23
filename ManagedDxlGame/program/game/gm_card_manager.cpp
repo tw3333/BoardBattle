@@ -17,6 +17,18 @@
 #include "gm_card_effect_damage.h"
 #include "gm_card_effect_passing_damage.h"
 #include "gm_card_effect_push_out.h"
+#include "gm_card_effect_add_blood.h"
+#include "gm_card_effect_add_card_cost.h"
+#include "gm_card_effect_add_move_cost.h"
+#include "gm_card_effect_add_shield.h"
+#include "gm_card_effect_add_snare.h"
+#include "gm_card_effect_add_stun.h"
+#include "gm_card_effect_add_taunt.h"
+#include "gm_card_effect_push_out.h"
+#include "gm_card_effect_share_shield.h"
+#include "gm_card_effect_move.h"
+#include "gm_card_effect_none.h"
+
 
 #include "gm_card_range.h"
 #include "gm_card_renge_self.h"
@@ -386,6 +398,83 @@ void CardManager::LoadAllCardTargetFromCSV(const std::string& filepath) {
 	}
 
 	file.close();
+}
+
+void CardManager::LoadAllCardEffectFromCSV(const std::string& filepath) {
+
+	std::ifstream file(filepath);
+	if (!file.is_open()) {
+		std::cerr << "Failed to open the file." << std::endl;
+		return;
+	}
+
+	std::string line;
+	// Skip header
+	std::getline(file, line);
+
+	std::regex cardEffectRegex(R"((\w+)\((\d+)(?:,(\d+))?(?:,(\d+))?(?:,(\d+))?\))");
+
+	while (std::getline(file, line)) {
+		std::sregex_iterator it(line.begin(), line.end(), cardEffectRegex);
+		std::sregex_iterator it_end;
+
+		for (; it != it_end; ++it) {
+			std::smatch match = *it;
+			std::string effect_type = match[1].str();
+			int card_id = std::stoi(match[2].str());
+			int ref_num = std::stoi(match[3].str());
+			int value = (match[4].str().empty()) ? 0 : std::stoi(match[4].str());
+
+			//TODO:ŠÖ”‰»
+			if (effect_type == "AddBlood") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddBlood>(card_id, ref_num));
+			}
+			else if (effect_type == "AddCardCost") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddCardCost>(card_id, ref_num, value));
+			}
+			else if (effect_type == "AddMoveCost") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddMoveCost>(card_id, ref_num, value));
+			}
+			else if (effect_type == "AddShield") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddShield>(card_id, ref_num, value));
+			}
+			else if (effect_type == "AddSnare") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddSnare>(card_id, ref_num, value));
+			}
+			else if (effect_type == "AddStun") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddStun>(card_id, ref_num, value));
+			}
+			else if (effect_type == "AddTaunt") {
+				all_card_effect_.push_back(std::make_shared<CardEffectAddTaunt>(card_id, ref_num, value));
+			}
+			else if (effect_type == "Damage") {
+				all_card_effect_.push_back(std::make_shared<CardEffectDamage>(card_id, ref_num, value));
+			}
+			else if (effect_type == "Heal") {
+				all_card_effect_.push_back(std::make_shared<CardEffectHeal>(card_id, ref_num, value));
+			}
+			else if (effect_type == "Move") {
+				all_card_effect_.push_back(std::make_shared<CardEffectMove>(card_id, ref_num));
+			}
+			else if (effect_type == "None") {
+				all_card_effect_.push_back(std::make_shared<CardEffectNone>(card_id, ref_num));
+			}
+			else if (effect_type == "PassingDamage") {
+				all_card_effect_.push_back(std::make_shared<CardEffectPassingDamage>(card_id, ref_num, value));
+			}
+			else if (effect_type == "PushOut") {
+				all_card_effect_.push_back(std::make_shared<CardEffectPushOut>(card_id, ref_num,value));
+			}
+			else if (effect_type == "ShareShield") {
+				all_card_effect_.push_back(std::make_shared<CardEffectShareShield>(card_id, ref_num));
+			}
+
+			// ... [Add other effect types like AddMoveCost, Heal, etc. here]
+		}
+	}
+
+	file.close();
+
 }
 
 void CardManager::CombineCardData() {

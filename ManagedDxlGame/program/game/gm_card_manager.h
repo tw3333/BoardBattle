@@ -43,6 +43,12 @@ public:
 	void LoadCardEffectFromCSV(const std::string& filepath);
 
 	void LoadAllCardTargetFromCSV(const std::string& filepath);
+	void LoadAllCardEffectFromCSV(const std::string& filepath);
+
+
+	void LoadAllCardRangeFromCSV(const std::string& filepath);
+
+
 	void CombineCardData();
 
 	void CreateAllInitCard();
@@ -92,8 +98,8 @@ private:
 
 
 	std::vector<std::shared_ptr<CardTarget>> all_card_target_; //全てのカードのCardTarget
-	std::vector<std::shared_ptr<CardTarget>> all_card_effect_; //全てのカードのCardTarget
-	std::vector<std::shared_ptr<CardTarget>> all_card_range_; //全てのカードのCardTarget
+	std::vector<std::shared_ptr<CardEffect>> all_card_effect_; //全てのカードのCardTarget
+	std::vector<std::shared_ptr<CardRange>> all_card_range_; //全てのカードのCardTarget
 
 
 };
