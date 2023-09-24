@@ -1,4 +1,4 @@
-CardID,PossAllyID,Cost,Name,Explanation,Texture
+SeCardID,PossAllyID,Cost,Name,Explanation,Texture
 0,0,0,DebugCard,デバック用カード,graphics/card/c0/0.png
 1,1,1,爪の一撃,指定した敵(1)に５ダメージ,graphics/card/c1/1.png
 2,1,2,獣舞:昇,範囲内の敵に10ダメージ,graphics/card/c1/2.png
