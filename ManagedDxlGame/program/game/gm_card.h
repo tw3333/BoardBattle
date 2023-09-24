@@ -22,7 +22,7 @@ public:
 	Card(CardData* card_data)
 	:card_data_(card_data), base_card_cost_(card_data->GetCardCost()), current_card_cost_(base_card_cost_)
 	{}
-	~Card() { delete card_data_; }
+	~Card() {  }
 	
 	CardData* GetCardData() {if (card_data_) { return card_data_; } }
 	int GetCardID() { if (card_data_) { return card_data_->GetCardID(); } }

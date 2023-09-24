@@ -57,8 +57,8 @@ public:
 
 	void SetIsPartyPicked(bool flag) { is_party_picked_ = flag; }
 	bool GetIsPartyPicked() { return is_party_picked_; }
-	void SetIsEditPicked(bool flag) { is_edit_picked_ = flag; }
-	bool GetIsEditPiked() { return is_edit_picked_; }
+	void SetIsDeckEditPicked(bool flag) { is_deck_edit_picked_ = flag; }
+	bool GetIsDeckEditPiked() { return is_deck_edit_picked_; }
 
 private:
 
@@ -75,7 +75,7 @@ private:
 
 	//èÛë‘
 	bool is_party_picked_ = false;
-	bool is_edit_picked_ = false;
+	bool is_deck_edit_picked_ = false;
 	
 	//Card
 

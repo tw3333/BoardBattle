@@ -1,22 +1,7 @@
 #include "gm_allydata_manager.h"
 
-AllyDataManager* AllyDataManager::instance_ = nullptr;
 
-AllyDataManager* AllyDataManager::GetInstance() {
 
-	if (!instance_) { instance_ = new AllyDataManager(); }
-	return instance_;
-
-}
-
-void AllyDataManager::Destory() {
-
-	if (instance_) {
-		delete instance_;
-		instance_ = nullptr;
-	}
-
-}
 
 void AllyDataManager::DebugLoadAllyData() {
 

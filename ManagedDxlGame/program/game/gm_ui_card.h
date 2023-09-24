@@ -8,12 +8,18 @@ class Card;
 class UICard : public UIComponent {
 public:
 
+	//サイズ指定コンストラクタ
+	//arg1,2...UICardの大きさ
+	UICard(int width, int height) : width_(width), height_(height) {}; 
+
+	//座標指定コンストラクタ
 	//左頂点座標を指定、そこからw,hの大きさに描写
 	//arg1,2...左頂点座標 arg3,4...UICardの大きさ
 	UICard(int posx, int posy, int width, int height)
 	:pos_x_(posx), pos_y_(posy), width_(width), height_(height)
 	{}
 	~UICard(){}
+	
 
 	void Update(float delta_time) override;
 	void Render() override;
@@ -50,6 +56,12 @@ private:
 	int pos_y_;
 	int width_;
 	int height_;
+
+	int upper_left_x_ = pos_x_;
+	int upper_left_y_ = pos_y_;
+	int lower_right_x_ = pos_x_ + width_;
+	int lower_right_y_ = pos_y_ + height_;
+
 	int pre_pos_y_ = pos_y_; //規定位置
 	int card_up_pos_y_ = pos_y_ - 30; //カードが上がった時の位置
 

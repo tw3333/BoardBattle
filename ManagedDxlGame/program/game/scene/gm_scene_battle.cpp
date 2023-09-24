@@ -33,9 +33,9 @@ void SceneBattle::Initialzie() {
 	board_->SetCamera(camera_);
 
 	//Unit�̍쐬
-	party_[0] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(1), 5, 1);
-	party_[1] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(2), 5, 2);
-	party_[2] = new UnitAlly(allydata_mgr_->GetAllyDataAtID(3), 5, 3);
+	party_[0] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(1), 5, 1);
+	party_[1] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(2), 5, 2);
+	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 5, 3);
 	
 	for (int i = 0; i < 3; ++i) {
 		//party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());

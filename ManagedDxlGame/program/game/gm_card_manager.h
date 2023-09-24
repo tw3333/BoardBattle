@@ -58,8 +58,8 @@ public:
 	void LoadC1DeckFromCSV(const std::string& filepath);
 	void LoadC2DeckFromCSV(const std::string& filepath);
 	void LoadC3DeckFromCSV(const std::string& filepath);
-	void LoadC4DeckFromCSV(const std::string& filepath);
 
+	void SeparetePossCards();
 
 
 	std::vector<std::shared_ptr<Card>> GetDebugDeck() { return debug_deck_;	}
@@ -68,6 +68,14 @@ public:
 
 	std::vector<std::shared_ptr<CardTarget>> GetAllCardTarget() { return all_card_target_; }
 	std::vector<std::shared_ptr<CardEffect>> GetAllCardEffect() { return all_card_effect_; }
+
+	std::vector <std::shared_ptr<Card>> GetC1Deck() { return c1_deck_; }
+	std::vector <std::shared_ptr<Card>> GetC2Deck() { return c2_deck_; }
+	std::vector <std::shared_ptr<Card>> GetC3Deck() { return c3_deck_; }
+
+	std::vector<std::shared_ptr<Card>> GetC1PossCards() { return c1_poss_cards; }
+	std::vector<std::shared_ptr<Card>> GetC2PossCards() { return c2_poss_cards; }
+	std::vector<std::shared_ptr<Card>> GetC3PossCards() { return c3_poss_cards; }
 
 	//get,set
 	//Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }
@@ -93,12 +101,15 @@ private:
 	std::vector<std::shared_ptr<Card>> c1_deck_;
 	std::vector<std::shared_ptr<Card>> c2_deck_;
 	std::vector<std::shared_ptr<Card>> c3_deck_;
-	std::vector<std::shared_ptr<Card>> c4_deck_;
+
 
 	//std::vector<std::shared_ptr<Card>> all_card_; //全てのカード
 
 	std::vector<CardData*> all_card_data_; //全てのカードのCardData
 	std::vector<std::shared_ptr<Card>> all_card_; //全てのカード
+	std::vector<std::shared_ptr<Card>> c1_poss_cards;
+	std::vector<std::shared_ptr<Card>> c2_poss_cards;
+	std::vector<std::shared_ptr<Card>> c3_poss_cards;
 
 
 

@@ -17,14 +17,27 @@ void SceneDeckEdit::Update(float delta_time) {
 
 
 
+
 }
 
 void SceneDeckEdit::Render() {
 
-	for (int i = 0; i < cmgr_.GetC1Deck().size(); ++i) {
 
-		DrawStringEx(0, 0 + i * 20, -1, "%s", cmgr_.GetC1Deck()[i]->GetCardData()->GetCardName());
 
-	}
 
 }
+
+
+//==============================================================================
+//SceneDeckEditÇ≈égópÇ∑ÇÈä÷êî
+
+void SceneDeckEdit::SetDeckEditAlly() {
+
+
+
+
+
+
+
+}
+

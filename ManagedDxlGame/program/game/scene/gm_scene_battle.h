@@ -124,7 +124,9 @@ private:
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 
 
-	AllyDataManager* allydata_mgr_ = AllyDataManager::GetInstance();
+	AllyDataManager& allydata_mgr_ = AllyDataManager::GetInstane();
+
+
 	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
 
 	ObjBoard* obj_board_ = nullptr;

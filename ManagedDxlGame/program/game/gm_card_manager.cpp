@@ -523,55 +523,129 @@ void CardManager::LoadC1DeckFromCSV(const std::string& filepath) {
 
 	if (!all_card_.empty()) {
 
-		std::stringstream ss(filepath);
+		std::ifstream file(filepath);
+		if (!file.is_open()) {
+			std::cerr << "Error opening file: " << filepath << std::endl;
+			return;
+		}
+
 		std::string line;
 
 		// ヘッダ行をスキップ
-		std::getline(ss, line);
+		std::getline(file, line);
 
-		std::map<int, int> card_map;
-		while (std::getline(ss, line)) {
+		while (std::getline(file, line)) {
 			std::stringstream lineStream(line);
 			std::string cell;
 
 			// CardIDを取得
 			std::getline(lineStream, cell, ',');
-			int card_id = std::stoi(cell);
+			int cardID = std::stoi(cell);
 
 			// CardNumを取得
 			std::getline(lineStream, cell, ',');
-			int card_num = std::stoi(cell);
+			int cardNum = std::stoi(cell);
 
-			card_map[card_id] = card_num;
-		}
-
-		for (const auto& cardPtr : all_card_) {
-			int cardID = cardPtr->GetCardID();
-
-			if (card_map.find(cardID) != card_map.end()) {
-				int count = card_map[cardID];
-				for (int i = 0; i < count; i++) {
-					c1_deck_.push_back(cardPtr);
+			for (const auto& cardPtr : all_card_) {
+				if (cardPtr->GetCardData()->GetCardID() == cardID) {
+					for (int i = 0; i < cardNum; i++) {
+						// all_card_からのポインタのコピーをc1_deck_に追加
+						c1_deck_.push_back(cardPtr);
+					}
+					break;
 				}
 			}
-
 		}
+
+		file.close();
 	}
 
 }
 
 void CardManager::LoadC2DeckFromCSV(const std::string& filepath) {
 
+	if (!all_card_.empty()) {
 
+		std::ifstream file(filepath);
+		if (!file.is_open()) {
+			std::cerr << "Error opening file: " << filepath << std::endl;
+			return;
+		}
+
+		std::string line;
+
+		// ヘッダ行をスキップ
+		std::getline(file, line);
+
+		while (std::getline(file, line)) {
+			std::stringstream lineStream(line);
+			std::string cell;
+
+			// CardIDを取得
+			std::getline(lineStream, cell, ',');
+			int cardID = std::stoi(cell);
+
+			// CardNumを取得
+			std::getline(lineStream, cell, ',');
+			int cardNum = std::stoi(cell);
+
+			for (const auto& cardPtr : all_card_) {
+				if (cardPtr->GetCardData()->GetCardID() == cardID) {
+					for (int i = 0; i < cardNum; i++) {
+						// all_card_からのポインタのコピーをc1_deck_に追加
+						c2_deck_.push_back(cardPtr);
+					}
+					break;
+				}
+			}
+		}
+
+		file.close();
+	}
 
 
 }
 
 void CardManager::LoadC3DeckFromCSV(const std::string& filepath) {
 
+	if (!all_card_.empty()) {
 
+		std::ifstream file(filepath);
+		if (!file.is_open()) {
+			std::cerr << "Error opening file: " << filepath << std::endl;
+			return;
+		}
 
+		std::string line;
 
+		// ヘッダ行をスキップ
+		std::getline(file, line);
+
+		while (std::getline(file, line)) {
+			std::stringstream lineStream(line);
+			std::string cell;
+
+			// CardIDを取得
+			std::getline(lineStream, cell, ',');
+			int cardID = std::stoi(cell);
+
+			// CardNumを取得
+			std::getline(lineStream, cell, ',');
+			int cardNum = std::stoi(cell);
+
+			for (const auto& cardPtr : all_card_) {
+				if (cardPtr->GetCardData()->GetCardID() == cardID) {
+					for (int i = 0; i < cardNum; i++) {
+						// all_card_からのポインタのコピーをc1_deck_に追加
+						c3_deck_.push_back(cardPtr);
+					}
+					break;
+				}
+			}
+		}
+
+		file.close();
+	}
 
 }
 

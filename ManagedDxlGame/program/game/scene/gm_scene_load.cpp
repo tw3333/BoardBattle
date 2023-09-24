@@ -15,8 +15,8 @@ void SceneLoad::Initialzie() {
 	obj_mgr_.CreateObjSquares();
 	obj_mgr_.CreateObjEnemies();
 
-	amgr_->DebugLoadAllyData();
-	amgr_->DebugLoadAllyTexture();
+	amgr_.DebugLoadAllyData();
+	amgr_.DebugLoadAllyTexture();
 
 	emgr_->DebugLoadEnemyData();
 	emgr_->DebugLoadenemyTexture();
@@ -33,6 +33,8 @@ void SceneLoad::Initialzie() {
 	card_mgr_.CreateAllInitCard();
 
 	card_mgr_.LoadC1DeckFromCSV("csv/card/LoadC1Deck.csv");
+	card_mgr_.LoadC2DeckFromCSV("csv/card/LoadC2Deck.csv");
+	card_mgr_.LoadC3DeckFromCSV("csv/card/LoadC3Deck.csv");
 
 
 	anim_mgr_.CreateDebugAnim();
@@ -50,7 +52,7 @@ void SceneLoad::Update(float delta_time) {
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_1)) {
 		
-		if (amgr_->is_loaded_) {
+		if (amgr_.is_loaded_) {
 
 			smgr->ChengeScene(new SceneBattle());
 
@@ -60,7 +62,7 @@ void SceneLoad::Update(float delta_time) {
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_2)) {
 
-		if (amgr_->is_loaded_) {
+		if (amgr_.is_loaded_) {
 
 			smgr->ChengeScene(new SceneSelectPhase());
 
@@ -69,7 +71,7 @@ void SceneLoad::Update(float delta_time) {
 	}
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_3)) {
 
-		if (amgr_->is_loaded_) {
+		if (amgr_.is_loaded_) {
 
 			smgr->ChengeScene(new SceneDebugCardRoom());
 
@@ -78,7 +80,7 @@ void SceneLoad::Update(float delta_time) {
 	}
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_4)) {
 
-		if (amgr_->is_loaded_) {
+		if (amgr_.is_loaded_) {
 
 			smgr->ChengeScene(new SceneDeckEdit());
 
@@ -94,10 +96,10 @@ void SceneLoad::Update(float delta_time) {
 void SceneLoad::Render() {
 
 
-	if (!amgr_->is_loaded_) {
+	if (!amgr_.is_loaded_) {
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2, -1, "Loading...");
 	
-	}else if (amgr_->is_loaded_) {
+	}else if (amgr_.is_loaded_) {
 
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2, -1, "Load Finish!");
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 20, -1, "Push:[1]->Scenebattle");

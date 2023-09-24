@@ -31,11 +31,11 @@ public:
 
 private:
 
-	AllyDataManager* amgr_ = AllyDataManager::GetInstance();
+
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
 	TextureManager* tmgr_ = TextureManager::GetInstance();
 
-
+	AllyDataManager& amgr_ = AllyDataManager::GetInstane();
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 	CardManager& card_mgr_ = CardManager::GetInstance();
 	FontManager& font_mgr_ = FontManager::GetInstance();
