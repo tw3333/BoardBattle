@@ -1,6 +1,8 @@
 #pragma once
 #include "gm_scene_base.h"
 
+#include "../gm_card_manager.h"
+
 class SceneDeckEdit : public SceneBase {
 public:
 
@@ -12,11 +14,13 @@ public:
 	void Render() override;
 
 
+
+
 private:
 
 	
 
-
+	CardManager& cmgr_ = CardManager::GetInstance();
 
 
 

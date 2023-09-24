@@ -1,7 +1,9 @@
 #include "gm_scene_load.h"
+
 #include "../../dxlib_ext/dxlib_ext.h"
 #include "gm_scene_battle.h"
 #include "gm_scene_debug_card_room.h"
+#include "gm_scene_deck_edit.h"
 
 void SceneLoad::Initialzie() {
 
@@ -27,10 +29,11 @@ void SceneLoad::Initialzie() {
 	card_mgr_.LoadCardRangeFromCSV("csv/card/LoadCardRange.csv");
 	card_mgr_.LoadAllCardTargetFromCSV("csv/card/LoadCardTarget2.csv");
 	card_mgr_.LoadAllCardEffectFromCSV("csv/card/LoadCardEffect2.csv");
-
-
-	card_mgr_.CreateAllInitCard();
 	card_mgr_.CombineCardData();
+	card_mgr_.CreateAllInitCard();
+
+	card_mgr_.LoadC1DeckFromCSV("csv/card/LoadC1Deck.csv");
+
 
 	anim_mgr_.CreateDebugAnim();
 
@@ -73,6 +76,15 @@ void SceneLoad::Update(float delta_time) {
 		}
 
 	}
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_4)) {
+
+		if (amgr_->is_loaded_) {
+
+			smgr->ChengeScene(new SceneDeckEdit());
+
+		}
+
+	}
 
 
 
@@ -91,6 +103,7 @@ void SceneLoad::Render() {
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 20, -1, "Push:[1]->Scenebattle");
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 40, -1, "Push:[2]->SceneSelectPhase");
 		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 60, -1, "Push:[3]->SceneDebugCardRoom");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2, DXE_WINDOW_HEIGHT / 2 + 80, -1, "Push:[4]->SceneDeckEdit");
 
 	}
 

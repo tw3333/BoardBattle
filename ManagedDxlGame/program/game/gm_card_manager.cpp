@@ -521,9 +521,42 @@ void CardManager::CreateAllInitCard() {
 
 void CardManager::LoadC1DeckFromCSV(const std::string& filepath) {
 
+	if (!all_card_.empty()) {
 
+		std::stringstream ss(filepath);
+		std::string line;
 
+		// ヘッダ行をスキップ
+		std::getline(ss, line);
 
+		std::map<int, int> card_map;
+		while (std::getline(ss, line)) {
+			std::stringstream lineStream(line);
+			std::string cell;
+
+			// CardIDを取得
+			std::getline(lineStream, cell, ',');
+			int card_id = std::stoi(cell);
+
+			// CardNumを取得
+			std::getline(lineStream, cell, ',');
+			int card_num = std::stoi(cell);
+
+			card_map[card_id] = card_num;
+		}
+
+		for (const auto& cardPtr : all_card_) {
+			int cardID = cardPtr->GetCardID();
+
+			if (card_map.find(cardID) != card_map.end()) {
+				int count = card_map[cardID];
+				for (int i = 0; i < count; i++) {
+					c1_deck_.push_back(cardPtr);
+				}
+			}
+
+		}
+	}
 
 }
 
