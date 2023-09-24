@@ -41,7 +41,7 @@ void SceneDebugCardRoom::Render() {
 
 		if (!target->GetCardTargetList().empty()) {
 
-			DrawStringEx(1000, 0 + cnt * 20, -1, "Targetあり！");
+			DrawStringEx(1000, 0 + cnt * 20, -1, "Target[%dコ]あり！",target->GetCardTargetList().size());
 
 			cnt++;
 		}
@@ -55,14 +55,14 @@ void SceneDebugCardRoom::Render() {
 
 	for (auto range : cmgr_.GetAllCardData()) {
 		
-		if (!range->GetCardRangeList().empty()) {
+		if (!range->GetCardEffectList().empty()) {
 
-			DrawStringEx(1200, 0 + cnt2 * 20, -1, "Rangeあり！");
+			DrawStringEx(1200, 0 + cnt2 * 20, -1, "Effect[%dコ]あり！",range->GetCardEffectList().size());
 
 			cnt2++;
 		}
 		else {
-			DrawStringEx(1200, 0 + cnt2 * 20, -1 , "Rangeなし！");
+			DrawStringEx(1200, 0 + cnt2 * 20, -1 , "Efftctなし！");
 
 			cnt2++;
 		}

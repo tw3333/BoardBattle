@@ -4,6 +4,8 @@
 #include <string>
 
 #include "gm_card_target.h"
+#include "gm_card_effect.h"
+#include "gm_card_range.h"
 
 //memo
 //Cardクラスのインスタンスを生成、保持、管理するクラス
@@ -62,7 +64,9 @@ public:
 	std::vector<std::shared_ptr<Card>> GetDebugDeck() { return debug_deck_;	}
 	std::vector<CardData*> GetAllCardData() { return all_card_data_; }
 	std::vector<std::shared_ptr<Card>> GetAllCard() { return all_card_; }
+
 	std::vector<std::shared_ptr<CardTarget>> GetAllCardTarget() { return all_card_target_; }
+	std::vector<std::shared_ptr<CardEffect>> GetAllCardEffect() { return all_card_effect_; }
 
 	//get,set
 	//Card* getCardDateAtIndex(int index) const { return debug_card_data_[index]; }

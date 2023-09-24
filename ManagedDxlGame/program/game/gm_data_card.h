@@ -26,7 +26,7 @@ public:
 	std::string GetCardExplanation() { return card_explanation_; }
 	std::shared_ptr<dxe::Texture> GetCardTexture() const { return card_texture_; }
 	
-	std::vector<std::shared_ptr<CardEffect>>GetCardEffectList() { return card_effect_list_; }
+	std::vector<std::shared_ptr<CardEffect>> GetCardEffectList() { return card_effect_list_; }
 	std::vector<std::shared_ptr<CardRange>> GetCardRangeList() { return card_range_list_; }
 	std::vector<std::shared_ptr<CardTarget>> GetCardTargetList() { return card_target_list_; }
 

@@ -491,6 +491,14 @@ void CardManager::CombineCardData() {
 				}
 			}
 
+			for (auto &cardeffect : all_card_effect_) {
+
+				if (carddata->GetCardID() == cardeffect->GetCardID()) {
+					carddata->AddCardEffect(cardeffect);
+				}
+
+			}
+
 		}
 
 	}
@@ -499,13 +507,37 @@ void CardManager::CombineCardData() {
 
 void CardManager::CreateAllInitCard() {
 
+	if (!all_card_data_.empty()) {
 
-	for (auto data : all_card_data_) {
+		for (auto data : all_card_data_) {
 
-		all_card_.emplace_back(std::make_shared<Card>(Card(data)));
+			all_card_.emplace_back(std::make_shared<Card>(Card(data)));
 
 
+		}
 	}
+
+}
+
+void CardManager::LoadC1DeckFromCSV(const std::string& filepath) {
+
+
+
+
+
+}
+
+void CardManager::LoadC2DeckFromCSV(const std::string& filepath) {
+
+
+
+
+}
+
+void CardManager::LoadC3DeckFromCSV(const std::string& filepath) {
+
+
+
 
 
 }

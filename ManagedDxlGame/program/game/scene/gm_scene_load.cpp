@@ -26,6 +26,7 @@ void SceneLoad::Initialzie() {
 	//card_mgr_.LoadCardTargetFromCSV("csv/card/LoadCardTarget.csv");
 	card_mgr_.LoadCardRangeFromCSV("csv/card/LoadCardRange.csv");
 	card_mgr_.LoadAllCardTargetFromCSV("csv/card/LoadCardTarget2.csv");
+	card_mgr_.LoadAllCardEffectFromCSV("csv/card/LoadCardEffect2.csv");
 
 
 	card_mgr_.CreateAllInitCard();
