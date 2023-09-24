@@ -6,6 +6,9 @@
 
 
 void SceneDeckEdit::Initialzie() {
+	
+	deck_edit_ally_data_ = ally_data_mgr_.GetDeckEditAllyData();
+	ui_deck_edit_ = std::make_shared<UIDeckEdit>();
 
 
 
@@ -15,14 +18,14 @@ void SceneDeckEdit::Initialzie() {
 
 void SceneDeckEdit::Update(float delta_time) {
 
-
+	ui_deck_edit_->Update(delta_time);
 
 
 }
 
 void SceneDeckEdit::Render() {
 
-
+	ui_deck_edit_->Render();
 
 
 }

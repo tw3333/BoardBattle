@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "gm_unit.h"
 #include "gm_object_ally.h"
 #include "gm_data_ally.h"
@@ -14,7 +15,7 @@
 class UnitAlly : public Unit {
 public:
 
-	UnitAlly(AllyData* ally_data, int row, int col) {
+	UnitAlly(std::shared_ptr<AllyData> ally_data , int row, int col) {
 	
 		ally_data_ = ally_data;
 		
@@ -59,7 +60,8 @@ public:
 
 	
 	//getter
-	AllyData* GetAllyData() { return ally_data_; }
+	//AllyData* GetAllyData() { return ally_data_; }
+	std::shared_ptr<AllyData> GetAllyData() { return ally_data_; }
 	ObjAlly* GetObj() {
 		if (!obj_) {
 			DrawStringEx(500,0,-1,"ID%dのObjがないよ",ally_data_->GetAllyDataID());
@@ -132,7 +134,8 @@ private:
 
 	bool is_turn_ally_ = false;
 
-	AllyData* ally_data_ = nullptr;
+	//AllyData* ally_data_ = nullptr;
+	std::shared_ptr<AllyData> ally_data_ = nullptr;
 	ObjAlly* obj_ = nullptr;
 
 	//ステータス

@@ -31,6 +31,7 @@ void SceneLoad::Initialzie() {
 	card_mgr_.LoadAllCardEffectFromCSV("csv/card/LoadCardEffect2.csv");
 	card_mgr_.CombineCardData();
 	card_mgr_.CreateAllInitCard();
+	card_mgr_.SeparetePossCards();
 
 	card_mgr_.LoadC1DeckFromCSV("csv/card/LoadC1Deck.csv");
 	card_mgr_.LoadC2DeckFromCSV("csv/card/LoadC2Deck.csv");

@@ -33,8 +33,8 @@ public:
 
 	bool is_loaded_ = false;
 
-	AllyData* GetAllyDataAtID(int id) {
-		AllyData* allydata = nullptr;
+	std::shared_ptr<AllyData> GetAllyDataAtID(int id) {
+		std::shared_ptr<AllyData> allydata = nullptr;
 
 		for (auto ad : all_ally_data_) {
 			if (ad->GetAllyDataID() == id) { allydata = ad; }

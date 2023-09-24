@@ -649,5 +649,26 @@ void CardManager::LoadC3DeckFromCSV(const std::string& filepath) {
 
 }
 
+void CardManager::SeparetePossCards() {
+
+	for (auto card : all_card_) {
+
+		if (card->GetCardData()->GetPossAllyID() == 1) {
+
+			c1_poss_cards.push_back(card);
+
+		}
+		else if (card->GetCardData()->GetPossAllyID() == 2) {
+			c2_poss_cards.push_back(card);
+
+		}
+		else if (card->GetCardData()->GetPossAllyID() == 3) {
+			c3_poss_cards.push_back(card);
+		}
+
+	}
+
+}
+
 
 

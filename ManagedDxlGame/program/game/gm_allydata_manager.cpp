@@ -44,5 +44,26 @@ void AllyDataManager::DebugLoadAllyTexture() {
 
 }
 
+std::shared_ptr<AllyData> AllyDataManager::GetDeckEditAllyData() {
+
+	std::shared_ptr<AllyData> ret = nullptr;
+
+	if (!all_ally_data_.empty()) {
+
+		for (auto ally : all_ally_data_) {
+
+			if (ally->GetIsDeckEditPiked()) {
+
+				ret = ally;
+			}
+
+		}
+
+	}
+
+
+	return ret;
+}
+
 
 

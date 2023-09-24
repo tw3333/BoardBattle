@@ -5,6 +5,7 @@
 #include "../gm_allydata_manager.h"
 #include "../gm_unit_ally.h"
 #include "../gm_ui_card.h"
+#include "../gm_ui_deck_edit.h"
 
 
 class SceneDeckEdit : public SceneBase {
@@ -28,7 +29,8 @@ private:
 	CardManager& card_mgr_ = CardManager::GetInstance();
 	AllyDataManager& ally_data_mgr_ = AllyDataManager::GetInstane();
 
-
+	//UIŠÖ˜A’è”
+	std::shared_ptr<UIDeckEdit> ui_deck_edit_ = nullptr;
 	std::vector<std::shared_ptr<UICard>> use_all_card_ui;
 	std::vector<std::shared_ptr<UICard>> use_deck_card_ui;
 
