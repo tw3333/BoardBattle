@@ -16,6 +16,19 @@ void UIDeckEdit::Render() {
 	//rightbox
 	DrawBox(rightbox_upper_left_x, rightbox_upper_left_y, rightbox_lower_right_x, rightbox_lower_right_y, rightbox_color, true);
 
+	
 
+
+
+
+
+}
+
+void UIDeckEdit::RenderChoiceCardUI(std::shared_ptr<Card> choice_card) {
+
+	if (choice_card) {
+		
+
+	}
 
 }

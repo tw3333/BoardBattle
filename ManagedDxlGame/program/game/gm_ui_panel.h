@@ -10,6 +10,9 @@
 class UIPanel : public UIComponent{
 public:
 	
+	UIPanel(){}
+
+	//引数つきコンストラクタ
 	//arg1,2...描写したい左上頂点座標
 	//arg3,4...指定した座標からの横幅と高さ
 	UIPanel(int x, int y, int width, int height){	
@@ -31,6 +34,8 @@ public:
 	int GetPosY() { return y_; }
 	int GetWidth() { return width_; }
 	int GetHeight() { return height_; }
+	void SetSize() { width_ = width_; height_ = height_; }
+
 
 	//easing用の関数
 	void SetEasingFunction(std::unique_ptr<EasingFunction> easingFunction) { easing_function_ = std::move(easingFunction); };

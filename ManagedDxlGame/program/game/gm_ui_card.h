@@ -28,6 +28,7 @@ public:
 	void SetIsCardUp(bool flag) { card_up_ = flag; }
 	bool GetIsCardUp() { return card_up_; }
 	void SetPos(int pos_x, int pos_y) { pos_x_ = pos_x; pos_y_ = pos_y; }
+	void SetSize(int width, int height) { width_ = width; height_ = height; }
 	int GetStartPosX() { return pos_x_; }
 	int GetEndPosX() { return pos_x_ + width_; }
 	bool IsMouseInside(int mx, int my);

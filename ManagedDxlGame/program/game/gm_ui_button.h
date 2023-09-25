@@ -10,6 +10,9 @@
 class UIButton : public UIPanel {
 public:
 
+	UIButton() {}
+
+	//引数つきコンストラクタ
 	UIButton(int x, int y, int width, int height ) : UIPanel(x,y,width,height) {
 	
 	}
