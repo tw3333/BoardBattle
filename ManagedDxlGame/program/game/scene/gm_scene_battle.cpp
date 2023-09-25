@@ -111,11 +111,18 @@ void SceneBattle::Initialzie() {
 
 	board_->Update(0);
 
+	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
 	anim_mgr_.GetDebugAnim()->setCurrentAnim("none");
-	
+	anim_mgr_.GetDebugAnim()->pos_ = unit_enemy_->GetObj()->pos_;
 
 
 	//card_play_->SetCameraToCardEffectAnim(camera_);
+	for (auto& anim : anim_mgr_.GetDebugAnimList()) {
+		anim->SetCamera(camera_);
+		anim->setCurrentAnim("debug_anim");
+	}
+
+	//anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 
 
 }
@@ -159,16 +166,20 @@ void SceneBattle::Update(float delta_time) {
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
 
-	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
-	anim_mgr_.GetDebugAnim()->Update(delta_time);
 
+	anim_mgr_.GetDebugAnim()->Update(delta_time);
+	for (auto &anim : anim_mgr_.GetDebugAnimList()) {
+		anim->Update(delta_time);
+	}
+	
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
+		anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
+	}
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
-		anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 	
-		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0);
-
-		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->play();
+		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
+		//anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0.0);
 	}
 
 	//phase_.update(delta_time);
@@ -209,6 +220,11 @@ void SceneBattle::Render() {
 	card_play_->Render(camera_);
 
 	anim_mgr_.GetDebugAnim()->Render(camera_);
+
+	for (auto& anim : anim_mgr_.GetDebugAnimList()) {
+		anim->Render(camera_);
+	}
+
 
 	ui_notice_target_box_->Render();
 }

@@ -28,6 +28,14 @@ void ObjectManager::CreateDebugCardAnimSprites() {
 	//Å’á‚Å‚à100ƒR•K—v‚¾‚Æ‚¢‚¤‚±‚Æ‚É‚È‚é‚ª‚»‚ê‚Í‚Ç‚¤‚©
 	//
 	for (int i = 0; i < 100; ++i) {
+		debug_card_anim_sprites_.push_back(std::make_shared<AnimSprite3D>());
+	}
+
+	for (auto &anim : debug_card_anim_sprites_) {
+
+
+		anim->regist(100,100,"debug_anim","graphics/effect/anim_shild.png",tnl::SeekUnit::ePlayMode::REPEAT,2.0,10,192,0,2);
+
 
 	}
 

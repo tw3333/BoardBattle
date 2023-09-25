@@ -51,21 +51,42 @@ void AnimSprite3D::Update(float delta_time) {
 	}
 	else if(!anim_current_->seek_->GetIsPlaying())  {
 
-		for (auto p : this->parts_) {
+		for (auto &p : parts_) {
 			p->is_render_ = false;
 		}
 	}
 
+		
+	// 更新前のフレームを非表示にする
+	//int idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
+	//parts_[idx]->is_render_ = false;
 
+	//// アニメーションのフレームを更新
+	//anim_current_->seek_->update(delta_time);
+
+	//// 新しいフレームを表示状態にする
+	//idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
+	//parts_[idx]->is_render_ = true;
+
+	////// パーツ座標の更新
+	//parts_[idx]->mesh_->pos_ = pos_;
+	//parts_[idx]->mesh_->rot_ = tnl::Quaternion::LookAtAxisY(billboard_target_->pos_, billboard_target_->target_);
+	//parts_[idx]->mesh_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
+
+	//if (!anim_current_->seek_->GetIsPlaying()) {
+	//	for (auto &parts : parts_) {
+	//		parts->is_render_ = false;
+	//	}
+	//}
 
 	//// パーツ座標の更新
 	//parts_[idx]->mesh_->pos_ = pos_;
 	//parts_[idx]->mesh_->rot_ = tnl::Quaternion::LookAtAxisY(billboard_target_->pos_, billboard_target_->target_);
 	//parts_[idx]->mesh_->rot_ = tnl::Quaternion::RotationAxis({ 1,0,0 }, tnl::ToRadian(20));
 
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
-		this->AnimIsRender(false);
-	}
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
+	//	this->AnimIsRender(false);
+	//}
 
 
 }

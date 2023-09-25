@@ -432,6 +432,9 @@
     <ClInclude Include="program\library\tnl_util.h" />
     <ClInclude Include="program\library\tnl_vector.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

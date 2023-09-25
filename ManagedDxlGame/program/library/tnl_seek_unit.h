@@ -67,6 +67,9 @@ namespace tnl {
 		// 停止
 		inline void stop() { is_playing_ = false; }
 
+		void AnimEnd();
+		void CardAnimPlay();
+
 		// リスタート( 始めから再生 )
 		void restart();
 

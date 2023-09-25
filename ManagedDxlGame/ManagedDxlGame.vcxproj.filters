@@ -870,4 +870,7 @@
       <Filter>program\[003] game\card</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
 </Project>

@@ -39,6 +39,7 @@ void SceneLoad::Initialzie() {
 
 
 	anim_mgr_.CreateDebugAnim();
+	obj_mgr_.CreateDebugCardAnimSprites();
 
 	sound_mgr_.CreateBattleBGMList();
 	sound_mgr_.CreateCardSEList();

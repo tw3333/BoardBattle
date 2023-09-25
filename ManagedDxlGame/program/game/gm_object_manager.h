@@ -53,6 +53,7 @@ public:
 	ObjSquare* GetSquaresAtIndex(int row, int col) { return obj_squares_[row][col]; }
 
 	void CreateDebugCardAnimSprites();
+	std::vector<std::shared_ptr<AnimSprite3D>> GetDebugCardAnimSprites() { return debug_card_anim_sprites_; }
 
 
 	

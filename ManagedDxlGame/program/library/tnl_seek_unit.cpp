@@ -2,6 +2,28 @@
 
 namespace tnl {
 
+	//twr
+	void SeekUnit::AnimEnd() {
+
+		is_playing_ = false;
+
+	/*	for () {
+
+		}*/
+
+	}
+	void SeekUnit::CardAnimPlay() {
+
+		if (play_dir_ == ePlayDir::FORWARD) {
+			jumpSeekRate(0.0);
+		}
+		else {
+			jumpSeekRate(1.0);
+		}
+		is_playing_ = true;
+
+
+	}
 	//-------------------------------------------------------------------------------------------------------
 	void SeekUnit::restart() {
 		setPlayState(play_mode_, play_dir_);
@@ -151,6 +173,8 @@ namespace tnl {
 		}
 		return frame;
 	}
+
+
 
 
 }

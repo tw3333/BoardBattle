@@ -15,9 +15,7 @@ public:
 	}
 
 	virtual void Update(float delta_time);
-	virtual void Render(
-		
-		dxe::Camera* camera);
+	virtual void Render(dxe::Camera* camera);
 
 
 	tnl::Vector3 pos_;
