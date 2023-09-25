@@ -34,7 +34,8 @@ public:
 	int GetPosY() { return y_; }
 	int GetWidth() { return width_; }
 	int GetHeight() { return height_; }
-	void SetSize() { width_ = width_; height_ = height_; }
+	void SetSize(int width, int height) { width_ = width; height_ = height_ = height; }
+	void SetPos(int x, int y) { x_ = x; y_ = y; }
 
 
 	//easing—p‚ÌŠÖ”

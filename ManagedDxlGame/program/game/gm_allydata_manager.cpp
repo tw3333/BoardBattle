@@ -15,6 +15,8 @@ void AllyDataManager::DebugLoadAllyData() {
 	all_ally_data_[2]->SetObj(obj_mgr_.GetObjAllyAtID(3));
 	all_ally_data_[3]->SetObj(obj_mgr_.GetObjAllyAtID(4));
 
+	all_ally_data_[0]->SetIsDeckEditPicked(true);
+
 
 
 	is_loaded_ = true;
@@ -63,6 +65,31 @@ std::shared_ptr<AllyData> AllyDataManager::GetDeckEditAllyData() {
 
 
 	return ret;
+}
+
+std::vector<std::shared_ptr<AllyData>> AllyDataManager::GetPartyPickAllyData()
+{
+
+	if (!all_ally_data_.empty()) {
+
+		std::vector<std::shared_ptr<AllyData>> ret;
+
+
+		for (auto ally : all_ally_data_) {
+
+			if (ally->GetIsPartyPicked()) {
+
+				ret.push_back(ally);
+
+			}
+
+		}
+
+
+
+		return ret;	
+	}
+
 }
 
 

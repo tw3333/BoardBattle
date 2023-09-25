@@ -431,6 +431,9 @@
     <ClCompile Include="program\game\gm_ui_deck_edit.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_deck.cpp">
+      <Filter>program\[003] game\card</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -862,6 +865,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_deck_edit.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_deck.h">
+      <Filter>program\[003] game\card</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

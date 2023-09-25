@@ -28,6 +28,7 @@ public:
 	void DebugLoadAllyData();
 	void DebugLoadAllyTexture();
 	std::shared_ptr<AllyData> GetDeckEditAllyData();
+	std::vector<std::shared_ptr<AllyData>> GetPartyPickAllyData();
 	
 
 

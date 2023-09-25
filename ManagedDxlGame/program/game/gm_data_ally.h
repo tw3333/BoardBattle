@@ -5,6 +5,7 @@
 
 #include "gm_object.h"
 #include "gm_object_ally.h"
+#include "gm_card.h"
 
 //memo
 //Allyの全体データを格納するクラス
@@ -73,11 +74,12 @@ private:
 	int speed_ = 0;
 	
 
-	//状態
+	//pick
 	bool is_party_picked_ = false;
 	bool is_deck_edit_picked_ = false;
 	
 	//Card
+	std::vector<std::shared_ptr<Card>> deck_;
 
 
 	//画像パス

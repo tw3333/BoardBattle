@@ -217,6 +217,7 @@
     <ClCompile Include="program\game\gm_card_range_upper_right.cpp" />
     <ClCompile Include="program\game\gm_card_renge_self.cpp" />
     <ClCompile Include="program\game\gm_card_target.cpp" />
+    <ClCompile Include="program\game\gm_deck.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />
@@ -340,6 +341,7 @@
     <ClInclude Include="program\game\gm_data_enemy.h" />
     <ClInclude Include="program\game\gm_data_scene_battle.h" />
     <ClInclude Include="program\game\gm_data_sound.h" />
+    <ClInclude Include="program\game\gm_deck.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
     <ClInclude Include="program\game\gm_enemy_act.h" />
     <ClInclude Include="program\game\gm_enemy_behavior_strategy.h" />

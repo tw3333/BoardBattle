@@ -8,8 +8,10 @@
 void SceneDeckEdit::Initialzie() {
 	
 	deck_edit_ally_data_ = ally_data_mgr_.GetDeckEditAllyData();
-	ui_deck_edit_ = std::make_shared<UIDeckEdit>();
 
+	ui_deck_edit_ = std::make_shared<UIDeckEdit>();
+	ui_deck_edit_->SetDeckEditAlly(ally_data_mgr_.GetDeckEditAllyData());
+	ui_deck_edit_->Init();
 
 
 
