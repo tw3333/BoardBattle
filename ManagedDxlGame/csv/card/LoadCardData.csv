@@ -25,9 +25,9 @@ SeCardID,PossAllyID,Cost,Name,Explanation,Texture
 23,3,3,シールドバッシュ,指定した敵(1)に3ダメージ。１マス遠ざける,graphics/card/c3/23.png
 24,3,3,シルド,シールド値5を得る,graphics/card/c3/24.png
 25,3,4,挑発,タウント上昇,graphics/card/c3/25.png
-26,3,5,シルダ,シールド値10を得る,graphics/card/c3/26.png
+26,3,5,シルダ,シールド値10を得る,graphics/card/c3/24.png
 27,3,6,咆哮,指定した敵(1)をスタンにする,graphics/card/c3/27.png
-28,3,7,シルガ,シールド値15を得る,graphics/card/c3/28.png
+28,3,7,シルガ,シールド値15を得る,graphics/card/c3/24.png
 29,3,8,盾神の加護,範囲内の味方とシールド値を均等に分け合う,graphics/card/c3/29.png
 30,3,10,最後の砦,自身を２ターンスネアにする。シールド値30を得る,graphics/card/c3/30.png
 31,0,1,犬,指定したマス(1)に犬を設置,graphics/card/c0/31.png

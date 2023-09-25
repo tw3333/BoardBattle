@@ -51,6 +51,7 @@ public:
 	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
 
 	void SetPartyUnits(std::vector<UnitAlly*> party_units) { party_units_ = party_units; }
+
 	std::vector<UnitAlly*> GetPartyUnits() { return party_units_; }
 	void SetEnemyUnits(std::vector<UnitEnemy*> enemy_units) { enemy_units_ = enemy_units; }
 	std::vector<UnitEnemy*> GetEnemyUnits() { return enemy_units_; }
@@ -87,6 +88,8 @@ private:
 	std::vector<UnitAlly*> party_units_in_board_;
 	std::vector<UnitEnemy*> enemy_units_in_board_;
 	std::vector<Unit*> all_units_in_board_;
+
+
 
 
 

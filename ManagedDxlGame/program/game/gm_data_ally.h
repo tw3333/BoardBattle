@@ -18,7 +18,7 @@ public:
 		ally_id_ = ally_id;
 		name_ = name;
 		hp_ = hp;
-		cost_ = cost;
+		card_cost_ = cost;
 		move_cost_ = move_cost;
 		speed_ = speed;
 	}
@@ -31,7 +31,7 @@ public:
 	void setImgBattlePath(std::string path) { img_battle_path = path; }
 
 	int GetHp() { return hp_; }
-	int GetCost() { return cost_; }
+	int GetCost() { return card_cost_; }
 	int GetMoveCost() { return move_cost_; }
 	int GetSpeed() { return speed_; }
 
@@ -69,7 +69,7 @@ private:
 
 	int hp_ = 0;
 	
-	int cost_ = 0;
+	int card_cost_ = 0;
 	int move_cost_ = 0;
 	int speed_ = 0;
 	

@@ -85,8 +85,6 @@ std::vector<std::shared_ptr<AllyData>> AllyDataManager::GetPartyPickAllyData()
 
 		}
 
-
-
 		return ret;	
 	}
 
