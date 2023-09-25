@@ -3,6 +3,8 @@
 #include "gm_object_enemy.h"
 #include "gm_object_square.h"
 #include "gm_object_move_select_flame.h"
+#include "gm_anim_sprite3d.h"
+
 
 
 //memo
@@ -50,6 +52,9 @@ public:
 	ObjMoveSelectFlame* GetObjMoveSelectFlame() { return obj_move_select_flame_; }
 	ObjSquare* GetSquaresAtIndex(int row, int col) { return obj_squares_[row][col]; }
 
+	void CreateDebugCardAnimSprites();
+
+
 	
 private:
 	
@@ -61,6 +66,8 @@ private:
 	std::vector<ObjAlly*> obj_allies_;
 	std::vector<ObjEnemy*> obj_enemies_;
 
+	std::vector<std::shared_ptr<AnimSprite3D>> card_anim_sprites_;
+	std::vector<std::shared_ptr<AnimSprite3D>> debug_card_anim_sprites_;
 
 
 

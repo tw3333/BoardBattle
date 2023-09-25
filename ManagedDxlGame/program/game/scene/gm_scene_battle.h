@@ -70,7 +70,7 @@ public:
 
 	//
 	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal);
-#
+
 
 
 	bool PhaseInitialTurnCal(const float delta_time);
@@ -78,6 +78,7 @@ public:
 	bool ResetActedCal(const float delta_time);
 	bool PhaseAllyTurn(const float delta_time);
 	bool PhaseEnemyTurn(const float delta_time);
+	bool PhaseBattleEffectProc(const float delta_time);
 
 
 	bool PhasePlayerActionMove(const float delta_time);

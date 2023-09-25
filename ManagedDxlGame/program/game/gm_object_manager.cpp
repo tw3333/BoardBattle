@@ -3,6 +3,8 @@
 
 
 
+
+
 //ObjSquare‚ğì¬‚µ‚Äpool
 void ObjectManager::CreateObjSquares() {
 
@@ -18,6 +20,20 @@ void ObjectManager::CreateObjSquares() {
 
 
 	obj_move_select_flame_ = ObjMoveSelectFlame::Create();
+}
+
+void ObjectManager::CreateDebugCardAnimSprites() {
+
+
+	//Å’á‚Å‚à100ƒR•K—v‚¾‚Æ‚¢‚¤‚±‚Æ‚É‚È‚é‚ª‚»‚ê‚Í‚Ç‚¤‚©
+	//
+	for (int i = 0; i < 100; ++i) {
+
+	}
+
+
+
+
 }
 
 

@@ -443,6 +443,25 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 }
 
 
+//UnitのもつBattleEffectの処理関数
+//各Unitのターン開始前に呼び出される
+bool SceneBattle::PhaseBattleEffectProc(const float delta_time) {
+
+	if (turn_ally_ && !turn_enemy_) {
+
+
+
+	}
+
+
+
+
+
+
+	return true;
+}
+
+
 //Move実装
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
