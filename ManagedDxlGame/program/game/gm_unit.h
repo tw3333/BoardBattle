@@ -44,7 +44,8 @@ public:
 	GameObject* GetUnitObj() { return unit_obj_; }
 	std::vector<BattleState>& GetBattleState() { return state_; }
 	void AddBattleState(BattleState state) { state_.emplace_back(state); }
-	void DecreaseShieldValue();
+
+	void DecreaseShieldValue(int value) { (std::max)(0, shield_value_ - value); }
 	void AddShieldValue(int value) { shield_value_ += value; }
 
 
