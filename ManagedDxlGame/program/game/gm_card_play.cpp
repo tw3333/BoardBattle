@@ -251,6 +251,12 @@ void CardPlay::EffectExecute()
 //ƒJ[ƒh‚ÌŒø‰Ê‚ğÀs
 void CardPlay::PlayCardExecute(Board* board) {
 
+	//if (anim_manager_.GetDebugAnim()->getCurrentAnimSeekUnit()->GetIsPlaying()) {
+	//	return;
+	//}
+
+
+
 	if (play_card_ && turn_ally_) {
 		
 		//ref_num‚ªˆê’v‚µ‚½Target‚ÉŠi”[‚³‚ê‚Ä‚¢‚éUnit‚ÉEffect
@@ -262,9 +268,23 @@ void CardPlay::PlayCardExecute(Board* board) {
 
 					//a->Effect(b->GetTargetUnits());
 					a->EffectExcute(b->GetTargetSquaresPos(), board);
+				
 				}
 			}
 		}
+
+		//Anim‚ğÄ¶‚·‚éÀ•W‚ğİ’è
+		for (auto &target : play_card_->GetCardData()->GetCardTargetList()) {
+
+			for (auto &square : target->GetTargetSquaresPos()) {
+
+				anim_manager_.GetDebugAnim()->SetObjPosToSquarePos(square.row, square.col);
+
+			}
+		}
+
+		anim_manager_.GetDebugAnim()->CardAnimPlay(play_card_->GetCardData()->debug_anim_name_);
+
 
 		//CardTarge‚ÉŠi”[‚µ‚½SquarePos‚ğƒŠƒZƒbƒg
 		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {

@@ -1,5 +1,33 @@
 #include "gm_anim_sprite3d.h"
 
+void AnimSprite3D::CardAnimPlay(const std::string& anim_name) {
+
+	int idx = 0;
+
+	//// これまで表示していたアニメーションを非表示にする
+	//if (anim_current_) {
+	//	anim_current_->seek_->stop();
+	//	idx = anim_current_->parts_start_index_ + anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
+	//	parts_[idx]->is_render_ = false;
+	//}
+
+	// 現在のアニメーションを更新して再生
+	anim_current_ = anims_[anim_name];
+	//idx = anim_current_->parts_start_index_;
+	anim_current_->seek_->jumpSeekFrame(0);
+
+	for (int i = 0; i < anim_current_->seek_->getTotalFrameNum(); ++i) {
+		parts_[idx + i]->mesh_->setAlpha(alpha_);
+		parts_[idx + i]->mesh_->setBlendMode(dxlib_blend_mode_);
+		parts_[idx + i]->mesh_->setMtrlEmissive(mtrl_emmisive_);
+	}
+
+	idx += anim_current_->seek_->getSeekFrame(tnl::SeekUnit::eFrameType::CURRENT);
+	parts_[idx]->is_render_ = true;
+	anim_current_->seek_->restart();
+
+}
+
 //--------------------------------------------------------------------------------------------------------
 void AnimSprite3D::setCurrentAnim(const std::string& anim_name) {
 	
@@ -91,6 +119,20 @@ void AnimSprite3D::Update(float delta_time) {
 
 }
 
+void AnimSprite3D::SetObjPosToSquarePos(int row, int col) {
+
+	int w1 = ((DXE_WINDOW_WIDTH / 10) * 8) / 10;
+	int h1 = ((DXE_WINDOW_HEIGHT / 10) * 8) / 10;
+
+	int board_w = (DXE_WINDOW_WIDTH / 10) * 8;
+	int board_h = (DXE_WINDOW_HEIGHT / 10) * 8;
+
+	this->pos_.y = 50;
+	this->pos_.z = board_h - (h1 / 2) - (h1) * row -10;
+	this->pos_.x = (w1 / 2) + ((w1)*col);
+
+}
+
 //--------------------------------------------------------------------------------------------------------
 void AnimSprite3D::regist(
 	const float plane_width
@@ -117,6 +159,7 @@ void AnimSprite3D::regist(
 	// フレーム毎にパーツを作成
 	//float sv = (float)frame_start_num_h / (float)img_h;
 	//float ev = (float)(frame_start_num_h + frame_size_h) / (float)img_h;
+
 
 	uint32_t frames_per_row = frame_num / row_num;
 

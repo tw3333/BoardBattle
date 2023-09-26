@@ -34,11 +34,16 @@ public:
 
 	void Update(float delta_time) override;
 
+	//SquareにあったPosへ設置
+	void SetObjPosToSquarePos(int row, int col);
+
 	//Cameraのセット
 	void SetCamera(dxe::Camera* camera) { billboard_target_ = camera; }
 
 	void AnimIsRender(bool flag) { for (auto& p : this->parts_) { p->is_render_ = flag; } }
 	void Play(); //Animの最後が残る対策。後で根本から修正
+
+	void CardAnimPlay(const std::string& anim_name);
 
 	//------------------------------------------------------------------------------------------
 	// アニメーションの切り替え

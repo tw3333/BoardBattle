@@ -113,7 +113,7 @@ void SceneBattle::Initialzie() {
 
 	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
 	anim_mgr_.GetDebugAnim()->setCurrentAnim("none");
-	anim_mgr_.GetDebugAnim()->pos_ = unit_enemy_->GetObj()->pos_;
+	//anim_mgr_.GetDebugAnim()->pos_ = unit_enemy_->GetObj()->pos_;
 
 
 	//card_play_->SetCameraToCardEffectAnim(camera_);
@@ -190,18 +190,6 @@ void SceneBattle::Render() {
 	camera_->Update();
 	//DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,back_,false);
 	DrawDebugLayOut(true);
-	//DrawStringEx(0, 0, -1, "SceneBattle");
-
-	//party_[0]->GetObj()->Render(camera_);
-	//party_[1]->GetObj()->Render(camera_);
-	//party_[2]->GetObj()->Render(camera_);
-	//unit_enemy_->GetObj()->Render(camera_);
-
-	//for (auto au : all_units_) {
-
-	//	au->GetUnitObj()->Render(camera_);
-
-	//}
 
 	board_->Render(camera_);
 	select_square_->Render(camera_);
@@ -217,13 +205,13 @@ void SceneBattle::Render() {
 	ui_card_hand_->Render();
 	ui_action_buttons_->Render();
 
-	card_play_->Render(camera_);
+	//card_play_->Render(camera_);
 
 	anim_mgr_.GetDebugAnim()->Render(camera_);
 
-	for (auto& anim : anim_mgr_.GetDebugAnimList()) {
-		anim->Render(camera_);
-	}
+	//for (auto& anim : anim_mgr_.GetDebugAnimList()) {
+	//	anim->Render(camera_);
+	//}
 
 
 	ui_notice_target_box_->Render();
@@ -573,13 +561,21 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 				DrawStringEx(0,400,-1,"ŽË’ö‚É‘ÎÛ‚ª‚¢‚Ü‚¹‚ñ");
 			}
-			else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
-				
+			//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
+			//	
+			//	card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
+			//	ui_card_hand_->SetEnableSelectCard(false);
+			//	phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+
+			//}
+			else if (card_play_->IsSelectCardTargetInRange(board_)) {
+
 				card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
 				ui_card_hand_->SetEnableSelectCard(false);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 
 			}
+
 		}
 
 	} else {

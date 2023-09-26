@@ -22,11 +22,18 @@ bool CardEffectMove::CanEffectExcute(std::vector<SquarePos> range_square_pos, Bo
 
 void CardEffectMove::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
 
+	SquarePos move_pos;
+
+	for (auto square : target_square_pos) {
+		move_pos = square;
+	}
+
+
 	for (auto unit : board->GetPartyUnitsInBoard()) {
 
 		if (unit->GetIsTurn()) {
 
-			unit->SetUnitSquarePos(target_square_pos[0].row,target_square_pos[0].col);
+			unit->SetUnitSquarePos(move_pos.row, move_pos.col);
 
 		}
 
