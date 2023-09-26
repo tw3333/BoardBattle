@@ -285,7 +285,6 @@ void CardPlay::PlayCardExecute(Board* board) {
 
 		anim_manager_.GetDebugAnim()->CardAnimPlay(play_card_->GetCardData()->debug_anim_name_);
 
-
 		//CardTarge‚ÉŠi”[‚µ‚½SquarePos‚ğƒŠƒZƒbƒg
 		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
 

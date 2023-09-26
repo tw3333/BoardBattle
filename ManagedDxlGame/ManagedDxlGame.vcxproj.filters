@@ -434,6 +434,9 @@
     <ClCompile Include="program\game\gm_deck.cpp">
       <Filter>program\[003] game\card</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_battle_media_player.cpp">
+      <Filter>program\[003] game\unclassfication</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -868,6 +871,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_deck.h">
       <Filter>program\[003] game\card</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_battle_media_player.h">
+      <Filter>program\[003] game\unclassfication</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

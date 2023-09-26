@@ -130,6 +130,8 @@ void Board::UpdateCanMoveSquare() {
 		board_squares_[au->GetUnitSquarePos().row][au->GetUnitSquarePos().row]->SetIsCanMove(false);
 	}
 
+
+
 	
 }
 
@@ -148,6 +150,10 @@ void Board::UpdateSquareState() {
 
 	//Unitのいる位置を移動禁止にする
 	for (auto au : all_units_) {
+		board_squares_[au->GetUnitSquarePos().row][au->GetUnitSquarePos().col]->SetIsCanMove(false);
+	}
+
+	for (auto &au : all_units_in_board_) {
 		board_squares_[au->GetUnitSquarePos().row][au->GetUnitSquarePos().col]->SetIsCanMove(false);
 	}
 	//AllyとEnemyのいるSquareのフラグを更新

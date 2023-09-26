@@ -186,6 +186,7 @@
     <ClCompile Include="program\game\gm_allydata_manager.cpp" />
     <ClCompile Include="program\game\gm_anim_manager.cpp" />
     <ClCompile Include="program\game\gm_anim_sprite3d.cpp" />
+    <ClCompile Include="program\game\gm_battle_media_player.cpp" />
     <ClCompile Include="program\game\gm_battle_state_config.cpp" />
     <ClCompile Include="program\game\gm_board.cpp" />
     <ClCompile Include="program\game\gm_board_manager.cpp" />
@@ -299,6 +300,7 @@
     <ClInclude Include="program\dxlib_ext\dxlib_ext_render_param.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext_texture.h" />
     <ClInclude Include="program\dxlib_ext\OBJLoader.h" />
+    <ClInclude Include="program\game\gm_battle_media_player.h" />
     <ClInclude Include="program\game\gm_battle_state_config.h" />
     <ClInclude Include="program\game\gm_allydata_manager.h" />
     <ClInclude Include="program\game\gm_anim_manager.h" />

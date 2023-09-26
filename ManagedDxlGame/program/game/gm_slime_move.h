@@ -1,8 +1,15 @@
 #pragma once
 #include "gm_enemy_move.h"
+#include <random>
+#include <chrono>
+#include <iostream>
+#include "gm_data_board.h"
 
-class SlimeMove : public EnemyMove
-{
+
+// ƒOƒ[ƒoƒ‹‚È—”¶¬Ší
+static std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+
+class SlimeMove : public EnemyMove {
 public:
 
 	SlimeMove() {};
@@ -12,4 +19,5 @@ public:
 	void Move(UnitEnemy* turn_enemy, Board* board) override;
 	bool IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board);
 
+	
 };

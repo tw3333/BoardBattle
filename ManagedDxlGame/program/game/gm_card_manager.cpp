@@ -649,6 +649,7 @@ void CardManager::LoadC3DeckFromCSV(const std::string& filepath) {
 
 }
 
+
 void CardManager::SeparetePossCards() {
 
 	for (auto card : all_card_) {

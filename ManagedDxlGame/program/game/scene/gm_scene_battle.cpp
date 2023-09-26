@@ -13,6 +13,7 @@
 #include "../gm_card_target.h"
 #include "gm_scene_battle_result.h"
 #include "gm_scene_selectphase.h"
+#include "../gm_data_battle_state.h"
 
 
 void SceneBattle::Initialzie() {
@@ -204,7 +205,7 @@ void SceneBattle::Render() {
 	//ui_card_->Render();
 	ui_card_hand_->Render();
 	ui_action_buttons_->Render();
-
+	ui_notice_target_box_->Render();
 	//card_play_->Render(camera_);
 
 	anim_mgr_.GetDebugAnim()->Render(camera_);
@@ -214,7 +215,7 @@ void SceneBattle::Render() {
 	//}
 
 
-	ui_notice_target_box_->Render();
+
 }
 
 
@@ -236,6 +237,21 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 180, -1, "party1handnum:%d", party_[0]->GetHand().size());
 	DrawStringEx(w1 * 8, 200, -1, "party2handnum:%d", party_[1]->GetHand().size());
 	DrawStringEx(w1 * 8, 220, -1, "party3handnum:%d", party_[2]->GetHand().size());
+
+	if (anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->GetIsPlaying()) {
+		DrawStringEx(w1 * 8, 240, -1, "Anim中！");
+	}
+	else {
+		DrawStringEx(w1 * 8, 240, -1, "Anim中じゃないよ！");
+	}
+	if (turn_enemy_) {
+		DrawStringEx(w1 * 8, 260, -1, "スライム移動pos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->final_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->final_pos_.col);
+		DrawStringEx(w1 * 8, 280, -1, "targetpos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->target_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->target_pos_.col);
+		DrawStringEx(w1 * 8, 300, -1, "currentpos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->current_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->current_pos_.col);
+
+	}
+
+
 
 
 	//DrawStringEx(w1 * 8, 100, -1, "square[5][5]:beginposX:%f",square_->getObj()->getBeginPos().x);
@@ -451,11 +467,59 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 //各Unitのターン開始前に呼び出される
 bool SceneBattle::PhaseBattleEffectProc(const float delta_time) {
 
-	if (turn_ally_ && !turn_enemy_) {
+	//for (auto unit : board_->GetAllUnitsInBoard()) {
+
+	//	if (unit->GetIsTurn()) {
+
+	//		//各UnitのBattleEffectを処理
+	//		if (unit->GetUnitType() == UnitType::Ally) {
+
+	//			for (auto &state : unit->GetBattleState()) {
+	//			
+	//				if (state.GetState() == State::AddCardCost) {
+	//					turn_ally_->AddCurrentCardCost(state.GetValue());
+
+	//					//配列から削除
+	//					unit->GetBattleState().erase(std::remove(unit->GetBattleState().begin(), unit->GetBattleState().end(), state), unit->GetBattleState().end());
+	//				}
+	//				else if (state.GetState() == State::AddMoveCost) {
+	//					turn_ally_->AddCurrentMoveCost(state.GetValue());
+
+	//					//配列から削除
+	//					unit->GetBattleState().erase(std::remove(unit->GetBattleState().begin(), unit->GetBattleState().end(), state), unit->GetBattleState().end());
+	//				}
+	//				else if (state.GetState() == State::Blood) {
+	//					turn_ally_->DecreaseCurrentHp(state.GetValue());
+	//					state.DecreaseTurnCount(1);
+
+	//				}
+	//				else if (state.GetState() == State::AddCardCost) {
+
+	//					turn_ally_->AddCurrentCardCost(state.GetValue());
+	//				}
+	//				else if (state.GetState() == State::AddCardCost) {
+	//					turn_ally_->AddCurrentCardCost(state.GetValue());
+	//				}
+	//				else if (state.GetState() == State::AddCardCost) {
+	//					turn_ally_->AddCurrentCardCost(state.GetValue());
+	//				}
 
 
 
-	}
+	//			}
+
+	//		}
+	//		else if (unit->GetUnitType() == UnitType::Enemy) {
+
+
+
+	//		}
+
+
+	//	}
+
+
+	//}
 
 
 
