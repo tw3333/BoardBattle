@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "gm_data_board.h"
+#include "gm_anim_manager.h"
 
 class Unit;
 class Board;
@@ -31,6 +32,8 @@ protected:
 
 	int card_id_ = 0; //効果を持つカードのID
 	int effect_ref_num_ = 0; //CardTargetとの参照番号
+
+	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 
 
 };

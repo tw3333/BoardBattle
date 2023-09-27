@@ -1,5 +1,6 @@
 #pragma once
 #include "gm_anim_sprite3d.h"
+#include "gm_data_board.h"
 
 //ƒVƒ“ƒOƒ‹ƒgƒ“
 
@@ -38,7 +39,7 @@ public:
 	std::vector<std::shared_ptr<AnimSprite3D>> GetDebugAnimList() { return debug_anim_list_; }
 	std::vector<std::shared_ptr<AnimSprite3D>> GetAnim() { return anim_; }
 
-
+	void AnimPlay(std::string anim_name, std::vector<SquarePos> target_pos);
 
 private:
 

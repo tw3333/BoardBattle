@@ -138,6 +138,11 @@ void SceneBattle::Initialzie() {
 		anim->setCurrentAnim("debug_anim");
 	}
 
+	for (auto& anim : anim_mgr_.GetAnim()) {
+		anim->SetCamera(camera_);
+		anim->setCurrentAnim("none");
+	}
+
 	//anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 
 
@@ -225,12 +230,10 @@ void SceneBattle::Render() {
 	//card_play_->Render(camera_);
 
 	anim_mgr_.GetDebugAnim()->Render(camera_);
-
-	//for (auto& anim : anim_mgr_.GetDebugAnimList()) {
-	//	anim->Render(camera_);
-	//}
-
-
+	
+	for (auto anim : anim_mgr_.GetAnim()) {
+		anim->Render(camera_);
+	}
 
 }
 

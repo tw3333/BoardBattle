@@ -34,6 +34,8 @@ void CardEffectAddSnare::EffectExcute(std::vector<SquarePos> target_square_pos, 
 		}
 	}
 
+	
+
 }
 
 bool CardEffectAddSnare::CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {

@@ -45,4 +45,6 @@ void CardEffectAddShield::EffectExcute(std::vector<SquarePos> target_square_pos,
 
 	}
 
+	anim_mgr_.AnimPlay("anim_shield", target_square_pos);
+
 }
