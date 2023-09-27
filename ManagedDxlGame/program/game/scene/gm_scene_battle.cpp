@@ -245,9 +245,16 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 		DrawStringEx(w1 * 8, 240, -1, "Anim’†‚¶‚á‚È‚¢‚æI");
 	}
 	if (turn_enemy_) {
+
 		DrawStringEx(w1 * 8, 260, -1, "ƒXƒ‰ƒCƒ€ˆÚ“®pos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->final_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->final_pos_.col);
 		DrawStringEx(w1 * 8, 280, -1, "targetpos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->target_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->target_pos_.col);
 		DrawStringEx(w1 * 8, 300, -1, "currentpos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->current_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->current_pos_.col);
+		DrawStringEx(w1 * 8, 320, -1, "enemymovecost[%d]",turn_enemy_->GetCurrentMoveCost());
+		DrawStringEx(w1 * 8, 340, -1, "moveroutesize[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_.size());
+
+		for (int i = 0; i < turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_.size(); ++i) {
+			DrawStringEx(w1 * 8, 360 + (i * 20) , -1, "Square:row[%d]col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_[i].row, turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_[i].col);
+		}
 
 	}
 

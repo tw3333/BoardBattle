@@ -23,5 +23,11 @@ struct SquarePos {
 		return row == other.row && col == other.col;
 	}
 
+	bool operator<(const SquarePos& other) const {
+		if (row < other.row) return true;
+		if (row > other.row) return false;
+		return col < other.col;
+	}
+
 };
 

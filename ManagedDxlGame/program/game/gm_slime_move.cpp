@@ -13,6 +13,7 @@
 #include "gm_unit_enemy.h"
 #include "gm_board.h"
 #include "gm_data_board.h"
+#include <set>
 
 
 void SlimeMove::Move(UnitEnemy* turn_enemy, Board* board) {
@@ -41,56 +42,49 @@ void SlimeMove::Move(UnitEnemy* turn_enemy, Board* board) {
     std::uniform_int_distribution<int> dist(0, nearest_allies.size() - 1);
     UnitAlly* target_ally = nearest_allies[dist(rng)];
 
-    // BFS探索
+    SquarePos start = turn_enemy->GetUnitSquarePos();
+    SquarePos target_pos = target_ally->GetUnitSquarePos(); 
+    final_pos_ = start;
+    target_pos_ = target_pos;
+
+    // BFSのためのデータ構造
+    SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
     std::vector<std::vector<bool>> visited(10, std::vector<bool>(10, false));
     std::queue<std::pair<SquarePos, int>> q;
-    SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+    SquarePos startPos = turn_enemy->GetUnitSquarePos();
+    SquarePos targetPos = target_ally->GetUnitSquarePos();
 
-    //int remaining_move = turn_enemy->GetCurrentMoveCost();
-    int remaining_move = 5;
+    // Start from the slime's position with its total movement cost
+    q.push({ startPos, turn_enemy->GetCurrentMoveCost() });
+    visited[startPos.row][startPos.col] = true;
 
-    SquarePos current_pos = turn_enemy->GetUnitSquarePos();
-    SquarePos target_pos = target_ally->GetUnitSquarePos();
-    target_pos_ = target_pos;
-    SquarePos final_pos = turn_enemy->GetUnitSquarePos();
-
-    q.push({ current_pos, remaining_move });
+    SquarePos nextPos = startPos;
 
     while (!q.empty()) {
-
-        board->Update(0);
-        SquarePos cur = q.front().first;
-        remaining_move = q.front().second;
+        SquarePos currPos = q.front().first;
+        int remainingMove = q.front().second;
         q.pop();
 
-        if (visited[cur.row][cur.col] || !board->getBoardSquares()[cur.row][cur.col]->GetIsCanMove()) {
-            continue;
-        }
-
-        visited[cur.row][cur.col] = true;
-        current_pos = cur;  // 現在の位置を更新
-
-        //Targetの隣りに到達したら終了
-        if (std::abs(cur.row - target_pos.row) + std::abs(cur.col - target_pos.col) == 1) {
-            final_pos = cur;
-            break;
-        }
-
         for (SquarePos dir : directions) {
-            SquarePos next = { cur.row + dir.row, cur.col + dir.col };
-            if (next.row >= 0 && next.row < 10 && next.col >= 0 && next.col < 10) {
-                if (!visited[next.row][next.col] && remaining_move - 1 >= 0) {
-                    q.push({ next, remaining_move - 1 });
+            SquarePos adjPos = { currPos.row + dir.row, currPos.col + dir.col };
+
+            if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0 && adjPos.col < 10 && !visited[adjPos.row][adjPos.col] && board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove()) {
+                // If this adjacent square is next to the target, move the slime
+                if (std::abs(adjPos.row - targetPos.row) + std::abs(adjPos.col - targetPos.col) == 1 && remainingMove > 0) {
+                    nextPos = adjPos;
+                    break;
+                }
+                if (remainingMove > 1) {
+                    q.push({ adjPos, remainingMove - 1 });
+                    visited[adjPos.row][adjPos.col] = true;
                 }
             }
         }
     }
 
-    final_pos_ = final_pos;
-    current_pos_ = current_pos;
-    
+    // Update slime's position
+    turn_enemy->SetUnitSquarePos(nextPos.row, nextPos.col);
 
-    turn_enemy->SetUnitSquarePos(final_pos.row, final_pos.col);
 }
 
 bool SlimeMove::IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board) {

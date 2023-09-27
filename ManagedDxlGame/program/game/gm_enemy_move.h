@@ -1,5 +1,6 @@
 #pragma once
 #include "gm_data_board.h"
+#include <vector>
 
 //memo
 //Enemy‚ÌˆÚ“®‚ðŽÀ‘•‚·‚éŠî’êƒNƒ‰ƒX
@@ -16,4 +17,6 @@ public:
 	SquarePos final_pos_;
 	SquarePos target_pos_;
 	SquarePos current_pos_;
+
+	std::vector<SquarePos> move_route_;
 };

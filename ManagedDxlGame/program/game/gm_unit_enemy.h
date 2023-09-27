@@ -67,8 +67,10 @@ public:
 
 	int GetCurrentHp() { return current_hp_; }
 	void SetCurrentHp(int hp) { current_hp_ = hp; }
+
 	int GetCurrentMoveCost() { return current_move_cost_; }
 	void SetCurrentMoveCost(int cost) { current_move_cost_ = cost; }
+
 	int GetCurrentActionCost() { return current_action_cost_; }
 	void GetCurrentActionCost(int cost) { current_action_cost_ = cost; }
 	int GetCurrentDamage() { return current_damage_; }

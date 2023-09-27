@@ -50,13 +50,13 @@ public:
 private:
 
 	//status
-	int enemy_id_;
-	std::string name_;
-	int hp_;
-	int power_; //攻撃や回復に使う数値
-	int speed_;
-	int move_cost_;
-	int action_cost_;
+	int enemy_id_ = 0;
+	std::string name_ = 0;
+	int hp_ = 0;
+	int power_ = 0; //攻撃や回復に使う数値
+	int speed_ = 0;
+	int move_cost_ = 0;
+	int action_cost_= 0;
 
 
 	bool is_picked_ = false;
