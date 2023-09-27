@@ -54,7 +54,7 @@ void SlimeMove::Move(UnitEnemy* turn_enemy, Board* board) {
     SquarePos startPos = turn_enemy->GetUnitSquarePos();
     SquarePos targetPos = target_ally->GetUnitSquarePos();
 
-    // Start from the slime's position with its total movement cost
+    //q‚Ì¶¬
     q.push({ startPos, turn_enemy->GetCurrentMoveCost() });
     visited[startPos.row][startPos.col] = true;
 
@@ -69,7 +69,8 @@ void SlimeMove::Move(UnitEnemy* turn_enemy, Board* board) {
             SquarePos adjPos = { currPos.row + dir.row, currPos.col + dir.col };
 
             if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0 && adjPos.col < 10 && !visited[adjPos.row][adjPos.col] && board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove()) {
-                // If this adjacent square is next to the target, move the slime
+                
+                //—×‚è‡‚Á‚½ê‡’TõI—¹
                 if (std::abs(adjPos.row - targetPos.row) + std::abs(adjPos.col - targetPos.col) == 1 && remainingMove > 0) {
                     nextPos = adjPos;
                     break;

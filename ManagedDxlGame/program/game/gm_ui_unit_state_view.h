@@ -2,6 +2,7 @@
 #include "gm_ui_component.h"
 
 #include "gm_select_square.h"
+#include "gm_data_battle_state.h"
 
 class Square;
 
@@ -20,7 +21,11 @@ public:
 
 
 	void Update(float delta_time)override;
+
 	void Render() override;
+	void RenderAllyBox();
+	void RenderEnemyBox();
+	void RenderBattleState(std::vector<BattleState>& battle_state);
 
 	void SetIsRender(bool is_render) { is_render_ = is_render; }
 	void SetAllyBoxUpperLeftPos(int x, int y) {
@@ -47,13 +52,21 @@ private:
 	int width_ = 0;
 	int height_ = 0;
 
+	//grahp(debug)
+	//TODO:csvÇ©ÇÁïœçXÅBÇ±Ç±Ç≈íËã`ÇµÇ»Ç¢ÇÊÇ§Ç…
+
+	int icon_shield_ = LoadGraph("graphics/ui/battlestate_icon/icon_shield.png");
+	int icon_blood_ = LoadGraph("graphics/ui/battlestate_icon/icon_blood.png");
+	int icon_poison_ = LoadGraph("graphics/ui/battlestate_icon/icon_poison.png");
+	int icon_snare_ = LoadGraph("graphics/ui/battlestate_icon/icon_snare.png");
+	int icon_stun_ = LoadGraph("graphics/ui/battlestate_icon/icon_stun.png");
+
+
 	//color
 	int box_color_ = GetColor(211,211,211);
 	int hp_bar_color_ = GetColor(255,0,0);
 	int hp_bar_back_color_ = GetColor(52,53,65);
 	int hp_bar_flame_color_ = GetColor(0,0,0);
-
-
 
 };
 

@@ -42,7 +42,7 @@ void UIUnitStateView::Render() {
 				//int face_box_h = ally_box_upper_left_y_ + height_ / 2;
 				int face_graph = select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetAllyData()->GetTextureFace1()->getDxLibGraphHandle();
 				DrawBox(face_box_upper_left_x, face_box_upper_left_y, face_box_lower_right_x, face_box_lower_right_y,255,true);
-				//DrawExtendGraph(face_box_upper_left_x, face_box_upper_left_y, face_box_upper_left_x + face_box_w, face_box_upper_left_y + face_box_h,face_graph, false);
+				DrawExtendGraph(face_box_upper_left_x, face_box_upper_left_y, face_box_upper_left_x + face_box_w, face_box_upper_left_y + face_box_h,face_graph, false);
 
 				//HpString
 				DrawStringEx(face_box_upper_left_x,face_box_lower_right_y,256,"HP:%d/%d", select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetCurrentHp(), select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetMaxHp());
@@ -66,7 +66,50 @@ void UIUnitStateView::Render() {
 				DrawBox(face_box_upper_left_x, hp_bar_upper_left_y, hp_bar_lower_right_x, hp_bar_lower_right_y, hp_bar_flame_color_, false);
 
 				//State
-				
+				//アタリ。この枠計算でBattleStateアイコンを表示
+				int space = 10;
+				int state_box_upper_left_x = face_box_lower_right_x + space;
+				int state_box_upper_left_y = face_box_upper_left_y;
+				int state_box_lower_right_x = ally_box_lower_right_x - space;
+				int state_box_lower_right_y = face_box_lower_right_y;
+				int state_box_w = state_box_lower_right_x - state_box_upper_left_x;
+				int state_box_h = state_box_lower_right_y - state_box_upper_left_y;
+				int state_box_w1 = state_box_w / 4;
+				int state_box_h1 = state_box_h / 3;
+
+
+				//DrawBox(face_box_lower_right_x + space, face_box_upper_left_y, ally_box_lower_right_x - space, face_box_lower_right_y, 255, false);
+
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1, icon_shield_, false);
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1, icon_shield_, false);
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1*1, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 2, icon_blood_, false);
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1*2, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 3, icon_poison_, false);				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 1, icon_snare_, false);
+				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y + state_box_h1 * 1, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 2, icon_stun_, false);
+
+
+				//シールドは別計算
+				if (select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetShieldValue() > 0) {
+
+					DrawStringEx();
+
+				}
+
+				//ターンの数値があった場合それを表示
+				for (auto state : select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetBattleState()) {
+
+					if () {
+
+
+
+					}
+
+
+
+				}
+
+
+
+
 
 
 			}
@@ -89,7 +132,7 @@ void UIUnitStateView::Render() {
 				int face_graph = select_square_->GetSelectSquare()->GetEnemyPtrInSquare()->GetEnemyData()->GetTextureFace()->getDxLibGraphHandle();
 				
 				DrawBox(face_box_upper_left_x, face_box_upper_left_y, face_box_lower_right_x, face_box_lower_right_y, 255, true);
-				//DrawExtendGraph(face_box_upper_left_x, face_box_upper_left_y, face_box_upper_left_x + face_box_w, face_box_upper_left_y + face_box_h, face_graph, false);
+				DrawExtendGraph(face_box_upper_left_x, face_box_upper_left_y, face_box_upper_left_x + face_box_w, face_box_upper_left_y + face_box_h, face_graph, false);
 
 				//HPString
 				DrawStringEx(face_box_upper_left_x, face_box_lower_right_y, 256, "HP:%d/%d", select_square_->GetSelectSquare()->GetEnemyPtrInSquare()->GetCurrentHp(), select_square_->GetSelectSquare()->GetEnemyPtrInSquare()->GetMaxHp());
@@ -112,6 +155,29 @@ void UIUnitStateView::Render() {
 				//flame
 				DrawBox(hp_bar_upper_left_x, hp_bar_upper_left_y, hp_bar_lower_right_x, hp_bar_lower_right_y, hp_bar_flame_color_, false);
 
+				//State
+				//アタリ。この枠計算でBattleStateアイコンを表示
+				int space = 10;
+				int state_box_upper_left_x = enemy_box_upper_left_x_ + space;
+				int state_box_upper_left_y = enemy_box_upper_left_y_ + space;
+				int state_box_lower_right_x = face_box_upper_left_x - space;
+				int state_box_lower_right_y = face_box_lower_right_y;
+				int state_box_w = state_box_lower_right_x - state_box_upper_left_x;
+				int state_box_h = state_box_lower_right_y - state_box_upper_left_y;
+				int state_box_w1 = state_box_w / 4;
+				int state_box_h1 = state_box_h / 3;
+
+
+				//DrawBox(state_box_upper_left_x, state_box_upper_left_y, state_box_lower_right_x, state_box_lower_right_y, 255, false);
+
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1, icon_shield_, false);
+
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1, icon_shield_, false);
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1 * 1, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 2, icon_blood_, false);
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1 * 2, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 3, icon_poison_, false);
+
+				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 1, icon_snare_, false);
+				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y + state_box_h1 * 1, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 2, icon_stun_, false);
 
 
 				
@@ -126,5 +192,24 @@ void UIUnitStateView::Render() {
 
 
 	}
+
+}
+
+void UIUnitStateView::RenderAllyBox()
+{
+}
+
+void UIUnitStateView::RenderEnemyBox()
+{
+}
+
+void UIUnitStateView::RenderBattleState(std::vector<BattleState>& battle_state) {
+
+
+
+
+
+
+
 
 }
