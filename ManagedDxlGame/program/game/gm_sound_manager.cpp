@@ -7,10 +7,12 @@
 
 void SoundManager::CreateBattleBGMList() {
 
+	
+
 	battle_bgm_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::BGM,"sound/bgm/battle1.mp3"));
 
 
-
+	SetVolumeMusicMem(10,battle_bgm_list_[0]->GetSoundHandle());
 
 
 
@@ -23,6 +25,16 @@ void SoundManager::CreateCardSEList() {
 	card_se_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::CardSE,"sound/se/cardse_fire.mp3"));
 
 
+
+
+
+}
+
+void SoundManager::CreateAllyVoiveList() {
+
+	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(1,SoundType::AllyVoice,"sound/se/ally_voice/c1_damaged_voice.mp3"));
+	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(2, SoundType::AllyVoice, "sound/se/ally_voice/c2_damaged_voice.mp3"));
+	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(2, SoundType::AllyVoice, "sound/se/ally_voice/c3_damaged_voice.mp3"));
 
 
 
@@ -70,6 +82,23 @@ void SoundManager::PlayCardSE(int id) {
 
 	}
 
+
+}
+
+void SoundManager::PlayAllyDamagedVoice(int id) {
+
+	if (!ally_damaged_voice_list_.empty()) {
+
+		for (auto se : ally_damaged_voice_list_) {
+
+			if (se->GetID() == id) {
+
+				PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+				break;
+			}
+		}
+
+	}
 
 }
 

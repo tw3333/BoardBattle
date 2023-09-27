@@ -36,6 +36,7 @@ public:
 
 	std::shared_ptr<AnimSprite3D>& GetDebugAnim() {	return debug_anim_; }
 	std::vector<std::shared_ptr<AnimSprite3D>> GetDebugAnimList() { return debug_anim_list_; }
+	std::vector<std::shared_ptr<AnimSprite3D>> GetAnim() { return anim_; }
 
 
 
@@ -51,6 +52,7 @@ private:
 
 	std::vector<std::shared_ptr<AnimSprite3D>> debug_anim_list_;
 	std::vector<std::shared_ptr<AnimSprite3D>> card_effect_list_;
+	std::vector<std::shared_ptr<AnimSprite3D>> anim_;
 
 
 };

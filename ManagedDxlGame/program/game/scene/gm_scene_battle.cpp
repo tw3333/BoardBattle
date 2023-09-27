@@ -196,6 +196,7 @@ void SceneBattle::Update(float delta_time) {
 	
 		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
 		//anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0.0);
+		sound_mgr_.PlayAllyDamagedVoice(1);
 	}
 
 	//phase_.update(delta_time);
@@ -470,6 +471,7 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
 
 	turn_enemy_->Move(board_);
+
 	turn_enemy_->Act(board_);
 
 	turn_enemy_->SetIsTurn(false);
@@ -609,7 +611,6 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 	
-
 	card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
 	card_play_->SetTurnAlly(turn_ally_);
 
@@ -661,7 +662,6 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 
 			}
-
 		}
 
 	} else {
@@ -679,7 +679,6 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	//if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 	//	turn_ally_->GetHand().erase(turn_ally_->GetHand().begin() + 1);
 	//}
-
 
 	return true;
 }

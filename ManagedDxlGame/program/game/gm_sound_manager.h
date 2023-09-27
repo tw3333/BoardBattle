@@ -5,6 +5,9 @@
 
 
 #include "gm_data_sound.h"
+#include "../dxlib_ext/dxlib_ext.h"
+
+
 
 
 
@@ -27,11 +30,17 @@ public:
 
 	void CreateBattleBGMList();
 	void CreateCardSEList();
+	void CreateAllyVoiveList();
 	void CreateSystemSEList();
+
+
 
 	void PlayBattleBGM(int id);
 	void PlayCardSE(int id);
+	void PlayAllyDamagedVoice(int id);
+	
 	void PlaySystemSE(int id);
+
 
 
 private:
@@ -40,9 +49,11 @@ private:
 	~SoundManager() = default;
 
 
+
 //	std::vector <std::shared_ptr<BGMData>> battle_bgm_list;
 	std::vector<std::shared_ptr<SoundData>> battle_bgm_list_;
 	std::vector<std::shared_ptr<SoundData>> card_se_list_;
+	std::vector<std::shared_ptr<SoundData>> ally_damaged_voice_list_;
 	std::vector<std::shared_ptr<SoundData>> ui_se_list_;
 	std::vector<std::shared_ptr<SoundData>> system_se_list_;
 

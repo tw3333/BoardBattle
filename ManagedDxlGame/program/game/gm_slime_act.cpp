@@ -11,6 +11,8 @@
 #include "gm_unit_enemy.h"
 #include "gm_unit_ally.h"
 
+#include "gm_sound_manager.h"
+
 void SlimeAct::Act(UnitEnemy* turn_enemy, Board* board) {
 
 	//turn_enemy‚ÌˆÊ’u‚ðŽæ“¾
@@ -69,6 +71,10 @@ void SlimeAct::Act(UnitEnemy* turn_enemy, Board* board) {
 	//damage‚ð—^‚¦‚é
 	if (target_ally) {
 		target_ally->DecreaseCurrentHp(turn_enemy->GetEnemyData()->GetPower());
+		
+
+		mgr.PlayAllyDamagedVoice(target_ally->GetAllyData()->GetAllyDataID());
+
 	}
 
 }

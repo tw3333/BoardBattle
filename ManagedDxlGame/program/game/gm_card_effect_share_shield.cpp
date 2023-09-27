@@ -50,6 +50,7 @@ void CardEffectShareShield::EffectExcute(std::vector<SquarePos> target_square_po
 
 	//”ÍˆÍ‚É‰½l–¡•û‚ª‚¢‚é‚©‚ð’²‚×‚é
 	int ally_cnt = 0;
+
 	for (auto square : target_square_pos) {
 
 		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
