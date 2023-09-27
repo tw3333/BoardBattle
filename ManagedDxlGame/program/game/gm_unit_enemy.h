@@ -91,6 +91,9 @@ public:
 		current_hp_ = (std::min)(max_hp_, current_hp_ + value);
 	}
 
+	int GetShieldValue() { return shield_value_; }
+
+
 private:
 	
 	MoveType move_type_ = MoveType::NotMove;

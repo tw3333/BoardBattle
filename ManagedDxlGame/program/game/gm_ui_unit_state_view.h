@@ -68,5 +68,12 @@ private:
 	int hp_bar_back_color_ = GetColor(52,53,65);
 	int hp_bar_flame_color_ = GetColor(0,0,0);
 
+	int shield_font_color = GetColor(34,121,228);
+	int blood_font_color = GetColor(228, 73, 59);
+	int poison_font_color = GetColor(228, 73, 59);
+	int snare_font_color = GetColor(228, 73, 59);
+	int stun_font_color = GetColor(228, 73, 59);
+
+
 };
 

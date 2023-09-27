@@ -56,9 +56,24 @@ void SceneBattle::Initialzie() {
 	party_units_.push_back(party_[1]);
 	party_units_.push_back(party_[2]);
 
+	party_units_[0]->AddShieldValue(20);
+	party_units_[0]->AddBattleState(BattleState(State::Blood,3,3));
+	party_units_[0]->AddBattleState(BattleState(State::Poison, 3, 3));
+	party_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
+	party_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
+
+
+
 
 	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 5);
 	enemy_units_.push_back(unit_enemy_);
+
+	enemy_units_[0]->AddShieldValue(20);
+	enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
+	enemy_units_[0]->AddBattleState(BattleState(State::Poison, 3, 3));
+	enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
+	enemy_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
+
 
 	all_units_.reserve(party_units_.size() + enemy_units_.size());
 	all_units_.insert(all_units_.end(), party_units_.begin(), party_units_.end());

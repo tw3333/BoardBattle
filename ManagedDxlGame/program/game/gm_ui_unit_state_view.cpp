@@ -81,29 +81,34 @@ void UIUnitStateView::Render() {
 				//DrawBox(face_box_lower_right_x + space, face_box_upper_left_y, ally_box_lower_right_x - space, face_box_lower_right_y, 255, false);
 
 				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1, icon_shield_, false);
-				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1, icon_shield_, false);
 				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1*1, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 2, icon_blood_, false);
-				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1*2, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 3, icon_poison_, false);				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 1, icon_snare_, false);
+				DrawExtendGraph(state_box_upper_left_x, state_box_upper_left_y + state_box_h1*2, state_box_upper_left_x + state_box_w1 * 1, state_box_upper_left_y + state_box_h1 * 3, icon_poison_, false);				
+				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 1, icon_snare_, false);
 				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y + state_box_h1 * 1, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 2, icon_stun_, false);
 
 
 				//シールドは別計算
 				if (select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetShieldValue() > 0) {
 
-					DrawStringEx();
+					DrawStringEx(state_box_upper_left_x + state_box_w1 + 3, state_box_upper_left_y + 2,shield_font_color,"%d", select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetShieldValue());
 
 				}
 
 				//ターンの数値があった場合それを表示
-				for (auto state : select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetBattleState()) {
+				for (auto &state : select_square_->GetSelectSquare()->GetAllyPtrInSquare()->GetBattleState()) {
 
-					if () {
-
-
-
+					if (state.GetState() == State::Blood && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 + 3, state_box_upper_left_y + state_box_h1 * 1 + 2, blood_font_color, "%d",state.GetTurnCount());
 					}
-
-
+					else if (state.GetState() == State::Poison && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 + 3, state_box_upper_left_y + state_box_h1 * 1 + 2,  poison_font_color, "%d", state.GetTurnCount());
+					}
+					else if (state.GetState() == State::Snare && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 * 2 + state_box_w1 + 3, state_box_upper_left_y + 2, snare_font_color, "%d", state.GetTurnCount());
+					}
+					else if (state.GetState() == State::Stun && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 * 2 + state_box_w1 + 3, state_box_upper_left_y + state_box_h1 * 1 + 2, stun_font_color, "%d",state.GetTurnCount());
+					}
 
 				}
 
@@ -180,17 +185,37 @@ void UIUnitStateView::Render() {
 				DrawExtendGraph(state_box_upper_left_x + state_box_w1 * 2, state_box_upper_left_y + state_box_h1 * 1, state_box_upper_left_x + state_box_w1 * 3, state_box_upper_left_y + state_box_h1 * 2, icon_stun_, false);
 
 
-				
+				//シールドは別計算
+				if (select_square_->GetSelectSquare()->GetEnemyPtrInSquare()->GetShieldValue()) {
+
+					DrawStringEx(state_box_upper_left_x + state_box_w1 + 3, state_box_upper_left_y + 2, shield_font_color, "%d", select_square_->GetSelectSquare()->GetEnemyPtrInSquare()->GetShieldValue());
+
+				}
+
+				//ターンの数値があった場合それを表示
+				for (auto& state : select_square_->GetSelectSquare()->GetEnemyPtrInSquare()->GetBattleState()) {
+
+					if (state.GetState() == State::Blood && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 + 3, state_box_upper_left_y + state_box_h1 * 1 + 2, blood_font_color, "%d", state.GetTurnCount());
+					}
+					else if (state.GetState() == State::Poison && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 + 3, state_box_upper_left_y + state_box_h1 * 1 + 2, poison_font_color, "%d", state.GetTurnCount());
+					}
+					else if (state.GetState() == State::Snare && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 * 2 + state_box_w1 + 3, state_box_upper_left_y + 2, snare_font_color, "%d", state.GetTurnCount());
+					}
+					else if (state.GetState() == State::Stun && state.GetTurnCount() > 0) {
+						DrawStringEx(state_box_upper_left_x + state_box_w1 * 2 + state_box_w1 + 3, state_box_upper_left_y + state_box_h1 * 1 + 2, stun_font_color, "%d", state.GetTurnCount());
+					}
+
+				}
 
 			}
 
 		}
 
-
 		//下地
 		//DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, -1, false);
-
-
 	}
 
 }
