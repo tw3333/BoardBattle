@@ -12,7 +12,7 @@ void SoundManager::CreateBattleBGMList() {
 	battle_bgm_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::BGM,"sound/bgm/battle1.mp3"));
 
 
-	SetVolumeMusicMem(10,battle_bgm_list_[0]->GetSoundHandle());
+	SetVolumeMusicMem(5,battle_bgm_list_[0]->GetSoundHandle());
 
 
 
@@ -47,7 +47,25 @@ void SoundManager::CreateSystemSEList()
 
 
 
-} 
+}
+void SoundManager::CreateBattleStateSEList() {
+
+	battle_state_se_list_.push_back(std::make_shared<SoundData>(1,SoundType::BattleStateSE,"sound/se/battle_state_se/blood.mp3"));
+	battle_state_se_list_.push_back(std::make_shared<SoundData>(2, SoundType::BattleStateSE, "sound/se/battle_state_se/poison.mp3"));
+	battle_state_se_list_.push_back(std::make_shared<SoundData>(3, SoundType::BattleStateSE, "sound/se/battle_state_se/snare.mp3"));
+	battle_state_se_list_.push_back(std::make_shared<SoundData>(4, SoundType::BattleStateSE, "sound/se/battle_state_se/stun.mp3"));
+
+	for (auto se : battle_state_se_list_) {
+
+		SetVolumeSoundMem(5,se->GetSoundHandle());
+
+	}
+
+
+
+
+}
+
 
 
 
@@ -99,6 +117,29 @@ void SoundManager::PlayAllyDamagedVoice(int id) {
 		}
 
 	}
+
+}
+
+void SoundManager::PlayBattleStateSE(int id) {
+
+	if (!battle_state_se_list_.empty()) {
+
+		for (auto se : battle_state_se_list_) {
+
+			if (se->GetID() == id) {
+
+				PlaySoundMem(se->GetSoundHandle(),DX_PLAYTYPE_BACK,true);
+
+
+			}
+
+		}
+
+
+	}
+
+
+
 
 }
 

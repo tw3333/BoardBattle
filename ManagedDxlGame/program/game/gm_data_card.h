@@ -53,6 +53,7 @@ private:
 	std::string card_explanation_; //カードの効果文
 	std::shared_ptr <dxe::Texture> card_texture_;
 	std::vector<std::string> split_explanation_; //カードの効果文を分割したもの
+
 	std::string card_anim_name_; //カードのアニメーション名
 	
 		
