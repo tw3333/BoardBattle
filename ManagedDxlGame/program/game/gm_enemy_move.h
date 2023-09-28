@@ -1,6 +1,7 @@
 #pragma once
 #include "gm_data_board.h"
 #include <vector>
+#include "gm_anim_manager.h"
 
 //memo
 //Enemy‚ÌˆÚ“®‚ğÀ‘•‚·‚éŠî’êƒNƒ‰ƒX
@@ -19,4 +20,5 @@ public:
 	SquarePos current_pos_;
 
 	std::vector<SquarePos> move_route_;
+
 };

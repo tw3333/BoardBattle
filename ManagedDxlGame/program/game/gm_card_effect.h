@@ -23,8 +23,8 @@ public:
 	
 	virtual bool CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) = 0; //Œø‰Ê‚ªÀs‚Å‚«‚é‚©”»’è
 
-	virtual bool CanEffectExcuteFromRange(std::vector<SquarePos> range_suqare, Board* board) = 0;
-	virtual bool CanEffectExcuteFromTarget() = 0;
+	//virtual bool CanEffectExcuteFromRange(std::vector<SquarePos> range_suqare, Board* board) = 0;
+	//virtual bool CanEffectExcuteFromTarget() = 0;
 	
 
 	//int effect_ref_num_ = 0;

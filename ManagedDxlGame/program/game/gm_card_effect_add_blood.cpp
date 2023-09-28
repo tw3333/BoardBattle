@@ -55,19 +55,19 @@ void CardEffectAddBlood::EffectExcute(std::vector<SquarePos> target_square_pos, 
 
 }
 
-bool CardEffectAddBlood::CanEffectExcuteFromRange(std::vector<SquarePos> range_square, Board* board) {
-
-	//‘ÎÛ‚ªˆê‘Ì‚Å‚à‚¢‚ê‚Î‚¢‚¢
-	for (auto &square : range_square) {
-
-		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()
-			|| board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare())
-		{
-			return true;
-		}
-	
-	}
-
-
-	return false;
-}
+//bool CardEffectAddBlood::CanEffectExcuteFromRange(std::vector<SquarePos> range_square, Board* board) {
+//
+//	//‘ÎÛ‚ªˆê‘Ì‚Å‚à‚¢‚ê‚Î‚¢‚¢
+//	for (auto &square : range_square) {
+//
+//		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()
+//			|| board->getBoardSquare(square.row, square.col)->GetEnemyPtrInSquare())
+//		{
+//			return true;
+//		}
+//	
+//	}
+//
+//
+//	return false;
+//}

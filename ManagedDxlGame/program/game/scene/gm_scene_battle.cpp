@@ -147,15 +147,16 @@ void SceneBattle::Initialzie() {
 
 	//anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 
-	battle_media_player_ = new BattleMediaPlayer();
-	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
+	//battle_media_player_ = new BattleMediaPlayer();
+	//battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 
 }
 
 void SceneBattle::Update(float delta_time) {
 	
 	phase_.update(delta_time);
-	
+	camera_->Update();
+
 	GetMousePoint(&debug_mp_x,&debug_mp_y);
 	msv_ = tnl::Input::GetMousePosition(); 
 	board_->Update(delta_time);
@@ -208,13 +209,13 @@ void SceneBattle::Update(float delta_time) {
 	//	sound_mgr_.PlayAllyDamagedVoice(1);
 	//}
 
-	battle_media_player_->Update(delta_time);
+	//battle_media_player_->Update(delta_time);
 	phase_.update(delta_time);
 }
 
 void SceneBattle::Render() {
 
-	camera_->Update();
+	//camera_->Update();
 	//DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,back_,false);
 	DrawDebugLayOut(true);
 
@@ -234,9 +235,11 @@ void SceneBattle::Render() {
 	ui_notice_target_box_->Render();
 	//card_play_->Render(camera_);
 
+	for (auto &anim : anim_mgr_.GetAnim()) {
+		anim->Render(camera_);
+	}
 
-
-	battle_media_player_->Render(camera_);
+	//battle_media_player_->Render(camera_);
 
 }
 

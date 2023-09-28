@@ -12,7 +12,7 @@ void SoundManager::CreateBattleBGMList() {
 	battle_bgm_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::BGM,"sound/bgm/battle1.mp3"));
 
 
-	SetVolumeMusicMem(5,battle_bgm_list_[0]->GetSoundHandle());
+	SetVolumeMusicMem(1,battle_bgm_list_[0]->GetSoundHandle());
 
 
 
@@ -22,7 +22,7 @@ void SoundManager::CreateBattleBGMList() {
 
 void SoundManager::CreateCardSEList() {
 
-	card_se_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::CardSE,"sound/se/cardse_fire.mp3"));
+	card_se_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::CardSE,"sound/se/card_se_shield1.mp3"));
 
 
 
@@ -87,7 +87,7 @@ void SoundManager::PlayCardSE(int id) {
 
 	if (!card_se_list_.empty()) {
 
-		for (auto csl : card_se_list_) {
+		for (auto &csl : card_se_list_) {
 
 			if (csl->GetID() == id) {
 
