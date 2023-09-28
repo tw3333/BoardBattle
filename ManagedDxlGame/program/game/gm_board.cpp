@@ -1,8 +1,12 @@
 #include "gm_board.h"
+
 #include "gm_unit.h"
 #include "gm_unit_ally.h"
 #include "gm_unit_enemy.h"
+#include "gm_unit_obstacle.h"
 #include "gm_select_square.h"
+
+
 
 
 
@@ -73,6 +77,20 @@ void Board::DisplayRangePosRangeTile(std::vector<SquarePos> range_square_pos) {
 
 	for (auto &pos : range_square_pos) {
 		board_squares_[pos.row][pos.col]->SetRenderRangeTile(true);
+	}
+
+}
+
+void Board::AddUnitInBoard(Unit* unit) {
+
+	all_units_in_board_.push_back(unit);
+
+	//各Unitにキャスト後、対応した配列へ
+	if (unit->GetUnitType() == UnitType::Ally) {
+		party_units_in_board_.push_back(static_cast<UnitAlly*>(unit));
+	}
+	else if (unit->GetUnitType() == UnitType::Enemy) {
+		enemy_units_in_board_.push_back(static_cast<UnitEnemy*>(unit));
 	}
 
 }

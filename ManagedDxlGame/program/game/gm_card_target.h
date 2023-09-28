@@ -62,10 +62,12 @@ public:
 	void SetTargetSquaresPos(std::vector<SquarePos> target_squares_pos) { target_squares_pos_ = target_squares_pos; }
 	std::vector<SquarePos>& GetTargetSquaresPos() { return target_squares_pos_; }
 	void AddTargetSquarePos(SquarePos target_square_pos) { target_squares_pos_.push_back(target_square_pos); }
+	void AddTargetSquarePoses(std::vector<SquarePos> target_square_poses) { target_squares_pos_.insert(target_squares_pos_.end(), target_square_poses.begin(), target_square_poses.end()); }
 
 	bool IsTargetInRange(std::vector<SquarePos> range, Board* board);
 	void ResetTargetSquarePos() { if (!target_squares_pos_.empty()) { target_squares_pos_.clear(); } }
 
+	
 
 private:
 
@@ -75,7 +77,7 @@ private:
 	TOTARGET to_target_ = TOTARGET::None;
 	
 	bool is_specified_ = false;
-	bool is_determined_ = false; //Œˆ’è‚µ‚½‚©‚Ç‚¤‚©
+	bool is_determined_ = false; //Target‚ªŒˆ’è‚µ‚½‚©‚Ç‚¤‚©
 
 	int target_num_ = 0;
 	int target_ref_num_ = 0; //CardEffect‚Æ‚ÌÆ‡”Ô†

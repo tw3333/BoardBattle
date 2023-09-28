@@ -24,6 +24,8 @@ void SceneBattle::Initialzie() {
 
 //---
 
+
+
 	std::setlocale(LC_ALL, "ja_JP.shiftjis");
 	card_play_= new CardPlay();
 
@@ -127,24 +129,26 @@ void SceneBattle::Initialzie() {
 
 	board_->Update(0);
 
-	anim_mgr_.GetDebugAnim()->SetCamera(camera_);
-	anim_mgr_.GetDebugAnim()->setCurrentAnim("none");
-	//anim_mgr_.GetDebugAnim()->pos_ = unit_enemy_->GetObj()->pos_;
+	//anim_mgr_.GetDebugAnim()->SetCamera(camera_);
+	//anim_mgr_.GetDebugAnim()->setCurrentAnim("none");
+	////anim_mgr_.GetDebugAnim()->pos_ = unit_enemy_->GetObj()->pos_;
 
 
-	//card_play_->SetCameraToCardEffectAnim(camera_);
-	for (auto& anim : anim_mgr_.GetDebugAnimList()) {
-		anim->SetCamera(camera_);
-		anim->setCurrentAnim("debug_anim");
-	}
+	////card_play_->SetCameraToCardEffectAnim(camera_);
+	//for (auto& anim : anim_mgr_.GetDebugAnimList()) {
+	//	anim->SetCamera(camera_);
+	//	anim->setCurrentAnim("debug_anim");
+	//}
 
 	for (auto& anim : anim_mgr_.GetAnim()) {
-		anim->SetCamera(camera_);
+		anim->SetBillBoardCamera(camera_);
 		anim->setCurrentAnim("none");
 	}
 
 	//anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 
+	battle_media_player_ = new BattleMediaPlayer();
+	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 
 }
 
@@ -188,23 +192,24 @@ void SceneBattle::Update(float delta_time) {
 	ui_card_hand_->Update(delta_time);
 
 
-	anim_mgr_.GetDebugAnim()->Update(delta_time);
-	for (auto &anim : anim_mgr_.GetDebugAnimList()) {
+	//anim_mgr_.GetDebugAnim()->Update(delta_time);
+	for (auto &anim : anim_mgr_.GetAnim()) {
 		anim->Update(delta_time);
 	}
-	
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
-		anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
-	}
+	//
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
+	//	anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
+	//}
 
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
-	
-		anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
-		//anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0.0);
-		sound_mgr_.PlayAllyDamagedVoice(1);
-	}
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
+	//
+	//	anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
+	//	//anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0.0);
+	//	sound_mgr_.PlayAllyDamagedVoice(1);
+	//}
 
-	//phase_.update(delta_time);
+	battle_media_player_->Update(delta_time);
+	phase_.update(delta_time);
 }
 
 void SceneBattle::Render() {
@@ -229,11 +234,9 @@ void SceneBattle::Render() {
 	ui_notice_target_box_->Render();
 	//card_play_->Render(camera_);
 
-	anim_mgr_.GetDebugAnim()->Render(camera_);
-	
-	for (auto anim : anim_mgr_.GetAnim()) {
-		anim->Render(camera_);
-	}
+
+
+	battle_media_player_->Render(camera_);
 
 }
 
@@ -257,12 +260,12 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 200, -1, "party2handnum:%d", party_[1]->GetHand().size());
 	DrawStringEx(w1 * 8, 220, -1, "party3handnum:%d", party_[2]->GetHand().size());
 
-	if (anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->GetIsPlaying()) {
-		DrawStringEx(w1 * 8, 240, -1, "Anim中！");
-	}
-	else {
-		DrawStringEx(w1 * 8, 240, -1, "Anim中じゃないよ！");
-	}
+	//if (anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->GetIsPlaying()) {
+	//	DrawStringEx(w1 * 8, 240, -1, "Anim中！");
+	//}
+	//else {
+	//	DrawStringEx(w1 * 8, 240, -1, "Anim中じゃないよ！");
+	//}
 	if (turn_enemy_) {
 
 		DrawStringEx(w1 * 8, 260, -1, "スライム移動pos:row[%d],col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->final_pos_.row, turn_enemy_->GetEnemyData()->GetEnemyMove()->final_pos_.col);
@@ -748,21 +751,15 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 			if (ctl->GetToTarget() == TOTARGET::Ally) {
 					
 				//ctl->SetTargetUnits(card_play_->ExtractUnitInRange(TOTARGET::Ally));
-				ctl->SetTargetSquaresPos(card_play_->ExtractTargetSquarePosInRange(TOTARGET::Ally,board_));
+				ctl->AddTargetSquarePoses(card_play_->ExtractTargetSquarePosInRange(TOTARGET::Ally,board_));
 				ctl->SetIsDetermined(true);
 
 			}
 			else if (ctl->GetToTarget() == TOTARGET::Enemy) {
-
-				//memoDebugように残してる
-				//card_play_->GetTargetUnits().insert(card_play_->GetTargetUnits().end(),
-				//card_play_->ExtractUnitInRange(TOTARGET::Enemy).begin(),
-				//card_play_->ExtractUnitInRange(TOTARGET::Enemy).end());
-
-				//ctl->SetTargetUnits(card_play_->ExtractUnitInRange(TOTARGET::Enemy));
-				ctl->SetTargetSquaresPos(card_play_->ExtractTargetSquarePosInRange(TOTARGET::Enemy, board_));
+				ctl->AddTargetSquarePoses(card_play_->ExtractTargetSquarePosInRange(TOTARGET::Enemy, board_));
 				ctl->SetIsDetermined(true);
 			}
+
 		}
 
 		//対象指定攻撃処理
@@ -809,18 +806,6 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 	//タイルの表示処理
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
-		//for (auto a: card_play_->GetTotalUnitsInRange()) {
-		//	if (a->GetUnitType() == UnitType::Ally) {
-		//		board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderCandidateTile(true);
-
-		//		if (select_square_->GetSelectSquare()->GetUnitPtrInSquare() == a) {
-
-		//			board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderTargetTile(true);
-
-
-		//		}
-		//	}
-		//}
 
 		for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
 			//CandidateTileの表示
@@ -838,18 +823,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 	}
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
-		//for (auto a : card_play_->GetTotalUnitsInRange()) {
-		//	if (a->GetUnitType() == UnitType::Enemy) {
-		//		board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderCandidateTile(true);
 
-		//		if (select_square_->GetSelectSquare()->GetUnitPtrInSquare() == a) {
-
-		//			board_->getBoardSquare(a->GetUnitSquarePos().row, a->GetUnitSquarePos().row)->SetRenderTargetTile(true);
-
-
-		//		}
-		//	}
-		//}
 		for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetEnemyPtrInSquare()) {
@@ -1051,6 +1025,8 @@ bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
 bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
 	card_play_->PlayCardExecute(board_);
+	battle_media_player_->CardMediaPlay(card_play_->GetPlayCard());
+
 	card_play_->SetPlayCard(nullptr);
 	ui_card_hand_->SetEnableSelectCard(true);
 	phase_.change(&SceneBattle::PhasePlayerActionCard);

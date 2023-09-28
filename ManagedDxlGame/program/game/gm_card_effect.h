@@ -20,8 +20,11 @@ public:
 	virtual void Effect(std::vector<Unit*> untis) = 0;
 	//virtual void ExcuteEffect(std::vector<EffectBoardPos> effect_board_pos) = 0;
 	virtual void EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) = 0; //Œø‰Ê‚ÌÀs
+	
 	virtual bool CanEffectExcute(std::vector<SquarePos> target_square_pos, Board* board) = 0; //Œø‰Ê‚ªÀs‚Å‚«‚é‚©”»’è
 
+	virtual bool CanEffectExcuteFromRange(std::vector<SquarePos> range_suqare, Board* board) = 0;
+	virtual bool CanEffectExcuteFromTarget() = 0;
 	
 
 	//int effect_ref_num_ = 0;

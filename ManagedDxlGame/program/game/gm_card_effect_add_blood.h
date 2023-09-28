@@ -11,6 +11,7 @@ public:
 	bool CanEffectExcute(std::vector<SquarePos> range_square_pos, Board* board) override;
 	void EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) override;
 
+	bool CanEffectExcuteFromRange(std::vector<SquarePos> range_suqare, Board* board) override;
 
 private:
 

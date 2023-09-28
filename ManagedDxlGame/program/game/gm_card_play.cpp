@@ -196,34 +196,34 @@ void CardPlay::EffectExecute()
 				a->Effect(total_units_in_range_);
 			}
 
-			for (int i = 0; i < total_units_in_range_.size(); ++i) {
+			//for (int i = 0; i < total_units_in_range_.size(); ++i) {
 
-				if (total_units_in_range_[i]->GetUnitType() == UnitType::Ally) {
+			//	if (total_units_in_range_[i]->GetUnitType() == UnitType::Ally) {
 
-					UnitAlly* unit_ally = dynamic_cast<UnitAlly*>(total_units_in_range_[i]);
-					card_effect_anim_[i]->pos_ = unit_ally->GetObj()->pos_;
+			//		UnitAlly* unit_ally = dynamic_cast<UnitAlly*>(total_units_in_range_[i]);
+			//		card_effect_anim_[i]->pos_ = unit_ally->GetObj()->pos_;
 
-				}
-				else if (total_units_in_range_[i]->GetUnitType() == UnitType::Enemy) {
+			//	}
+			//	else if (total_units_in_range_[i]->GetUnitType() == UnitType::Enemy) {
 
-					UnitEnemy* unit_enemy = dynamic_cast<UnitEnemy*>(total_units_in_range_[i]);
-					card_effect_anim_[i]->pos_ = unit_enemy->GetObj()->pos_;
+			//		UnitEnemy* unit_enemy = dynamic_cast<UnitEnemy*>(total_units_in_range_[i]);
+			//		card_effect_anim_[i]->pos_ = unit_enemy->GetObj()->pos_;
 
-				}
+			//	}
 
-				card_effect_anim_[i]->setCurrentAnim(select_uicard_->GetCardPtr()->GetCardData()->debug_anim_name_);
+			//	card_effect_anim_[i]->setCurrentAnim(select_uicard_->GetCardPtr()->GetCardData()->debug_anim_name_);
 
-			}
+			//}
 			
-			for (int i = 0; i < total_units_in_range_.size(); ++i) {
+			//for (int i = 0; i < total_units_in_range_.size(); ++i) {
 
-				card_effect_anim_[i]->getCurrentAnimSeekUnit()->play();
+			//	card_effect_anim_[i]->getCurrentAnimSeekUnit()->play();
 
-			}
+			//}
 
-			//Se再生
-			//sound_manager_.PlayCardSE(select_uicard_->GetCardPtr()->GetCardData()->GetCardID());
-			sound_manager_.PlayCardSE(1);
+			////Se再生
+			////sound_manager_.PlayCardSE(select_uicard_->GetCardPtr()->GetCardData()->GetCardID());
+			//sound_manager_.PlayCardSE(1);
 
 
 
@@ -273,17 +273,18 @@ void CardPlay::PlayCardExecute(Board* board) {
 			}
 		}
 
-		//Animを再生する座標を設定
-		for (auto &target : play_card_->GetCardData()->GetCardTargetList()) {
+		////Animを再生する座標を設定
+		//for (auto &target : play_card_->GetCardData()->GetCardTargetList()) {
 
-			for (auto &square : target->GetTargetSquaresPos()) {
 
-				anim_manager_.GetDebugAnim()->SetObjPosToSquarePos(square.row, square.col);
+		//	for (auto &square : target->GetTargetSquaresPos()) {
 
-			}
-		}
+		//		anim_manager_.GetAnim()->SetObjPosToSquarePos(square.row, square.col);
 
-		anim_manager_.GetDebugAnim()->CardAnimPlay(play_card_->GetCardData()->debug_anim_name_);
+		//	}
+		//}
+
+		//anim_manager_.GetDebugAnim()->CardAnimPlay(play_card_->GetCardData()->debug_anim_name_);
 
 		//CardTargeに格納したSquarePosをリセット
 		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
@@ -593,7 +594,7 @@ void CardPlay::SetCameraToCardEffectAnim(dxe::Camera* camera) {
 	if (!card_effect_anim_.empty()) {
 
 		for (auto cra : card_effect_anim_) {
-			cra->SetCamera(camera);
+			cra->SetBillBoardCamera(camera);
 			cra->setCurrentAnim("none");
 		}
 

@@ -35,6 +35,7 @@
 #include "../gm_board.h"
 #include "../gm_card_play.h"
 
+#include "../gm_battle_media_player.h"
 
 
 
@@ -101,6 +102,9 @@ public:
 
 
 private:
+
+	BattleMediaPlayer* battle_media_player_ = nullptr;
+
 
 	const int dx_[4] = { 0, 1, 0, -1 };
 	const int dy_[4] = { 1, 0, -1, 0 };

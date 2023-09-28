@@ -38,7 +38,7 @@ public:
 	void SetObjPosToSquarePos(int row, int col);
 
 	//Cameraのセット
-	void SetCamera(dxe::Camera* camera) { billboard_target_ = camera; }
+	void SetBillBoardCamera(dxe::Camera* camera) { billboard_target_ = camera; }
 
 	void AnimIsRender(bool flag) { for (auto& p : this->parts_) { p->is_render_ = flag; } }
 	void Play(); //Animの最後が残る対策。後で根本から修正

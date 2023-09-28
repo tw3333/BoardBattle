@@ -11,6 +11,7 @@
 class Unit;
 class UnitAlly;
 class UnitEnemy;
+class UnitObstacle;
 class SelectSquare;
 
 //memo
@@ -39,6 +40,8 @@ public:
 
 	void DisplayRangePosRangeTile(std::vector<SquarePos> range_square_pos);
 	
+	void AddUnitInBoard(Unit* unit); //Boardè„Ç…UnitÇí«â¡
+
 	void ResetDisplayRangeTile();
 	void ResetDisPlayCandidateTile();
 	void ResetDisPlayTargetTile();
@@ -84,14 +87,13 @@ private:
 	std::vector<UnitEnemy*> enemy_units_;
 	std::vector<Unit*> all_units_;
 
+
+
 	//Boardè„ÇÃäeUnit
-	std::vector<UnitAlly*> party_units_in_board_;
-	std::vector<UnitEnemy*> enemy_units_in_board_;
-	std::vector<Unit*> all_units_in_board_;
-
-
-
-
+	std::vector<UnitAlly*> party_units_in_board_; //Boardè„Ç…Ç¢ÇÈUnitAlly(Party)
+	std::vector<UnitEnemy*> enemy_units_in_board_; //Boardè„Ç…Ç¢ÇÈUnitEnemy
+	
+	std::vector<Unit*> all_units_in_board_; //Boardè„Ç…Ç¢ÇÈëSÇƒÇÃUnit
 
 
 	ObjectManager& omgr_ = ObjectManager::GetInstance();

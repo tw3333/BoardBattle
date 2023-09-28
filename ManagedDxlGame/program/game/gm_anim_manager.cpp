@@ -3,7 +3,7 @@
 
 void AnimManager::CreateDebugAnim() {
 
-	debug_anim_->regist(150, 100, "debug_anim", "graphics/effect/card_anim/anim_shield.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.5f, 20, 142, 0, 4);
+	debug_anim_->regist(150, 100, "debug_anim", "graphics/effect/card_anim/anim_shield.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 10, 192, 0, 2);
 	debug_anim_->regist(0, 1, "none", "nullptr", tnl::SeekUnit::ePlayMode::SINGLE, 0.0f, 8, 240, 0, 1);
 
 	//10x10‚Ìanim_pool
@@ -23,16 +23,15 @@ void AnimManager::CreateDebugAnim() {
 		anim->regist(100, 100, "anim_flame", "graphics/effect/card_anim/anim_flame.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);
 		anim->regist(100, 100, "anim_heal", "graphics/effect/card_anim/anim_heal.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);
 		anim->regist(100, 100, "anim_ice", "graphics/effect/card_anim/anim_ice.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);
+
 		anim->regist(100, 100, "anim_shield", "graphics/effect/card_anim/anim_shield.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 10, 192, 0, 2);
+
 		anim->regist(100, 100, "anim_sword", "graphics/effect/card_anim/anim_sword.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 5, 240, 0, 1);
 		anim->regist(100, 100, "anim_thunder", "graphics/effect/card_anim/anim_thunder.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 480, 0, 1);
 		anim->regist(100, 100, "anim_wind", "graphics/effect/card_anim/anim_wind.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);
 		
-	
 	}
 
-
-	
 }
 
 void AnimManager::AnimPlay(std::string anim_name, std::vector<SquarePos> target_pos) {

@@ -13,9 +13,9 @@ class CardTarget;
 class CardData {
 public:
 
-	CardData(int card_id,int poss_ally_id, int card_cost, std::string name, std::string card_explanation, std::string texture_path)
+	CardData(int card_id,int poss_ally_id, int card_cost, std::string name, std::string card_explanation, std::string texture_path,std::string anim_name)
 	:card_id_(card_id), poss_ally_id_(poss_ally_id), card_cost_(card_cost), card_name_(name), card_explanation_(card_explanation)
-	, card_texture_(dxe::Texture::CreateFromFile(texture_path))
+	, card_texture_(dxe::Texture::CreateFromFile(texture_path)),card_anim_name_(anim_name)
 	{}
 	~CardData(){}
 
@@ -42,6 +42,8 @@ public:
 	}
 
 	std::string debug_anim_name_ = "debug_anim";
+
+	std::string GetCardAnimName() { return card_anim_name_; }
 
 
 private:

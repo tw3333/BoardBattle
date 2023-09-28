@@ -50,9 +50,7 @@ bool CardTarget::IsTargetInRange(std::vector<SquarePos> range, Board* board)
 					return true;
 				}
 			}
-
 		}
-
 	}
 
 	return false;
