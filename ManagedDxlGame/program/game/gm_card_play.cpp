@@ -255,8 +255,6 @@ void CardPlay::PlayCardExecute(Board* board) {
 	//	return;
 	//}
 
-
-
 	if (play_card_ && turn_ally_) {
 		
 		//ref_num‚ªˆê’v‚µ‚½Target‚ÉŠi”[‚³‚ê‚Ä‚¢‚éUnit‚ÉEffect
@@ -273,18 +271,31 @@ void CardPlay::PlayCardExecute(Board* board) {
 			}
 		}
 
-		////Anim‚ðÄ¶‚·‚éÀ•W‚ðÝ’è
-		//for (auto &target : play_card_->GetCardData()->GetCardTargetList()) {
+		//«“Æ—§‚µ‚½ŠÖ”‚ÉŽÀ‘•‚µ‚Ä‚¢‚éBmemoŽc‚µ
 
-
-		//	for (auto &square : target->GetTargetSquaresPos()) {
-
-		//		anim_manager_.GetAnim()->SetObjPosToSquarePos(square.row, square.col);
-
-		//	}
+		////CardTarge‚ÉŠi”[‚µ‚½SquarePos‚ðƒŠƒZƒbƒg
+		//for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
+		//	//a->GetTargetUnits().clear();
+		//	a->GetTargetSquaresPos().clear();
 		//}
+		
+		////play_card‚Æ“¯‚¶ƒJ[ƒhPtr‚ðHand‚©‚çíœ
+		//int select_serial_num = play_card_->GetSerialNum();
+		//turn_ally_->GetHand().erase(std::remove_if(turn_ally_->GetHand().begin(), turn_ally_->GetHand().end(),
+		//	[select_serial_num](const std::shared_ptr<Card>& card) {
+		//		return card->GetSerialNum() == select_serial_num;
+		//	}), turn_ally_->GetHand().end());
 
-		//anim_manager_.GetDebugAnim()->CardAnimPlay(play_card_->GetCardData()->debug_anim_name_);
+	}
+
+
+
+}
+
+
+void CardPlay::ResetPlayCardTargetSquarePos() {
+
+	if (play_card_) {
 
 		//CardTarge‚ÉŠi”[‚µ‚½SquarePos‚ðƒŠƒZƒbƒg
 		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
@@ -294,6 +305,14 @@ void CardPlay::PlayCardExecute(Board* board) {
 
 		}
 
+	}
+
+
+}
+
+void CardPlay::RemovePlayCardFromHand() {
+
+	if (play_card_) {
 
 		int select_serial_num = play_card_->GetSerialNum();
 
@@ -305,8 +324,6 @@ void CardPlay::PlayCardExecute(Board* board) {
 			}), turn_ally_->GetHand().end());
 
 	}
-
-
 
 }
 
@@ -601,3 +618,5 @@ void CardPlay::SetCameraToCardEffectAnim(dxe::Camera* camera) {
 	}
 
 }
+
+

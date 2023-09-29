@@ -14,6 +14,7 @@ class ObjAlly;
 class AllyData {
 public:
 
+	
 	AllyData(int ally_id, std::string name, int hp, int cost, int move_cost, int speed) {
 		ally_id_ = ally_id;
 		name_ = name;

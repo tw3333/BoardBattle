@@ -35,13 +35,13 @@ public:
 	void UpdateSelectCardGetUnitInRange(UnitAlly* turn_ally, std::vector<Unit*> all_untis);
 	void UpdateSelectCardRangeSquarePos(SquarePos axis_pos);
 
-	void RemovePlayCardFromHand();
+	
 
 	void DebugRender();
 
 	void EffectExecute();
 
-	void PlayCardExecute(Board* board);
+	void PlayCardExecute(Board* board); //PlayCardの効果実行
 	bool CanPlayCardExecute(Board* board);
 
 	bool CanPlaySelectCard();
@@ -71,7 +71,8 @@ public:
 	void SetCurrentCardTarget(std::shared_ptr<CardTarget> card_target) { current_card_target_ = card_target; }
 
 	std::vector<SquarePos> GetCardRangeSquarePos() { return card_range_square_pos_; }
-
+	void ResetPlayCardTargetSquarePos(); //PlayCardのTargetのSquarePosをリセットする関数
+	void RemovePlayCardFromHand(); //PlayCardを手札から削除する
 	
 
 private:

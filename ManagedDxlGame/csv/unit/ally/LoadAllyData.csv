@@ -1,0 +1,4 @@
+AllyID,Name,TextureFace1,TextureFace2,TextureBattle,TextureStand
+1,ローシャ,graphics/unit/ally/c1_face1.png,graphics/unit/ally/c1_face2.png,graphics/unit/ally/c1_battle.png,graphics/unit/ally/c1_stand.png
+2,スス,graphics/unit/ally/c2_face1.png,graphics/unit/ally/c2_face2.png,graphics/unit/ally/c2_battle.png,graphics/unit/ally/c2_stand.png
+3,フラクト,graphics/unit/ally/c3_face1.png,graphics/unit/ally/c3_face2.png,graphics/unit/ally/c3_battle.png,graphics/unit/ally/c3_stand.png

@@ -1043,8 +1043,12 @@ bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
 bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
 	card_play_->PlayCardExecute(board_);
-
 	battle_media_player_->CardMediaPlay(card_play_->GetPlayCard());
+	card_play_->ResetPlayCardTargetSquarePos();
+	card_play_->RemovePlayCardFromHand();
+	
+
+	//sound_mgr_.PlayCardSE(1);
 
 	if (!battle_media_player_->GetIsMediaPlaying()) {
 
