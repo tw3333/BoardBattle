@@ -9,6 +9,7 @@
 enum class SoundType{
 	BGM,
 	CardSE,
+	EnemyActSE,
 	AllyVoice,
 	BattleStateSE,
 	UISE,

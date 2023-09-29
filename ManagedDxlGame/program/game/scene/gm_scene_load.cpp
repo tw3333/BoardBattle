@@ -45,6 +45,7 @@ void SceneLoad::Initialzie() {
 	sound_mgr_.CreateCardSEList();
 	sound_mgr_.CreateAllyVoiveList();
 	sound_mgr_.CreateSystemSEList();
+	sound_mgr_.CreateEnemyActSEList();
 
 
 

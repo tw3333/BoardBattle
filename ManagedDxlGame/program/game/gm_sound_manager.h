@@ -33,6 +33,7 @@ public:
 	void CreateAllyVoiveList();
 	void CreateSystemSEList();
 	void CreateBattleStateSEList();
+	bool CreateEnemyActSEList();
 
 
 
@@ -41,6 +42,7 @@ public:
 	void PlayCardSE(int id);
 	void PlayAllyDamagedVoice(int id);
 	void PlayBattleStateSE(int id);
+	void PlayEnemyActSE(int id);
 	
 	
 	
@@ -62,5 +64,6 @@ private:
 	std::vector<std::shared_ptr<SoundData>> ui_se_list_;
 	std::vector<std::shared_ptr<SoundData>> system_se_list_;
 	std::vector<std::shared_ptr<SoundData>> battle_state_se_list_;
+	std::vector<std::shared_ptr<SoundData>> enemy_act_se_list_;
 
 };

@@ -12,7 +12,7 @@ void SoundManager::CreateBattleBGMList() {
 	battle_bgm_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::BGM,"sound/bgm/battle1.mp3"));
 
 
-	SetVolumeMusicMem(1,battle_bgm_list_[0]->GetSoundHandle());
+	SetVolumeMusicMem(0,battle_bgm_list_[0]->GetSoundHandle());
 
 
 
@@ -64,6 +64,18 @@ void SoundManager::CreateBattleStateSEList() {
 
 
 
+}
+
+bool SoundManager::CreateEnemyActSEList() {
+
+	enemy_act_se_list_.push_back(std::make_shared<SoundData>(1,SoundType::EnemyActSE,"sound/se/enemy_act_se/slime_attack_se.mp3"));
+
+
+
+
+
+
+	return true;
 }
 
 
@@ -140,6 +152,25 @@ void SoundManager::PlayBattleStateSE(int id) {
 
 
 
+
+}
+
+void SoundManager::PlayEnemyActSE(int id) {
+
+	if (!enemy_act_se_list_.empty()) {
+
+		for (auto se : enemy_act_se_list_) {
+
+			if (se->GetID() == id) {
+
+				PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+				break;		
+		
+			}
+
+		}
+
+	}
 
 }
 
