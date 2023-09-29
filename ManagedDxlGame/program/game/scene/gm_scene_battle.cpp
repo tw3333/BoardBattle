@@ -135,20 +135,28 @@ void SceneBattle::Initialzie() {
 
 
 	////card_play_->SetCameraToCardEffectAnim(camera_);
-	//for (auto& anim : anim_mgr_.GetDebugAnimList()) {
-	//	anim->SetCamera(camera_);
+	//int cnt = 0;
+	//int cnt2 = 0;
+	//for (auto& anim : anim_mgr_.GetAnim()) {
+	//	anim->SetBillBoardCamera(camera_);
 	//	anim->setCurrentAnim("debug_anim");
-	//}
 
-	for (auto& anim : anim_mgr_.GetAnim()) {
-		anim->SetBillBoardCamera(camera_);
-		anim->setCurrentAnim("none");
-	}
+	//	anim->SetObjPosToSquarePos(cnt,cnt2);
+	//	cnt++;
+	//	if (cnt > 9) {
+	//		cnt = 0;
+	//		cnt2++;
+	//	}
+
+	//	if (cnt2 > 0) {
+	//		cnt2 = 0;
+	//	}
+	//}
 
 	//anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
 
-	//battle_media_player_ = new BattleMediaPlayer();
-	//battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
+	battle_media_player_ = new BattleMediaPlayer();
+	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 
 }
 
@@ -194,9 +202,9 @@ void SceneBattle::Update(float delta_time) {
 
 
 	//anim_mgr_.GetDebugAnim()->Update(delta_time);
-	for (auto &anim : anim_mgr_.GetAnim()) {
-		anim->Update(delta_time);
-	}
+	//for (auto anim : anim_mgr_.GetAnim()) {
+	//	anim->Update(delta_time);
+	//}
 	//
 	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
 	//	anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
@@ -209,7 +217,7 @@ void SceneBattle::Update(float delta_time) {
 	//	sound_mgr_.PlayAllyDamagedVoice(1);
 	//}
 
-	//battle_media_player_->Update(delta_time);
+	battle_media_player_->Update(delta_time);
 	phase_.update(delta_time);
 }
 
@@ -235,11 +243,11 @@ void SceneBattle::Render() {
 	ui_notice_target_box_->Render();
 	//card_play_->Render(camera_);
 
-	for (auto &anim : anim_mgr_.GetAnim()) {
+	for (auto anim : anim_mgr_.GetAnim()) {
 		anim->Render(camera_);
 	}
 
-	//battle_media_player_->Render(camera_);
+	battle_media_player_->Render(camera_);
 
 }
 
@@ -263,6 +271,8 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 	DrawStringEx(w1 * 8, 200, -1, "party2handnum:%d", party_[1]->GetHand().size());
 	DrawStringEx(w1 * 8, 220, -1, "party3handnum:%d", party_[2]->GetHand().size());
 
+
+
 	//if (anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->GetIsPlaying()) {
 	//	DrawStringEx(w1 * 8, 240, -1, "AnimíÜÅI");
 	//}
@@ -280,8 +290,13 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 		for (int i = 0; i < turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_.size(); ++i) {
 			DrawStringEx(w1 * 8, 360 + (i * 20) , -1, "Square:row[%d]col[%d]", turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_[i].row, turn_enemy_->GetEnemyData()->GetEnemyMove()->move_route_[i].col);
 		}
-
 	}
+
+	if (battle_media_player_->GetIsMediaPlaying()) {
+		DrawStringEx(w1 * 8, 380, -1, "BattleMediaçƒê∂íÜ!");
+	}
+
+
 
 
 
@@ -1028,11 +1043,16 @@ bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
 bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
 	card_play_->PlayCardExecute(board_);
+
 	battle_media_player_->CardMediaPlay(card_play_->GetPlayCard());
 
-	card_play_->SetPlayCard(nullptr);
-	ui_card_hand_->SetEnableSelectCard(true);
-	phase_.change(&SceneBattle::PhasePlayerActionCard);
+	if (!battle_media_player_->GetIsMediaPlaying()) {
+
+		card_play_->SetPlayCard(nullptr);
+		ui_card_hand_->SetEnableSelectCard(true);
+		phase_.change(&SceneBattle::PhasePlayerActionCard);
+
+	}
 
 	return true;
 }

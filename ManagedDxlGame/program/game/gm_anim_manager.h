@@ -37,7 +37,7 @@ public:
 
 	std::shared_ptr<AnimSprite3D>& GetDebugAnim() {	return debug_anim_; }
 	std::vector<std::shared_ptr<AnimSprite3D>> GetDebugAnimList() { return debug_anim_list_; }
-	std::vector<std::shared_ptr<AnimSprite3D>> GetAnim() { return anim_; }
+	std::vector<std::shared_ptr<AnimSprite3D>>& GetAnim() { return anim_; }
 
 	void AnimPlay(std::string anim_name, std::vector<SquarePos> target_pos);
 
@@ -50,6 +50,7 @@ private:
 
 	std::shared_ptr<AnimSprite3D> debug_anim_ = std::make_shared<AnimSprite3D>();
 	std::shared_ptr<AnimSprite3D> state_anim_  = std::make_shared<AnimSprite3D>();
+
 
 	std::vector<std::shared_ptr<AnimSprite3D>> debug_anim_list_;
 	std::vector<std::shared_ptr<AnimSprite3D>> card_effect_list_;

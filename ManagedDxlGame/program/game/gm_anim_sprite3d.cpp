@@ -128,7 +128,7 @@ void AnimSprite3D::SetObjPosToSquarePos(int row, int col) {
 	int board_h = (DXE_WINDOW_HEIGHT / 10) * 8;
 
 	this->pos_.y = 50;
-	this->pos_.z = board_h - (h1 / 2) - (h1) * row -10;
+	this->pos_.z = board_h - (h1 / 2) - (h1) * row -15;
 	this->pos_.x = (w1 / 2) + ((w1)*col);
 
 }
@@ -183,6 +183,13 @@ void AnimSprite3D::regist(
 			{ su, sv, 0 }, { eu, ev, 0 });
 
 		parts->mesh_->setTexture(unit->texture_);
+		
+		//“§‰ßˆ—
+		parts->mesh_->setAlpha(alpha_);
+		parts->mesh_->setBlendMode(dxlib_blend_mode_);
+		parts->mesh_->setMtrlEmissive(mtrl_emmisive_);
+
+
 		parts->mesh_->setDefaultLightEnable(false);
 		parts_.emplace_back(parts);
 		parts_[unit->parts_start_index_ + i]->is_render_ = false;

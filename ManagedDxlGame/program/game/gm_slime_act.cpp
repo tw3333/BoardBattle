@@ -73,7 +73,7 @@ void SlimeAct::Act(UnitEnemy* turn_enemy, Board* board) {
 		target_ally->DecreaseCurrentHp(turn_enemy->GetEnemyData()->GetPower());
 		
 		anim_mgr_.GetAnim()[0]->SetObjPosToSquarePos(target_ally->GetUnitSquarePos().row, target_ally->GetUnitSquarePos().col);
-		anim_mgr_.GetAnim()[0]->CardAnimPlay("anim_attack");
+		anim_mgr_.GetAnim()[0]->CardAnimPlay("anim_flame");
 		mgr.PlayAllyDamagedVoice(target_ally->GetAllyData()->GetAllyDataID());
 
 	}

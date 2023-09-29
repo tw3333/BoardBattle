@@ -7,9 +7,18 @@ void BattleMediaPlayer::Update(float delta_time) {
 
 	if (!anim_.empty()) {
 
+		is_media_playing_ = false;
+
 		for (auto& anim : anim_) {
 			anim->Update(delta_time);
+
+			if (anim->getCurrentAnimSeekUnit()->GetIsPlaying()) {
+				is_media_playing_ = true;
+			}
 		}
+
+
+
 
 	}
 
@@ -47,6 +56,8 @@ void BattleMediaPlayer::SetAnim(dxe::Camera* camera, std::vector<std::shared_ptr
 
 void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 
+
+
 	for (auto &target : card->GetCardData()->GetCardTargetList()) {
 
 		for (int i = 0; i < target->GetTargetSquaresPos().size(); ++i) {
@@ -60,7 +71,7 @@ void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 
 	}
 
-	//sound_mgr_.PlayCardSE(1);
+	
 
 	DrawStringEx(0, 400, -1, "debug_メディア関数実行");
 
