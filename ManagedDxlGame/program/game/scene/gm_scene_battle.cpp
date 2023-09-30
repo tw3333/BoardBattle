@@ -158,6 +158,12 @@ void SceneBattle::Initialzie() {
 	battle_media_player_ = new BattleMediaPlayer();
 	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 
+	obj_mgr_.GetObjBattleStateIcon()->pos_ = unit_enemy_->GetObj()->pos_;
+	obj_mgr_.GetObjBattleStateIcon()->pos_.y = unit_enemy_->GetObj()->pos_.y + 180;
+
+	obj_mgr_.GetObjBattleStateIcon()->SetIsRender(true);
+
+
 }
 
 void SceneBattle::Update(float delta_time) {
@@ -218,6 +224,7 @@ void SceneBattle::Update(float delta_time) {
 	//}
 
 	battle_media_player_->Update(delta_time);
+	obj_mgr_.GetObjBattleStateIcon()->Update(delta_time);
 	phase_.update(delta_time);
 }
 
@@ -248,6 +255,7 @@ void SceneBattle::Render() {
 	}
 
 	battle_media_player_->Render(camera_);
+	obj_mgr_.GetObjBattleStateIcon()->Render(camera_);
 
 }
 

@@ -21,7 +21,7 @@ void AnimManager::CreateDebugAnim() {
 		anim->regist(100, 100, "anim_blood", "graphics/effect/card_anim/anim_blood.png", tnl::SeekUnit::ePlayMode::SINGLE, 0.3f, 5, 240, 0, 1);
 		anim->regist(100, 100, "anim_buf", "graphics/effect/card_anim/anim_buf.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 10, 240, 0, 1);
 		anim->regist(100, 100, "anim_debuff", "graphics/effect/card_anim/anim_buff.png", tnl::SeekUnit::ePlayMode::SINGLE, 0.5f, 20, 192, 0, 4);
-		anim->regist(100, 100, "anim_crow", "graphics/effect/card_anim/anim_crow.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 2);
+		anim->regist(100, 100, "anim_crow", "graphics/effect/card_anim/anim_crow.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 10, 240, 0, 2);
 		anim->regist(100, 100, "anim_flame", "graphics/effect/card_anim/anim_flame.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);
 		anim->regist(100, 100, "anim_heal", "graphics/effect/card_anim/anim_heal.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);
 		anim->regist(100, 100, "anim_ice", "graphics/effect/card_anim/anim_ice.png", tnl::SeekUnit::ePlayMode::SINGLE, 1.0f, 8, 240, 0, 1);

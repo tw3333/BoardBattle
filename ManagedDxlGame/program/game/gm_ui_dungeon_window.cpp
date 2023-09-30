@@ -50,7 +50,7 @@ void DungeonWindow::Create() {
 	window_dungeon_tab_->setColor(GetColor(50,50,50));
 	
 	switch_dungeon_tab_ = std::make_shared<UIButton>(window_posx_ + 40, window_posy_ + 30,button_w_,button_h_);
-	switch_dungeon_tab_->setGraphHandle(tmgr_->panel_dungeon_->getDxLibGraphHandle());
+	//switch_dungeon_tab_->setGraphHandle(tmgr_->panel_dungeon_->getDxLibGraphHandle());
 	switch_dungeon_tab_->SetNotifyTag("SwitchDungeonTab");
 
 

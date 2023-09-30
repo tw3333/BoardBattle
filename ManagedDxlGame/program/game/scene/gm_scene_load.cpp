@@ -9,11 +9,16 @@ void SceneLoad::Initialzie() {
 
 	std::setlocale(LC_ALL, "ja_JP.shiftjis"); 
 
+	
 	font_mgr_.CreateFontData();
+
+	texture_mgr_.DebugLoadTexture();
+	
 
 	obj_mgr_.CreateObjAllys();
 	obj_mgr_.CreateObjSquares();
 	obj_mgr_.CreateObjEnemies();
+	obj_mgr_.CreateObjBattleStateIcon(texture_mgr_.GetBattleStateIconList());
 
 	amgr_.DebugLoadAllyData();
 	amgr_.DebugLoadAllyTexture();
@@ -21,7 +26,7 @@ void SceneLoad::Initialzie() {
 	emgr_->DebugLoadEnemyData();
 	emgr_->DebugLoadenemyTexture();
 
-	tmgr_->LoadTexture();
+	
 	
 	card_mgr_.CreateDebugCardData();
 	card_mgr_.LoadCardDataFromCSV("csv/card/LoadCardData.csv");

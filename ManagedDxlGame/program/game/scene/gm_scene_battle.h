@@ -129,6 +129,7 @@ private:
 	CardManager& cmgr_ = CardManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
+	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 
 
 	AllyDataManager& allydata_mgr_ = AllyDataManager::GetInstane();

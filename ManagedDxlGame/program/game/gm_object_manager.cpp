@@ -44,6 +44,15 @@ void ObjectManager::CreateDebugCardAnimSprites() {
 
 }
 
+void ObjectManager::CreateObjBattleStateIcon(std::vector<std::shared_ptr<dxe::Texture>> texture) {
+
+	obj_battle_state_icon_ = ObjBattleStateIcon::Create();
+
+
+
+
+}
+
 
 void ObjectManager::CreateObjAllys() {
 

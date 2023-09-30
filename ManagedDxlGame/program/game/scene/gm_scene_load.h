@@ -33,7 +33,7 @@ private:
 
 
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
-	//TextureManager* tmgr_ = TextureManager::GetInstance();
+	
 
 	AllyDataManager& amgr_ = AllyDataManager::GetInstane();
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
@@ -41,7 +41,7 @@ private:
 	FontManager& font_mgr_ = FontManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
-
+	TextureManager& texture_mgr_ = TextureManager::GetInstance();
 
 
 

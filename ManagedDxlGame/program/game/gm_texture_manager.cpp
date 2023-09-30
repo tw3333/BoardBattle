@@ -1,22 +1,6 @@
 #include "gm_texture_manager.h"
 
-TextureManager* TextureManager::instance_ = nullptr;
 
-TextureManager* TextureManager::GetInstance() {
-
-	if (!instance_) { instance_ = new TextureManager(); }
-	return instance_;
-}
-
-void TextureManager::Destory() {
-
-	if (instance_) {
-
-		delete instance_;
-		instance_ = nullptr;
-	}
-
-}
 
 void TextureManager::LoadTexture() {
 
@@ -27,5 +11,14 @@ void TextureManager::LoadTexture() {
 	panel_dungeon_ = dxe::Texture::CreateFromFile("graphics/ui/panel_dungeon.png");
 
 
+
+}
+
+void TextureManager::DebugLoadTexture() {
+
+	//battle_state_icon_list_.push_back(std::make_shared<dxe::Texture>(dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_blood.png")));
+	//battle_state_icon_list_.push_back(std::make_shared <dxe::Texture>(dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_poison.png")));
+	//battle_state_icon_list_.push_back(std::make_shared <dxe::Texture>(dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_snare.png")));
+	//battle_state_icon_list_.push_back(std::make_shared<dxe::Texture>(dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_stun.png")));
 
 }

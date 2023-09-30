@@ -22,11 +22,9 @@ public:
 	tnl::Quaternion rot_;
 	std::vector<Parts*> parts_;
 
-	bool GetIsRender() { return is_render; }
-	void SetIsRender(bool flag) { is_render = flag; }
 
 private:
 
-	bool is_render = true;
+	
 
 };
