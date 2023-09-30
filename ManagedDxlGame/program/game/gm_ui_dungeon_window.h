@@ -34,7 +34,7 @@ public:
 
 private:
 	
-	TextureManager* tmgr_ = TextureManager::GetInstance();
+	//TextureManager* tmgr_ = TextureManager::GetInstance();
 	int window_posx_;
 	int window_posy_;
 	int window_w_;

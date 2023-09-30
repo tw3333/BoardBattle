@@ -221,6 +221,7 @@
     <ClCompile Include="program\game\gm_deck.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
+    <ClCompile Include="program\game\gm_object_battle_state_icon.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />
     <ClCompile Include="program\game\gm_object_manager.cpp" />
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp" />
@@ -349,6 +350,7 @@
     <ClInclude Include="program\game\gm_enemy_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_enemy_move.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
+    <ClInclude Include="program\game\gm_object_battle_state_icon.h" />
     <ClInclude Include="program\game\gm_slime_act.h" />
     <ClInclude Include="program\game\gm_slime_move.h" />
     <ClInclude Include="program\game\gm_ui_deck_edit.h" />

@@ -81,12 +81,14 @@ public:
 	bool PhaseEnemyTurn(const float delta_time);
 	bool PhaseBattleEffectProc(const float delta_time);
 
+	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
 
-	bool PhasePlayerActionMove(const float delta_time);
+
+	bool PhasePlayerActionMove(const float delta_time); 
 	
 	bool PhasePlayerActionCard(const float delta_time);
+	
 	bool PhaseDrawCard(const float delta_time);
-
 	bool PhaseSpecifyPlayCardTarget(const float delta_time);
 	bool PhaseSpecifyTargetProc(const float delta_time);
 	bool PhaseCanExcutePlayCardProc(const float delta_time);

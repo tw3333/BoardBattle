@@ -437,6 +437,9 @@
     <ClCompile Include="program\game\gm_battle_media_player.cpp">
       <Filter>program\[003] game\unclassfication</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_object_battle_state_icon.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -874,6 +877,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_battle_media_player.h">
       <Filter>program\[003] game\unclassfication</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_battle_state_icon.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

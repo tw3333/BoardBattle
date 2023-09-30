@@ -33,7 +33,7 @@ private:
 
 
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
-	TextureManager* tmgr_ = TextureManager::GetInstance();
+	//TextureManager* tmgr_ = TextureManager::GetInstance();
 
 	AllyDataManager& amgr_ = AllyDataManager::GetInstane();
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
