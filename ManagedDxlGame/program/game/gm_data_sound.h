@@ -7,6 +7,7 @@
 
 
 enum class SoundType{
+	None,
 	BGM,
 	CardSE,
 	EnemyActSE,
@@ -14,13 +15,21 @@ enum class SoundType{
 	BattleStateSE,
 	UISE,
 	SystemSE,
-
 };
 
 
 class SoundData {
 public:
 
+	//Volume設定つきコンストラクタ
+	SoundData(int id, SoundType sound_type, std::string name, int volume) {
+		id_ = id;
+		sound_type_ = sound_type;
+		sound_handle_ = LoadSoundMem(name.c_str());
+		ChangeVolumeSoundMem(volume, sound_handle_);
+	}
+
+	
 	SoundData(int id, SoundType sound_type ,std::string name){
 		id_ = id;
 		sound_type_ = sound_type;
@@ -36,9 +45,9 @@ public:
 
 private:
 
-	int id_;
-	SoundType sound_type_;
-	int sound_handle_;
+	int id_ = 0;
+	SoundType sound_type_ = SoundType::None;
+	int sound_handle_ = 0;
 
 
 };

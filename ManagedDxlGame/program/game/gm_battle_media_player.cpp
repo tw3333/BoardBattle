@@ -63,27 +63,41 @@ void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 
 	}
 
-	//for (auto square : card->GetCardData()->GetCardTargetList()) {
-
-	//	if (square->GetTargetSquaresPos().empty()) {
-	//		DrawStringEx(0,420,-1,"TargetSquareが空ですよ！");
-	//	}
-
-	//}
-
-	//for (int i = 0; i < 5; ++i) {
-
-	//	anim_[i]->SetObjPosToSquarePos(i, i);
-
-	//	//anim_[i]->CardAnimPlay(card->GetCardData()->GetCardAnimName());
-	//	anim_[i]->CardAnimPlay("anim_attack");
-
-	//}
-
 	//SE
 	sound_mgr_.PlayCardSE(card->GetCardData()->GetCardID());
 	
-	DrawStringEx(0, 400, -1, "debug_メディア関数実行");
+	//DrawStringEx(0, 400, -1, "debug_メディア関数実行");
+
+}
+
+void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
+
+	//Noneの場合再生しない
+	if (state == State::None) {
+		return;
+	}
+
+
+	if (state == State::Blood) {
+
+		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().row);
+		anim_[0]->CardAnimPlay("anim_blood");
+		sound_mgr_.PlayBattleStateSE(state);
+	}
+	else if (state == State::Stun) {
+
+		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().row);
+		anim_[0]->CardAnimPlay("anim_debuff");
+
+		sound_mgr_.PlayBattleStateSE(state);
+	}
+	else if (state == State::Snare) {
+
+		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().row);
+		anim_[0]->CardAnimPlay("anim_debuff");
+
+		sound_mgr_.PlayBattleStateSE(state);
+	}
 
 }
 

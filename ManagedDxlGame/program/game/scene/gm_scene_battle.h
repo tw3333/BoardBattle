@@ -82,7 +82,7 @@ public:
 	bool PhaseBattleEffectProc(const float delta_time);
 
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
-
+	bool PhaseAnimBattleState(const float delta_time);
 
 	bool PhasePlayerActionMove(const float delta_time); 
 	

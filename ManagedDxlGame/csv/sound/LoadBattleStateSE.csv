@@ -1,0 +1,4 @@
+BattleStateSEID,path,SoundVolume(‘Š‘Î“I)0~255
+1,sound/se/battle_state_se/blood.mp3,255
+2,sound/se/battle_state_se/snare.mp3,255
+3,sound/se/battle_state_se/stun.mp3,150

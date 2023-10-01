@@ -135,7 +135,41 @@ bool SoundManager::LoadCardSEFromCSV(std::string file_name) {
 		return true;
 	}
 
-	return true;
+	return false;
+}
+
+bool SoundManager::LoadBattleStateSEFromCSV(std::string file_name) {
+
+	if (battle_state_se_list_.empty()) {
+
+		std::ifstream file(file_name);
+
+		if (!file.is_open()) {
+			return false;
+		}
+
+		std::string line;
+
+		std::getline(file, line); //ƒwƒbƒ_[”ò‚Î‚µ
+
+		while (std::getline(file, line)) {
+			std::istringstream iss(line);
+			std::string id_str, path, volume_str;
+
+			std::getline(iss, id_str, ',');
+			std::getline(iss, path, ',');
+			std::getline(iss, volume_str, ',');
+
+
+			int id = std::stoi(id_str);
+			int volume = std::stoi(volume_str);
+			battle_state_se_list_.emplace_back(std::make_shared<SoundData>(id, SoundType::BattleStateSE, path, volume));
+		}
+
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -189,28 +223,7 @@ void SoundManager::PlayAllyDamagedVoice(int id) {
 
 }
 
-void SoundManager::PlayBattleStateSE(int id) {
 
-	if (!battle_state_se_list_.empty()) {
-
-		for (auto se : battle_state_se_list_) {
-
-			if (se->GetID() == id) {
-
-				PlaySoundMem(se->GetSoundHandle(),DX_PLAYTYPE_BACK,true);
-
-
-			}
-
-		}
-
-
-	}
-
-
-
-
-}
 
 void SoundManager::PlayEnemyActSE(int id) {
 
@@ -273,6 +286,43 @@ void SoundManager::PlayAllyMoveSE() {
 	if (ally_move_se_) {
 
 		PlaySoundMem(ally_move_se_->GetSoundHandle(),DX_PLAYTYPE_BACK,true);
+
+	}
+
+}
+
+void SoundManager::PlayBattleStateSE(State state) {
+
+	if (!battle_state_se_list_.empty()) {
+
+		for (auto &se : battle_state_se_list_) {
+
+			if (state == State::Blood) {
+
+				if (se->GetID() == 1) {
+					PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+					break;
+				}
+
+			}
+			else if (state == State::Snare) {
+
+				if (se->GetID() == 2) {
+					PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+					break;
+				}
+
+			}	
+			else if (state == State::Stun) {
+
+				if (se->GetID() == 3) {
+					PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+					break;
+				}
+
+			}
+
+		}
 
 	}
 

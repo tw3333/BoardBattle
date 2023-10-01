@@ -54,6 +54,7 @@ void SceneLoad::Initialzie() {
 	sound_mgr_.CreateUISEList();
 
 	sound_mgr_.LoadCardSEFromCSV("csv/sound/LoadCardSE.csv");
+	sound_mgr_.LoadBattleStateSEFromCSV("csv/sound/LoadBattleStateSE.csv");
 
 
 

@@ -6,6 +6,7 @@
 
 #include "gm_data_sound.h"
 #include "../dxlib_ext/dxlib_ext.h"
+#include "gm_data_battle_state.h"
 
 
 
@@ -38,13 +39,13 @@ public:
 	bool CreateUISEList();
 	//LoadCSVä÷êî
 	bool LoadCardSEFromCSV(std::string file_name);
+	bool LoadBattleStateSEFromCSV(std::string file_name);
 
 
 
 	void PlayBattleBGM(int id);
 	void PlayCardSE(int id);
 	void PlayAllyDamagedVoice(int id);
-	void PlayBattleStateSE(int id);
 	void PlayEnemyActSE(int id);
 	
 	
@@ -52,6 +53,7 @@ public:
 	void PlaySystemSE(int id);
 	void PlayUISE(int id);
 	void PlayAllyMoveSE();
+	void PlayBattleStateSE(State state);
 
 
 

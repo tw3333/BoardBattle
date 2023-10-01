@@ -502,6 +502,8 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
 
+	
+
 	turn_enemy_->Move(board_);
 
 	turn_enemy_->Act(board_);
@@ -705,6 +707,11 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 		//board_->ResetAllTile();
 
 	}
+
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {	
+		battle_media_player_->BattleStateMediaPlay(turn_ally_, State::Blood);
+	}
+
 
 	//board_->ResetDisplayRangeTile();
 	//board_->ResetAllTile();
