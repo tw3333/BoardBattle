@@ -36,8 +36,12 @@ public:
 
 	SquarePos GetSelectSquarePos() { return select_square_pos_; }
 
+	bool GetIsMouseInBoard() { return is_mouse_in_board_; }
+	
 
 private:
+
+	bool is_mouse_in_board_ = false;
 
 	ObjSelectFlame* obj_; //p
 	tnl::Vector3 hit_;

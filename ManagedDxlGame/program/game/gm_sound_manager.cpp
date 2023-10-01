@@ -1,5 +1,10 @@
 #include "gm_sound_manager.h"
 
+#include <vector>
+#include <fstream>
+#include <memory>
+#include <sstream>
+
 #include "DxLib.h"
 
 
@@ -33,6 +38,9 @@ void SoundManager::CreateCardSEList() {
 }
 
 void SoundManager::CreateAllyVoiveList() {
+
+	//movese
+	ally_move_se_ = std::make_shared<SoundData>(0,SoundType::AllyVoice,"sound/se/ally_se/ally_move_se.mp3");
 
 	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(1,SoundType::AllyVoice,"sound/se/ally_voice/c1_damaged_voice.mp3"));
 	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(2, SoundType::AllyVoice, "sound/se/ally_voice/c2_damaged_voice.mp3"));
@@ -80,6 +88,56 @@ bool SoundManager::CreateEnemyActSEList() {
 	return true;
 }
 
+bool SoundManager::CreateUISEList() {
+
+	if (ui_se_list_.empty()) {
+
+		ui_se_list_.push_back(std::make_shared<SoundData>(1,SoundType::UISE,"sound/se/ui_se/cancel_se.mp3"));
+		ui_se_list_.push_back(std::make_shared<SoundData>(2, SoundType::UISE, "sound/se/ui_se/cant_card_se.mp3"));
+		ui_se_list_.push_back(std::make_shared<SoundData>(3, SoundType::UISE, "sound/se/ui_se/card_play_se.mp3"));
+		ui_se_list_.push_back(std::make_shared<SoundData>(4, SoundType::UISE, "sound/se/ui_se/target_decision_se.mp3"));
+		ui_se_list_.push_back(std::make_shared<SoundData>(5, SoundType::UISE, "sound/se/ui_se/target_move_cursor.mp3"));
+
+	}
+
+
+
+
+	return false;
+}
+
+bool SoundManager::LoadCardSEFromCSV(std::string file_name) {
+
+	if (card_se_list_.empty()) {
+
+		std::ifstream file(file_name);
+
+		if (!file.is_open()) {
+			return false;
+		}
+
+		std::string line;
+		
+		std::getline(file, line); //ÉwÉbÉ_Å[îÚÇŒÇµ
+
+		while (std::getline(file, line)) {
+			std::istringstream iss(line);
+			std::string id_str, path;
+
+			std::getline(iss, id_str, ',');
+			std::getline(iss, path, ',');
+
+			int id = std::stoi(id_str);
+			card_se_list_.emplace_back(std::make_shared<SoundData>(id, SoundType::CardSE, path));
+		}
+
+
+		return true;
+	}
+
+	return true;
+}
+
 
 
 
@@ -97,23 +155,20 @@ void SoundManager::PlayBattleBGM(int id) {
 
 }
 
-void SoundManager::PlayCardSE(int id) {
+void SoundManager::PlayCardSE(int card_id) {
 
 	if (!card_se_list_.empty()) {
 
 		for (auto csl : card_se_list_) {
 
-			if (csl->GetID() == id) {
+			if (csl->GetID() == card_id) {
 
 				PlaySoundMem(csl->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
 				break;
 			}
 		}
 
-
-
 	}
-
 
 }
 
@@ -190,6 +245,34 @@ void SoundManager::PlaySystemSE(int id)
 			}
 
 		}
+
+	}
+
+}
+
+void SoundManager::PlayUISE(int id) {
+
+	if (!ui_se_list_.empty()) {
+
+		for (auto se : ui_se_list_) {
+
+			if (se->GetID() == id) {
+
+				PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
+				break;
+			}
+
+		}
+
+	}
+
+}
+
+void SoundManager::PlayAllyMoveSE() {
+	
+	if (ally_move_se_) {
+
+		PlaySoundMem(ally_move_se_->GetSoundHandle(),DX_PLAYTYPE_BACK,true);
 
 	}
 

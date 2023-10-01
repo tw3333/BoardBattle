@@ -47,10 +47,13 @@ void SceneLoad::Initialzie() {
 	obj_mgr_.CreateDebugCardAnimSprites();
 
 	sound_mgr_.CreateBattleBGMList();
-	sound_mgr_.CreateCardSEList();
+	//sound_mgr_.CreateCardSEList();
 	sound_mgr_.CreateAllyVoiveList();
 	sound_mgr_.CreateSystemSEList();
 	sound_mgr_.CreateEnemyActSEList();
+	sound_mgr_.CreateUISEList();
+
+	sound_mgr_.LoadCardSEFromCSV("csv/sound/LoadCardSE.csv");
 
 
 

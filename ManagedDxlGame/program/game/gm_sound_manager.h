@@ -35,6 +35,9 @@ public:
 	void CreateBattleStateSEList();
 	bool CreateEnemyActSEList();
 
+	bool CreateUISEList();
+	//LoadCSVä÷êî
+	bool LoadCardSEFromCSV(std::string file_name);
 
 
 
@@ -47,6 +50,8 @@ public:
 	
 	
 	void PlaySystemSE(int id);
+	void PlayUISE(int id);
+	void PlayAllyMoveSE();
 
 
 
@@ -56,6 +61,8 @@ private:
 	~SoundManager() = default;
 
 
+
+	std::shared_ptr<SoundData> ally_move_se_ = nullptr;
 
 //	std::vector <std::shared_ptr<BGMData>> battle_bgm_list;
 	std::vector<std::shared_ptr<SoundData>> battle_bgm_list_;

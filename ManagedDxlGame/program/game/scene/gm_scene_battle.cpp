@@ -606,7 +606,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	//移動コストをチェック
 	int move_cost = turn_ally_->GetCurrentMoveCost();
 
-	if (!select_square_->IsSelectFlameOutOfBoard(msv_)) {
+	if (select_square_->GetIsMouseInBoard()) {
 
 		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
@@ -625,6 +625,8 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 			}
 
+			//MoveSE再生
+			sound_mgr_.PlayAllyMoveSE();
 		}
 
 	}
@@ -674,11 +676,12 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 			if (!card_play_->IsSelectCardCostEnough()) {
 
 				DrawStringEx(0,400,-1,"コストが足りません");
-
+				sound_mgr_.PlayUISE(2);
 			}
 			else if (!card_play_->IsSelectCardTargetInRange(board_)) {
 
 				DrawStringEx(0,400,-1,"射程に対象がいません");
+				sound_mgr_.PlayUISE(2);
 			}
 			//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
 			//	
@@ -692,7 +695,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 				card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
 				ui_card_hand_->SetEnableSelectCard(false);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
-
+				
 			}
 		}
 
@@ -829,6 +832,8 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 	int ally_cnt = 0;
 	int enemy_cnt = 0;
+	
+
 
 	//タイルの表示処理
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
@@ -955,7 +960,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 		}
 
-
+		sound_mgr_.PlayUISE(4);
 	}
 
 	//右クリックで指定を取り消し
@@ -1062,6 +1067,7 @@ bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
 		card_play_->SetPlayCard(nullptr);
 		ui_card_hand_->SetEnableSelectCard(true);
+		sound_mgr_.PlayUISE(3);
 		phase_.change(&SceneBattle::PhasePlayerActionCard);
 
 	}

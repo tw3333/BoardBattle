@@ -81,10 +81,29 @@ void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 	//}
 
 	//SE
-	sound_mgr_.PlayCardSE(1);
+	sound_mgr_.PlayCardSE(card->GetCardData()->GetCardID());
 	
 	DrawStringEx(0, 400, -1, "debug_メディア関数実行");
 
 }
 
 
+
+
+//memo
+	//for (auto square : card->GetCardData()->GetCardTargetList()) {
+
+	//	if (square->GetTargetSquaresPos().empty()) {
+	//		DrawStringEx(0,420,-1,"TargetSquareが空ですよ！");
+	//	}
+
+	//}
+
+	//for (int i = 0; i < 5; ++i) {
+
+	//	anim_[i]->SetObjPosToSquarePos(i, i);
+
+	//	//anim_[i]->CardAnimPlay(card->GetCardData()->GetCardAnimName());
+	//	anim_[i]->CardAnimPlay("anim_attack");
+
+	//}
