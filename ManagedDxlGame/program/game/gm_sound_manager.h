@@ -60,6 +60,7 @@ private:
 //	std::vector <std::shared_ptr<BGMData>> battle_bgm_list;
 	std::vector<std::shared_ptr<SoundData>> battle_bgm_list_;
 	std::vector<std::shared_ptr<SoundData>> card_se_list_;
+
 	std::vector<std::shared_ptr<SoundData>> ally_damaged_voice_list_;
 	std::vector<std::shared_ptr<SoundData>> ui_se_list_;
 	std::vector<std::shared_ptr<SoundData>> system_se_list_;

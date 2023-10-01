@@ -13,7 +13,8 @@ enum class SoundType{
 	AllyVoice,
 	BattleStateSE,
 	UISE,
-	SystemSE
+	SystemSE,
+
 };
 
 
@@ -28,7 +29,7 @@ public:
 	~SoundData(){}
 
 
-	int GetID() { return id_; }
+	const int GetID() { return id_; }
 	SoundType GetSoundType() { return sound_type_; }
 	int GetSoundHandle() { return sound_handle_; }
 
@@ -38,5 +39,6 @@ private:
 	int id_;
 	SoundType sound_type_;
 	int sound_handle_;
+
 
 };
