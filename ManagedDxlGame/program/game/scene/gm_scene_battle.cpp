@@ -629,6 +629,7 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
 
 
+
 		}
 
 	}
