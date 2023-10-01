@@ -74,19 +74,24 @@ public:
 
 
 
-	bool PhaseInitialTurnCal(const float delta_time);
-	bool TurnCal(const float delta_time);
+	bool PhaseInitialTurnCal(const float delta_time); //scene初期化時のターン決め
+	bool TurnCal(const float delta_time); //1.ターン決め
+
 	bool ResetActedCal(const float delta_time);
-	bool PhaseAllyTurn(const float delta_time);
-	bool PhaseEnemyTurn(const float delta_time);
+
+	bool PhaseAllyTurn(const float delta_time); //2
+	bool PhaseEnemyTurn(const float delta_time); //2
+
+	bool PhasePlayerActionMove(const float delta_time); //3.1
+	bool PhasePlayerActionCard(const float delta_time); //3.2
+
+
+
 	bool PhaseBattleEffectProc(const float delta_time);
 
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
-	bool PhaseAnimBattleState(const float delta_time);
+	bool PhaseAnimBattleState(const float delta_time); //BattleStateのアニメーション処理
 
-	bool PhasePlayerActionMove(const float delta_time); 
-	
-	bool PhasePlayerActionCard(const float delta_time);
 	
 	bool PhaseDrawCard(const float delta_time);
 	bool PhaseSpecifyPlayCardTarget(const float delta_time);
@@ -95,6 +100,7 @@ public:
 	bool PhaseExecutePlayCard(const float delta_time);
 
 	bool PhasePlayerActionTool(const float delta_time);
+
 	bool PhasePlayerActionTurnEnd(const float delta_time);
 	bool PhaseDebug(const float delta_time);
 

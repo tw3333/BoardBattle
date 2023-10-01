@@ -29,10 +29,12 @@ public:
 
 	void BattleStateMediaPlay(Unit* unit, State state);
 
+	State GetAnimBattleState(){ return anim_battle_state_; }
+	void SetAnimBattleState(State state) { anim_battle_state_ = state; }
 
 private:
 
-	State anim_state_ = State::None;
+	State anim_battle_state_ = State::None; //Ä¶‚·‚éBattleState‚Ìí—Ş
 
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();

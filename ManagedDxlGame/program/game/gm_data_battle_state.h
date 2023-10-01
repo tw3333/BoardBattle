@@ -5,13 +5,8 @@
 
 enum class State {
 	Blood,
-	Poison,
-	Shield,
-	Weak,
 	Snare,
 	Stun,
-	Counter,
-	Stand,
 	AddMoveCost,
 	AddCardCost,
 	None
@@ -43,12 +38,22 @@ public:
 	int GetValue() { return value_; }
 	int GetTurnCount() { return turn_count_; }
 
+	bool GetIsProc() { return is_proc_; }
+	void SetIsProc(bool is_proc) { is_proc_ = is_proc; }
+	bool GetIsAddTurn() { return add_turn_; }
+	void SetIsAddTurn(bool add_turn) { add_turn_ = add_turn; }
 
 private:
+
+	bool is_proc_ = false;
+	bool add_turn_ = true;
+
 
 	State state_ = State::None;
 
 	int turn_count_ = 0;
 	int value_ = 0;
+
+
 
 };

@@ -103,6 +103,11 @@ public:
 	void DecreaseCurrentCardCost(int value) {
 		current_card_cost_ = (std::max)(0, current_card_cost_ - value);
 	}
+
+	//シールドを無視してダメージを与える
+	void DecreaseDirectCurrentHp(int value) { 		
+		current_hp_ = (std::max)(0, current_hp_ - value);
+	}
 	
 	void SetBaseDeck(std::vector<std::shared_ptr<Card>> deck) { base_deck_ = deck; }
 	void SetUseDeck(std::vector<std::shared_ptr<Card>> deck) { use_deck_ = deck; }

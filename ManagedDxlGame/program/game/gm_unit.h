@@ -48,7 +48,15 @@ public:
 	void DecreaseShieldValue(int value) { (std::max)(0, shield_value_ - value); }
 	void AddShieldValue(int value) { shield_value_ += value; }
 
+	bool CheckStunInBattleState();
+	bool CheckSnareInBattleState();
+	bool CheckBloodInBattleState();
 
+	bool IsBattleStateProcStartOfTurn();
+	void DeeleteBattleState
+
+	bool GetIsAllStateProc() { return is_all_state_proc_; }
+	void SetIsAllStateProc(bool flag) { is_all_state_proc_ = flag; }
 
 private:
 
@@ -72,5 +80,6 @@ protected:
 	bool is_dead_ = false;
 	bool is_acted_ = false;
 	bool is_turn_ = false;
+	bool is_all_state_proc_ = false;
 
 };

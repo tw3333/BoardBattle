@@ -60,7 +60,6 @@ void SceneBattle::Initialzie() {
 
 	party_units_[0]->AddShieldValue(20);
 	party_units_[0]->AddBattleState(BattleState(State::Blood,3,3));
-	party_units_[0]->AddBattleState(BattleState(State::Poison, 3, 3));
 	party_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
 	party_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
@@ -72,7 +71,6 @@ void SceneBattle::Initialzie() {
 
 	enemy_units_[0]->AddShieldValue(20);
 	enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
-	enemy_units_[0]->AddBattleState(BattleState(State::Poison, 3, 3));
 	enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
 	enemy_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
@@ -582,6 +580,133 @@ bool SceneBattle::PhaseBattleEffectProc(const float delta_time) {
 
 
 
+
+
+	return true;
+}
+
+
+//ToDO:‹¤’Ê•”•ªˆ—‚ÌŠÖ”‰»
+bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
+
+	//Allyˆ—
+	if (turn_ally_ && turn_ally_->GetIsTurn()) {
+
+		if (!turn_ally_->IsBattleStateProcStartOfTurn()) {
+
+			for (auto& state : turn_ally_->GetBattleState()) {
+
+				if (!state.GetIsProc()) {
+
+					if (state.GetState() == State::Blood) {
+
+						turn_ally_->DecreaseDirectCurrentHp(state.GetValue());
+						state.DecreaseTurnCount(1);
+						state.SetIsProc(true);
+						//Animˆ—‚Ö
+						battle_media_player_->SetAnimBattleState(State::Blood);
+						phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
+
+					}
+					if (state.GetState() == State::AddCardCost) {
+
+						turn_ally_->AddCurrentCardCost(state.GetValue());
+						state.DecreaseTurnCount(1);
+						state.SetIsProc(true);		
+						//anim–³‚µ
+					}
+					if (state.GetState() == State::AddMoveCost) {
+
+						turn_ally_->AddCurrentMoveCost(state.GetValue());
+						state.DecreaseTurnCount(1);
+						state.SetIsProc(true);
+						//anim–³‚µ
+					}
+				}
+			}
+		}
+		else if (turn_ally_->IsBattleStateProcStartOfTurn()) {
+
+
+
+		}
+
+	}
+	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
+
+		if (!turn_enemy_->IsBattleStateProcStartOfTurn()) {
+
+			for (auto& state : turn_enemy_->GetBattleState()) {
+
+				if (!state.GetIsProc()) {
+
+					if (state.GetState() == State::Blood) {
+
+						turn_enemy_->DecreaseDirectCurrentHp(state.GetValue());
+						state.DecreaseTurnCount(1);
+						state.SetIsProc(true);
+						state.SetIsAddTurn(false);
+						//Animˆ—‚Ö
+						battle_media_player_->SetAnimBattleState(State::Blood);
+						phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
+
+					}
+					if (state.GetState() == State::AddCardCost) {
+
+						turn_ally_->AddCurrentCardCost(state.GetValue());
+						state.DecreaseTurnCount(1);
+						state.SetIsProc(true);
+						state.SetIsAddTurn(false);
+
+						//anim–³‚µ
+					}
+					if (state.GetState() == State::AddMoveCost) {
+
+						turn_ally_->AddCurrentMoveCost(state.GetValue());
+						state.DecreaseTurnCount(1);
+						state.SetIsProc(true);
+						state.SetIsAddTurn(false);
+
+						//anim–³‚µ
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	
+
+
+
+
+	return true;
+}
+
+//BattleState‚ÌAnimÄ¶
+bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
+
+	if (turn_ally_ && turn_ally_->GetIsTurn()) {
+
+		battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
+
+		if (!battle_media_player_->GetIsMediaPlaying()) {
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+		}
+
+	}
+	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
+
+		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
+
+		if (!battle_media_player_->GetIsMediaPlaying()) {
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+		}
+
+	}
 
 
 	return true;
