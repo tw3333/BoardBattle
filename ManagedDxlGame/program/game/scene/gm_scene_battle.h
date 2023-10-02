@@ -81,19 +81,21 @@ public:
 
 	bool PhaseAllyTurn(const float delta_time); //2
 	bool PhaseEnemyTurn(const float delta_time); //2
+	bool PhaseDrawCard(const float delta_time);
 
 	bool PhasePlayerActionMove(const float delta_time); //3.1
 	bool PhasePlayerActionCard(const float delta_time); //3.2
+	bool PhasePlayerActionTurnEnd(const float delta_time);
 
 
 
 	bool PhaseBattleEffectProc(const float delta_time);
 
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
-	bool PhaseAnimBattleState(const float delta_time); //BattleStateのアニメーション処理
+	bool PhaseBattleStateProcAtEndOfTurn(const float delta_time); //ターン終了時BattleStateの処理
+	bool PhaseAnimBattleStateStartOfTurn(const float delta_time); //BattleStateのアニメーション処理
 
 	
-	bool PhaseDrawCard(const float delta_time);
 	bool PhaseSpecifyPlayCardTarget(const float delta_time);
 	bool PhaseSpecifyTargetProc(const float delta_time);
 	bool PhaseCanExcutePlayCardProc(const float delta_time);
@@ -101,7 +103,6 @@ public:
 
 	bool PhasePlayerActionTool(const float delta_time);
 
-	bool PhasePlayerActionTurnEnd(const float delta_time);
 	bool PhaseDebug(const float delta_time);
 
 	std::array<std::array<int, 10>, 10> GetReachableSquares(UnitAlly* unit);
