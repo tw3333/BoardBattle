@@ -150,8 +150,6 @@ private:
 	ObjAlly* obj_ = nullptr;
 
 	//ステータス
-	int max_hp_;
-	int current_hp_;
 
 	int max_card_cost_;
 	int current_card_cost_;

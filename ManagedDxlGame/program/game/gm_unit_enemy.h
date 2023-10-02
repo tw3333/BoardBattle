@@ -111,8 +111,7 @@ private:
 	EnemyBehaviorStrategy* behavior_ = nullptr;
 
 	//ステータス
-	int max_hp_;
-	int current_hp_;
+
 
 	int max_move_cost_;
 	int current_move_cost_;

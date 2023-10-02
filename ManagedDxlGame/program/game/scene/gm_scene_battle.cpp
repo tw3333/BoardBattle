@@ -589,6 +589,80 @@ bool SceneBattle::PhaseBattleEffectProc(const float delta_time) {
 //ToDO:共通部分処理の関数化
 bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
+	bool is_proc_finished = false;
+
+	Unit* proc_unit = nullptr;
+	//各Unitの処理用
+	UnitAlly* proc_ally = nullptr; 
+	UnitEnemy* proc_enemy = nullptr;
+
+	if (turn_ally_ && turn_ally_->GetIsTurn()) {
+		proc_unit = turn_ally_;
+		proc_ally = dynamic_cast<UnitAlly*>(proc_unit);
+	}
+	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
+		proc_unit = turn_enemy_;
+		proc_enemy = dynamic_cast<UnitEnemy*>(proc_unit);
+	}
+
+	if (proc_unit) {
+
+		for (auto &state : proc_unit->GetBattleState()) {
+
+			if (!state.GetIsProc()) {
+
+				//State特有の処理
+				if (state.GetState() == State::Blood) {
+
+					proc_unit->DecreaseDirectCurrentHp(state.GetValue());
+					state.SetIsProc(true);
+					state.SetIsAddTurn(false);
+					//Anim処理へ
+					battle_media_player_->SetAnimBattleState(State::Blood);
+					phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
+				}
+				else if (state.GetState() == State::AddCardCost) {
+
+					if (proc_unit->GetUnitType() == UnitType::Ally) {
+						proc_ally->AddCurrentCardCost(state.GetValue());
+					}
+					else {
+						//ここバグるかも（要検証）
+						continue;
+					}
+
+				}
+				else if (state.GetState() == State::AddMoveCost) {
+
+					if (proc_unit->GetUnitType() == UnitType::Ally) {
+						proc_ally->AddCurrentMoveCost(state.GetValue());
+					}
+					else {
+						continue;
+					}
+
+				}
+				else if (state.GetState() == State::Snare) {
+					proc_unit->SetIsSnareTurn(true);						
+				}
+				else if (state.GetState() == State::Stun) {
+					proc_unit->SetIsStunTurn(true);
+				}
+
+				//State共通の処理
+				state.SetIsProc(true);
+				state.SetIsAddTurn(false);
+
+			}
+
+
+		}
+
+
+
+	}
+
+
 	//Ally処理
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
@@ -603,6 +677,7 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 						turn_ally_->DecreaseDirectCurrentHp(state.GetValue());
 						state.DecreaseTurnCount(1);
 						state.SetIsProc(true);
+						state.SetIsAddTurn(false);
 						//Anim処理へ
 						battle_media_player_->SetAnimBattleState(State::Blood);
 						phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
@@ -613,6 +688,8 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 						turn_ally_->AddCurrentCardCost(state.GetValue());
 						state.DecreaseTurnCount(1);
 						state.SetIsProc(true);		
+						state.SetIsAddTurn(false);
+
 						//anim無し
 					}
 					if (state.GetState() == State::AddMoveCost) {
@@ -620,7 +697,17 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 						turn_ally_->AddCurrentMoveCost(state.GetValue());
 						state.DecreaseTurnCount(1);
 						state.SetIsProc(true);
+						state.SetIsAddTurn(false);
 						//anim無し
+					}
+					if (state.GetState() == State::Stun) {
+
+						state.SetIsAddTurn(false);
+						//Animなし
+					}
+					if (state.GetState() == State::Snare) {
+						state.SetIsAddTurn(false);
+						//Animなし
 					}
 				}
 			}
@@ -687,6 +774,33 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 	return true;
 }
 
+bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
+
+	Unit* proc_unit = nullptr;
+	
+	if (turn_ally_ && turn_ally_->GetIsTurn()) {
+		proc_unit = turn_ally_;
+	}
+	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
+		proc_unit = turn_enemy_;
+	}
+
+	if (proc_unit) {
+		proc_unit->DecreaseBattleStateTurn();
+		//Phase移行
+
+	}
+
+	
+
+
+
+
+
+
+	return true;
+}
+
 //BattleStateのAnim再生
 bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 
@@ -695,6 +809,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 		battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
 
 		if (!battle_media_player_->GetIsMediaPlaying()) {
+			battle_media_player_->SetAnimBattleState(State::None);
 			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 
@@ -704,6 +819,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
 
 		if (!battle_media_player_->GetIsMediaPlaying()) {
+			battle_media_player_->SetAnimBattleState(State::None);
 			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 

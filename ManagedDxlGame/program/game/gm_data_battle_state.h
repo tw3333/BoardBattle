@@ -5,6 +5,7 @@
 
 enum class State {
 	Blood,
+	Poison,
 	Snare,
 	Stun,
 	AddMoveCost,

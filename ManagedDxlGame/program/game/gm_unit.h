@@ -45,18 +45,28 @@ public:
 	std::vector<BattleState>& GetBattleState() { return state_; }
 	void AddBattleState(BattleState state) { state_.emplace_back(state); }
 
-	void DecreaseShieldValue(int value) { (std::max)(0, shield_value_ - value); }
+	void DecreaseShieldValue(int value) { shield_value_ = (std::max)(0, shield_value_ - value); }
+	void DecreaseDirectCurrentHp(int value) { current_hp_ = (std::max)(0, current_hp_ - value); }
+
+
 	void AddShieldValue(int value) { shield_value_ += value; }
+
+	void DecreaseBattleStateTurn();
 
 	bool CheckStunInBattleState();
 	bool CheckSnareInBattleState();
 	bool CheckBloodInBattleState();
 
 	bool IsBattleStateProcStartOfTurn();
-	void DeeleteBattleState
+	//void DeeleteBattleState
 
 	bool GetIsAllStateProc() { return is_all_state_proc_; }
 	void SetIsAllStateProc(bool flag) { is_all_state_proc_ = flag; }
+
+	bool GetIsStunTurn() { return is_stun_turn_; }
+	void SetIsStunTurn(bool flag) { is_stun_turn_ = flag; }
+	bool GetIsSnareTurn() { return is_snare_turn_; }
+	void SetIsSnareTurn(bool flag) { is_snare_turn_ = flag; }
 
 private:
 
@@ -70,16 +80,20 @@ protected:
 	SquarePos unit_square_pos_; //盤面上のUnitの位置
 
 	UnitType unit_type = UnitType::None;
+
+	//Unit共通のステータス
 	int speed_ = 0;
 	int shield_value_ = 0; //シールド値
-
-	//状態
-	std::vector<BattleState> state_;
+	int max_hp_ = 0;
+	int current_hp_ = 0;
+	std::vector<BattleState> state_; //BattleState
 
 	//Unit共通の状態
-	bool is_dead_ = false;
+	bool is_dead_ = false; 
 	bool is_acted_ = false;
 	bool is_turn_ = false;
 	bool is_all_state_proc_ = false;
+	bool is_stun_turn_ = false;
+	bool is_snare_turn_ = false;
 
 };

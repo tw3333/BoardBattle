@@ -94,6 +94,7 @@ public:
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
 	bool PhaseBattleStateProcAtEndOfTurn(const float delta_time); //ターン終了時BattleStateの処理
 	bool PhaseAnimBattleStateStartOfTurn(const float delta_time); //BattleStateのアニメーション処理
+	bool PhaseAnimBattleStateInTurn(const float delta_time); //各Unitのturn中のBattleStateAnimの再生処理
 
 	
 	bool PhaseSpecifyPlayCardTarget(const float delta_time);

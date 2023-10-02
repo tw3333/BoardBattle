@@ -11,39 +11,39 @@ void CardEffectShareShield::Effect(std::vector<Unit*> units)
 
 bool CardEffectShareShield::CanEffectExcute(std::vector<SquarePos> range_square_pos, Board* board) {
 
-	int ally_cnt = 0;
+	//int ally_cnt = 0;
 
-	//”ÍˆÍ‚É‰½l–¡•û‚ª‚¢‚é‚©‚ð’²‚×‚é
-	for (auto square : range_square_pos) {
+	////”ÍˆÍ‚É‰½l–¡•û‚ª‚¢‚é‚©‚ð’²‚×‚é
+	//for (auto square : range_square_pos) {
 
-		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
-			ally_cnt++;
-		}
+	//	if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()) {
+	//		ally_cnt++;
+	//	}
 
-	}
+	//}
 
-	if (ally_cnt == 0) {
-		return false;
-	}
+	//if (ally_cnt == 0) {
+	//	return false;
+	//}
 
 
 
-	for (auto ally : board->GetPartyUnitsInBoard()) {
+	//for (auto ally : board->GetPartyUnitsInBoard()) {
 
-		if (ally->GetIsTurn()) {
+	//	if (ally->GetIsTurn()) {
 
-			for (auto &state : ally->GetBattleState()) {
+	//		for (auto &state : ally->GetBattleState()) {
 
-				if (state.GetState() == State::Shield) {
-					if (state.GetValue() == 0 || state.GetValue() < ally_cnt + 1) {
-						return false;
-					}
-				}
-			}
-		}
-	}
+	//			if (state.GetState() == State::Shield) {
+	//				if (state.GetValue() == 0 || state.GetValue() < ally_cnt + 1) {
+	//					return false;
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 
-	return true;
+	//return true;
 }
 
 void CardEffectShareShield::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
