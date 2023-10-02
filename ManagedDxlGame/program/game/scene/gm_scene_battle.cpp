@@ -347,7 +347,7 @@ void SceneBattle::BattleResultJudgment(Board* board) {
 }
 
 //各Phaseの実装=======================================================================================================
-//戦闘開始時のターン決め
+//0.戦闘開始時のターン決め
 bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 
 	//素早さ順に降順ソート
@@ -360,20 +360,20 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 	//turn_unitをキャスト。対応したPhaseに移行
 	if (turn_unit_->GetUnitType() == UnitType::Ally) {
 		turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
-		
-		phase_.change(&SceneBattle::PhaseAllyTurn);
+		turn_enemy_ = nullptr;
+		phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 	}
 	else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 		turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
-
-		phase_.change(&SceneBattle::PhaseEnemyTurn);
+		turn_ally_ = nullptr;
+		phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 	}
 
 	return true;
 }
 
 
-//
+//1.ターン決め
 bool SceneBattle::TurnCal(const float delta_time) {
 
 	turn_count_ += 1;
@@ -409,21 +409,25 @@ bool SceneBattle::TurnCal(const float delta_time) {
 	if (turn_unit_) {
 		if (turn_unit_->GetUnitType() == UnitType::Ally) {
 			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+			turn_enemy_ = nullptr;
 			turn_ally_->SetIsTurn(true);
 
-			phase_.change(&SceneBattle::PhaseAllyTurn);
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 			turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+			turn_ally_ = nullptr;
 			turn_enemy_->SetIsTurn(true);
 
-			phase_.change(&SceneBattle::PhaseEnemyTurn);
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 	}
 
 	return true;
 }
 
+
+//1.2全Unitが行動したらリセット
 bool SceneBattle::ResetActedCal(const float delta_time)
 {
 	DrawStringEx(0,500,-1,"ResetActedCal");
@@ -478,118 +482,11 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 	return true;
 }
 
-bool SceneBattle::PhaseAllyTurn(const float delta_time)
-{
 
-	DrawStringEx(500,0,-1,"PhaseTurnAlly");
-	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
-
-	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
-
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
-		phase_.change(&SceneBattle::PhaseDebug);
-
-	}
-
-
-	return true;
-}
-
-//敵のターン処理
-bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
-	
-	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
-
-	
-
-	turn_enemy_->Move(board_);
-
-	turn_enemy_->Act(board_);
-
-	turn_enemy_->SetIsTurn(false);
-	turn_enemy_->SetIsActed(true);
-	phase_.change(&SceneBattle::ResetActedCal);
-
-	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
-	//	phase_.change(&SceneBattle::ResetActedCal);
-
-	//}
-
-	return true;
-}
-
-
-//UnitのもつBattleEffectの処理関数
-//各Unitのターン開始前に呼び出される
-bool SceneBattle::PhaseBattleEffectProc(const float delta_time) {
-
-	//for (auto unit : board_->GetAllUnitsInBoard()) {
-
-	//	if (unit->GetIsTurn()) {
-
-	//		//各UnitのBattleEffectを処理
-	//		if (unit->GetUnitType() == UnitType::Ally) {
-
-	//			for (auto &state : unit->GetBattleState()) {
-	//			
-	//				if (state.GetState() == State::AddCardCost) {
-	//					turn_ally_->AddCurrentCardCost(state.GetValue());
-
-	//					//配列から削除
-	//					unit->GetBattleState().erase(std::remove(unit->GetBattleState().begin(), unit->GetBattleState().end(), state), unit->GetBattleState().end());
-	//				}
-	//				else if (state.GetState() == State::AddMoveCost) {
-	//					turn_ally_->AddCurrentMoveCost(state.GetValue());
-
-	//					//配列から削除
-	//					unit->GetBattleState().erase(std::remove(unit->GetBattleState().begin(), unit->GetBattleState().end(), state), unit->GetBattleState().end());
-	//				}
-	//				else if (state.GetState() == State::Blood) {
-	//					turn_ally_->DecreaseCurrentHp(state.GetValue());
-	//					state.DecreaseTurnCount(1);
-
-	//				}
-	//				else if (state.GetState() == State::AddCardCost) {
-
-	//					turn_ally_->AddCurrentCardCost(state.GetValue());
-	//				}
-	//				else if (state.GetState() == State::AddCardCost) {
-	//					turn_ally_->AddCurrentCardCost(state.GetValue());
-	//				}
-	//				else if (state.GetState() == State::AddCardCost) {
-	//					turn_ally_->AddCurrentCardCost(state.GetValue());
-	//				}
-
-
-
-	//			}
-
-	//		}
-	//		else if (unit->GetUnitType() == UnitType::Enemy) {
-
-
-
-	//		}
-
-
-	//	}
-
-
-	//}
-
-
-
-
-
-
-	return true;
-}
-
-
-//ToDO:共通部分処理の関数化
+//2.ターン開始時のBattleState処理
 bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
-	bool is_proc_finished = false;
+	bool is_proc_finished = true;
 
 	Unit* proc_unit = nullptr;
 	//各Unitの処理用
@@ -607,173 +504,181 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
 	if (proc_unit) {
 
-		for (auto &state : proc_unit->GetBattleState()) {
+		//なかったらそのまま各Turnへ
+		if (proc_unit->GetBattleState().empty()) {
 
-			if (!state.GetIsProc()) {
-
-				//State特有の処理
-				if (state.GetState() == State::Blood) {
-
-					proc_unit->DecreaseDirectCurrentHp(state.GetValue());
-					state.SetIsProc(true);
-					state.SetIsAddTurn(false);
-					//Anim処理へ
-					battle_media_player_->SetAnimBattleState(State::Blood);
-					phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
-				}
-				else if (state.GetState() == State::AddCardCost) {
-
-					if (proc_unit->GetUnitType() == UnitType::Ally) {
-						proc_ally->AddCurrentCardCost(state.GetValue());
-					}
-					else {
-						//ここバグるかも（要検証）
-						continue;
-					}
-
-				}
-				else if (state.GetState() == State::AddMoveCost) {
-
-					if (proc_unit->GetUnitType() == UnitType::Ally) {
-						proc_ally->AddCurrentMoveCost(state.GetValue());
-					}
-					else {
-						continue;
-					}
-
-				}
-				else if (state.GetState() == State::Snare) {
-					proc_unit->SetIsSnareTurn(true);						
-				}
-				else if (state.GetState() == State::Stun) {
-					proc_unit->SetIsStunTurn(true);
-				}
-
-				//State共通の処理
-				state.SetIsProc(true);
-				state.SetIsAddTurn(false);
-
+			if (proc_unit->GetUnitType() == UnitType::Ally) {
+				phase_.change(&SceneBattle::PhaseAllyTurn);
+			}
+			else if (proc_unit->GetUnitType() == UnitType::Enemy) {
+				phase_.change(&SceneBattle::PhaseEnemyTurn);
 			}
 
-
 		}
+		else if (!proc_unit->GetBattleState().empty()) { //あったrらそれを処理
 
-
-
-	}
-
-
-	//Ally処理
-	if (turn_ally_ && turn_ally_->GetIsTurn()) {
-
-		if (!turn_ally_->IsBattleStateProcStartOfTurn()) {
-
-			for (auto& state : turn_ally_->GetBattleState()) {
+			for (auto& state : proc_unit->GetBattleState()) {
 
 				if (!state.GetIsProc()) {
 
+					//State特有の処理
 					if (state.GetState() == State::Blood) {
 
-						turn_ally_->DecreaseDirectCurrentHp(state.GetValue());
-						state.DecreaseTurnCount(1);
+						proc_unit->DecreaseDirectCurrentHp(state.GetValue());
 						state.SetIsProc(true);
 						state.SetIsAddTurn(false);
+
 						//Anim処理へ
 						battle_media_player_->SetAnimBattleState(State::Blood);
 						phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
+					}
+					else if (state.GetState() == State::AddCardCost) {
+
+						if (proc_unit->GetUnitType() == UnitType::Ally) {
+							proc_ally->AddCurrentCardCost(state.GetValue());
+						}
+						else {
+							//ここバグるかも（要検証）
+							continue;
+						}
 
 					}
-					if (state.GetState() == State::AddCardCost) {
+					else if (state.GetState() == State::AddMoveCost) {
 
-						turn_ally_->AddCurrentCardCost(state.GetValue());
-						state.DecreaseTurnCount(1);
-						state.SetIsProc(true);		
-						state.SetIsAddTurn(false);
+						if (proc_unit->GetUnitType() == UnitType::Ally) {
+							proc_ally->AddCurrentMoveCost(state.GetValue());
+						}
+						else {
+							continue;
+						}
 
-						//anim無し
 					}
-					if (state.GetState() == State::AddMoveCost) {
+					else if (state.GetState() == State::Snare) {
+						proc_unit->SetIsSnareTurn(true);
+					}
+					else if (state.GetState() == State::Stun) {
+						proc_unit->SetIsStunTurn(true);
+					}
 
-						turn_ally_->AddCurrentMoveCost(state.GetValue());
-						state.DecreaseTurnCount(1);
-						state.SetIsProc(true);
-						state.SetIsAddTurn(false);
-						//anim無し
-					}
-					if (state.GetState() == State::Stun) {
+					//State共通の処理
+					state.SetIsProc(true);
+					state.SetIsAddTurn(false);
 
-						state.SetIsAddTurn(false);
-						//Animなし
-					}
-					if (state.GetState() == State::Snare) {
-						state.SetIsAddTurn(false);
-						//Animなし
-					}
+				}
+			}
+
+			//全てのStateの処理が完了したかチェック
+			for (auto state : proc_unit->GetBattleState()) {
+				if (!state.GetIsProc()) {
+					is_proc_finished = false;
+				}
+			}
+
+			//処理が完了したらPhase移行
+			if (is_proc_finished) {
+				if (proc_unit->GetUnitType() == UnitType::Ally) {
+					phase_.change(&SceneBattle::PhaseAllyTurn);
+				}
+				else if (proc_unit->GetUnitType() == UnitType::Enemy) {
+					phase_.change(&SceneBattle::PhaseEnemyTurn);
 				}
 			}
 		}
-		else if (turn_ally_->IsBattleStateProcStartOfTurn()) {
+
+	}
+
+	return true;
+}
 
 
+//2.1BattleStateのAnim再生
+bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 
+	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
+		battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
+
+		if (!battle_media_player_->GetIsMediaPlaying()) {
+			battle_media_player_->SetAnimBattleState(State::None); //Anim終了後はAnimをNoneに戻す
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 
 	}
 	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 
-		if (!turn_enemy_->IsBattleStateProcStartOfTurn()) {
+		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
 
-			for (auto& state : turn_enemy_->GetBattleState()) {
-
-				if (!state.GetIsProc()) {
-
-					if (state.GetState() == State::Blood) {
-
-						turn_enemy_->DecreaseDirectCurrentHp(state.GetValue());
-						state.DecreaseTurnCount(1);
-						state.SetIsProc(true);
-						state.SetIsAddTurn(false);
-						//Anim処理へ
-						battle_media_player_->SetAnimBattleState(State::Blood);
-						phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
-
-					}
-					if (state.GetState() == State::AddCardCost) {
-
-						turn_ally_->AddCurrentCardCost(state.GetValue());
-						state.DecreaseTurnCount(1);
-						state.SetIsProc(true);
-						state.SetIsAddTurn(false);
-
-						//anim無し
-					}
-					if (state.GetState() == State::AddMoveCost) {
-
-						turn_ally_->AddCurrentMoveCost(state.GetValue());
-						state.DecreaseTurnCount(1);
-						state.SetIsProc(true);
-						state.SetIsAddTurn(false);
-
-						//anim無し
-					}
-
-				}
-
-			}
-
+		if (!battle_media_player_->GetIsMediaPlaying()) {
+			battle_media_player_->SetAnimBattleState(State::None); //Anim終了後はAnimをNoneに戻す
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 
 	}
-
-	
-
-
 
 
 	return true;
 }
 
+
+//3.1 Allyのターン
+bool SceneBattle::PhaseAllyTurn(const float delta_time)
+{
+
+	DrawStringEx(500,0,-1,"PhaseTurnAlly");
+	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
+
+	ui_card_hand_->SetAllyHand(turn_ally_->GetHand());
+
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
+		phase_.change(&SceneBattle::PhaseDebug);
+
+	}
+
+
+	return true;
+}
+
+
+//3.2 Enemyのターン
+bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
+	
+	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
+
+	//Move
+	if (turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
+		turn_enemy_->SetIsMoved(true);
+		//Phase移行
+
+	}
+	else if (!turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
+		turn_enemy_->Move(board_);
+	}
+
+	//Act
+	if (turn_enemy_->GetIsStunTurn() && !turn_enemy_->GetIsEnemyActed()) {
+		turn_enemy_->SetIsEnemyActed(true);
+		//Phase移行
+
+	}
+	else if (turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsEnemyActed()) {
+		turn_enemy_->Act(board_);
+	}
+
+	//Turn終了処理
+	if (turn_enemy_->GetIsMoved() && turn_enemy_->GetIsEnemyActed()) {
+		
+		turn_enemy_->SetIsTurn(false);
+		turn_enemy_->SetIsActed(true);
+		turn_enemy_->DecreaseBattleStateTurn();
+
+		phase_.change(&SceneBattle::ResetActedCal);
+	}
+
+	return true;
+}
+
+
+//ターン終了時のBattleState処理
 bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 
 	Unit* proc_unit = nullptr;
@@ -792,168 +697,180 @@ bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 	}
 
 	
-
-
-
-
-
-
 	return true;
 }
 
-//BattleStateのAnim再生
-bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
+
+//ターン中のBattleStateAnim処理
+bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
 		battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
-
 		if (!battle_media_player_->GetIsMediaPlaying()) {
 			battle_media_player_->SetAnimBattleState(State::None);
-			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+			phase_.change(&SceneBattle::PhaseAllyTurn);
 		}
 
 	}
 	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 
 		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
-
 		if (!battle_media_player_->GetIsMediaPlaying()) {
 			battle_media_player_->SetAnimBattleState(State::None);
-			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+			phase_.change(&SceneBattle::PhaseEnemyTurn);
 		}
-
 	}
 
-
-	return true;
+	return false;
 }
 
 
-//Move実装
+//3.1.1AllyActuonMove
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhasePlayerActionMove");
-	
-	// 移動先のマスを取得
-	int target_row = select_square_->GetSelectSquareRow();
-	int target_col = select_square_->GetSelectSquareCol();
 
-	int ally_row = turn_ally_->GetUnitSquarePos().row;
-	int ally_col = turn_ally_->GetUnitSquarePos().col;
+	//スネアターンの場合は移動できない
+	if (turn_ally_->GetIsSnareTurn()) {
+		battle_media_player_->SetAnimBattleState(State::Snare);
+		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+	}
+	else if (!turn_ally_->GetIsSnareTurn()) {
 
-	board_->getBoardSquare(ally_row,ally_col)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
+		// 移動先のマスを取得
+		int target_row = select_square_->GetSelectSquareRow();
+		int target_col = select_square_->GetSelectSquareCol();
 
-	// 移動可能な範囲を取得
-	std::array<std::array<int, 10>, 10> reachable = GetReachableSquares(turn_ally_);
+		int ally_row = turn_ally_->GetUnitSquarePos().row;
+		int ally_col = turn_ally_->GetUnitSquarePos().col;
 
-	//移動コストをチェック
-	int move_cost = turn_ally_->GetCurrentMoveCost();
+		board_->getBoardSquare(ally_row, ally_col)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
 
-	if (select_square_->GetIsMouseInBoard()) {
+		// 移動可能な範囲を取得
+		std::array<std::array<int, 10>, 10> reachable = GetReachableSquares(turn_ally_);
 
-		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+		//移動コストをチェック
+		int move_cost = turn_ally_->GetCurrentMoveCost();
 
-			// 移動先が移動可能な範囲内であるかチェック
-			if (reachable[target_row][target_col] != -1) {
+		if (select_square_->GetIsMouseInBoard()) {
 
-				//移動コストが負にならないかチェック
-				if (move_cost > 0) {
+			if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
-					turn_ally_->SetUnitSquarePos(target_row, target_col);
+				// 移動先が移動可能な範囲内であるかチェック
+				if (reachable[target_row][target_col] != -1) {
 
-					move_cost -= reachable[target_row][target_col];  // 移動コストを減らす
-					turn_ally_->SetCurrentMoveCost(move_cost);  // 移動コストを更新
-						
+					//移動コストが負にならないかチェック
+					if (move_cost > 0) {
+
+						turn_ally_->SetUnitSquarePos(target_row, target_col);
+
+						move_cost -= reachable[target_row][target_col];  // 移動コストを減らす
+						turn_ally_->SetCurrentMoveCost(move_cost);  // 移動コストを更新
+
+					}
+
 				}
 
+				//MoveSE再生
+				sound_mgr_.PlayAllyMoveSE();
 			}
 
-			//MoveSE再生
-			sound_mgr_.PlayAllyMoveSE();
 		}
 
+
+		// 移動可能範囲を再計算
+		reachable = GetReachableSquares(turn_ally_);
+		// 移動可能範囲の描画を更新
+		UpdateRender(reachable, turn_ally_);
+
 	}
-
-
-	// 移動可能範囲を再計算
-	reachable = GetReachableSquares(turn_ally_);
-	// 移動可能範囲の描画を更新
-	UpdateRender(reachable, turn_ally_);
 	
+
 	return true;
 }
 
-//Cardを選択する段階の処理
+
+//3.1.2AllyActionCard
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
-	
-	card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
-	card_play_->SetTurnAlly(turn_ally_);
 
-	board_->ResetDisplayRangeTile();
-	board_->ResetAllTile();
+	//スタンターンの場合はカードを使用できない
+	if (turn_ally_->GetIsStunTurn()) {
+		battle_media_player_->SetAnimBattleState(State::Stun);
+		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+	}
+	else if (!turn_ally_->GetIsStunTurn()) {
 
-	//card_play_->RenderSelectCardRange(turn_ally_, board_);
-	//card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
+		card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
+		card_play_->SetTurnAlly(turn_ally_);
 
-	//card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
-	//board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
+		board_->ResetDisplayRangeTile();
+		board_->ResetAllTile();
+
+		//card_play_->RenderSelectCardRange(turn_ally_, board_);
+		//card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
+
+		//card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
+		//board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
 
 
-	//UICardを選択している時
-	if (ui_card_hand_->GetSelectUICard()) {
+		//UICardを選択している時
+		if (ui_card_hand_->GetSelectUICard()) {
 
-		//Cardの射程を統合、格納
-		card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
+			//Cardの射程を統合、格納
+			card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
 
-		//Cardの射程範囲を表示
-		//TODO:軸をTurnAlly中心かSelectSquare中心にするかを選択できるようにする
-		//処理が一通りできるまでAlly中心で進める
-		board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
-		
-		
-		//クリックでCardを決定したら
-		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+			//Cardの射程範囲を表示
+			//TODO:軸をTurnAlly中心かSelectSquare中心にするかを選択できるようにする
+			//処理が一通りできるまでAlly中心で進める
+			board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
 
-			if (!card_play_->IsSelectCardCostEnough()) {
 
-				DrawStringEx(0,400,-1,"コストが足りません");
-				sound_mgr_.PlayUISE(2);
+			//クリックでCardを決定したら
+			if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+
+				if (!card_play_->IsSelectCardCostEnough()) {
+
+					DrawStringEx(0, 400, -1, "コストが足りません");
+					sound_mgr_.PlayUISE(2);
+				}
+				else if (!card_play_->IsSelectCardTargetInRange(board_)) {
+
+					DrawStringEx(0, 400, -1, "射程に対象がいません");
+					sound_mgr_.PlayUISE(2);
+				}
+				//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
+				//	
+				//	card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
+				//	ui_card_hand_->SetEnableSelectCard(false);
+				//	phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+
+				//}
+				else if (card_play_->IsSelectCardTargetInRange(board_)) {
+
+					card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
+					ui_card_hand_->SetEnableSelectCard(false);
+					phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+
+				}
 			}
-			else if (!card_play_->IsSelectCardTargetInRange(board_)) {
 
-				DrawStringEx(0,400,-1,"射程に対象がいません");
-				sound_mgr_.PlayUISE(2);
-			}
-			//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
-			//	
-			//	card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
-			//	ui_card_hand_->SetEnableSelectCard(false);
-			//	phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+		}
+		else {
 
-			//}
-			else if (card_play_->IsSelectCardTargetInRange(board_)) {
+			//board_->ResetDisplayRangeTile();
+			//board_->ResetAllTile();
 
-				card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
-				ui_card_hand_->SetEnableSelectCard(false);
-				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
-				
-			}
 		}
 
-	} else {
-
-		//board_->ResetDisplayRangeTile();
-		//board_->ResetAllTile();
+		if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
+			battle_media_player_->BattleStateMediaPlay(turn_ally_, State::Blood);
+		}
 
 	}
-
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {	
-		battle_media_player_->BattleStateMediaPlay(turn_ally_, State::Blood);
-	}
-
+	
 
 	//board_->ResetDisplayRangeTile();
 	//board_->ResetAllTile();
@@ -1337,10 +1254,13 @@ bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 
+
 	//各Allyのflag変更
 	turn_ally_->SetIsTurn(false);
 	turn_ally_->SetIsDrew(false);
     turn_ally_->SetIsActed(true);
+
+	turn_ally_->DecreaseBattleStateTurn();
 
 	phase_.change(&SceneBattle::ResetActedCal);
 

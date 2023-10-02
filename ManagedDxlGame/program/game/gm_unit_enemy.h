@@ -98,6 +98,11 @@ public:
 
 	int GetShieldValue() { return shield_value_; }
 
+	bool GetIsMoved() { return is_moved_; }
+	void SetIsMoved(bool is_moved) { is_moved_ = is_moved; }
+	bool GetIsEnemyActed() { return is_enemy_acted_; }
+	void SetIsEnemyActed(bool is_enemy_acted) { is_enemy_acted_ = is_enemy_acted; }
+
 
 private:
 	
@@ -121,5 +126,9 @@ private:
 
 	int max_damage_ = 8;
 	int current_damage_ = 8;
+
+	//Enemy“Á—L‚Ìƒtƒ‰ƒO
+	bool is_moved_ = false;
+	bool is_enemy_acted_ = false;
 
 };

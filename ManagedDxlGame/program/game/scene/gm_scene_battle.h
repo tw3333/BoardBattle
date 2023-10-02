@@ -88,9 +88,6 @@ public:
 	bool PhasePlayerActionTurnEnd(const float delta_time);
 
 
-
-	bool PhaseBattleEffectProc(const float delta_time);
-
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
 	bool PhaseBattleStateProcAtEndOfTurn(const float delta_time); //ターン終了時BattleStateの処理
 	bool PhaseAnimBattleStateStartOfTurn(const float delta_time); //BattleStateのアニメーション処理

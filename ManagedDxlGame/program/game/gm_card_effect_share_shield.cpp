@@ -43,7 +43,8 @@ bool CardEffectShareShield::CanEffectExcute(std::vector<SquarePos> range_square_
 	//	}
 	//}
 
-	//return true;
+	//
+	return true;
 }
 
 void CardEffectShareShield::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
