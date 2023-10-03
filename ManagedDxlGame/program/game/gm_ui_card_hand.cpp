@@ -20,7 +20,7 @@ void UICardHand::Update(float delta_time) {
 	//	//ui_hand_[i]->SetIsEnable(false);
 	//}
 
-	if (!turn_ally_->GetHand().empty()) {
+	if (turn_ally_ && !turn_ally_->GetHand().empty()) {
 
 		for (int i = 0; i < ui_hand_.size(); ++i) {
 
@@ -78,7 +78,9 @@ void UICardHand::Update(float delta_time) {
 
 
 	//AdjustCardPos(ally_hand_.size());
-	AdjustCardPos(turn_ally_->GetHand().size());
+	if (turn_ally_) {
+		AdjustCardPos(turn_ally_->GetHand().size());
+	}
 
 
 	for (auto uh : ui_hand_) {
@@ -109,7 +111,6 @@ void UICardHand::Render() {
 
 		if (select_uicard_) {
 			select_uicard_->Render();
-
 		}
 
 	}
