@@ -1,6 +1,8 @@
 #pragma once
 #include "gm_ui_button.h"
 #include "gm_ui_component.h"
+#include "gm_unit_ally.h"
+
 
 //memo
 //UI全体を四角にし、そこからレイアウトが設定される
@@ -49,6 +51,7 @@ public:
 		action_button_pos_ = {x,y,width, y1*1};
 
 		auto ui_card_button = new UIButton(x, y + y1*1, width, y1 * 1);
+		card_button_ = ui_card_button;
 		ui_card_button->setGraphHandle(g_card_);
 
 		auto ui_turnend_button = new UIButton(x, y + y1*2, width, y1*1);
@@ -66,8 +69,10 @@ public:
 		ui_components_[TurnEndButton]->SetMediator(this->mediator_);
 		ui_components_[TurnEndButton]->SetNotifyTag("TurnEndButton");
 
+
+
 	}
-	~UIPlayerActionButtons(){}
+	~UIPlayerActionButtons() { delete turn_ally_; }
 
 	enum {
 		MoveButton,
@@ -96,11 +101,18 @@ public:
 	}
 
 	int GetEndPosX() { return pos_x_ + width_; }
-
+	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
 
 private:
 
 	UIComponent* ui_components_[PartsMax];
+	UnitAlly* turn_ally_ = nullptr;
+
+	UIButton *move_button_ = nullptr;
+	UIButton *card_button_ = nullptr;
+	UIButton *turn_end_button_ = nullptr;
+
+
 
 	int pos_x_ = 0;
 	int width_ = 0;
@@ -112,7 +124,11 @@ private:
 	bool is_button_pushrd_ = false;
 
 	int g_move_ = LoadGraph("graphics/ui/move.png");
-	int g_card_ = LoadGraph("graphics/ui/card.png");
+	int g_card_ = LoadGraph("graphics/ui/card_button_flame.png");
+	int g_init_draw_f_ = LoadGraph("graphics/ui/init_card_draw_flame.png");
+	int g_draw_f_ = LoadGraph("graphics/ui/card_draw_flame.png");
+	int g_card_f_ = LoadGraph("graphics/ui/card_flame.png");
+
 	int g_turn_end_ = LoadGraph("graphics/ui/turnend.png");
 	int g_select_flame_ = LoadGraph("graphics/ui/select.png");
 

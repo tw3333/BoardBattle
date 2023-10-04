@@ -20,6 +20,10 @@ public:
 		y_ = y;
 		width_ = width;
 		height_ = height;
+		upper_left_x_ = x;
+		upper_left_y_ = y;
+		lower_right_x_ = x + width;
+		lower_right_y_ = y + height;
 	}
 	~UIPanel(){}
 
@@ -36,6 +40,11 @@ public:
 	int GetHeight() { return height_; }
 	void SetSize(int width, int height) { width_ = width; height_ = height_ = height; }
 	void SetPos(int x, int y) { x_ = x; y_ = y; }
+	
+	int GetUpperLeftX() { return upper_left_x_; }
+	int GetUpperLeftY() { return upper_left_y_; }
+	int GetLowerRightX() { return lower_right_x_; }
+	int GetLowerRightY() { return lower_right_y_; }
 
 
 	//easing用の関数
@@ -60,12 +69,15 @@ private:
 
 protected:
 
-	
-
 	int x_;
 	int y_;
 	int width_;
 	int height_;
+
+	int upper_left_x_ = 0;
+	int upper_left_y_ = 0;
+	int lower_right_x_ = 0;
+	int lower_right_y_ = 0;
 
 	bool is_moving_ = false; //アニメーション中は判定をなくす
 	

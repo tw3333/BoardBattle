@@ -22,9 +22,31 @@ void UIPlayerActionButtons::Render() {
 		for (auto uc : ui_components_) {
 
 			uc->Render();
+
+			if (turn_ally_) {
+				if (!turn_ally_->GetIsDrewInitCard()) {
+					DrawExtendGraph(card_button_->GetLowerRightX(), card_button_->GetUpperLeftY()
+						, card_button_->GetLowerRightX(), card_button_->GetLowerRightY(), g_init_draw_f_, true);
+				}
+				else if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew()) {
+					DrawExtendGraph(card_button_->GetLowerRightX(), card_button_->GetUpperLeftY()
+						, card_button_->GetLowerRightX(), card_button_->GetLowerRightY(), g_draw_f_, true);
+				}
+				else if (turn_ally_->GetIsDrew()) {
+					DrawExtendGraph(card_button_->GetLowerRightX(), card_button_->GetUpperLeftY()
+						, card_button_->GetLowerRightX(), card_button_->GetLowerRightY(), g_card_f_, true);
+
+				}
+			}
 		}
 
 	}
+
+
+
+	//if (!turn_ally_->GetIsDrewInitCard()) {
+	////	
+	////}
 
 
 	DrawExtendGraph(action_button_pos_.x-5,action_button_pos_.y -5,

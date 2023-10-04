@@ -38,6 +38,7 @@ private:
 
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
+	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 
 	dxe::Camera* camera_ = nullptr;
 
