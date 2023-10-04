@@ -47,14 +47,21 @@ public:
 		int y1 = height / 3;
 
 		auto ui_move_button = new UIButton(x, y, width, y1 * 1);
+		move_button_ = ui_move_button;
 		ui_move_button->setGraphHandle(g_move_);
 		action_button_pos_ = {x,y,width, y1*1};
 
 		auto ui_card_button = new UIButton(x, y + y1*1, width, y1 * 1);
+		c_b_upper_left_x_ = x;
+		c_b_upper_left_y_ = y + y1 * 1;
+		c_b_lower_right_x_ = x + width;
+		c_b_lower_right_y_ = y + y1 * 1 + y1 * 1;
+
 		card_button_ = ui_card_button;
 		ui_card_button->setGraphHandle(g_card_);
 
 		auto ui_turnend_button = new UIButton(x, y + y1*2, width, y1*1);
+		turn_end_button_ = ui_turnend_button;
 		ui_turnend_button->setGraphHandle(g_turn_end_);
 		
 		ui_components_[MoveButton] = ui_move_button;
@@ -112,7 +119,17 @@ private:
 	UIButton *card_button_ = nullptr;
 	UIButton *turn_end_button_ = nullptr;
 
+	int c_b_upper_left_x_ = 0;
+	int c_b_upper_left_y_ = 0;
+	int	c_b_lower_right_x_ = 0;
+	int c_b_lower_right_y_ = 0;
 
+	//selectflamepos
+	int s_f_upper_left_x_ = 0;
+	int s_f_upper_left_y_ = 0;
+	int s_f_lower_right_x_ = 0;
+	int s_f_lower_right_y_ = 0;
+	bool is_render_select_flame_ = false;
 
 	int pos_x_ = 0;
 	int width_ = 0;

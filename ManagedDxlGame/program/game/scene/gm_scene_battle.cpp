@@ -196,6 +196,7 @@ void SceneBattle::Update(float delta_time) {
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
+	ui_action_buttons_->SetTurnAlly(turn_ally_);
 	ui_turn_view_->Update(delta_time);
 	ui_turn_ally_state_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);

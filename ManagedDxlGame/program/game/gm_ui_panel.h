@@ -41,10 +41,10 @@ public:
 	void SetSize(int width, int height) { width_ = width; height_ = height_ = height; }
 	void SetPos(int x, int y) { x_ = x; y_ = y; }
 	
-	int GetUpperLeftX() { return upper_left_x_; }
-	int GetUpperLeftY() { return upper_left_y_; }
-	int GetLowerRightX() { return lower_right_x_; }
-	int GetLowerRightY() { return lower_right_y_; }
+	int GetUpperLeftX() { return x_; }
+	int GetUpperLeftY() { return y_; }
+	int GetLowerRightX() { return x_ + width_; }
+	int GetLowerRightY() { return y_ + height_; }
 
 
 	//easingópÇÃä÷êî
