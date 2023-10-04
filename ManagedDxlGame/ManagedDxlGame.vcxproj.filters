@@ -881,6 +881,9 @@
     <ClInclude Include="program\game\gm_object_battle_state_icon.h">
       <Filter>program\[003] game\object</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_data_battle_config.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

@@ -10,7 +10,6 @@ enum class CardError{
 	CantMove,
 	NotEnoughCost,
 	NoTarget,
-
 };
 
 struct BoardSize {

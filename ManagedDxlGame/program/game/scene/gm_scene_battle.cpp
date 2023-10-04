@@ -962,17 +962,34 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 		phase_.change(&SceneBattle::PhasePlayerActionCard);
 	}
 
+
+
 	//１枚ドロー処理
 	if (turn_ally_->GetIsDrewInitCard() && !turn_ally_->GetIsDrew() && !turn_ally_->GetUseDeck().empty()) {
 
-		
-		turn_ally_->AddCardToHand(turn_ally_->GetUseDeck().back());
-		turn_ally_->GetUseDeck().pop_back();
+		if (turn_ally_->GetHand().size() == 10) { //10枚以上の場合はドローしない
 
-		turn_ally_->SetIsDrew(true);
+			turn_ally_->SetIsDrew(true);
+			phase_.change(&SceneBattle::PhasePlayerActionCard);
+		}
+		else if (turn_ally_->GetHand().size() < 10) { //10枚未満の場合はドローする
+
+			turn_ally_->AddCardToHand(turn_ally_->GetUseDeck().back());	
+			turn_ally_->GetUseDeck().pop_back();
+			turn_ally_->SetIsDrew(true);
+
+			phase_.change(&SceneBattle::PhasePlayerActionCard);
+		}
+
+
 	}
 
-	phase_.change(&SceneBattle::PhasePlayerActionCard);
+	//山札と手札が空の場合のみ、山札を元に戻す
+	if (turn_ally_->GetUseDeck().empty() && turn_ally_->GetUseDeck().empty()) {
+
+	}
+
+
 	return true;
 }
 
