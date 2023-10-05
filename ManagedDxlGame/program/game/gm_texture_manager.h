@@ -13,6 +13,14 @@ enum BattleStateIcon{
 	Stun
 };
 
+enum UINoticeGraph{
+	RightClickToReturn,
+	RightClickToReturnSelect,
+	NoTarget,
+	NotEnoughCost,
+	GraphNum
+};
+
 
 class TextureManager {
 public:
@@ -37,13 +45,17 @@ public:
 	Shared<dxe::Texture> icon_dungeon_gate_;
 	Shared<dxe::Texture> panel_dungeon_;
 
-
+	bool LoadUINoticeGraph();
 	
 	void LoadTexture();
 	void DebugLoadTexture();
 
 	std::vector<std::shared_ptr<dxe::Texture>>& GetBattleStateIconList() { return battle_state_icon_list_; }
+	//std::vector<std::shared_ptr<dxe::Texture>>& GetUINoticeGraphList() { return ui_notice_graph_list_; }
+	std::shared_ptr<dxe::Texture> GetUINoticeGraph(UINoticeGraph graph) { return ui_notice_graph_[graph]; }
+	std::shared_ptr<dxe::Texture>& GetUINoticeNoTargetPanel() { return ui_notice_no_target_panel_; }
 
+	int GetUINoticeGraphHandle(UINoticeGraph graph)& { return ui_notice_graph_handle_[graph]; }
 
 private:
 
@@ -52,6 +64,11 @@ private:
 
 	std::vector<std::shared_ptr<dxe::Texture>> battle_state_icon_list_;
 
+	//std::vector<std::shared_ptr<dxe::Texture>> ui_notice_graph_list_;
+	std::shared_ptr<dxe::Texture> ui_notice_no_target_panel_ = nullptr;
+	std::shared_ptr<dxe::Texture> ui_notice_graph_[UINoticeGraph::GraphNum];
+
+	int ui_notice_graph_handle_[UINoticeGraph::GraphNum];
 
 
 };

@@ -13,6 +13,7 @@ void SceneLoad::Initialzie() {
 	font_mgr_.CreateFontData();
 
 	texture_mgr_.DebugLoadTexture();
+	texture_mgr_.LoadUINoticeGraph();
 	
 
 	obj_mgr_.CreateObjAllys();

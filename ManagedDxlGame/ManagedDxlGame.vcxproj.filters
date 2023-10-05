@@ -440,6 +440,9 @@
     <ClCompile Include="program\game\gm_object_battle_state_icon.cpp">
       <Filter>program\[003] game\object</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_notice.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -883,6 +886,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_battle_config.h">
       <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_notice.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

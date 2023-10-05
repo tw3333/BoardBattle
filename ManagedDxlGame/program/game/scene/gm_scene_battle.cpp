@@ -125,6 +125,7 @@ void SceneBattle::Initialzie() {
 	ui_unit_state_view_->SetEnemyBoxUpperLeftPos((w1*8) - 10, 10);
 
 	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
+	ui_notice_ = new UINotice();
 
 	board_->Update(0);
 
@@ -205,6 +206,7 @@ void SceneBattle::Update(float delta_time) {
 	//ui_card_->Update(delta_time);
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
+	ui_notice_->Update(delta_time);
 
 
 	//anim_mgr_.GetDebugAnim()->Update(delta_time);
@@ -248,6 +250,7 @@ void SceneBattle::Render() {
 	ui_card_hand_->Render();
 	ui_action_buttons_->Render();
 	ui_notice_target_box_->Render();
+	ui_notice_->Render();
 	//card_play_->Render(camera_);
 
 	for (auto anim : anim_mgr_.GetAnim()) {
@@ -878,11 +881,13 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 				if (!card_play_->IsSelectCardCostEnough()) {
 
 					DrawStringEx(0, 400, -1, "ƒRƒXƒg‚ª‘«‚è‚Ü‚¹‚ñ");
+					ui_notice_->PlayNotEnoughCost();
 					sound_mgr_.PlayUISE(2);
 				}
 				else if (!card_play_->IsSelectCardTargetInRange(board_)) {
 
 					DrawStringEx(0, 400, -1, "ŽË’ö‚É‘ÎÛ‚ª‚¢‚Ü‚¹‚ñ");
+					ui_notice_->PlayNoTarget();
 					sound_mgr_.PlayUISE(2);
 				}
 				//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {

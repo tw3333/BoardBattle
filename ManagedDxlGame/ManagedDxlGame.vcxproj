@@ -252,6 +252,7 @@
     <ClCompile Include="program\game\gm_ui_handview.cpp" />
     <ClCompile Include="program\game\gm_ui_hp_bar.cpp" />
     <ClCompile Include="program\game\gm_ui_move_cost.cpp" />
+    <ClCompile Include="program\game\gm_ui_notice.cpp" />
     <ClCompile Include="program\game\gm_ui_notice_target_box.cpp" />
     <ClCompile Include="program\game\gm_ui_panel.cpp" />
     <ClCompile Include="program\game\gm_ui_player_action_buttons.cpp" />
@@ -355,6 +356,7 @@
     <ClInclude Include="program\game\gm_slime_act.h" />
     <ClInclude Include="program\game\gm_slime_move.h" />
     <ClInclude Include="program\game\gm_ui_deck_edit.h" />
+    <ClInclude Include="program\game\gm_ui_notice.h" />
     <ClInclude Include="program\game\gm_ui_notice_target_box.h" />
     <ClInclude Include="program\game\gm_object_enemy.h" />
     <ClInclude Include="program\game\gm_object_manager.h" />
