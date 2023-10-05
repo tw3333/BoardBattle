@@ -32,17 +32,17 @@ void UINotice::Update(float delta_time) {
 
 void UINotice::Render() {
 
-	NoTargetPanelRender(is_no_target_panel_render_);
-	NotEnoughCostPanelRender(is_not_enough_cost_panel_render_);
+	//NoTargetPanelRender(is_no_target_panel_render_);
+	//NotEnoughCostPanelRender(is_not_enough_cost_panel_render_);
 
 
 	if (is_no_target_panel_render_ && timer_ < 1.5f) {
 		DrawBox(500, 500, 600, 600, -1, true);
-		DrawExtendGraph(500, 500, 600, 600, no_target_, false);
+		DrawExtendGraph(500, 500, 600, 600, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NoTarget), false);
 	}
 
 	if (is_not_enough_cost_panel_render_ && timer_ < 1.5f) {
-
+		DrawExtendGraph(500, 500, 600, 600, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NotEnoughCost), false);
 	}
 	else if (!is_no_target_panel_render_) {
 		DrawStringEx(0,700,-1,"notargetpanel‚ªfalse‚Å‚·");
@@ -54,7 +54,7 @@ void UINotice::Render() {
 void UINotice::NoTargetPanelRender(bool flag) {
 
 	if (flag == true) {
-		DrawExtendGraph(500, 500, 600,600,no_target_, false);
+		//DrawExtendGraph(500, 500, 600,600,no_target_, false);
 
 		//DrawBox(500,500,600,600,-1,true);
 	}

@@ -2,6 +2,7 @@
 #include "gm_ui_button.h"
 #include "gm_ui_component.h"
 #include "gm_unit_ally.h"
+#include "gm_texture_manager.h"
 
 
 //memo
@@ -48,7 +49,9 @@ public:
 
 		auto ui_move_button = new UIButton(x, y, width, y1 * 1);
 		move_button_ = ui_move_button;
-		ui_move_button->setGraphHandle(g_move_);
+		//ui_move_button->setGraphHandle(g_move_);
+		ui_move_button->setGraphHandle(texture_mgr_.GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph::MoveButton));
+
 		action_button_pos_ = {x,y,width, y1*1};
 
 		auto ui_card_button = new UIButton(x, y + y1*1, width, y1 * 1);
@@ -58,12 +61,15 @@ public:
 		c_b_lower_right_y_ = y + y1 * 1 + y1 * 1;
 
 		card_button_ = ui_card_button;
-		ui_card_button->setGraphHandle(g_card_);
+		//ui_card_button->setGraphHandle(g_card_);
+		ui_card_button->setGraphHandle(texture_mgr_.GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph::CardButton));
+
 
 		auto ui_turnend_button = new UIButton(x, y + y1*2, width, y1*1);
 		turn_end_button_ = ui_turnend_button;
-		ui_turnend_button->setGraphHandle(g_turn_end_);
-		
+		//ui_turnend_button->setGraphHandle(g_turn_end_);
+		ui_turnend_button->setGraphHandle(texture_mgr_.GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph::TurnEndButton));
+
 		ui_components_[MoveButton] = ui_move_button;
 		ui_components_[MoveButton]->SetMediator(this->mediator_);
 		ui_components_[MoveButton]->SetNotifyTag("MoveButton");
@@ -112,6 +118,8 @@ public:
 
 private:
 
+	TextureManager& texture_mgr_ = TextureManager::GetInstance();
+
 	UIComponent* ui_components_[PartsMax];
 	UnitAlly* turn_ally_ = nullptr;
 
@@ -140,14 +148,14 @@ private:
 
 	bool is_button_pushrd_ = false;
 
-	int g_move_ = LoadGraph("graphics/ui/move.png");
-	int g_card_ = LoadGraph("graphics/ui/card_button_flame.png");
+	//int g_move_ = LoadGraph("graphics/ui/move.png");
+	//int g_card_ = LoadGraph("graphics/ui/card_button_flame.png");
 	int g_init_draw_f_ = LoadGraph("graphics/ui/init_card_draw_flame.png");
 	int g_draw_f_ = LoadGraph("graphics/ui/card_draw_flame.png");
 	int g_card_f_ = LoadGraph("graphics/ui/card_flame.png");
-
-	int g_turn_end_ = LoadGraph("graphics/ui/turnend.png");
+	//int g_turn_end_ = LoadGraph("graphics/ui/turnend.png");
 	int g_select_flame_ = LoadGraph("graphics/ui/select.png");
+
 
 
 };

@@ -9,6 +9,7 @@ bool TextureManager::LoadUINoticeGraph() {
 	ui_notice_no_target_panel_->CreateFromFile("graphics/ui/notice/no_target_panel.png");
 
 	ui_notice_graph_handle_[UINoticeGraph::NoTarget] = LoadGraph("graphics/ui/notice/no_target_panel.png");
+	ui_notice_graph_handle_[UINoticeGraph::NotEnoughCost] = LoadGraph("graphics/ui/notice/not_enough_cost_panel.png");
 
 	ui_notice_graph_[UINoticeGraph::NoTarget]->CreateFromFile("graphics/ui/move.png");
 	ui_notice_graph_[UINoticeGraph::NotEnoughCost]->CreateFromFile("graphics/ui/notice/not_enough_cost_panel.png");
@@ -17,6 +18,20 @@ bool TextureManager::LoadUINoticeGraph() {
 
 
 
+
+	return true;
+}
+
+bool TextureManager::LoadUIPlayerActionButtonsGraph() {
+
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::MoveButton] = LoadGraph("graphics/ui/player_action_buttons/move_button.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::CardButton] = LoadGraph("graphics/ui/player_action_buttons/card_button.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::TurnEndButton] = LoadGraph("graphics/ui/player_action_buttons/turn_end_button.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::InitDrawFont] = LoadGraph("graphics/ui/player_action_buttons/init_card_draw_flame.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::DrawFont] = LoadGraph("graphics/ui/player_action_buttons/card_draw_flame.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::CardFont] = LoadGraph("graphics/ui/player_action_buttons/card_flame.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::SelectFrame] = LoadGraph("graphics/ui/player_action_buttons/select_frame.png");
+	ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::DecisionFrame] = LoadGraph("graphics/ui/player_action_buttons/decision_frame.png");
 
 	return true;
 }

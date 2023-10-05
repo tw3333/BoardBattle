@@ -781,6 +781,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 	//右クリックでMove終了PhaseTurnAllyへ
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
+		board_->ResetDisplayRangeTile();
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}
 
@@ -848,6 +849,10 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
+	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
+	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
+		phase_.change(&SceneBattle::PhaseAllyTurn);
+	}
 
 	//スタンターンの場合はカードを使用できない
 	if (turn_ally_->GetIsStunTurn()) {

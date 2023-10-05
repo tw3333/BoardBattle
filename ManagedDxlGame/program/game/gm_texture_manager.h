@@ -18,7 +18,19 @@ enum UINoticeGraph{
 	RightClickToReturnSelect,
 	NoTarget,
 	NotEnoughCost,
-	GraphNum
+	UINoticeGraphNum
+};
+
+enum UIPlayerActionButtonsGraph {
+	MoveButton,
+	CardButton,
+	TurnEndButton,
+	InitDrawFont,
+	DrawFont,
+	CardFont,
+	SelectFrame,
+	DecisionFrame,
+	UIPlayerActionButtonsGraphNum
 };
 
 
@@ -46,6 +58,7 @@ public:
 	Shared<dxe::Texture> panel_dungeon_;
 
 	bool LoadUINoticeGraph();
+	bool LoadUIPlayerActionButtonsGraph();
 	
 	void LoadTexture();
 	void DebugLoadTexture();
@@ -56,6 +69,8 @@ public:
 	std::shared_ptr<dxe::Texture>& GetUINoticeNoTargetPanel() { return ui_notice_no_target_panel_; }
 
 	int GetUINoticeGraphHandle(UINoticeGraph graph)& { return ui_notice_graph_handle_[graph]; }
+	int GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph graph)& { return ui_player_action_buttons_graph_handle_[graph]; }
+
 
 private:
 
@@ -66,9 +81,10 @@ private:
 
 	//std::vector<std::shared_ptr<dxe::Texture>> ui_notice_graph_list_;
 	std::shared_ptr<dxe::Texture> ui_notice_no_target_panel_ = nullptr;
-	std::shared_ptr<dxe::Texture> ui_notice_graph_[UINoticeGraph::GraphNum];
+	std::shared_ptr<dxe::Texture> ui_notice_graph_[UINoticeGraph::UINoticeGraphNum];
 
-	int ui_notice_graph_handle_[UINoticeGraph::GraphNum];
+	int ui_notice_graph_handle_[UINoticeGraph::UINoticeGraphNum];
+	int ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::UIPlayerActionButtonsGraphNum];
 
 
 };
