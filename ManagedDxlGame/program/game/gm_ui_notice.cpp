@@ -38,6 +38,7 @@ void UINotice::Render() {
 
 	if (is_no_target_panel_render_ && timer_ < 1.5f) {
 		DrawBox(500, 500, 600, 600, -1, true);
+		DrawExtendGraph(500, 500, 600, 600, no_target_, false);
 	}
 
 	if (is_not_enough_cost_panel_render_ && timer_ < 1.5f) {
@@ -53,7 +54,7 @@ void UINotice::Render() {
 void UINotice::NoTargetPanelRender(bool flag) {
 
 	if (flag == true) {
-		DrawExtendGraph(500, 500,600,600,no_target_, false);
+		DrawExtendGraph(500, 500, 600,600,no_target_, false);
 
 		//DrawBox(500,500,600,600,-1,true);
 	}

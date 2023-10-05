@@ -776,7 +776,13 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 //3.1.1AllyActuonMove
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
-	DrawStringEx(500,0,-1,"PhasePlayerActionMove");
+	DrawStringEx(500,0,-1,"PhasePlayerActionMove");	
+	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
+
+	//右クリックでMove終了PhaseTurnAllyへ
+	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
+		phase_.change(&SceneBattle::PhaseAllyTurn);
+	}
 
 	//スネアターンの場合は移動できない
 	if (turn_ally_->GetIsSnareTurn()) {
@@ -814,13 +820,13 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 						move_cost -= reachable[target_row][target_col];  // 移動コストを減らす
 						turn_ally_->SetCurrentMoveCost(move_cost);  // 移動コストを更新
-
+						
+						//MoveSE再生
+						sound_mgr_.PlayAllyMoveSE();
 					}
 
 				}
 
-				//MoveSE再生
-				sound_mgr_.PlayAllyMoveSE();
 			}
 
 		}

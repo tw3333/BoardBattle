@@ -147,7 +147,7 @@ private:
 	int g_card_f_ = LoadGraph("graphics/ui/card_flame.png");
 
 	int g_turn_end_ = LoadGraph("graphics/ui/turnend.png");
-	int g_select_flame_ = LoadGraph("graphics/ui/select.png");
+	int g_select_flame_ = LoadGraph("graphics/ui/select_d.png");
 
 
 };
