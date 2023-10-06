@@ -890,6 +890,9 @@
     <ClInclude Include="program\game\gm_ui_notice.h">
       <Filter>program\[003] game\ui</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_ui_graph_enums.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

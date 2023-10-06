@@ -36,9 +36,9 @@ void SceneBattle::Initialzie() {
 	board_->SetCamera(camera_);
 
 	//Unitの作成
-	party_[0] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(1), 5, 1);
-	party_[1] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(2), 5, 2);
-	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 5, 3);
+	party_[0] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(1), 2, 1);
+	party_[1] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(2), 2, 2);
+	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 2, 3);
 	
 	//board_->SetPartyUnits(allydata_mgr_.GetPartyPickAllyData());
 
@@ -68,6 +68,8 @@ void SceneBattle::Initialzie() {
 
 	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 5);
 	enemy_units_.push_back(unit_enemy_);
+
+
 
 	enemy_units_[0]->AddShieldValue(20);
 	//enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
@@ -167,12 +169,12 @@ void SceneBattle::Initialzie() {
 }
 
 void SceneBattle::Update(float delta_time) {
-	
+
 	phase_.update(delta_time);
 	camera_->Update();
 
-	GetMousePoint(&debug_mp_x,&debug_mp_y);
-	msv_ = tnl::Input::GetMousePosition(); 
+	GetMousePoint(&debug_mp_x, &debug_mp_y);
+	msv_ = tnl::Input::GetMousePosition();
 	board_->Update(delta_time);
 	select_square_->Update(delta_time, camera_);
 
@@ -227,7 +229,7 @@ void SceneBattle::Update(float delta_time) {
 
 	battle_media_player_->Update(delta_time);
 	obj_mgr_.GetObjBattleStateIcon()->Update(delta_time);
-	phase_.update(delta_time);
+
 }
 
 void SceneBattle::Render() {
@@ -386,62 +388,6 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 }
 
 
-//1.ターン決め
-bool SceneBattle::TurnCal(const float delta_time) {
-
-	DrawStringEx(500,0,-1,"TurnCal");
-
-	turn_count_ += 1;
-	turn_unit_ = nullptr;
-
-	for (int i = 0; i < 10; ++i) {
-		for (int j = 0; j < 10; ++j) {
-
-			board_->getBoardSquare(i, j)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
-
-		}
-	}
-	
-	
-	//素早さ順に降順ソート
-	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
-		return a->GetSpeed() > b->GetSpeed();
-	});
-
-
-	for (auto au : all_units_) {
-
-		if (!au->GetIsActed() && !au->GetIsDead()) {
-			active_units_.push_back(au);
-			if (!turn_unit_ || au->GetSpeed() > turn_unit_->GetSpeed()) {
-		
-				turn_unit_ = au;
-
-			}
-		}
-	}
-
-	if (turn_unit_) {
-		if (turn_unit_->GetUnitType() == UnitType::Ally) {
-			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
-
-
-			turn_ally_->SetIsTurn(true);
-
-			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
-		}
-		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
-			turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
-	
-			turn_enemy_->SetIsTurn(true);
-
-			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
-		}
-	}
-
-	return true;
-}
-
 
 //1.2全Unitが行動したらリセット
 bool SceneBattle::ResetActedCal(const float delta_time)
@@ -495,6 +441,62 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 
 	reset_acted_ = false;
 	phase_.change(&SceneBattle::TurnCal);
+	return true;
+}
+
+//1.ターン決め
+bool SceneBattle::TurnCal(const float delta_time) {
+
+	DrawStringEx(500,0,-1,"TurnCal");
+
+	turn_count_ += 1;
+	turn_unit_ = nullptr;
+
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 10; ++j) {
+
+			board_->getBoardSquare(i, j)->getObj()->parts_[ObjSquare::RangeTile]->is_render_ = false;
+
+		}
+	}
+	
+	
+	//素早さ順に降順ソート
+	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
+		return a->GetSpeed() > b->GetSpeed();
+	});
+
+
+	for (auto au : all_units_) {
+
+		if (!au->GetIsActed() && !au->GetIsDead()) {
+			active_units_.push_back(au);
+			if (!turn_unit_ || au->GetSpeed() > turn_unit_->GetSpeed()) {
+		
+				turn_unit_ = au;
+
+			}
+		}
+	}
+
+	if (turn_unit_) {
+		if (turn_unit_->GetUnitType() == UnitType::Ally) {
+			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
+
+
+			turn_ally_->SetIsTurn(true);
+
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+		}
+		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
+			turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
+	
+			turn_enemy_->SetIsTurn(true);
+
+			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+		}
+	}
+
 	return true;
 }
 
@@ -630,7 +632,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 	}
 	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 
-		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
+		//battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
 
 		//if (!battle_media_player_->GetIsMediaPlaying()) {
 		//	battle_media_player_->SetAnimBattleState(State::None); //Anim終了後はAnimをNoneに戻す
@@ -654,6 +656,8 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
+	ui_action_buttons_->SetSelectFrameLock(false);
+	ui_action_buttons_->SetIsRenderDecisionFlame(false);
 
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 
@@ -778,6 +782,9 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
 	DrawStringEx(500,0,-1,"PhasePlayerActionMove");	
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
+	ui_action_buttons_->SetSelectFrameLock(true);
+	ui_action_buttons_->SetIsRenderDecisionFlame(true);
+
 
 	//右クリックでMove終了PhaseTurnAllyへ
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
@@ -850,6 +857,9 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
 	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
+	ui_action_buttons_->SetSelectFrameLock(true);
+	ui_action_buttons_->SetIsRenderDecisionFlame(true);
+
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}

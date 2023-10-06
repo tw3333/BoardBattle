@@ -1,5 +1,6 @@
 #pragma once
 #include "../dxlib_ext/dxlib_ext.h"
+#include "gm_ui_graph_enums.h"
 #include <memory>
 
 
@@ -13,25 +14,6 @@ enum BattleStateIcon{
 	Stun
 };
 
-enum UINoticeGraph{
-	RightClickToReturn,
-	RightClickToReturnSelect,
-	NoTarget,
-	NotEnoughCost,
-	UINoticeGraphNum
-};
-
-enum UIPlayerActionButtonsGraph {
-	MoveButton,
-	CardButton,
-	TurnEndButton,
-	InitDrawFont,
-	DrawFont,
-	CardFont,
-	SelectFrame,
-	DecisionFrame,
-	UIPlayerActionButtonsGraphNum
-};
 
 
 class TextureManager {

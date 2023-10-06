@@ -116,6 +116,14 @@ public:
 	int GetEndPosX() { return pos_x_ + width_; }
 	void SetTurnAlly(UnitAlly* turn_ally) { turn_ally_ = turn_ally; }
 
+	bool GetIsRenderSelectFlame() { return is_render_select_flame_; }
+	void SetIsRenderSelectFlame(bool flag) { is_render_select_flame_ = flag; }
+	bool IsRenderDecisionFlame() { return is_render_decision_flame_; }
+	void SetIsRenderDecisionFlame(bool flag) { is_render_decision_flame_ = flag; }
+	bool GetSelectFrameLock() { return select_frame_lock_; }
+	void SetSelectFrameLock(bool flag) { select_frame_lock_ = flag; }
+
+
 private:
 
 	TextureManager& texture_mgr_ = TextureManager::GetInstance();
@@ -137,7 +145,10 @@ private:
 	int s_f_upper_left_y_ = 0;
 	int s_f_lower_right_x_ = 0;
 	int s_f_lower_right_y_ = 0;
+
 	bool is_render_select_flame_ = false;
+	bool is_render_decision_flame_ = false;
+	bool select_frame_lock_ = false;
 
 	int pos_x_ = 0;
 	int width_ = 0;
@@ -153,6 +164,7 @@ private:
 	int g_init_draw_f_ = LoadGraph("graphics/ui/init_card_draw_flame.png");
 	int g_draw_f_ = LoadGraph("graphics/ui/card_draw_flame.png");
 	int g_card_f_ = LoadGraph("graphics/ui/card_flame.png");
+	
 	//int g_turn_end_ = LoadGraph("graphics/ui/turnend.png");
 	int g_select_flame_ = LoadGraph("graphics/ui/select.png");
 

@@ -356,6 +356,7 @@
     <ClInclude Include="program\game\gm_slime_act.h" />
     <ClInclude Include="program\game\gm_slime_move.h" />
     <ClInclude Include="program\game\gm_ui_deck_edit.h" />
+    <ClInclude Include="program\game\gm_ui_graph_enums.h" />
     <ClInclude Include="program\game\gm_ui_notice.h" />
     <ClInclude Include="program\game\gm_ui_notice_target_box.h" />
     <ClInclude Include="program\game\gm_object_enemy.h" />
