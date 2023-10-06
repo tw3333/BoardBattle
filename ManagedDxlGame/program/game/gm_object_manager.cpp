@@ -49,8 +49,6 @@ void ObjectManager::CreateObjBattleStateIcon(std::vector<std::shared_ptr<dxe::Te
 	obj_battle_state_icon_ = ObjBattleStateIcon::Create();
 
 
-
-
 }
 
 

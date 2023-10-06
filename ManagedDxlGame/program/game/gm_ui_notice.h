@@ -25,7 +25,11 @@ public:
 	void PlayNoTarget();
 	void PlayNotEnoughCost();
 
+	bool IsRenderPhaseMovePanel();
+
 private:
+
+
 
 	bool is_no_target_panel_render_ = false;
 	bool is_not_enough_cost_panel_render_ = false;
@@ -42,5 +46,8 @@ private:
 
 	int no_target_ = LoadGraph("graphics/ui/notice/no_target_panel.png");
 
+	//debug
+	int w1 = DXE_WINDOW_WIDTH / 10;
+	int h1 = DXE_WINDOW_HEIGHT / 10;
 
 };

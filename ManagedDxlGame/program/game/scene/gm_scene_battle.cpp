@@ -655,11 +655,14 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 
 	DrawStringEx(500,0,-1,"PhaseTurnAlly");
+	board_->ResetDisplayRangeTile();
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 	ui_action_buttons_->SetSelectFrameLock(false);
 	ui_action_buttons_->SetIsRenderDecisionFlame(false);
 
+	
 	ui_card_hand_->SetTurnAlly(turn_ally_);
+	
 
 
 	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
@@ -788,7 +791,6 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 	//右クリックでMove終了PhaseTurnAllyへ
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
-		board_->ResetDisplayRangeTile();
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}
 
