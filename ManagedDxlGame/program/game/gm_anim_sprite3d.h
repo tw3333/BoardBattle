@@ -27,6 +27,8 @@ private:
 	Shared<AnimUnit> anim_current_ = nullptr;
 	dxe::Camera* billboard_target_ = nullptr;
 
+	float play_time_ = 0.0f;
+
 public:
 	
 	//AnimSprite3D(dxe::Camera* camera) { billboard_target_ = camera; }
@@ -44,6 +46,7 @@ public:
 	void Play(); //Anim‚ÌÅŒã‚ªc‚é‘ÎôBŒã‚Åª–{‚©‚çC³
 
 	void CardAnimPlay(const std::string& anim_name);
+	float GetPlayTime() { return play_time_; }
 
 
 	//------------------------------------------------------------------------------------------

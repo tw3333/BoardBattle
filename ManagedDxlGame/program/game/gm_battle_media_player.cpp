@@ -29,6 +29,7 @@ void BattleMediaPlayer::Render(dxe::Camera* camera) {
 	if (!anim_.empty()) {
 		for (auto& anim : anim_) {
 			anim->Render(camera);
+
 		}
 	}
 
@@ -58,6 +59,8 @@ void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 			anim_[anim_cnt]->SetObjPosToSquarePos(target->GetTargetSquaresPos()[anim_cnt].row, target->GetTargetSquaresPos()[anim_cnt].col);
 			anim_[anim_cnt]->CardAnimPlay(card->GetCardData()->GetCardAnimName());
 
+			DrawStringEx(0,300,-1,"playtime:%f",anim_[anim_cnt]->GetPlayTime());
+
 			anim_cnt++;
 		}
 
@@ -84,6 +87,7 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 		obj_mgr_.GetObjBattleStateIcon()->pos_ = anim_[0]->pos_;
 		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.y + 100;
 
+
 		anim_[0]->CardAnimPlay("anim_blood");
 		sound_mgr_.PlayBattleStateSE(state);
 	}
@@ -108,6 +112,7 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 
 		sound_mgr_.PlayBattleStateSE(state);
 	}
+
 
 }
 

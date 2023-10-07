@@ -146,6 +146,8 @@ void AnimSprite3D::regist(
 	, const uint32_t frame_start_num_h
 	, const uint32_t row_num) //縦分分割に対応するために追加
 {
+
+	play_time_ = play_time;
 	// １種類のアニメーション情報を作成
 	Shared<AnimUnit> unit = std::make_shared<AnimUnit>();
 	unit->seek_ = tnl::SeekUnit::Create(60, play_time, frame_num, play_mode, tnl::SeekUnit::ePlayDir::FORWARD);

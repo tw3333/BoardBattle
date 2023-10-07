@@ -170,7 +170,7 @@ void SceneBattle::Initialzie() {
 
 void SceneBattle::Update(float delta_time) {
 
-	phase_.update(delta_time);
+	//phase_.update(delta_time);
 	camera_->Update();
 
 	GetMousePoint(&debug_mp_x, &debug_mp_y);
@@ -230,6 +230,7 @@ void SceneBattle::Update(float delta_time) {
 	battle_media_player_->Update(delta_time);
 	obj_mgr_.GetObjBattleStateIcon()->Update(delta_time);
 
+	phase_.update(delta_time);
 }
 
 void SceneBattle::Render() {
@@ -392,7 +393,7 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 //1.2全Unitが行動したらリセット
 bool SceneBattle::ResetActedCal(const float delta_time)
 {
-	DrawStringEx(0,500,-1,"ResetActedCal");
+	DrawStringEx(300,0,-1,"ResetActedCal");
 	active_units_.clear();
 
 	bool all_acted = true;
@@ -447,7 +448,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 //1.ターン決め
 bool SceneBattle::TurnCal(const float delta_time) {
 
-	DrawStringEx(500,0,-1,"TurnCal");
+	DrawStringEx(300,0,-1,"TurnCal");
 
 	turn_count_ += 1;
 	turn_unit_ = nullptr;
@@ -504,7 +505,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 //2.ターン開始時のBattleState処理
 bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
-	DrawStringEx(500,0,-1,"PhaseBattleStateProcAtStartOfTurn");
+	DrawStringEx(300,0,-1,"PhaseBattleStateProcAtStartOfTurn");
 
 	bool is_proc_finished = true;
 
@@ -614,7 +615,7 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 //2.1ターン開始時のBattleStateのAnim再生
 bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 
-	DrawStringEx(500,0,-1,"PhaseAnimBattleStateStartOfTurn");
+	DrawStringEx(300,0,-1,"PhaseAnimBattleStateStartOfTurn");
 
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
@@ -654,7 +655,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 
-	DrawStringEx(500,0,-1,"PhaseTurnAlly");
+	DrawStringEx(300,0,-1,"PhaseTurnAlly");
 	board_->ResetDisplayRangeTile();
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 	ui_action_buttons_->SetSelectFrameLock(false);
@@ -678,7 +679,7 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 //3.2 Enemyのターン
 bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
-	DrawStringEx(500, 0, -1, "PhaseTurnEnemy");
+	DrawStringEx(300, 0, -1, "PhaseTurnEnemy");
 
 	//Move
 	if (turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
@@ -733,6 +734,9 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 //ターン終了時のBattleState処理(使用してない)
 bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 
+	//debugcode
+	DrawStringEx(300,0,-1,"PhaseBattleStateProcAtEndOfTurn");
+
 	Unit* proc_unit = nullptr;
 	
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
@@ -756,7 +760,7 @@ bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 //ターン中のBattleStateAnim処理
 bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 
-	DrawStringEx(500,0,-1,"PhaseAnimBattleStateInTurn");
+	DrawStringEx(300,0,-1,"PhaseAnimBattleStateInTurn");
 
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
@@ -783,7 +787,7 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 //3.1.1AllyActuonMove
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
-	DrawStringEx(500,0,-1,"PhasePlayerActionMove");	
+	DrawStringEx(300,0,-1,"PhasePlayerActionMove");	
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 	ui_action_buttons_->SetSelectFrameLock(true);
 	ui_action_buttons_->SetIsRenderDecisionFlame(true);
@@ -857,7 +861,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 //3.1.2AllyActionCard
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	
-	DrawStringEx(500, 0, -1, "PhasePlayerActionCard");
+	DrawStringEx(300, 0, -1, "PhasePlayerActionCard");
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 	ui_action_buttons_->SetSelectFrameLock(true);
 	ui_action_buttons_->SetIsRenderDecisionFlame(true);
@@ -959,7 +963,12 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 //PhasePlayerCardへ移行する前にカードを引いてなかったら、処理を行うPhase
 bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
-	DrawStringEx(500, 0, -1, "PhaseDrawCard");
+	DrawStringEx(300, 0, -1, "PhaseDrawCard");
+
+	if (turn_ally_->GetIsDrew()) {
+		phase_.change(&SceneBattle::PhasePlayerActionCard);
+	}
+
 
 	//最初の5枚ドロー処理
 	if (!turn_ally_->GetIsDrewInitCard()) {
