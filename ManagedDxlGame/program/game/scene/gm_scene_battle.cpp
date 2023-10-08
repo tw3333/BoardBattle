@@ -654,7 +654,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 
-	DrawStringEx(300,0,-1,"PhaseTurnAlly");
+	DrawStringEx(300,0,-w1,"PhaseTurnAlly");
 	board_->ResetDisplayRangeTile();
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 	ui_action_buttons_->SetSelectFrameLock(false);

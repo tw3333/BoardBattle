@@ -65,8 +65,8 @@ private:
 	std::shared_ptr<dxe::Texture> ui_notice_no_target_panel_ = nullptr;
 	std::shared_ptr<dxe::Texture> ui_notice_graph_[UINoticeGraph::UINoticeGraphNum];
 
-	int ui_notice_graph_handle_[UINoticeGraph::UINoticeGraphNum];
-	int ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::UIPlayerActionButtonsGraphNum];
+	int ui_notice_graph_handle_[UINoticeGraph::UINoticeGraphNum] = {0};
+	int ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::UIPlayerActionButtonsGraphNum] = {0};
 
 
 };
