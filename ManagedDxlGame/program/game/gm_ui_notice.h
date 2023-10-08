@@ -21,8 +21,11 @@ public:
 	void SetIsNoTargetPanelRender(bool flag) { is_no_target_panel_render_ = flag; }
 	bool GetIsNotEnoughCostPanelRender() { return is_not_enough_cost_panel_render_; }
 	void SetIsNotEnoughCostPanelRender(bool flag) { is_not_enough_cost_panel_render_ = flag; }
-	bool GetIsRenderRightClickReturnPanel() { return is_render_right_cilck_return_panel_; }
-	void SetIsRenderRightClickReturnPanel(bool flag) { is_render_right_cilck_return_panel_ = flag; }
+	bool GetIsRenderRightClickReturnPanel() { return is_render_right_click_return_panel_; }
+	void SetIsRenderRightClickReturnPanel(bool flag) { is_render_right_click_return_panel_ = flag; }
+	bool GetIsRenderRightClickReturnSelectPanel() { return is_render_right_click_return_select_panel_; }
+	void SetIsRenderRightClickReturnSelectPanel(bool flag) { is_render_right_click_return_select_panel_ = flag; }
+
 
 	void PlayNoTarget();
 	void PlayNotEnoughCost();
@@ -36,7 +39,8 @@ private:
 	bool play_no_target_ = false;
 	bool play_not_enough_cost_ = false;
 
-	bool is_render_right_cilck_return_panel_ = false;
+	bool is_render_right_click_return_panel_ = false;
+	bool is_render_right_click_return_select_panel_ = false;
 
 
 	float no_target_panel_timer_ = 1.0f;

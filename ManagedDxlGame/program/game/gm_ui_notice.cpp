@@ -38,21 +38,26 @@ void UINotice::Render() {
 
 	if (is_no_target_panel_render_ && timer_ < 1.5f) {
 		//DrawExtendGraph(w1*4, h1*1, w1*6, h1*1/2, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NoTarget), false);
-		DrawGraph(w1 * 4, 15, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NoTarget), false);
+		DrawGraph(w1 * 4, 30, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NoTarget), false);
 	}
 
 	if (is_not_enough_cost_panel_render_ && timer_ < 1.5f) {
-		DrawGraph(w1 * 4, 15, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NotEnoughCost), false);
+		DrawGraph(w1 * 4, 30, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::NotEnoughCost), false);
 
 	}
 
-	if (is_render_right_cilck_return_panel_) {
+	if (is_render_right_click_return_panel_) {
 
-		DrawGraph(w1*4+(w1*1/2), h1*1 ,texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::RightClickToReturn), false);
+		DrawGraph(10, h1*2 ,texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::RightClickToReturn), false);
 
 	}
 
+	if (is_render_right_click_return_select_panel_) {
+		DrawGraph(10, h1 * 2, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::RightClickToReturnSelect), false);
 
+	}
+
+	//w1 * 4 + (w1 * 1 / 2) + 10
 
 	DrawStringEx(0,400,-1,"timer:%f",timer_);
 }

@@ -654,7 +654,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
 
-	DrawStringEx(300,0,-w1,"PhaseTurnAlly");
+	DrawStringEx(300,0,-1,"PhaseTurnAlly");
 	board_->ResetDisplayRangeTile();
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 	ui_action_buttons_->SetSelectFrameLock(false);
@@ -1038,8 +1038,6 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
 //カードを選択した後、ターゲットを選択する段階の処理
 bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
-
-
 
 	for (auto ctl : card_play_->GetPlayCard()->GetCardData()->GetCardTargetList()) {
 
