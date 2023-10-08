@@ -24,8 +24,6 @@ void SceneBattle::Initialzie() {
 
 //---
 
-
-
 	std::setlocale(LC_ALL, "ja_JP.shiftjis");
 	card_play_= new CardPlay();
 
@@ -120,13 +118,14 @@ void SceneBattle::Initialzie() {
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
 
-	ui_notice_target_box_ = new UINoticeTargetBox(w1 * 4, h1 * 1 - 15, w1 * 2, h1 * 1 / 2);
+	//ui_notice_target_box_ = new UINoticeTargetBox(w1 * 4, h1 * 1 - 15, w1 * 2, h1 * 1 / 2);
 
 	ui_unit_state_view_ = new UIUnitStateView(w1*2,h1*1 + h1*1 /2 ,select_square_);
 	ui_unit_state_view_->SetAllyBoxUpperLeftPos(10,10);
 	ui_unit_state_view_->SetEnemyBoxUpperLeftPos((w1*8) - 10, 10);
 
-	ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
+	//ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
+
 	ui_notice_ = new UINotice();
 
 	board_->Update(0);
@@ -200,7 +199,7 @@ void SceneBattle::Update(float delta_time) {
 	//UI
 	ui_action_buttons_->Update(delta_time);
 	ui_action_buttons_->SetTurnAlly(turn_ally_);
-	ui_turn_view_->Update(delta_time);
+	//ui_turn_view_->Update(delta_time);
 	ui_turn_ally_state_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);
@@ -247,12 +246,12 @@ void SceneBattle::Render() {
 	//UI
 	ui_turn_ally_state_->Render();
 	ui_unit_state_view_->Render();
-	ui_turn_view_->Render();
-	ui_notice_target_box_->Render();
+	//ui_turn_view_->Render();
+	//ui_notice_target_box_->Render();
 	//ui_card_->Render();
 	ui_card_hand_->Render();
 	ui_action_buttons_->Render();
-	ui_notice_target_box_->Render();
+	//ui_notice_target_box_->Render();
 	ui_notice_->Render();
 	//card_play_->Render(camera_);
 
@@ -660,6 +659,7 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 	ui_mediator_->SetIsPlayerActionButtonEnabled(true);
 	ui_action_buttons_->SetSelectFrameLock(false);
 	ui_action_buttons_->SetIsRenderDecisionFlame(false);
+	ui_notice_->SetIsRenderRightClickReturnPanel(false);
 
 	
 	ui_card_hand_->SetTurnAlly(turn_ally_);
@@ -789,8 +789,10 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	
 	DrawStringEx(300,0,-1,"PhasePlayerActionMove");	
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
+	ui_notice_->SetIsRenderRightClickReturnPanel(true);
 	ui_action_buttons_->SetSelectFrameLock(true);
 	ui_action_buttons_->SetIsRenderDecisionFlame(true);
+
 
 
 	//右クリックでMove終了PhaseTurnAllyへ
@@ -865,6 +867,8 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 	ui_action_buttons_->SetSelectFrameLock(true);
 	ui_action_buttons_->SetIsRenderDecisionFlame(true);
+	ui_notice_->SetIsRenderRightClickReturnPanel(true);
+
 
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
 		phase_.change(&SceneBattle::PhaseAllyTurn);

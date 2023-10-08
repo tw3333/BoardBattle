@@ -50,8 +50,8 @@ public:
 	std::shared_ptr<dxe::Texture> GetUINoticeGraph(UINoticeGraph graph) { return ui_notice_graph_[graph]; }
 	std::shared_ptr<dxe::Texture>& GetUINoticeNoTargetPanel() { return ui_notice_no_target_panel_; }
 
-	int GetUINoticeGraphHandle(UINoticeGraph graph)& { return ui_notice_graph_handle_[graph]; }
-	int GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph graph)& { return ui_player_action_buttons_graph_handle_[graph]; }
+	int GetUINoticeGraphHandle(UINoticeGraph graph) { return ui_notice_graph_handle_[graph]; }
+	int GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph graph) { return ui_player_action_buttons_graph_handle_[graph]; }
 
 
 private:

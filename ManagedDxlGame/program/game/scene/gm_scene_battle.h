@@ -201,7 +201,7 @@ private:
 	UITurnAllyState* ui_turn_ally_state_ = nullptr;
 	UICard* ui_card_ = nullptr;
 	UICardHand* ui_card_hand_ = nullptr;
-	UITurnView* ui_turn_view_ = nullptr;
+	//UITurnView* ui_turn_view_ = nullptr;
 	UIUnitStateView* ui_unit_state_view_ = nullptr;
 	UINoticeTargetBox* ui_notice_target_box_ = nullptr;
 	UINotice* ui_notice_ = nullptr;

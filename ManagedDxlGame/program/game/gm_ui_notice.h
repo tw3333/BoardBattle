@@ -21,6 +21,8 @@ public:
 	void SetIsNoTargetPanelRender(bool flag) { is_no_target_panel_render_ = flag; }
 	bool GetIsNotEnoughCostPanelRender() { return is_not_enough_cost_panel_render_; }
 	void SetIsNotEnoughCostPanelRender(bool flag) { is_not_enough_cost_panel_render_ = flag; }
+	bool GetIsRenderRightClickReturnPanel() { return is_render_right_cilck_return_panel_; }
+	void SetIsRenderRightClickReturnPanel(bool flag) { is_render_right_cilck_return_panel_ = flag; }
 
 	void PlayNoTarget();
 	void PlayNotEnoughCost();
@@ -29,12 +31,13 @@ public:
 
 private:
 
-
-
 	bool is_no_target_panel_render_ = false;
 	bool is_not_enough_cost_panel_render_ = false;
 	bool play_no_target_ = false;
 	bool play_not_enough_cost_ = false;
+
+	bool is_render_right_cilck_return_panel_ = false;
+
 
 	float no_target_panel_timer_ = 1.0f;
 	float not_enough_cost_panel_timer_ = 1.0f;
@@ -44,7 +47,6 @@ private:
 
 	TextureManager& texture_mgr_ = TextureManager::GetInstance();
 
-	int no_target_ = LoadGraph("graphics/ui/notice/no_target_panel.png");
 
 	//debug
 	int w1 = DXE_WINDOW_WIDTH / 10;
