@@ -1087,8 +1087,12 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 	return true;
 }
 
+//カードの対象指定処理
 bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 {
+	ui_notice_->SetIsRenderRightClickReturnPanel(false);
+	ui_notice_->SetIsRenderRightClickReturnSelectPanel(true);
+	ui_notice_->SetIsRenderTargetSelectPanel(true);
 	//memo TODO
 	//より柔軟にカードの効果を実装するためにTargetにここの指定を関数で実装したい
 	//「絶対に敵2体と味方１体を指定しなければいけない」という効果は現段階で実装できないので
@@ -1101,8 +1105,6 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	int ally_cnt = 0;
 	int enemy_cnt = 0;
 	
-
-
 	//タイルの表示処理
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
 
@@ -1215,7 +1217,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 			}
 		}
-		else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::CanMoveSqure) {
+		else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Square) {
 
 			for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
 
@@ -1267,6 +1269,9 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > card_play_->GetInRangeTargetNum(TOTARGET::Ally,board_)) {
 			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetInRangeTargetNum(TOTARGET::Ally, board_)) {
 				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				
+				ui_notice_->SetIsRenderTargetSelectPanel(false);
+				ui_notice_->SetIsRenderRightClickReturnSelectPanel(false);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 			}
 		}
@@ -1275,6 +1280,9 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
 				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+
+				ui_notice_->SetIsRenderTargetSelectPanel(false);
+				ui_notice_->SetIsRenderRightClickReturnSelectPanel(false);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 			}
 		}
@@ -1286,6 +1294,9 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > card_play_->GetInRangeTargetNum(TOTARGET::Enemy, board_)) {
 			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetInRangeTargetNum(TOTARGET::Enemy, board_)) {
 				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				
+				ui_notice_->SetIsRenderTargetSelectPanel(false);
+				ui_notice_->SetIsRenderRightClickReturnSelectPanel(false);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 			}
 		}
@@ -1294,6 +1305,34 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
 				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+
+				ui_notice_->SetIsRenderTargetSelectPanel(false);
+				ui_notice_->SetIsRenderRightClickReturnSelectPanel(false);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+			}
+		}
+
+	}
+	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Square) {
+
+		//指定対象数が指定候補より多い場合
+		if (card_play_->GetCurrentCardTarget()->GetTargetNum() > card_play_->GetInRangeTargetNum(TOTARGET::Square, board_)) {
+			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetInRangeTargetNum(TOTARGET::Square, board_)) {
+				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+				
+				ui_notice_->SetIsRenderTargetSelectPanel(false);
+				ui_notice_->SetIsRenderRightClickReturnSelectPanel(false);
+				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
+			}
+		}
+		//指定対象数が指定候補数より少ない場合
+		else if (card_play_->GetCurrentCardTarget()->GetTargetNum() <= card_play_->GetInRangeTargetNum(TOTARGET::Square, board_)) {
+
+			if (card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().size() == card_play_->GetCurrentCardTarget()->GetTargetNum()) {
+				card_play_->GetCurrentCardTarget()->SetIsDetermined(true);
+
+				ui_notice_->SetIsRenderTargetSelectPanel(false);
+				ui_notice_->SetIsRenderRightClickReturnSelectPanel(false);
 				phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
 			}
 		}

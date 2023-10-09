@@ -11,5 +11,8 @@ public:
 
 	virtual void Act(UnitEnemy* turn_enemy, Board* board) = 0;
 
+protected:
+
+
 
 };

@@ -9,6 +9,7 @@ enum UINoticeGraph {
 	RightClickToReturnSelect,
 	NoTarget,
 	NotEnoughCost,
+	TargetSelect,
 	UINoticeGraphNum
 };
 

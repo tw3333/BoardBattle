@@ -54,7 +54,10 @@ void UINotice::Render() {
 
 	if (is_render_right_click_return_select_panel_) {
 		DrawGraph(10, h1 * 2, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::RightClickToReturnSelect), false);
+	}
 
+	if (is_render_target_select_panel_) {
+		DrawGraph(w1 * 4, 30, texture_mgr_.GetUINoticeGraphHandle(UINoticeGraph::TargetSelect), false);
 	}
 
 	//w1 * 4 + (w1 * 1 / 2) + 10
