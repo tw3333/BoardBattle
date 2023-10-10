@@ -68,8 +68,14 @@ void UIPlayerActionButtons::Render() {
 				else if (turn_ally_->GetIsDrew()) {
 					DrawExtendGraph(c_b_upper_left_x_, c_b_upper_left_y_
 						, c_b_lower_right_x_, c_b_lower_right_y_, g_card_f_, true);
-
 				}
+				else if (turn_ally_->GetHand().size() == 10) {
+					DrawExtendGraph(c_b_upper_left_x_, c_b_upper_left_y_
+						, c_b_lower_right_x_, c_b_lower_right_y_, g_card_f_, true);
+				}
+
+
+
 			}
 
 		}

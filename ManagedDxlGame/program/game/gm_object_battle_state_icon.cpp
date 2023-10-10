@@ -67,3 +67,23 @@ void ObjBattleStateIcon::SetIconTextute(BattleStateIcon battle_state_icon) {
 
 
 }
+
+void ObjBattleStateIcon::SetObjPosToSquarePos(int row, int col) {
+
+	int w1 = ((DXE_WINDOW_WIDTH / 10) * 8) / 10;
+	int h1 = ((DXE_WINDOW_HEIGHT / 10) * 8) / 10;
+
+	int board_w = (DXE_WINDOW_WIDTH / 10) * 8;
+	int board_h = (DXE_WINDOW_HEIGHT / 10) * 8;
+
+	this->pos_.y = 150;
+	this->pos_.z = board_h - (h1 / 2) - (h1)*row + 15;
+	this->pos_.x = (w1 / 2) + ((w1)*col);
+
+	//ç¿ïWÇ…ÇÊÇÈpos.xÇÃí≤êﬂ
+	if (col < 4) {
+		this->pos_.x += 30;
+	}
+
+
+}

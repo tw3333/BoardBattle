@@ -3,7 +3,7 @@ SeCardID,PossAllyID,Cost,Name,Explanation,Texture,AnimName
 1,1,1,爪の一撃,指定した敵(1)に５ダメージ,graphics/card/c1/1.png,anim_crow
 2,1,2,獣舞:昇,範囲内の敵に10ダメージ,graphics/card/c1/2.png,anim_crow
 3,1,2,獣舞:流,範囲内の敵に10ダメージ,graphics/card/c1/3.png,anim_crow
-4,1,3,獣人のステップ,move2を得る,graphics/card/c1/4.png,anim_buf
+4,1,3,獣人のステップ,次のターンmove2を得る,graphics/card/c1/4.png,anim_buf
 5,1,5,血の潤い,5回復,graphics/card/c1/5.png,anim_heal
 6,1,5,モツ刺し,指定した敵(1)に出血を付与,graphics/card/c1/6.png,anim_crow
 7,1,6,獣舞:翔,指定したマスに移動。通り過ぎた敵に15ダメージ,graphics/card/c1/7.png,anim_crow

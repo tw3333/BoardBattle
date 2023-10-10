@@ -114,6 +114,7 @@ public:
 	void SetHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
 	void AddCardToHand(std::shared_ptr<Card> card) { hand_.push_back(card); }
 
+	std::vector<std::shared_ptr<Card>>& GetBaseDeck() { return base_deck_; }
 	std::vector<std::shared_ptr<Card>>& GetUseDeck() { return use_deck_; }
 	std::vector<std::shared_ptr<Card>>& GetHand() { return hand_; }
 
@@ -139,7 +140,7 @@ public:
 	bool GetIsDrewInitCard() { return is_drew_init_card_; }
 	void SetIsDrew(bool flag) { is_drew_ = flag; }
 	bool GetIsDrew() { return is_drew_; }
-
+	void SetTurnHandNum(int num) { turn_hand_num = num; }
 
 private:
 
@@ -151,11 +152,11 @@ private:
 
 	//ステータス
 
-	int max_card_cost_;
-	int current_card_cost_;
-
-	int max_move_cost_;
-	int current_move_cost_;
+	int max_card_cost_ = 0;
+	int current_card_cost_ = 0;	
+	int max_move_cost_ = 0;
+	int current_move_cost_ = 0;
+	int turn_hand_num = 0;
 
 	//状態
 

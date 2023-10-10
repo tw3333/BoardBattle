@@ -9,7 +9,7 @@ CardID,"CardTarget(CardID, RefNum, TargetType, ToTarget, TargetNum)",
 7,"CardTarget(7,1,Specify,Square,1)",
 8,"CardTarget(8,1,Specify,Square,1)",
 9,"CardTarget(9,1,Specify,Square,1)",
-10,"CardTarget(10,1,InRange,Enemy,0)","CardTarget(10,2,Specify,Square,1)"
+10,"CardTarget(10,1,Specify,Square,1)","CardTarget(10,2,InRange,Enemy,0)",
 11,"CardTarget(11,1,Specify,Enemy,1)",
 12,"CardTarget(12,1,Specify,Ally,1)",
 13,"CardTarget(13,1,InRange,Enemy,0)",

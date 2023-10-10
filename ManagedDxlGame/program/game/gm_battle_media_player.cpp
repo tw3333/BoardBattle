@@ -83,9 +83,8 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 
 	if (state == State::Blood) {
 
-		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().row);
-		obj_mgr_.GetObjBattleStateIcon()->pos_ = anim_[0]->pos_;
-		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.y + 100;
+		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
+		obj_mgr_.GetObjBattleStateIcon()->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 
 
 		anim_[0]->CardAnimPlay("anim_blood");
@@ -93,8 +92,9 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 	}
 	else if (state == State::Stun) {
 
-		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().row);
+		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 		obj_mgr_.GetObjBattleStateIcon()->pos_ = anim_[0]->pos_;
+		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.x + 30;
 		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.y + 100;
 
 
@@ -104,8 +104,9 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 	}
 	else if (state == State::Snare) {
 
-		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().row);
+		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 		obj_mgr_.GetObjBattleStateIcon()->pos_ = anim_[0]->pos_;
+		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.x + 30;
 		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.y + 100;
 
 		anim_[0]->CardAnimPlay("anim_debuff");

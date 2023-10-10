@@ -70,9 +70,9 @@ void SceneBattle::Initialzie() {
 
 
 	enemy_units_[0]->AddShieldValue(20);
-	//enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
-	//enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
-	//enemy_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
+	enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
+	enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
+	enemy_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
 
 	all_units_.reserve(party_units_.size() + enemy_units_.size());
@@ -663,13 +663,18 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 
 	
 	ui_card_hand_->SetTurnAlly(turn_ally_);
+
+	DrawStringEx(0,200,-1,"turnallysquare:row[%d]col[%d]",turn_ally_->GetUnitSquarePos().row, turn_ally_->GetUnitSquarePos().col);
 	
 
+	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {		
 
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_0)) {
-		phase_.change(&SceneBattle::PhaseDebug);
+		battle_media_player_->SetAnimBattleState(State::Blood);
+		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 
 	}
+
+
 
 
 	return true;
@@ -685,7 +690,7 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	if (turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
 		turn_enemy_->SetIsMoved(true);
 		//PhaseˆÚs
-		battle_media_player_->SetAnimBattleState(State::Stun);
+		battle_media_player_->SetAnimBattleState(State::Snare);
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 
 	}
@@ -704,7 +709,7 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 			phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 
 		}
-		else if (!turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsEnemyActed()) {
+		else if (!turn_enemy_->GetIsStunTurn() && !turn_enemy_->GetIsEnemyActed()) {
 			turn_enemy_->SetIsEnemyActed(true);
 			turn_enemy_->Act(board_);
 		}
@@ -760,7 +765,7 @@ bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 //ƒ^[ƒ“’†‚ÌBattleStateAnimˆ—
 bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 
-	DrawStringEx(300,0,-1,"PhaseAnimBattleStateInTurn");
+	DrawStringEx(0,200,-1,"PhaseAnimBattleStateInTurn");
 
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
@@ -774,10 +779,14 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 
 		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
-		if (!battle_media_player_->GetIsMediaPlaying()) {
-			battle_media_player_->SetAnimBattleState(State::None);
-			phase_.change(&SceneBattle::PhaseEnemyTurn);
-		}
+		//if (!battle_media_player_->GetIsMediaPlaying()) {
+		//	battle_media_player_->SetAnimBattleState(State::None);
+		//	phase_.change(&SceneBattle::PhaseEnemyTurn);
+		//}
+
+		battle_media_player_->SetAnimBattleState(State::None);
+		phase_.change(&SceneBattle::PhaseEnemyTurn);
+
 	}
 
 	return true;

@@ -29,7 +29,12 @@ public:
 
 
 	}
-	~UITurnAllyState(){}
+	~UITurnAllyState() { 
+		delete unit_ally_;
+		delete ui_card_cost_;
+		delete ui_move_cost_;
+		delete ui_hp_bar_;
+	}
 
 	void Update(float delta_time) override;
 	void Render() override;
@@ -51,9 +56,6 @@ private:
 	UIHpBar* ui_hp_bar_ = nullptr;
 
 	int turn_ally_icon_ = 0;
-	int flame_ = LoadGraph("graphics/ui/flame/flame_3.png");
-
-	
 	int x_;
 	int y_;
 

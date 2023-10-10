@@ -28,6 +28,8 @@ public:
 	void SetIconTextute(BattleStateIcon battle_state_icon);
 	void SetIsRender(bool flag) { is_render_ = flag; }
 	bool GetIsRender() { return is_render_; }
+
+	void SetObjPosToSquarePos(int row, int col);
 	
 	std::vector<std::shared_ptr<dxe::Texture>>& GetBattleStateIcon() { return battle_state_icon_; }
 	//oid SetObjPos(int x, int y);
