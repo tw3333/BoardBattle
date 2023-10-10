@@ -158,10 +158,10 @@ void SceneBattle::Initialzie() {
 
 	battle_media_player_ = new BattleMediaPlayer();
 	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
+	battle_media_player_->SetObjBattleStateAnim(camera_, anim_mgr_.GetObjBattleStateAnim());
 
 	obj_mgr_.GetObjBattleStateIcon()->pos_ = unit_enemy_->GetObj()->pos_;
 	obj_mgr_.GetObjBattleStateIcon()->pos_.y = unit_enemy_->GetObj()->pos_.y + 180;
-
 	obj_mgr_.GetObjBattleStateIcon()->SetIsRender(true);
 
 

@@ -24,7 +24,9 @@ public:
 	bool GetIsMediaPlaying() { return is_media_playing_; }
 	
 	void SetAnim(dxe::Camera* camera, std::vector<std::shared_ptr<AnimSprite3D>> anim);
-	void SetObjBattleStateIcon(std::shared_ptr<ObjBattleStateIcon> obj_battle_state) { obj_battle_state_ = obj_battle_state; };
+	void SetObjBattleStateIcon(std::shared_ptr<ObjBattleStateIcon> obj_battle_state) { obj_battle_state_ = obj_battle_state; }
+	void SetObjBattleStateAnim(dxe::Camera* camera, std::shared_ptr<AnimSprite3D> obj_battle_state_anim);
+
 	void CardMediaPlay(std::shared_ptr<Card> card);
 
 	void BattleStateMediaPlay(Unit* unit, State state);
@@ -43,10 +45,12 @@ private:
 	dxe::Camera* camera_ = nullptr;
 
 	bool is_media_playing_ = false;
+	bool is_battle_state_media_playing_ = false;
 
 
 	std::vector<std::shared_ptr<AnimSprite3D>> anim_;
 	std::shared_ptr<ObjBattleStateIcon> obj_battle_state_ = nullptr;
+	std::shared_ptr<AnimSprite3D> obj_battle_state_anim_ = nullptr;
 
 
 };

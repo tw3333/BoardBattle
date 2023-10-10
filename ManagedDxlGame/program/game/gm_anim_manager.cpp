@@ -13,7 +13,7 @@ void AnimManager::CreateDebugAnim() {
 	}
 
 	for (auto anim : anim_) {
-
+	
 		anim->regist(0, 1, "none", "nullptr", tnl::SeekUnit::ePlayMode::SINGLE, 0.0f, 8, 240, 0, 1);
 		anim->regist(100, 100, "debug_anim", "graphics/effect/card_anim/anim_attack.png", tnl::SeekUnit::ePlayMode::SINGLE, 0.3f, 5, 240, 0, 1);
 		
@@ -33,8 +33,13 @@ void AnimManager::CreateDebugAnim() {
 
 		//BattleState
 
-		
 	}
+
+
+	obj_battle_state_anim_ = std::make_shared<AnimSprite3D>();
+	obj_battle_state_anim_->regist(0, 1, "none", "nullptr", tnl::SeekUnit::ePlayMode::SINGLE, 0.0f, 8, 240, 0, 1);
+	obj_battle_state_anim_->regist(200, 200, "anim_blood", "graphics/effect/card_anim/anim_blood.png", tnl::SeekUnit::ePlayMode::SINGLE, 0.3f, 5, 240, 0, 1);
+	obj_battle_state_anim_->regist(200, 200, "anim_debuff", "graphics/effect/card_anim/anim_debuff.png", tnl::SeekUnit::ePlayMode::SINGLE, 0.5f, 20, 192, 0, 4);
 
 
 }

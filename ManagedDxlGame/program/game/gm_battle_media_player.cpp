@@ -18,6 +18,16 @@ void BattleMediaPlayer::Update(float delta_time) {
 				is_media_playing_ = true;
 			}
 		}
+	}
+
+	if (obj_battle_state_anim_) {
+		is_battle_state_media_playing_ = false;
+
+		obj_battle_state_anim_->Update(delta_time);
+
+		if (obj_battle_state_anim_->getCurrentAnimSeekUnit()->GetIsPlaying()) {
+			is_battle_state_media_playing_ = true;
+		}
 
 	}
 
@@ -33,6 +43,10 @@ void BattleMediaPlayer::Render(dxe::Camera* camera) {
 		}
 	}
 
+	if (obj_battle_state_anim_) {
+		obj_battle_state_anim_->Render(camera);
+	}
+
 }
 
 void BattleMediaPlayer::SetAnim(dxe::Camera* camera, std::vector<std::shared_ptr<AnimSprite3D>> anim) {
@@ -45,6 +59,18 @@ void BattleMediaPlayer::SetAnim(dxe::Camera* camera, std::vector<std::shared_ptr
 			anim->setCurrentAnim("none");
 		}
 	}
+
+}
+
+void BattleMediaPlayer::SetObjBattleStateAnim(dxe::Camera* camera, std::shared_ptr<AnimSprite3D> obj_battle_state_anim) {
+
+	obj_battle_state_anim_ = obj_battle_state_anim;
+	
+	if (obj_battle_state_anim_) {
+		obj_battle_state_anim_->SetBillBoardCamera(camera);
+		obj_battle_state_anim_->setCurrentAnim("none");
+	}
+
 
 }
 
@@ -83,34 +109,29 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 
 	if (state == State::Blood) {
 
-		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
+		obj_battle_state_anim_->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 		obj_mgr_.GetObjBattleStateIcon()->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 
 
-		anim_[0]->CardAnimPlay("anim_blood");
+		obj_battle_state_anim_->CardAnimPlay("anim_blood");
 		sound_mgr_.PlayBattleStateSE(state);
 	}
 	else if (state == State::Stun) {
 
-		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
-		obj_mgr_.GetObjBattleStateIcon()->pos_ = anim_[0]->pos_;
-		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.x + 30;
-		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.y + 100;
+		obj_battle_state_anim_->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
+		obj_mgr_.GetObjBattleStateIcon()->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 
 
-		anim_[0]->CardAnimPlay("anim_debuff");
+		obj_battle_state_anim_->CardAnimPlay("anim_debuff");
 
 		sound_mgr_.PlayBattleStateSE(state);
 	}
 	else if (state == State::Snare) {
 
-		anim_[0]->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
-		obj_mgr_.GetObjBattleStateIcon()->pos_ = anim_[0]->pos_;
-		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.x + 30;
-		obj_mgr_.GetObjBattleStateIcon()->pos_.y = anim_[0]->pos_.y + 100;
+		obj_battle_state_anim_->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
+		obj_mgr_.GetObjBattleStateIcon()->SetObjPosToSquarePos(unit->GetUnitSquarePos().row, unit->GetUnitSquarePos().col);
 
-		anim_[0]->CardAnimPlay("anim_debuff");
-
+		obj_battle_state_anim_->CardAnimPlay("anim_debuff");
 		sound_mgr_.PlayBattleStateSE(state);
 	}
 

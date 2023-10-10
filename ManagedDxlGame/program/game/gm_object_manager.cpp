@@ -2,9 +2,6 @@
 
 
 
-
-
-
 //ObjSquare‚ğì¬‚µ‚Äpool
 void ObjectManager::CreateObjSquares() {
 
