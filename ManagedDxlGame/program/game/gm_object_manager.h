@@ -85,6 +85,6 @@ private:
 
 	ObjMoveSelectFlame* obj_move_select_flame_;
 
-	std::shared_ptr<ObjBattleStateIcon> obj_battle_state_icon_;
+	std::shared_ptr<ObjBattleStateIcon> obj_battle_state_icon_; //BattleStateAnimのアイコン表示用
 
 };

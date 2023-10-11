@@ -159,11 +159,7 @@ void SceneBattle::Initialzie() {
 	battle_media_player_ = new BattleMediaPlayer();
 	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 	battle_media_player_->SetObjBattleStateAnim(camera_, anim_mgr_.GetObjBattleStateAnim());
-
-	obj_mgr_.GetObjBattleStateIcon()->pos_ = unit_enemy_->GetObj()->pos_;
-	obj_mgr_.GetObjBattleStateIcon()->pos_.y = unit_enemy_->GetObj()->pos_.y + 180;
-	obj_mgr_.GetObjBattleStateIcon()->SetIsRender(true);
-
+	battle_media_player_->SetObjBattleStateIcon(obj_mgr_.GetObjBattleStateIcon());
 
 }
 
@@ -178,14 +174,6 @@ void SceneBattle::Update(float delta_time) {
 	select_square_->Update(delta_time, camera_);
 
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
-
-	//TODO:‚±‚±‚Í‚Ì‚¿‚ÉUnit‚ÌUpdate‚É“ˆê
-	//party_[0]->GetObj()->Update(delta_time);
-	//party_[1]->GetObj()->Update(delta_time);
-	//party_[2]->GetObj()->Update(delta_time);
-	//unit_enemy_->GetObj()->Update(delta_time);
-	//for (auto pu : party_units_) { pu->Update(delta_time); }
-	//for (auto eu : enemy_units_) { eu->Update(delta_time); }
 
 	for (auto au : all_units_) { au->Update(delta_time); }
 	BattleResultJudgment(board_);
@@ -208,23 +196,6 @@ void SceneBattle::Update(float delta_time) {
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
 	ui_notice_->Update(delta_time);
-
-
-	//anim_mgr_.GetDebugAnim()->Update(delta_time);
-	//for (auto anim : anim_mgr_.GetAnim()) {
-	//	anim->Update(delta_time);
-	//}
-	//
-	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
-	//	anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
-	//}
-
-	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_W)) {
-	//
-	//	anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->restart();
-	//	//anim_mgr_.GetDebugAnim()->getCurrentAnimSeekUnit()->jumpSeekRate(0.0);
-	//	sound_mgr_.PlayAllyDamagedVoice(1);
-	//}
 
 	battle_media_player_->Update(delta_time);
 	obj_mgr_.GetObjBattleStateIcon()->Update(delta_time);
@@ -772,6 +743,9 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 		battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
 		if (!battle_media_player_->GetIsMediaPlaying()) {
 			battle_media_player_->SetAnimBattleState(State::None);
+		}
+
+		if (!battle_media_player_->GetIsBattleStateMediaPlaying()) {
 			phase_.change(&SceneBattle::PhaseAllyTurn);
 		}
 
@@ -785,9 +759,13 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 		//}
 
 		battle_media_player_->SetAnimBattleState(State::None);
-		phase_.change(&SceneBattle::PhaseEnemyTurn);
 
+		if (!battle_media_player_->GetIsBattleStateMediaPlaying()) {
+			phase_.change(&SceneBattle::PhaseEnemyTurn);
+		}
+		
 	}
+
 
 	return true;
 }

@@ -42,8 +42,14 @@ std::shared_ptr<ObjBattleStateIcon> ObjBattleStateIcon::Create()
 {
 	auto obj = std::make_shared<ObjBattleStateIcon>();
 
-	//Debug Texture
+	//Texture
 	obj->GetBattleStateIcon().push_back(dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_blood.png"));
+
+	obj->icon_texture_.resize(BattleStateIconGraph::BattleStateIconGraphNum);
+	obj->icon_texture_[BattleStateIconGraph::Blood] = dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_blood.png");
+	obj->icon_texture_[BattleStateIconGraph::Snare] = dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_snare.png");
+	obj->icon_texture_[BattleStateIconGraph::Stun] = dxe::Texture::CreateFromFile("graphics/ui/battlestate_icon/icon_stun.png");
+
 
 	obj->parts_.resize(PartsMax);
 
@@ -61,9 +67,9 @@ std::shared_ptr<ObjBattleStateIcon> ObjBattleStateIcon::Create()
 	return obj;
 }
 
-void ObjBattleStateIcon::SetIconTextute(BattleStateIcon battle_state_icon) {
+void ObjBattleStateIcon::SetIconTextute(BattleStateIconGraph battle_state_icon) {
 
-	parts_[Icon]->mesh_->setTexture(battle_state_icon_[battle_state_icon]);
+	parts_[Icon]->mesh_->setTexture(icon_texture_[battle_state_icon]);
 
 
 }

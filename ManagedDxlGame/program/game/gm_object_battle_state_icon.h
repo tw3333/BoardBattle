@@ -7,6 +7,13 @@
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_texture_manager.h"
 
+enum BattleStateIconGraph {
+	Blood,
+	Snare,
+	Stun,
+	BattleStateIconGraphNum
+};
+
 
 class ObjBattleStateIcon : public GameObject {
 public:
@@ -25,7 +32,7 @@ public:
 //	static ObjBattleStateIcon* Create(std::vector<std::shared_ptr<dxe::Texture>>& battle_state_icon);
 	static std::shared_ptr<ObjBattleStateIcon> Create();
 	void SetBattleStateIcon(std::vector<std::shared_ptr<dxe::Texture>>& battle_state_icon) { battle_state_icon_ = battle_state_icon; }
-	void SetIconTextute(BattleStateIcon battle_state_icon);
+	void SetIconTextute(BattleStateIconGraph battle_state_icon);
 	void SetIsRender(bool flag) { is_render_ = flag; }
 	bool GetIsRender() { return is_render_; }
 
@@ -40,6 +47,8 @@ private:
 
 
 	std::vector<std::shared_ptr<dxe::Texture>> battle_state_icon_;
+
+	std::vector<std::shared_ptr<dxe::Texture>> icon_texture_;
 
 
 };

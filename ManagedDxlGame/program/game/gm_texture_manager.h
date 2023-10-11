@@ -7,14 +7,6 @@
 //memo
 //シングルトン設計
 
-enum BattleStateIcon{
-	Blood,
-	Poison,
-	Snare,
-	Stun
-};
-
-
 
 class TextureManager {
 public:
