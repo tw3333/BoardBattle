@@ -123,6 +123,7 @@ void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 
 	battle_state_anim_timer_start_ = true;
+	is_battle_state_media_played_ = true;
 
 	//None‚Ìê‡Ä¶‚µ‚È‚¢
 	if (state == State::None) {
@@ -163,6 +164,26 @@ void BattleMediaPlayer::BattleStateMediaPlay(Unit* unit, State state) {
 	}
 
 
+}
+
+bool BattleMediaPlayer::BattleStateMediaTimer(float delta_time) {
+
+	if (battle_state_anim_timer_start_) {
+		timer_ += delta_time;
+		is_battle_state_media_playing_ = true;
+	}
+
+	if (timer_ >= battle_state_anim_total_time_) {
+		timer_ = 0.0f;
+		battle_state_anim_timer_start_ = false;
+		obj_battle_state_icon_->SetIsRender(false);
+		is_battle_state_media_playing_ = false;
+		is_battle_state_media_played_ = true;
+
+		return true;
+	}
+
+	return false;
 }
 
 

@@ -34,8 +34,15 @@ public:
 
 	State GetAnimBattleState(){ return anim_battle_state_; }
 	void SetAnimBattleState(State state) { anim_battle_state_ = state; }
+	bool GetIsBattleStateMediaPlayed() { return is_battle_state_media_played_; }
+	void SetIsBattleStateMediaPlayed(bool is_played) { is_battle_state_media_played_ = is_played; }
+
+	bool BattleStateMediaTimer(float delta_time);
+
 
 	bool test_ = false;
+	float test_timer_ = 0.0f;
+
 private:
 
 	float timer_ = 0.0f;
@@ -54,6 +61,7 @@ private:
 
 	bool is_media_playing_ = false;
 	bool is_battle_state_media_playing_ = false;
+	bool is_battle_state_media_played_ = false;
 	
 
 

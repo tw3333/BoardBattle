@@ -82,6 +82,9 @@ public:
 
 	bool PhaseAllyTurn(const float delta_time); //2
 	bool PhaseEnemyTurn(const float delta_time); //2
+	bool PhaseEnemyMove(const float delta_time);
+	bool PhaseEnemyAct(const float delta_time);
+
 	bool PhaseDrawCard(const float delta_time);
 
 	bool PhasePlayerActionMove(const float delta_time); //3.1

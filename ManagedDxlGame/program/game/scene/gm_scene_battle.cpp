@@ -65,14 +65,15 @@ void SceneBattle::Initialzie() {
 
 
 	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 5);
+	unit_enemy_->SetIsSnareTurn(true);
+	unit_enemy_->SetIsStunTurn(true);
+
 	enemy_units_.push_back(unit_enemy_);
 
-
-
-	enemy_units_[0]->AddShieldValue(20);
-	enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
-	enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
-	enemy_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
+	//enemy_units_[0]->AddShieldValue(20);
+	//enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
+	//enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
+	//enemy_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
 
 	all_units_.reserve(party_units_.size() + enemy_units_.size());
@@ -124,38 +125,12 @@ void SceneBattle::Initialzie() {
 	ui_unit_state_view_->SetAllyBoxUpperLeftPos(10,10);
 	ui_unit_state_view_->SetEnemyBoxUpperLeftPos((w1*8) - 10, 10);
 
-	//ui_turn_view_ = new UITurnView(w1*4,0,w1*2,h1*1/2,all_units_);
 
 	ui_notice_ = new UINotice();
 
 	board_->Update(0);
 
-	//anim_mgr_.GetDebugAnim()->SetCamera(camera_);
-	//anim_mgr_.GetDebugAnim()->setCurrentAnim("none");
-	////anim_mgr_.GetDebugAnim()->pos_ = unit_enemy_->GetObj()->pos_;
-
-
-	////card_play_->SetCameraToCardEffectAnim(camera_);
-	//int cnt = 0;
-	//int cnt2 = 0;
-	//for (auto& anim : anim_mgr_.GetAnim()) {
-	//	anim->SetBillBoardCamera(camera_);
-	//	anim->setCurrentAnim("debug_anim");
-
-	//	anim->SetObjPosToSquarePos(cnt,cnt2);
-	//	cnt++;
-	//	if (cnt > 9) {
-	//		cnt = 0;
-	//		cnt2++;
-	//	}
-
-	//	if (cnt2 > 0) {
-	//		cnt2 = 0;
-	//	}
-	//}
-
-	//anim_mgr_.GetDebugAnim()->setCurrentAnim("debug_anim");
-
+	//BattleMediaPlayerの初期化
 	battle_media_player_ = new BattleMediaPlayer();
 	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 	battle_media_player_->SetObjBattleStateAnim(camera_, anim_mgr_.GetObjBattleStateAnim());
@@ -431,7 +406,6 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		}
 	}
 	
-	
 	//素早さ順に降順ソート
 	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
 		return a->GetSpeed() > b->GetSpeed();
@@ -657,50 +631,93 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 	
 	DrawStringEx(300, 0, -1, "PhaseTurnEnemy");
 
-	//Move
-	if (turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
-		turn_enemy_->SetIsMoved(true);
-		//Phase移行
-		battle_media_player_->SetAnimBattleState(State::Snare);
-		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
-
+	//各Phase移動
+	if (!turn_enemy_->GetIsMoved() && !turn_enemy_->GetIsEnemyActed()) { //move
+		phase_.change(&SceneBattle::PhaseEnemyMove);
 	}
-	else if (!turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
-		turn_enemy_->SetIsMoved(true);
-		turn_enemy_->Move(board_);
+	else if (turn_enemy_->GetIsMoved() && !turn_enemy_->GetIsEnemyActed()) { //act
+		phase_.change(&SceneBattle::PhaseEnemyAct);
 	}
-
-	//Act
-	if (turn_enemy_->GetIsMoved()) {
-
-		if (turn_enemy_->GetIsStunTurn() && !turn_enemy_->GetIsEnemyActed()) {
-			turn_enemy_->SetIsEnemyActed(true);
-			//Phase移行
-			battle_media_player_->SetAnimBattleState(State::Stun);
-			phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
-
-		}
-		else if (!turn_enemy_->GetIsStunTurn() && !turn_enemy_->GetIsEnemyActed()) {
-			turn_enemy_->SetIsEnemyActed(true);
-			turn_enemy_->Act(board_);
-		}
-
-	}
-
-	//Turn終了処理
-	if (turn_enemy_->GetIsMoved() && turn_enemy_->GetIsEnemyActed()) {
+	else if (turn_enemy_->GetIsMoved() && turn_enemy_->GetIsEnemyActed()) { //全行動終了でturn終了
 		
+		//ターン終了処理
 		turn_enemy_->SetIsMoved(false);
 		turn_enemy_->SetIsEnemyActed(false);
-
 		turn_enemy_->SetIsStunTurn(false);
 		turn_enemy_->SetIsSnareTurn(false);
-
 		turn_enemy_->SetIsTurn(false);
 		turn_enemy_->SetIsActed(true);
 		turn_enemy_->DecreaseBattleStateTurn();
 
 		phase_.change(&SceneBattle::ResetActedCal);
+	}
+
+
+
+	////Move
+	//if (turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
+	//	turn_enemy_->SetIsMoved(true);
+	//	//Phase移行
+	//	battle_media_player_->SetAnimBattleState(State::Snare);
+	//	phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+
+	//}
+	//if (!turn_enemy_->GetIsSnareTurn() && !turn_enemy_->GetIsMoved()) {
+	//	turn_enemy_->SetIsMoved(true);
+	//	turn_enemy_->Move(board_);
+	//}
+
+	////Act
+	//if (turn_enemy_->GetIsMoved()) {
+
+	//	if (turn_enemy_->GetIsStunTurn() && !turn_enemy_->GetIsEnemyActed()) {
+	//		turn_enemy_->SetIsEnemyActed(true);
+	//		//Phase移行
+	//		battle_media_player_->SetAnimBattleState(State::Stun);
+	//		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+
+	//	}
+	//	if (!turn_enemy_->GetIsStunTurn() && !turn_enemy_->GetIsEnemyActed()) {
+	//		turn_enemy_->SetIsEnemyActed(true);
+	//		turn_enemy_->Act(board_);
+	//	}
+
+	//}
+
+	return true;
+}
+
+bool SceneBattle::PhaseEnemyMove(const float delta_time) {
+
+	if (turn_enemy_->GetIsSnareTurn()) {
+
+		turn_enemy_->SetIsMoved(true);
+		//Phase移行
+		battle_media_player_->SetAnimBattleState(State::Snare);
+		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+	}
+	else if (!turn_enemy_->GetIsSnareTurn()) {
+
+		turn_enemy_->SetIsMoved(true);
+		turn_enemy_->Move(board_);
+		phase_.change(&SceneBattle::PhaseEnemyTurn);
+	}
+
+	return true;
+}
+
+bool SceneBattle::PhaseEnemyAct(const float delta_time) {
+
+	if (turn_enemy_->GetIsStunTurn()) {
+		turn_enemy_->SetIsEnemyActed(true);
+		//Phase移行
+		battle_media_player_->SetAnimBattleState(State::Stun);
+		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+	}
+	if (!turn_enemy_->GetIsStunTurn()) {
+		turn_enemy_->SetIsEnemyActed(true);
+		turn_enemy_->Act(board_);
+		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
 	return true;
@@ -736,36 +753,40 @@ bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 //ターン中のBattleStateAnim処理
 bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 
-	DrawStringEx(0,200,-1,"PhaseAnimBattleStateInTurn");
+	DrawStringEx(0,320,-1,"PhaseAnimBattleStateInTurn");
+	DrawStringEx(0,340,-1,"testtimer:[%f]", battle_media_player_->test_timer_);
+
+	battle_media_player_->test_timer_ += delta_time;
 
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
-		battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
-		if (!battle_media_player_->GetIsMediaPlaying()) {
-			battle_media_player_->SetAnimBattleState(State::None);
-		}
-
-		if (!battle_media_player_->GetIsBattleStateMediaPlaying()) {
-			phase_.change(&SceneBattle::PhaseAllyTurn);
+		if (!battle_media_player_->GetIsBattleStateMediaPlayed()) {
+			battle_media_player_->BattleStateMediaPlay(turn_ally_, battle_media_player_->GetAnimBattleState());
 		}
 
 	}
 	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 
-		battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
-		//if (!battle_media_player_->GetIsMediaPlaying()) {
-		//	battle_media_player_->SetAnimBattleState(State::None);
-		//	phase_.change(&SceneBattle::PhaseEnemyTurn);
-		//}
-
-		battle_media_player_->SetAnimBattleState(State::None);
-
-		if (!battle_media_player_->GetIsBattleStateMediaPlaying()) {
-			phase_.change(&SceneBattle::PhaseEnemyTurn);
+		if (!battle_media_player_->GetIsBattleStateMediaPlayed()) {
+			battle_media_player_->BattleStateMediaPlay(turn_enemy_, battle_media_player_->GetAnimBattleState());
 		}
-		
+	
 	}
 
+	if (battle_media_player_->test_timer_ > 1.0f) {
+		
+		battle_media_player_->test_timer_ = 0.0f;
+
+		if (turn_ally_ && turn_ally_->GetIsTurn()) {
+			battle_media_player_->SetIsBattleStateMediaPlayed(false);
+			phase_.change(&SceneBattle::PhaseAllyTurn);
+		}
+		else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
+			battle_media_player_->SetIsBattleStateMediaPlayed(false);
+			phase_.change(&SceneBattle::PhaseEnemyTurn);
+		}
+
+	}
 
 	return true;
 }
