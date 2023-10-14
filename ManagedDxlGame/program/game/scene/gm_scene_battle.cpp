@@ -573,8 +573,8 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 		////ˆ—I—¹‚ÅŠeUnitTurn‚ÖˆÚs
 		//if (proc_unit->IsBattleStateAllProcedStartOfTurn()) {
 			//	if (proc_unit->GetUnitType() == UnitType::Ally) {
-//		proc_unit->ResetAllBattleStateProced();
-//		phase_.change(&SceneBattle::PhaseAllyTurn);
+		//proc_unit->ResetAllBattleStateProced();
+		//phase_.change(&SceneBattle::PhaseAllyTurn);
 //	}
 //	else if (proc_unit->GetUnitType() == UnitType::Enemy) {
 //		proc_unit->ResetAllBattleStateProced();
@@ -582,6 +582,41 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 //	}
 //}
 
+
+
+	return true;
+}
+
+bool SceneBattle::PhaseAnimBattleStateStartOfTurnProc(const float delta_time) {
+
+	Unit* proc_unit = nullptr;
+	bool ally_proc = false;
+	bool enemy_proc = false;
+
+	if (turn_ally_ && turn_ally_->GetIsTurn()) {
+		proc_unit = turn_ally_;
+	}
+	else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
+		proc_unit = turn_enemy_;
+	}
+
+	if (proc_unit) {
+		
+		if (proc_unit->GetIsBlood()) {
+
+			proc_unit->SetIsBlood(false);
+			battle_media_player_->SetAnimBattleState(State::Blood);
+			phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurn);
+		}
+		
+		if (proc_unit->GetUnitType() == UnitType::Ally) {
+			phase_.change(&SceneBattle::PhaseAllyTurn);
+		}
+		else if (proc_unit->GetUnitType() == UnitType::Enemy) {
+			phase_.change(&SceneBattle::PhaseEnemyTurn);
+		}
+
+	}
 
 
 	return true;
@@ -619,11 +654,11 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 
 		if (turn_ally_ && turn_ally_->GetIsTurn()) {
 			battle_media_player_->SetIsBattleStateMediaPlayed(false);
-			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+			phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurnProc);
 		}
 		else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 			battle_media_player_->SetIsBattleStateMediaPlayed(false);
-			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
+			phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurnProc);
 		}
 
 	}

@@ -93,8 +93,10 @@ public:
 
 
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
-	bool PhaseBattleStateProcAtEndOfTurn(const float delta_time); //ターン終了時BattleStateの処理
+	bool PhaseAnimBattleStateStartOfTurnProc(const float delta_time); //BattleStateAnimを順番に再生するための処理Phase
 	bool PhaseAnimBattleStateStartOfTurn(const float delta_time); //BattleStateのアニメーション処理
+
+	bool PhaseBattleStateProcAtEndOfTurn(const float delta_time); //ターン終了時BattleStateの処理
 	bool PhaseAnimBattleStateInTurn(const float delta_time); //各Unitのturn中のBattleStateAnimの再生処理
 
 	
@@ -114,7 +116,7 @@ public:
 
 private:
 
-
+	int d_cnt = 0;
 
 	BattleMediaPlayer* battle_media_player_ = nullptr;
 
