@@ -31,7 +31,7 @@ void Unit::DecreaseBattleStateTurn() {
 
 }
 
-bool Unit::IsBattleStateProcStartOfTurn()
+bool Unit::IsBattleStateAllProcedStartOfTurn()
 {
 	if (state_.empty()) {
 		return true;
@@ -49,4 +49,16 @@ bool Unit::IsBattleStateProcStartOfTurn()
 	}
 
 	return true;
+}
+
+void Unit::ResetAllBattleStateProced() {
+
+	if (!state_.empty()) {
+
+		for (auto& state : state_) {
+			state.SetIsProc(false);	
+		}
+
+	}
+
 }

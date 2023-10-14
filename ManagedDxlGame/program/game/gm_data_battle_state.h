@@ -39,7 +39,7 @@ public:
 	int GetValue() { return value_; }
 	int GetTurnCount() { return turn_count_; }
 
-	bool GetIsProc() { return is_proc_; }
+	bool &GetIsProc() { return is_proc_; }
 	void SetIsProc(bool is_proc) { is_proc_ = is_proc; }
 	bool GetIsAddTurn() { return add_turn_; }
 	void SetIsAddTurn(bool add_turn) { add_turn_ = add_turn; }

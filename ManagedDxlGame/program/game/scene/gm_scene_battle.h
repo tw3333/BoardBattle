@@ -114,6 +114,8 @@ public:
 
 private:
 
+
+
 	BattleMediaPlayer* battle_media_player_ = nullptr;
 
 

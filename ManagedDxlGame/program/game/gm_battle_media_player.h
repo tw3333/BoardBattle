@@ -38,10 +38,10 @@ public:
 	void SetIsBattleStateMediaPlayed(bool is_played) { is_battle_state_media_played_ = is_played; }
 
 	bool BattleStateMediaTimer(float delta_time);
-
+	float GetBattleStateAnimTotalTime() { return battle_state_anim_total_time_; }
 
 	bool test_ = false;
-	float test_timer_ = 0.0f;
+	float anim_timer_ = 0.0f;
 
 private:
 

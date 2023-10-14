@@ -53,20 +53,20 @@ public:
 
 	void DecreaseBattleStateTurn();
 
-	bool CheckStunInBattleState();
-	bool CheckSnareInBattleState();
-	bool CheckBloodInBattleState();
 
-	bool IsBattleStateProcStartOfTurn();
+	bool IsBattleStateAllProcedStartOfTurn();
+	void ResetAllBattleStateProced();
 	//void DeeleteBattleState
 
-	bool GetIsAllStateProc() { return is_all_state_proc_; }
-	void SetIsAllStateProc(bool flag) { is_all_state_proc_ = flag; }
+	bool GetIsAllStateProc() { return is_all_state_proced_; }
+	void SetIsAllStateProc(bool flag) { is_all_state_proced_ = flag; }
 
 	bool GetIsStunTurn() { return is_stun_turn_; }
 	void SetIsStunTurn(bool flag) { is_stun_turn_ = flag; }
 	bool GetIsSnareTurn() { return is_snare_turn_; }
 	void SetIsSnareTurn(bool flag) { is_snare_turn_ = flag; }
+	bool GetIsBlood() { return is_blood_; }
+	void SetIsBlood(bool flag) { is_blood_ = flag; }
 
 private:
 
@@ -92,8 +92,9 @@ protected:
 	bool is_dead_ = false; 
 	bool is_acted_ = false;
 	bool is_turn_ = false;
-	bool is_all_state_proc_ = false;
+	bool is_all_state_proced_ = false;
 	bool is_stun_turn_ = false;
 	bool is_snare_turn_ = false;
+	bool is_blood_ = false;
 
 };
