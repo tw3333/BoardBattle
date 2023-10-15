@@ -62,3 +62,14 @@ void Unit::ResetAllBattleStateProced() {
 	}
 
 }
+
+bool Unit::CheckAllPlayedBattleStateAnimStartOfturn() {
+
+	if (is_blood_) {
+		return false;
+	}
+
+	return true;
+}
+
+

@@ -56,6 +56,7 @@ public:
 
 	bool IsBattleStateAllProcedStartOfTurn();
 	void ResetAllBattleStateProced();
+	bool CheckAllPlayedBattleStateAnimStartOfturn();
 	//void DeeleteBattleState
 
 	bool GetIsAllStateProc() { return is_all_state_proced_; }
