@@ -1075,6 +1075,8 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
 		turn_ally_->SetIsDrewInitCard(true);
 		turn_ally_->SetIsDrew(true);
+		sound_mgr_.PlayUISE(UISE::AddCard);
+
 		phase_.change(&SceneBattle::PhasePlayerActionCard);
 	}
 
@@ -1093,6 +1095,7 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 			turn_ally_->AddCardToHand(turn_ally_->GetUseDeck().back());
 			turn_ally_->GetUseDeck().pop_back();
 			turn_ally_->SetIsDrew(true);
+			sound_mgr_.PlayUISE(UISE::AddCard);
 
 			phase_.change(&SceneBattle::PhasePlayerActionCard);
 		}
@@ -1181,7 +1184,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	//タイルの表示処理
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
 
-		for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+		for (auto& range_pos : card_play_->GetCardRangeSquarePos()) {
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetAllyPtrInSquare()) {
 				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
@@ -1190,7 +1193,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				//TargetTileの表示
 				if (select_square_->GetSelectSquarePos() == range_pos) {
 					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
-
+					sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
 				}
 			}
 		}
@@ -1198,7 +1201,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	}
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
 
-		for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+		for (auto& range_pos : card_play_->GetCardRangeSquarePos()) {
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetEnemyPtrInSquare()) {
 				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
@@ -1207,14 +1210,14 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				//TargetTileの表示
 				if (select_square_->GetSelectSquarePos() == range_pos) {
 					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
-
+					sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
 				}
 			}
 		}
 	}
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Square) {
 
-		for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+		for (auto& range_pos : card_play_->GetCardRangeSquarePos()) {
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetIsCanMove()) {
 				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
@@ -1223,7 +1226,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				//TargetTileの表示
 				if (select_square_->GetSelectSquarePos() == range_pos) {
 					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
-
+					sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
 				}
 			}
 		}
@@ -1232,14 +1235,9 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 
 	//対象指定されたタイルを表示
-	//for (auto a : card_play_->GetCurrentCardTarget()->GetTargetUnits()) {
-	//	board_->getBoardSquare(a->GetUnitSquarePos().row,a->GetUnitSquarePos().col)->SetRenderTargetTile(true);
-	//}
-
-	//対象指定されたタイルを表示
 	if (!card_play_->GetCurrentCardTarget()->GetTargetSquaresPos().empty()) {
 
-		for (auto target_pos : card_play_->GetCurrentCardTarget()->GetTargetSquaresPos()) {
+		for (auto& target_pos : card_play_->GetCurrentCardTarget()->GetTargetSquaresPos()) {
 			board_->getBoardSquare(target_pos.row, target_pos.col)->SetRenderTargetTile(true);
 		}
 
