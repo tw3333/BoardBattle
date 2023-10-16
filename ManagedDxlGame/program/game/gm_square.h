@@ -49,6 +49,8 @@ public:
 	void SetEnemyPtrInSquare(UnitEnemy* ptr) { enemy_ptr_in_square_ = ptr; }
 	Unit* GetUnitPtrInSquare() { return unit_ptr_in_square_; }
 	void SetUnitPtrInSquare(Unit* ptr) { unit_ptr_in_square_ = ptr; }
+	bool GetWasMouseOver() { return was_mouse_over_; }
+	void SetWasMouseOver(bool flag) { was_mouse_over_ = flag; }
 
 	SquarePos GetSquarePos() { return square_pos_; }
 
@@ -60,6 +62,7 @@ private:
 	bool is_can_move_ = true;
 	bool enemy_in_square_ = false;
 	bool ally_in_square_ = false;
+	bool was_mouse_over_ = false; //target‚Åse–Â‚ç‚·—p
 
 	ObjSquare* obj_;
 

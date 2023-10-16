@@ -268,12 +268,11 @@ void SoundManager::PlayUISE(UISE ui_se) {
 	if (!ui_se_list_.empty()) {
 
 		if (ui_se == UISE::MatchCursorTarget) {
-			PlaySoundMem(ui_se_list_[ui_se]->GetSoundHandle(), DX_PLAYTYPE_NORMAL, true);
+			PlaySoundMem(ui_se_list_[ui_se]->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
 		}
 		else {
 			PlaySoundMem(ui_se_list_[ui_se]->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
 		}
-
 
 	}
 

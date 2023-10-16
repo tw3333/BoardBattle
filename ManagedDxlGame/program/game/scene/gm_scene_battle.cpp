@@ -1181,10 +1181,15 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	int ally_cnt = 0;
 	int enemy_cnt = 0;
 
+
 	//タイルの表示処理
 	if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Ally) {
 
+
 		for (auto& range_pos : card_play_->GetCardRangeSquarePos()) {
+
+			Square* proc_square = board_->getBoardSquare(range_pos.row, range_pos.col);
+
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetAllyPtrInSquare()) {
 				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
@@ -1193,15 +1198,24 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				//TargetTileの表示
 				if (select_square_->GetSelectSquarePos() == range_pos) {
 					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
-					sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
+					if (!proc_square->GetWasMouseOver()) {
+						sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
+					}
+					proc_square->SetWasMouseOver(true);
+				}
+				else {
+					proc_square->SetWasMouseOver(false);
 				}
 			}
 		}
-
+		 
 	}
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
 
 		for (auto& range_pos : card_play_->GetCardRangeSquarePos()) {
+
+			Square* proc_square = board_->getBoardSquare(range_pos.row, range_pos.col);
+
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetEnemyPtrInSquare()) {
 				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
@@ -1210,7 +1224,13 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				//TargetTileの表示
 				if (select_square_->GetSelectSquarePos() == range_pos) {
 					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
-					sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
+					if (!proc_square->GetWasMouseOver()) {
+						sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
+					}
+					proc_square->SetWasMouseOver(true);
+				}
+				else {
+					proc_square->SetWasMouseOver(false);
 				}
 			}
 		}
@@ -1218,6 +1238,9 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 	else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Square) {
 
 		for (auto& range_pos : card_play_->GetCardRangeSquarePos()) {
+
+			Square* proc_square = board_->getBoardSquare(range_pos.row, range_pos.col);
+
 			//CandidateTileの表示
 			if (board_->getBoardSquare(range_pos.row, range_pos.col)->GetIsCanMove()) {
 				board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderCandidateTile(true);
@@ -1226,7 +1249,13 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 				//TargetTileの表示
 				if (select_square_->GetSelectSquarePos() == range_pos) {
 					board_->getBoardSquare(range_pos.row, range_pos.col)->SetRenderTargetTile(true);
-					sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
+					if (!proc_square->GetWasMouseOver()) {
+						sound_mgr_.PlayUISE(UISE::MatchCursorTarget);
+					}
+					proc_square->SetWasMouseOver(true);
+				}
+				else {
+					proc_square->SetWasMouseOver(false);
 				}
 			}
 		}
