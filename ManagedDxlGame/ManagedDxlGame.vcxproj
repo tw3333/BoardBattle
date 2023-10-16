@@ -355,6 +355,7 @@
     <ClInclude Include="program\game\gm_object_battle_state_icon.h" />
     <ClInclude Include="program\game\gm_slime_act.h" />
     <ClInclude Include="program\game\gm_slime_move.h" />
+    <ClInclude Include="program\game\gm_enums_sound.h" />
     <ClInclude Include="program\game\gm_ui_deck_edit.h" />
     <ClInclude Include="program\game\gm_ui_graph_enums.h" />
     <ClInclude Include="program\game\gm_ui_notice.h" />

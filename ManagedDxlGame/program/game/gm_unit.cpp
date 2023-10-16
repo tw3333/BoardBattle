@@ -31,8 +31,8 @@ void Unit::DecreaseBattleStateTurn() {
 
 }
 
-bool Unit::IsBattleStateAllProcedStartOfTurn()
-{
+bool Unit::IsBattleStateAllProcedStartOfTurn() {
+	
 	if (state_.empty()) {
 		return true;
 	}

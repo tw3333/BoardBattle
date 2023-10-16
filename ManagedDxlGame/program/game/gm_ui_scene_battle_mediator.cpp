@@ -16,31 +16,32 @@ void UISceneBattleMediator::NotifyPlayerActionButton(bool is_enable, std::string
 
 		if (tag == "MoveButton") {
 
-			DrawStringEx(0, 500, -1, "MoveButton");
+			//DrawStringEx(0, 500, -1, "MoveButton");
 			
+			sound_mgr_.PlayUISE(UISE::PushButton);
 			phase_->change(&SceneBattle::PhasePlayerActionMove);
+
 		}
 		
 		if (tag == "CardButton") {
 
-			DrawStringEx(0, 500, -1, "CardButton");
-			phase_->change(&SceneBattle::PhaseDrawCard);
-
-
-			
+			//DrawStringEx(0, 500, -1, "CardButton");
+			sound_mgr_.PlayUISE(UISE::PushButton);
+			phase_->change(&SceneBattle::PhaseDrawCard);			
 		}
 		
 		if (tag == "ToolButton") {
 
-			DrawStringEx(0, 500, -1, "ToolButton");
+			//DrawStringEx(0, 500, -1, "ToolButton");
 			phase_->change(&SceneBattle::PhasePlayerActionTool);
 
 		}
 		
 		if (tag == "TurnEndButton") {
 
-			DrawStringEx(0, 500, -1, "TurnButton");
+			//DrawStringEx(0, 500, -1, "TurnButton");
 
+			sound_mgr_.PlayUISE(UISE::PushButton);
 			phase_->change(&SceneBattle::PhasePlayerActionTurnEnd);
 
 		}

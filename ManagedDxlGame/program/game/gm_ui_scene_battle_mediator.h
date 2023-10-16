@@ -1,6 +1,7 @@
 #pragma once
 #include "gm_ui_component.h"
 #include "gm_ui_mediator.h"
+#include "gm_sound_manager.h"
 
 //#include "gm_battle_phase_player_action_move.h"
 
@@ -33,6 +34,8 @@ public:
 
 private:
 
+	SoundManager& sound_mgr_ = SoundManager::GetInstance();
+
 	bool is_player_action_button_enabled_ = false;
 
 	std::vector<UIComponent> ui_components_;
@@ -42,6 +45,7 @@ private:
 	SceneBattle* scene_battle_ = nullptr;
 
 	//PhasePlayerActionMove* phase_player_action_move_ = nullptr;
+
 
 
 };

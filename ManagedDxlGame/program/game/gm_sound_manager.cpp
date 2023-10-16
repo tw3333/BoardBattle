@@ -92,16 +92,16 @@ bool SoundManager::CreateUISEList() {
 
 	if (ui_se_list_.empty()) {
 
-		ui_se_list_.push_back(std::make_shared<SoundData>(1,SoundType::UISE,"sound/se/ui_se/cancel_se.mp3"));
-		ui_se_list_.push_back(std::make_shared<SoundData>(2, SoundType::UISE, "sound/se/ui_se/cant_card_se.mp3"));
-		ui_se_list_.push_back(std::make_shared<SoundData>(3, SoundType::UISE, "sound/se/ui_se/card_play_se.mp3"));
-		ui_se_list_.push_back(std::make_shared<SoundData>(4, SoundType::UISE, "sound/se/ui_se/target_decision_se.mp3"));
-		ui_se_list_.push_back(std::make_shared<SoundData>(5, SoundType::UISE, "sound/se/ui_se/target_move_cursor.mp3"));
+		ui_se_list_.resize(UISE::UISENum);
+
+		ui_se_list_[UISE::PushButton] = std::make_shared<SoundData>(UISE::PushButton,SoundType::UISE,"sound/se/ui_se/se_push_button.mp3");
+		ui_se_list_[UISE::BackPhase] = std::make_shared<SoundData>(UISE::BackPhase, SoundType::UISE, "sound/se/ui_se/se_back_phase.mp3");
+		ui_se_list_[UISE::CantUseCard] = std::make_shared<SoundData>(UISE::CantUseCard, SoundType::UISE, "sound/se/ui_se/se_cant_use_card.mp3");
+		ui_se_list_[UISE::MatchCursorTarget] = std::make_shared<SoundData>(UISE::MatchCursorTarget, SoundType::UISE, "sound/se/ui_se/se_math_cursor_target.mp3");
+		ui_se_list_[UISE::AddCard] = std::make_shared<SoundData>(UISE::AddCard, SoundType::UISE, "sound/se/ui_se/se_add_card.mp3");
+
 
 	}
-
-
-
 
 	return false;
 }
@@ -263,23 +263,15 @@ void SoundManager::PlaySystemSE(int id)
 
 }
 
-void SoundManager::PlayUISE(int id) {
+void SoundManager::PlayUISE(UISE ui_se) {
 
 	if (!ui_se_list_.empty()) {
-
-		for (auto se : ui_se_list_) {
-
-			if (se->GetID() == id) {
-
-				PlaySoundMem(se->GetSoundHandle(), DX_PLAYTYPE_BACK, true);
-				break;
-			}
-
-		}
-
+		PlaySoundMem(ui_se_list_[ui_se]->GetSoundHandle(),DX_PLAYTYPE_BACK,true);
 	}
 
 }
+
+
 
 void SoundManager::PlayAllyMoveSE() {
 	

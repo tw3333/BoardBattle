@@ -19,7 +19,6 @@
 void SceneBattle::Initialzie() {
 	//---
 	camera_ = new SceneBattleCamera();
-
 	sound_mgr_.PlayBattleBGM(1);
 
 	//---
@@ -28,11 +27,11 @@ void SceneBattle::Initialzie() {
 	card_play_ = new CardPlay();
 
 	//Boardの作成
-
 	board_ = new Board();
 	board_->Create(); //Squareを10x10作成
 	board_->SetCamera(camera_);
 
+	
 	//Unitの作成
 	party_[0] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(1), 2, 1);
 	party_[1] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(2), 2, 2);
@@ -93,7 +92,6 @@ void SceneBattle::Initialzie() {
 	unit_enemy_->SetBehavior(newBehavior);
 
 
-	obj_target_circle_->pos_ = board_->getBoardSquare(4, 4)->getObj()->pos_;
 
 	//UIの作成
 	select_square_ = new SelectSquare(board_->getBoardSquares());
@@ -152,7 +150,7 @@ void SceneBattle::Update(float delta_time) {
 	BattleResultJudgment(board_);
 
 
-	obj_target_circle_->Update(delta_time);
+	
 
 	//card_play_->SetCameraToCardEffectAnim(camera_);
 	//card_play_->Update(delta_time);
@@ -185,7 +183,6 @@ void SceneBattle::Render() {
 	board_->Render(camera_);
 	select_square_->Render(camera_);
 
-	obj_target_circle_->Render(camera_);
 
 	//UI
 	ui_turn_ally_state_->Render();
@@ -577,6 +574,7 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 	return true;
 }
 
+
 bool SceneBattle::PhaseAnimBattleStateStartOfTurnProc(const float delta_time) {
 
 	DrawStringEx(300, 0, -1, "PhaseAnimBattleStateStartOfTurnProc");
@@ -870,6 +868,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 	//右クリックでMove終了PhaseTurnAllyへ
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
+		sound_mgr_.PlayUISE(UISE::BackPhase);
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}
 
@@ -944,6 +943,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
+		sound_mgr_.PlayUISE(UISE::BackPhase);
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}
 
@@ -986,13 +986,13 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
 					DrawStringEx(0, 400, -1, "コストが足りません");
 					ui_notice_->PlayNotEnoughCost();
-					sound_mgr_.PlayUISE(2);
+					sound_mgr_.PlayUISE(UISE::CantUseCard);
 				}
 				else if (!card_play_->IsSelectCardTargetInRange(board_)) {
 
 					DrawStringEx(0, 400, -1, "射程に対象がいません");
 					ui_notice_->PlayNoTarget();
-					sound_mgr_.PlayUISE(2);
+					sound_mgr_.PlayUISE(UISE::CantUseCard);
 				}
 				//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
 				//	
@@ -1303,7 +1303,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 
 		}
 
-		sound_mgr_.PlayUISE(4);
+		
 	}
 
 	//右クリックで指定を取り消し
@@ -1447,7 +1447,7 @@ bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
 		card_play_->SetPlayCard(nullptr);
 		ui_card_hand_->SetEnableSelectCard(true);
-		sound_mgr_.PlayUISE(3);
+		
 		phase_.change(&SceneBattle::PhasePlayerActionCard);
 
 	}

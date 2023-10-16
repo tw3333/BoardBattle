@@ -7,7 +7,7 @@
 #include "gm_data_sound.h"
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_data_battle_state.h"
-
+#include "gm_enums_sound.h"
 
 
 
@@ -51,7 +51,7 @@ public:
 	
 	
 	void PlaySystemSE(int id);
-	void PlayUISE(int id);
+	void PlayUISE(UISE ui_se);
 	void PlayAllyMoveSE();
 	void PlayBattleStateSE(State state);
 
