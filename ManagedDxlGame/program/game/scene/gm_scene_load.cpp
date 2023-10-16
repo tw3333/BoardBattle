@@ -15,6 +15,7 @@ void SceneLoad::Initialzie() {
 	texture_mgr_.DebugLoadTexture();
 	texture_mgr_.LoadUINoticeGraph();
 	texture_mgr_.LoadUIPlayerActionButtonsGraph();
+	texture_mgr_.LoadBackgroundGraph();
 	
 
 	obj_mgr_.CreateObjAllys();

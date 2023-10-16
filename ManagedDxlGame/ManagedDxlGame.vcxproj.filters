@@ -896,6 +896,9 @@
     <ClInclude Include="program\game\gm_enums_sound.h">
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\gm_enums_graph.h">
+      <Filter>program\[003] game\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

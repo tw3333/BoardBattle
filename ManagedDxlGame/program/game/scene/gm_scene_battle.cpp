@@ -177,7 +177,7 @@ void SceneBattle::Update(float delta_time) {
 void SceneBattle::Render() {
 
 	//camera_->Update();
-	//DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,back_,false);
+	DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,texture_mgr_.GetBackgroundGraphHandle(BackGroundGraph::Forest), false);
 	DrawDebugLayOut(true);
 
 	board_->Render(camera_);

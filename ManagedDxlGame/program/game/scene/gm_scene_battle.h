@@ -9,6 +9,7 @@
 #include "../gm_object_manager.h"
 #include "../gm_anim_manager.h"
 #include "../gm_sound_manager.h"
+#include "../gm_texture_manager.h"
 
 #include "../gm_ui_card.h"
 #include "../gm_ui_card_hand.h"
@@ -143,7 +144,7 @@ private:
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
-
+	TextureManager& texture_mgr_ = TextureManager::GetInstance();
 
 	AllyDataManager& allydata_mgr_ = AllyDataManager::GetInstane();
 

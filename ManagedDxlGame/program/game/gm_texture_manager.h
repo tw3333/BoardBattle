@@ -1,6 +1,7 @@
 #pragma once
 #include "../dxlib_ext/dxlib_ext.h"
 #include "gm_ui_graph_enums.h"
+#include "gm_enums_graph.h"
 #include <memory>
 
 
@@ -33,6 +34,7 @@ public:
 
 	bool LoadUINoticeGraph();
 	bool LoadUIPlayerActionButtonsGraph();
+	bool LoadBackgroundGraph();
 	
 	void LoadTexture();
 	void DebugLoadTexture();
@@ -44,6 +46,7 @@ public:
 
 	int GetUINoticeGraphHandle(UINoticeGraph graph) { return ui_notice_graph_handle_[graph]; }
 	int GetUIPlayerActionButtonsGraphHandle(UIPlayerActionButtonsGraph graph) { return ui_player_action_buttons_graph_handle_[graph]; }
+	int GetBackgroundGraphHandle(BackGroundGraph graph) { return background_graph_handle_[graph]; }
 
 
 private:
@@ -59,6 +62,6 @@ private:
 
 	int ui_notice_graph_handle_[UINoticeGraph::UINoticeGraphNum] = {0};
 	int ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::UIPlayerActionButtonsGraphNum] = {0};
-
+	int background_graph_handle_[BackGroundGraph::BackGroundGraphNum] = {0};
 
 };

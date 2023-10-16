@@ -34,6 +34,16 @@ bool TextureManager::LoadUIPlayerActionButtonsGraph() {
 	return true;
 }
 
+bool TextureManager::LoadBackgroundGraph() {
+
+	background_graph_handle_[BackGroundGraph::Forest] = LoadGraph("graphics/background/back_forest2.png");
+
+
+
+
+	return true;
+}
+
 void TextureManager::LoadTexture() {
 
 	selectphase_back1_ = dxe::Texture::CreateFromFile("graphics/selectphase_back1.jpg");
