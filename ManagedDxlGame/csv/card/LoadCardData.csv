@@ -12,7 +12,7 @@ SeCardID,PossAllyID,Cost,Name,Explanation,Texture,AnimName
 10,1,10,獣人の舞,指定マスに移動。範囲に30ダメージ,graphics/card/c1/10.png,anim_crow
 11,2,1,ファイア,指定した敵(1)に５ダメージ,graphics/card/c2/11.png,anim_flame
 12,2,2,ヒール,指定した味方(1)を3回復,graphics/card/c2/12.png,anim_heal
-13,2,3,エアロ,範囲内に３ダメージ,graphics/card/c2/13.png,anim_wind
+13,2,3,エアロ,範囲内に３ダメージ,graphics/card/c2/17.png,anim_wind
 14,2,5,テレポート,指定したマス(1)に移動,graphics/card/c2/14.png,anim_buf
 15,2,5,瞑想,次のターン、コスト２を得る,graphics/card/c2/15.png,anim_buf
 16,2,6,フロスタ,指定した敵(1)にスタンと7ダメージ,graphics/card/c2/16.png,anim_ice

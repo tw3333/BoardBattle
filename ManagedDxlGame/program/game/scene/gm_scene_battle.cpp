@@ -14,6 +14,7 @@
 #include "gm_scene_battle_result.h"
 #include "gm_scene_selectphase.h"
 #include "../gm_data_battle_state.h"
+#include <set>
 
 
 void SceneBattle::Initialzie() {
@@ -37,14 +38,22 @@ void SceneBattle::Initialzie() {
 	party_[1] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(2), 2, 2);
 	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 2, 3);
 
-	//board_->SetPartyUnits(allydata_mgr_.GetPartyPickAllyData());
-
 	for (int i = 0; i < 3; ++i) {
-		//party_[i]->SetBaseDeck(cmgr_.GetDebugDeck());
-		//party_[i]->SetUseDeck(cmgr_.GetDebugDeck());
-		party_[i]->SetBaseDeck(cmgr_.GetAllCard());
-		party_[i]->SetUseDeck(cmgr_.GetAllCard());
+		//party_[i]->SetBaseDeck(cmgr_.GetAllCard());
+		//party_[i]->SetUseDeck(cmgr_.GetAllCard());
+		if (i == 0) {
+			party_[i]->SetBaseDeck(cmgr_.GetC1Deck());
+			party_[i]->SetUseDeck(cmgr_.GetC1Deck());
+		}
+		else if (i == 1) {
+			party_[i]->SetBaseDeck(cmgr_.GetC2Deck());
+			party_[i]->SetUseDeck(cmgr_.GetC2Deck());
 
+		}
+		else if (i == 2) {
+			party_[i]->SetBaseDeck(cmgr_.GetC3Deck());
+			party_[i]->SetUseDeck(cmgr_.GetC3Deck());
+		}
 
 		party_[i]->AssignSerialNumberToUseDeck();
 		party_[i]->ShuffleUseDeck();
@@ -126,7 +135,7 @@ void SceneBattle::Initialzie() {
 
 	board_->Update(0);
 
-	//BattleMediaPlayerの初期化
+	//Init_BattleMediaPlayer
 	battle_media_player_ = new BattleMediaPlayer();
 	battle_media_player_->SetAnim(camera_, anim_mgr_.GetAnim());
 	battle_media_player_->SetObjBattleStateAnim(camera_, anim_mgr_.GetObjBattleStateAnim());
@@ -136,41 +145,32 @@ void SceneBattle::Initialzie() {
 
 void SceneBattle::Update(float delta_time) {
 
-	//phase_.update(delta_time);
 	camera_->Update();
-
+	
+	//マウス入力の取得
 	GetMousePoint(&debug_mp_x, &debug_mp_y);
 	msv_ = tnl::Input::GetMousePosition();
+	
 	board_->Update(delta_time);
+	
 	select_square_->Update(delta_time, camera_);
 
-	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
-
 	for (auto au : all_units_) { au->Update(delta_time); }
-	BattleResultJudgment(board_);
-
-
-	
-
-	//card_play_->SetCameraToCardEffectAnim(camera_);
-	//card_play_->Update(delta_time);
 
 	//UI
 	ui_action_buttons_->Update(delta_time);
 	ui_action_buttons_->SetTurnAlly(turn_ally_);
-	//ui_turn_view_->Update(delta_time);
+	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);
 	ui_unit_state_view_->Update(delta_time);
-
-	//ui_card_->Update(delta_time);
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
 	ui_notice_->Update(delta_time);
 
 	battle_media_player_->Update(delta_time);
-	obj_mgr_.GetObjBattleStateIcon()->Update(delta_time);
 
+	BattleResultJudgment(board_);
 	phase_.update(delta_time);
 }
 
@@ -178,7 +178,8 @@ void SceneBattle::Render() {
 
 	//camera_->Update();
 	DrawExtendGraph(0,0,DXE_WINDOW_WIDTH,DXE_WINDOW_HEIGHT,texture_mgr_.GetBackgroundGraphHandle(BackGroundGraph::Forest), false);
-	DrawDebugLayOut(true);
+	
+	//DrawDebugLayOut(true);
 
 	board_->Render(camera_);
 	select_square_->Render(camera_);
@@ -1050,28 +1051,15 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 	//最初の5枚ドロー処理
 	if (!turn_ally_->GetIsDrewInitCard()) {
 
-		std::vector<std::shared_ptr<Card>> to_remove; //移動・削除するカード用
+		int cnt = 0; //for用変数
+		//手札にカードを追加、削除するカードのシリアル番号を取得
+		for (int i = turn_ally_->GetUseDeck().size() - 1; i >= 0 && cnt < 5; --i) {
 
-		//turn_ally_->GetHand().insert(turn_ally_->GetHand().end(), turn_ally_->GetUseDeck().end() -5, turn_ally_->GetUseDeck().end());
-		//turn_ally_->GetUseDeck().erase(turn_ally_->GetUseDeck().end() - 5, turn_ally_->GetUseDeck().end());
-
-		int cnt = 0;
-
-		for (int i = turn_ally_->GetUseDeck().size() - 1; i >= 0; --i) {
-
-			if (cnt < 5) {
-				turn_ally_->AddCardToHand(turn_ally_->GetUseDeck()[i]);
-				to_remove.push_back(turn_ally_->GetUseDeck()[i]);
-
-			}
+			auto card = turn_ally_->GetUseDeck()[i];
+			turn_ally_->AddCardToHand(card);
+			turn_ally_->GetUseDeck().pop_back();
 			cnt++;
 		}
-
-		for (auto& card : to_remove) {
-			turn_ally_->GetUseDeck().erase(std::remove(turn_ally_->GetUseDeck().begin(), turn_ally_->GetUseDeck().end(), card), turn_ally_->GetUseDeck().end());
-		}
-
-		to_remove.clear();
 
 		turn_ally_->SetIsDrewInitCard(true);
 		turn_ally_->SetIsDrew(true);

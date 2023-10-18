@@ -251,10 +251,6 @@ void CardPlay::EffectExecute()
 //カードの効果を実行
 void CardPlay::PlayCardExecute(Board* board) {
 
-	//if (anim_manager_.GetDebugAnim()->getCurrentAnimSeekUnit()->GetIsPlaying()) {
-	//	return;
-	//}
-
 	if (play_card_ && turn_ally_) {
 		
 		//ref_numが一致したTargetに格納されているUnitにEffect
@@ -271,22 +267,11 @@ void CardPlay::PlayCardExecute(Board* board) {
 			}
 		}
 
-		//↓独立した関数に実装している。memo残し
-
-		////CardTargeに格納したSquarePosをリセット
-		//for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
-		//	//a->GetTargetUnits().clear();
-		//	a->GetTargetSquaresPos().clear();
-		//}
-		
-		////play_cardと同じカードPtrをHandから削除
-		//int select_serial_num = play_card_->GetSerialNum();
-		//turn_ally_->GetHand().erase(std::remove_if(turn_ally_->GetHand().begin(), turn_ally_->GetHand().end(),
-		//	[select_serial_num](const std::shared_ptr<Card>& card) {
-		//		return card->GetSerialNum() == select_serial_num;
-		//	}), turn_ally_->GetHand().end());
+		//カードのコストを消費
+		turn_ally_->DecreaseCurrentCardCost(play_card_->GetCardData()->GetCardCost());
 
 	}
+
 
 
 
