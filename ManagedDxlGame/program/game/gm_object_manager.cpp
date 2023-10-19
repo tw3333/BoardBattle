@@ -77,7 +77,9 @@ void ObjectManager::CreateObjAllys() {
 
 void ObjectManager::CreateObjEnemies() {
 
-	ObjEnemy* obj_enemy1 = ObjEnemy::CreateEnemy(1,"graphics/unit/enemy/adoption/slime_battle.png");
+
+
+	ObjEnemy* obj_enemy1 = ObjEnemy::CreateEnemy(1,"graphics/unit/enemy/adoption/test_slime_battle.png");
 	ObjEnemy* obj_enemy2 = ObjEnemy::CreateEnemy(2, "graphics/unit/enemy/adoption/mummy_battle.png");
 	ObjEnemy* obj_enemy3 = ObjEnemy::CreateEnemy(3, "graphics/unit/enemy/adoption/pen_battle.png");
 	ObjEnemy* obj_enemy4 = ObjEnemy::CreateEnemy(4, "graphics/unit/enemy/adoption/crow_battle.png");

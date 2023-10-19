@@ -49,21 +49,12 @@ void EnemyDataManager::DebugLoadEnemyData() {
 	all_enemy_data_[0]->SetEnemyMove(std::make_shared<SlimeMove>());
 	all_enemy_data_[0]->SetEnemyAct(std::make_shared<SlimeAct>());
 
-	//all_enemy_data_.emplace_back(new EnemyData(10, "ƒhƒ‰ƒSƒ“", 30, 30, 1, 1));
-	//all_enemy_data_.emplace_back(new EnemyData(11, "ƒNƒƒE", 30, 30, 1, 1));
-	//all_enemy_data_.emplace_back(new EnemyData(12, "ƒLƒƒƒ“ƒhƒ‹", 30, 30, 1, 1));
-	//all_enemy_data_.emplace_back(new EnemyData(13, "UŒ‚ƒ‹ƒ‹", 30, 30, 1, 1));
-	//all_enemy_data_.emplace_back(new EnemyData(14, "ƒS[ƒŒƒ€", 30, 30, 1, 1));
-	//all_enemy_data_.emplace_back(new EnemyData(15, "ƒS[ƒŒƒ€", 30, 30, 1, 1));
-	//all_enemy_data_.emplace_back(new EnemyData(16, "ƒS[ƒŒƒ€", 30, 30, 1, 1));
-
-
 }
 
 void EnemyDataManager::DebugLoadenemyTexture() {
 
 
-	all_enemy_data_[0]->SetTextureBattle("graphics/unit/enemy/adoption/slime_battle.png");
+	all_enemy_data_[0]->SetTextureBattle("graphics/unit/enemy/adoption/test_slime_battle.png");
 	all_enemy_data_[1]->SetTextureBattle("graphics/unit/enemy/adoption/mummy_battle.png");
 	all_enemy_data_[2]->SetTextureBattle("graphics/unit/enemy/adoption/pen_battle.png");
 	all_enemy_data_[3]->SetTextureBattle("graphics/unit/enemy/adoption/magipon_battle.png");
@@ -74,7 +65,7 @@ void EnemyDataManager::DebugLoadenemyTexture() {
 	all_enemy_data_[8]->SetTextureBattle("graphics/unit/enemy/adoption/lizard_battle.png");
 	all_enemy_data_[9]->SetTextureBattle("graphics/unit/enemy/adoption/doragon_battle.png");
 
-	all_enemy_data_[0]->SetTextureFace("graphics/unit/enemy/adoption/slime_face.png");
+	all_enemy_data_[0]->SetTextureFace("graphics/unit/enemy/adoption/test_slime_face.png");
 	all_enemy_data_[1]->SetTextureFace("graphics/unit/enemy/adoption/mummy_face.png");
 	all_enemy_data_[2]->SetTextureFace("graphics/unit/enemy/adoption/pen_face.png");
 	all_enemy_data_[3]->SetTextureFace("graphics/unit/enemy/adoption/magipon_face.png");

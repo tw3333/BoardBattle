@@ -72,10 +72,10 @@ public:
 	void BattleResultJudgment(Board* board);
 
 	//
-	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal);
+	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal); //Phaseの管理用Sequence
 
 
-
+	//各Phase
 	bool PhaseInitialTurnCal(const float delta_time); //scene初期化時のターン決め
 	bool TurnCal(const float delta_time); //1.ターン決め
 
@@ -116,89 +116,51 @@ public:
 
 
 private:
-
-	int d_cnt = 0;
-
-	BattleMediaPlayer* battle_media_player_ = nullptr;
-
-
-	const int dx_[4] = { 0, 1, 0, -1 };
-	const int dy_[4] = { 1, 0, -1, 0 };
 	
-	int w1 = DXE_WINDOW_WIDTH / 10;
+	//レイアウト用変数
+	int w1 = DXE_WINDOW_WIDTH / 10; 
 	int h1 = DXE_WINDOW_HEIGHT / 10;
 
 	//int
-	int turn_count_ = 0;
-	bool reset_acted_ = false;
+	int turn_count_ = 0; //ターン数
+	bool reset_acted_ = false; //ターン終了時にactedをリセットするかどうかのフラグ
+
+	//ptr
+	Board* board_ = nullptr;
+	SelectSquare* select_square_ = nullptr;
+	CardPlay* card_play_ = nullptr;
+	BattleMediaPlayer* battle_media_player_ = nullptr;
+	SceneBattleCamera* camera_ = nullptr; //カメラ
+	ObjBoard* obj_board_ = nullptr;
+	ObjAlly* obj_ally_ = nullptr;
+	UnitAlly* unit_ally_ = nullptr;
+	UnitAlly*  unit_ally2_ = nullptr;
+	UnitAlly* party_[3];
+	UnitEnemy* unit_enemy_ = nullptr;
+	Unit* turn_unit_ = nullptr; //ターン決め用
+	UnitAlly* turn_ally_ = nullptr; //turnが回ってきたally
+	UnitEnemy* turn_enemy_ = nullptr; //turnが回ってきたenemy
+	
+	std::vector <UnitAlly*> party_units_;
+	std::vector<UnitEnemy*> enemy_units_;
+	std::vector<Unit*> all_units_;
 
 	tnl::Vector3 msv_; //mouseの座標取得変数
 
-	//メンバ変数
-	//pointer
-	SceneBattleCamera* camera_ = nullptr;
-	//CardView* cardview_ = nullptr;
 	//mgrインスタンス
-	SceneManager* smgr_ = SceneManager::GetInstance();
+	SceneManager* smgr_ = SceneManager::GetInstance(); //p
 	CardManager& cmgr_ = CardManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 	TextureManager& texture_mgr_ = TextureManager::GetInstance();
-
 	AllyDataManager& allydata_mgr_ = AllyDataManager::GetInstane();
+	ObjectManager& omgr_ = ObjectManager::GetInstance();	
+	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance(); //p
 
-
-	EnemyDataManager* enemydata_mgr_ = EnemyDataManager::GetInstance();
-
-	ObjBoard* obj_board_ = nullptr;
-	ObjAlly* obj_ally_ = nullptr;
-	ObjTargetCircle* obj_target_circle_ = ObjTargetCircle::Create(ObjTargetCircle::TextureColor::Red);
-	
-	UnitAlly* unit_ally_ = nullptr;
-	UnitAlly*  unit_ally2_ = nullptr;
-	UnitAlly* party_[3];
-	UnitEnemy* unit_enemy_ = nullptr;
-
-
-	Unit* turn_unit_ = nullptr; //ターン決め用
-	std::vector <UnitAlly*> party_units_;
-	std::vector<UnitEnemy*> enemy_units_;
-	std::vector<Unit*> all_units_;
-
-
-	UnitAlly* turn_ally_ = nullptr; //turnが回ってきたally
-	UnitEnemy* turn_enemy_ = nullptr;
-
-	//EnemyAction* enemy_action_ = nullptr;
-
-
-	Square* square_ = nullptr;
-	Board* board_ = nullptr;
-
-	std::shared_ptr<Square> square_s_ = nullptr;
-	std::shared_ptr<Board> board_s_ = nullptr;
-
-
-	SelectSquare* select_square_ = nullptr;
-	CardPlay* card_play_ = nullptr;
-
-	//BattlePhase
-
-	//PhasePlayerActionMove* phase_player_action_move_ = nullptr;
-
-	AnimSprite3D* sprite_ = nullptr;
-
-	std::vector<Square*> all_square_;
-	
-	dxe::Mesh* debug_board_obj_ = nullptr;
-
-	ObjectManager& omgr_ = ObjectManager::GetInstance();
 
 	//UITurnView用の画像ハンドル配列
 	std::vector<Unit*> active_units_;
-
-
 
 	//UI
 	UIPlayerActionButtons* ui_action_buttons_ = nullptr;
@@ -209,17 +171,12 @@ private:
 	UITurnAllyState* ui_turn_ally_state_ = nullptr;
 	UICard* ui_card_ = nullptr;
 	UICardHand* ui_card_hand_ = nullptr;
-	//UITurnView* ui_turn_view_ = nullptr;
 	UIUnitStateView* ui_unit_state_view_ = nullptr;
 	UINoticeTargetBox* ui_notice_target_box_ = nullptr;
 	UINotice* ui_notice_ = nullptr;
 
-
-
 	//bool
 	bool is_draw_debug_layout_ = false;
-	bool is_enemy_action_ = false;
-
 	//colorcode
 	int red_ = GetColor(255, 0, 0);
 	int gray_ = GetColor(128,128,128);
@@ -228,5 +185,4 @@ private:
 	int debug_mp_x = 0;
 	int debug_mp_y = 0;
 
-	int back_ = LoadGraph("graphics/background/back_forest.jpg");
 };
