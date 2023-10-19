@@ -28,13 +28,17 @@ public:
 	void Update(float delta_time) override;
 	void Render() override;
 
+	void DebugSceneChanger();
+	void DebugRender();
+
+
+	bool CheckIsAllLoaded();
 
 private:
 
 
 	EnemyDataManager* emgr_ = EnemyDataManager::GetInstance();
 	
-
 	AllyDataManager& amgr_ = AllyDataManager::GetInstane();
 	ObjectManager& obj_mgr_ = ObjectManager::GetInstance();
 	CardManager& card_mgr_ = CardManager::GetInstance();
@@ -45,9 +49,17 @@ private:
 
 
 
-	enum NextScene {
-		//SceneBattle
-		
-	};
+	//ロード用フラグ
+	bool is_all_loaded_ = false;
+	bool is_font_loaded_ = false;
+	bool is_texture_loaded_ = false;
+	bool is_object_loaded_ = false;
+	bool is_ally_loaded_ = false;
+	bool is_enemy_loaded_ = false;
+	bool is_card_loaded_ = false;
+	bool is_sound_loaded_ = false;
 
+
+
+	int load_slime_graph_ = 0; //load画面スライム用
 };

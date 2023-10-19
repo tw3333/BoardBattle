@@ -38,8 +38,6 @@ void Board::Update(float delta_time) {
 
 	}
 
-	
-
 }
 
 

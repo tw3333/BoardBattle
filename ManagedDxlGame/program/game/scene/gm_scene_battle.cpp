@@ -18,45 +18,50 @@
 
 
 void SceneBattle::Initialzie() {
-	//---
-	camera_ = new SceneBattleCamera();
+	//---ステージBGM再生
 	sound_mgr_.PlayBattleBGM(1);
+	
+	//---カメラの作成
+	camera_ = new SceneBattleCamera();
 
 	//---
-
-	std::setlocale(LC_ALL, "ja_JP.shiftjis");
 	card_play_ = new CardPlay();
 
-	//Boardの作成
+	//---Boardの作成
 	board_ = new Board();
 	board_->Create(); //Squareを10x10作成
 	board_->SetCamera(camera_);
 
-	
-	//Unitの作成
+	//---Unitの作成
 	party_[0] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(1), 2, 1);
 	party_[1] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(2), 2, 2);
 	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 2, 3);
 
 	for (int i = 0; i < 3; ++i) {
-		//party_[i]->SetBaseDeck(cmgr_.GetAllCard());
-		//party_[i]->SetUseDeck(cmgr_.GetAllCard());
-		if (i == 0) {
+/*		party_[i]->SetBaseDeck(cmgr_.GetAllCard());
+		party_[i]->SetUseDeck(cmgr_.GetAllCard());
+	*/	if (i == 0) {
 			party_[i]->SetBaseDeck(cmgr_.GetC1Deck());
 			party_[i]->SetUseDeck(cmgr_.GetC1Deck());
+			party_[i]->AssignSerialNumberToUseDeck();
+			party_[i]->ShuffleUseDeck();
 		}
 		else if (i == 1) {
 			party_[i]->SetBaseDeck(cmgr_.GetC2Deck());
 			party_[i]->SetUseDeck(cmgr_.GetC2Deck());
-
+			party_[i]->AssignSerialNumberToUseDeck();
+			party_[i]->ShuffleUseDeck();
 		}
 		else if (i == 2) {
 			party_[i]->SetBaseDeck(cmgr_.GetC3Deck());
 			party_[i]->SetUseDeck(cmgr_.GetC3Deck());
+			party_[i]->AssignSerialNumberToUseDeck();
+			party_[i]->ShuffleUseDeck();
 		}
 
-		party_[i]->AssignSerialNumberToUseDeck();
-		party_[i]->ShuffleUseDeck();
+		//party_[i]->AssignSerialNumberToUseDeck();
+		//party_[i]->ShuffleUseDeck();
+
 	}
 
 	party_[0]->SetTauntValue(500);
@@ -69,13 +74,8 @@ void SceneBattle::Initialzie() {
 	//party_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
 	//party_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
-
-
-
 	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 5);
-
 	enemy_units_.push_back(unit_enemy_);
-
 	//enemy_units_[0]->AddShieldValue(20);
 	enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
 	enemy_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
@@ -96,44 +96,28 @@ void SceneBattle::Initialzie() {
 	board_->SetAllUnitsInBoard(all_units_);
 
 
-
 	EnemyBehaviorStrategy* newBehavior = new SlimeBehaviorStrategy();
 	unit_enemy_->SetBehavior(newBehavior);
 
-
-
-	//UIの作成
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
-
+	//UIの作成
 	ui_mediator_ = new UISceneBattleMediator();
 	ui_mediator_->SetScene(this);
 	ui_mediator_->SetSequence(&phase_);
-
 	ui_action_buttons_ = new UIPlayerActionButtons(w1 * 2, h1 * 7 + (h1 * 1 / 2), w1 * 2 - w1 * 1 / 2, h1 * 2 + (h1 * 1 / 2));
 	ui_action_buttons_->SetMediator(ui_mediator_);
 	ui_action_buttons_->SetMediators();
 	ui_action_buttons_->SetTurnAlly(turn_ally_);
-
-	//ui_card_ = new UICard(w1*7, h1 * 7 + (h1/2), w1 * 1 + (w1/2/2/2), h1 * 2 + (h1 / 2));
-	//ui_card_->SetCardPtr(cmgr_.GetDebugDeck()[0]);
 	ui_card_hand_ = new UICardHand(ui_action_buttons_->GetEndPosX(), h1 * 7 + (h1 / 2), 0, 0);
-	//ui_card_hand_->Update(0);
-
 	ui_turn_ally_state_ = new UITurnAllyState(0, h1 * 7 + (h1 * 1 / 2), w1 * 2, h1 * 2 + (h1 * 1 / 2));
 	ui_turn_ally_state_->SetUnitAlly(turn_ally_);
 	ui_turn_ally_state_->Update(0);
-
-	//ui_notice_target_box_ = new UINoticeTargetBox(w1 * 4, h1 * 1 - 15, w1 * 2, h1 * 1 / 2);
-
 	ui_unit_state_view_ = new UIUnitStateView(w1 * 2, h1 * 1 + h1 * 1 / 2, select_square_);
 	ui_unit_state_view_->SetAllyBoxUpperLeftPos(10, 10);
 	ui_unit_state_view_->SetEnemyBoxUpperLeftPos((w1 * 8) - 10, 10);
-
-
 	ui_notice_ = new UINotice();
 
-	board_->Update(0);
 
 	//Init_BattleMediaPlayer
 	battle_media_player_ = new BattleMediaPlayer();
@@ -141,6 +125,7 @@ void SceneBattle::Initialzie() {
 	battle_media_player_->SetObjBattleStateAnim(camera_, anim_mgr_.GetObjBattleStateAnim());
 	battle_media_player_->SetObjBattleStateIcon(obj_mgr_.GetObjBattleStateIcon());
 
+	board_->Update(0); //最後にBoardの状態を更新
 }
 
 void SceneBattle::Update(float delta_time) {
@@ -183,42 +168,19 @@ void SceneBattle::Render() {
 
 	board_->Render(camera_);
 	select_square_->Render(camera_);
-
-
-	//UI
-	ui_turn_ally_state_->Render();
-	ui_unit_state_view_->Render();
-	//ui_turn_view_->Render();
-	//ui_notice_target_box_->Render();
-	//ui_card_->Render();
-	ui_card_hand_->Render();
-	ui_action_buttons_->Render();
-	//ui_notice_target_box_->Render();
-	ui_notice_->Render();
-	//card_play_->Render(camera_);
-
 	for (auto anim : anim_mgr_.GetAnim()) {
 		anim->Render(camera_);
 	}
+	
+	//UI
+	ui_turn_ally_state_->Render();
+	ui_unit_state_view_->Render();
+	ui_card_hand_->Render();
+	ui_action_buttons_->Render();
+	ui_notice_->Render();
 
 	battle_media_player_->Render(camera_);
-	obj_mgr_.GetObjBattleStateIcon()->Render(camera_);
-
-	if (enemy_units_[0]) {
-		int cnt = 0;
-		for (auto& state : enemy_units_[0]->GetBattleState()) {
-
-			if (state.GetIsProc()) {
-				DrawStringEx(w1 * 3, 0 + 20 * cnt, -1, "state_proc:true");
-			}
-			else {
-				DrawStringEx(w1 * 3, 0 + 20 * cnt, -1, "state_proc:false");
-			}
-			cnt++;
-		}
-
-	}
-
+	//obj_mgr_.GetObjBattleStateIcon()->Render(camera_);
 }
 
 

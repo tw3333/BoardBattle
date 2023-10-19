@@ -75,40 +75,30 @@ public:
 	tnl::Sequence<SceneBattle> phase_ = tnl::Sequence<SceneBattle>(this, &SceneBattle::TurnCal); //Phaseの管理用Sequence
 
 
-	//各Phase
+	//---各Phase
 	bool PhaseInitialTurnCal(const float delta_time); //scene初期化時のターン決め
 	bool TurnCal(const float delta_time); //1.ターン決め
-
 	bool ResetActedCal(const float delta_time);
-
 	bool PhaseAllyTurn(const float delta_time); //2
 	bool PhaseEnemyTurn(const float delta_time); //2
 	bool PhaseEnemyMove(const float delta_time);
 	bool PhaseEnemyAct(const float delta_time);
-
 	bool PhaseDrawCard(const float delta_time);
-
 	bool PhasePlayerActionMove(const float delta_time); //3.1
 	bool PhasePlayerActionCard(const float delta_time); //3.2
 	bool PhasePlayerActionTurnEnd(const float delta_time);
-
-
 	bool PhaseBattleStateProcAtStartOfTurn(const float delta_time); //ターン開始時BattleStateの処理
 	bool PhaseAnimBattleStateStartOfTurnProc(const float delta_time); //BattleStateAnimを順番に再生するための処理Phase
 	bool PhaseAnimBattleStateStartOfTurn(const float delta_time); //BattleStateのアニメーション処理
-
 	bool PhaseBattleStateProcAtEndOfTurn(const float delta_time); //ターン終了時BattleStateの処理
 	bool PhaseAnimBattleStateInTurn(const float delta_time); //各Unitのturn中のBattleStateAnimの再生処理
-
-	
 	bool PhaseSpecifyPlayCardTarget(const float delta_time);
 	bool PhaseSpecifyTargetProc(const float delta_time);
 	bool PhaseCanExcutePlayCardProc(const float delta_time);
 	bool PhaseExecutePlayCard(const float delta_time);
-
 	bool PhasePlayerActionTool(const float delta_time);
-
-	bool PhaseDebug(const float delta_time);
+	bool PhaseDebug(const float delta_time); 
+	//---
 
 	std::array<std::array<int, 10>, 10> GetReachableSquares(UnitAlly* unit);
 	void UpdateRender(std::array<std::array<int, 10>, 10> reachable, UnitAlly* unit);

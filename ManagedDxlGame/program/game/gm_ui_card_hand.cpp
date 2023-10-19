@@ -119,7 +119,9 @@ void UICardHand::Render() {
 		DrawStringEx(0,650,-1,"TurnAlly‹ó");
 	}
 
-
+	if (select_uicard_) {
+		DrawStringEx(500,0,-1,"serialnum:[%d]",select_uicard_->GetCardPtr()->GetSerialNum());
+	}
 
 }
 
