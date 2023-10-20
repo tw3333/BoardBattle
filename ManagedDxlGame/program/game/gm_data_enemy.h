@@ -9,6 +9,21 @@ class ObjEnemy;
 class EnemyData {
 public:
 
+	//CSV用コンストラクタ
+	EnemyData(int enemy_id, std::string name, int hp, int power, int speed, int move_cost, int action_cost, std::string face_texture_path, std::string battle_texture_path)
+	{
+		enemy_id_ = enemy_id;
+		name_ = name;
+		hp_ = hp;
+		power_ = power;
+		speed_ = speed;
+		move_cost_ = move_cost;
+		action_cost_ = action_cost;
+		texture_face_ = dxe::Texture::CreateFromFile(face_texture_path);
+		texture_battle_ = dxe::Texture::CreateFromFile(battle_texture_path);
+	}
+
+
 
 	EnemyData(int enemy_id, std::string name, int hp, int power, int speed, int move_cost, int action_cost)
 	:enemy_id_(enemy_id), name_(name), hp_(hp),power_(power), speed_(speed),move_cost_(move_cost)

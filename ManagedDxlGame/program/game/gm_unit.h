@@ -19,14 +19,12 @@ enum class UnitType {
 class Unit {
 public:
 
-	virtual ~Unit(){}
+	virtual ~Unit() { delete unit_obj_; }
 
 	virtual UnitType GetUnitType() const = 0;
 	virtual void Update(float delta_time) = 0;
 
-	//UnitType unit_type_ = Unit::UnitType::None;
-	
-	//void setType(Type type) { type_ = type; }
+
 	bool GetIsDead() { return is_dead_; }
 	bool GetIsActed() { return is_acted_; }
 	bool GetIsTurn() { return is_turn_; }
@@ -42,6 +40,8 @@ public:
 
 	//std::shared_ptr<GameObject> GetUnitObj() { return unit_obj_; }
 	GameObject* GetUnitObj() { return unit_obj_; }
+	void SetUnitObj(GameObject* obj) { unit_obj_ = obj; }
+
 	std::vector<BattleState>& GetBattleState() { return state_; }
 	void AddBattleState(BattleState state) { state_.emplace_back(state); }
 
@@ -74,9 +74,7 @@ private:
 
 protected:
 
-	//std::shared_ptr<GameObject> unit_obj_;
 	GameObject* unit_obj_;
-
 
 	SquarePos unit_square_pos_; //î’ñ è„ÇÃUnitÇÃà íu
 

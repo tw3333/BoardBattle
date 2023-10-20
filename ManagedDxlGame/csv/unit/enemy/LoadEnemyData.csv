@@ -1,12 +1,3 @@
 EnemyID,Name,Hp,Power,Speed,MoveCost,ActionCost,FaceTexture,BattleTexture
-1,スライム,30,5,10,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-2,ミイラ,31,6,11,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-3,ペン,32,7,12,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-4,クロウ,33,8,13,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-5,キャンドル,34,9,14,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-6,回復ルル,35,10,15,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-7,攻撃ルル,36,11,16,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-8,マジポン,37,12,17,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-9,ゴーレム,38,13,18,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-10,リザード,39,14,19,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
-11,ドラゴン,40,15,20,1,1,graphics/unit/enemy/adoption/1_face.png,graphics/unit/enemy/adoption/1_battle.png
+0,テストスライム,30,5,10,1,1,graphics/unit/enemy/adoption/test_slime_face.png,graphics/unit/enemy/adoption/test_slime_battle.png
+1,スライム,30,5,10,1,1,graphics/unit/enemy/adoption/slime_face.png,graphics/unit/enemy/adoption/slime_battle.png

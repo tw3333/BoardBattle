@@ -18,6 +18,17 @@
 //memo
 //データのロードを行うシーン
 
+enum LoadState {
+	LOAD_FONT,
+	LOAD_TEXTURE,
+	LOAD_OBJECT,
+	LOAD_ALLY,
+	LOAD_ENEMY,
+	LOAD_CARD,
+	LOAD_SOUND,
+	LOADED_ALL
+};
+
 class SceneLoad : public SceneBase {
 public:
 
@@ -61,5 +72,13 @@ private:
 
 
 
-	int load_slime_graph_ = 0; //load画面スライム用
+	int load_mons_graph_ = 0; //load画面スライム用
+	int amplitude_ = 90;
+	const float anim_speed_ = 30.0f;
+	float mons_pos_y_off_set_ = 0.0f;
+
+	float speed_ = 0;
+	int move = 0;
+
+	LoadState currentLoadState = LOAD_FONT;
 };

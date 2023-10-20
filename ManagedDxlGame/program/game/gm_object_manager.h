@@ -7,7 +7,7 @@
 #include "gm_object_move_select_flame.h"
 #include "gm_object_battle_state_icon.h"
 #include "gm_anim_sprite3d.h"
-
+#include "gm_enums_enemy.h"
 
 #include "gm_texture_manager.h"
 
@@ -45,12 +45,14 @@ public:
 
 
 	void CreateObjEnemies();
+	ObjEnemy* CreateObjEnemy(Enemy enemy);
 	ObjEnemy* GetObjEnemyAtID(int id){
 		for (auto oe : obj_enemies_) {
 			if (oe->GetObjEnemyId() == id) { return oe; }
 		}
 		return nullptr;
 	}
+
 
 	void CreateObjSquares();
 	ObjMoveSelectFlame* GetObjMoveSelectFlame() { return obj_move_select_flame_; }

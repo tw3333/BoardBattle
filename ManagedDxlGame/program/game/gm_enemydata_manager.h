@@ -2,7 +2,8 @@
 #include <vector>
 #include "gm_data_enemy.h"
 #include "gm_object_manager.h"
-
+#include "gm_unit_enemy.h"
+#include "gm_enums_enemy.h"
 
 
 class EnemyDataManager {
@@ -16,6 +17,12 @@ public:
 	void DebugLoadEnemyData();
 	void DebugLoadenemyTexture();
 
+	bool LoadEnemyDataFromCSV(const std::string& filepath);
+
+
+
+	UnitEnemy* CreateUnitEnemy(Enemy enemy);
+
 
 	EnemyData* GetEnemyDataAtID(int id) {
 		for (auto ed : all_enemy_data_) {
@@ -23,6 +30,7 @@ public:
 		}
 	}
 
+	
 private:
 
 	EnemyDataManager(){}

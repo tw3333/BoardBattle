@@ -58,7 +58,30 @@ class SceneBattle : public SceneBase {
 public:
 
 	SceneBattle() {}
-	~SceneBattle() {}
+	~SceneBattle() {
+		delete board_;
+		delete select_square_;
+		delete card_play_;
+		delete battle_media_player_;
+		delete camera_;
+		delete obj_board_;
+		delete obj_ally_;
+		delete unit_ally_;
+		delete unit_ally2_;
+		delete unit_enemy_;
+		//UIŒQ
+		delete ui_action_buttons_;
+		delete ui_mediator_;
+		delete ui_hp_bar_;
+		delete ui_card_cost_;
+		delete ui_move_cost_;
+		delete ui_turn_ally_state_;
+		delete ui_card_;
+		delete ui_card_hand_;
+		delete ui_unit_state_view_;
+		delete ui_notice_target_box_;
+		delete ui_notice_;
+	}
 
 	void Initialzie() override;
 	void Update(float delta_time) override;

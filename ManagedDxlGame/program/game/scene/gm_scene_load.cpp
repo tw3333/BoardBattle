@@ -4,68 +4,28 @@
 #include "gm_scene_battle.h"
 #include "gm_scene_debug_card_room.h"
 #include "gm_scene_deck_edit.h"
+#include <cmath>
+
+//Update関数ないでloadを行うためののenum群
+//1フレームでロードを行いたいため
+
 
 void SceneLoad::Initialzie() {
 
-	load_slime_graph_ = LoadGraph("graphics/unit/enemy/adoption/slime_battle.png");
-
-	//font_mgr_.CreateFontData();
-
-	//texture_mgr_.DebugLoadTexture();
-	//texture_mgr_.LoadUINoticeGraph();
-	//texture_mgr_.LoadUIPlayerActionButtonsGraph();
-	//texture_mgr_.LoadBackgroundGraph();
-	//
-
-	//obj_mgr_.CreateObjAllys();
-	//obj_mgr_.CreateObjSquares();
-	//obj_mgr_.CreateObjEnemies();
-	//obj_mgr_.CreateObjBattleStateIcon(texture_mgr_.GetBattleStateIconList());
-
-	//amgr_.DebugLoadAllyData();
-	//amgr_.DebugLoadAllyTexture();
-
-	//emgr_->DebugLoadEnemyData();
-	//emgr_->DebugLoadenemyTexture();
-
-	//
-	//
-	//card_mgr_.CreateDebugCardData();
-	//card_mgr_.LoadCardDataFromCSV("csv/card/LoadCardData.csv");
-	////card_mgr_.LoadCardTargetFromCSV("csv/card/LoadCardTarget.csv");
-	//card_mgr_.LoadCardRangeFromCSV("csv/card/LoadCardRange.csv");
-	//card_mgr_.LoadAllCardTargetFromCSV("csv/card/LoadCardTarget2.csv");
-	//card_mgr_.LoadAllCardEffectFromCSV("csv/card/LoadCardEffect2.csv");
-	//card_mgr_.CombineCardData();
-	//card_mgr_.CreateAllInitCard();
-	//card_mgr_.SeparetePossCards();
-
-	//card_mgr_.LoadC1DeckFromCSV("csv/card/LoadC1Deck.csv");
-	//card_mgr_.LoadC2DeckFromCSV("csv/card/LoadC2Deck.csv");
-	//card_mgr_.LoadC3DeckFromCSV("csv/card/LoadC3Deck.csv");
-
-
-	//anim_mgr_.CreateDebugAnim();
-	//obj_mgr_.CreateDebugCardAnimSprites();
-
-	//sound_mgr_.CreateBattleBGMList();
-	////sound_mgr_.CreateCardSEList();
-	//sound_mgr_.CreateAllyVoiveList();
-	//sound_mgr_.CreateSystemSEList();
-	//sound_mgr_.CreateEnemyActSEList();
-	//sound_mgr_.CreateUISEList();
-
-	//sound_mgr_.LoadCardSEFromCSV("csv/sound/LoadCardSE.csv");
-	//sound_mgr_.LoadBattleStateSEFromCSV("csv/sound/LoadBattleStateSE.csv");
-
+	load_mons_graph_ = LoadGraph("graphics/unit/enemy/adoption/load_mons.png");
 
 
 }
+
 
 void SceneLoad::Update(float delta_time) {
 
 	//DebugSceneChanger();
 	SceneManager* scene_mgr_ = SceneManager::GetInstance();
+
+	//mons_pos_y_off_set_ = amplitude_ * std::sin(anim_speed_ * 1);
+	speed_ += 0.1 * 1;
+	move += 2 * std::sin(speed_);
 
 	//1
 	if (!is_font_loaded_) {
@@ -129,8 +89,7 @@ void SceneLoad::Update(float delta_time) {
 		sound_mgr_.LoadCardSEFromCSV("csv/sound/LoadCardSE.csv");
 		sound_mgr_.LoadBattleStateSEFromCSV("csv/sound/LoadBattleStateSE.csv");
 		is_sound_loaded_ = true;
-	}
-
+	}   
 	
 	if (CheckIsAllLoaded()) {
 		is_all_loaded_ = true;
@@ -147,17 +106,24 @@ void SceneLoad::Update(float delta_time) {
 	
 }
 
+
+
 void SceneLoad::Render() {
 
 	if (!is_all_loaded_) {
-		DrawStringEx(DXE_WINDOW_WIDTH / 2 - 70, DXE_WINDOW_HEIGHT / 2 + 120, -1, "Loading...");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2 - 100, DXE_WINDOW_HEIGHT / 2 + 120, -1, "Loading...");
 	}
 	else if (is_all_loaded_) {
-		DrawStringEx(DXE_WINDOW_WIDTH / 2 - 70, DXE_WINDOW_HEIGHT / 2 + 120, -1, "LoadFinish!");
-		DrawStringEx(DXE_WINDOW_WIDTH / 2 - 70, DXE_WINDOW_HEIGHT / 2 + 140, -1, "Push:[Enter]でゲーム開始！");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2 - 140, DXE_WINDOW_HEIGHT / 2 + 120, -1, "LoadFinish!");
+		DrawStringEx(DXE_WINDOW_WIDTH / 2 - 140, DXE_WINDOW_HEIGHT / 2 + 140, -1, "Push:[Enter]でゲーム開始！");
 	}
 
-	DrawGraph(DXE_WINDOW_WIDTH / 2 - 87, DXE_WINDOW_HEIGHT / 2, load_slime_graph_, true);
+
+	DrawGraph(DXE_WINDOW_WIDTH / 2 - 187, (float)90 - move, load_mons_graph_, true);
+
+
+
+	//DrawGraph(DXE_WINDOW_WIDTH / 2 - 187, (float)90 - move, load_mons_graph_, true);
 }
 
 void SceneLoad::DebugSceneChanger() {

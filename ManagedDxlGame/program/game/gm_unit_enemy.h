@@ -15,6 +15,7 @@ class SlimeBehaviorStrategy;
 class UnitEnemy : public Unit {
 public:
 
+
 	UnitEnemy(EnemyData* enemy_data, int row, int col)
 	{
 		enemy_data_ = enemy_data;

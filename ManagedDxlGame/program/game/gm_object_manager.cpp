@@ -106,4 +106,19 @@ void ObjectManager::CreateObjEnemies() {
 }
 
 
+ObjEnemy* ObjectManager::CreateObjEnemy(Enemy enemy) {
+
+	ObjEnemy* ret_obj = nullptr; 
+
+	if (enemy == Enemy::TestSlime) {
+		ret_obj = ObjEnemy::CreateEnemy(0,"graphics/unit/enemy/adoption/test_slime_battle.png");
+	}
+	else if (enemy == Enemy::Slime) {
+		ret_obj = ObjEnemy::CreateEnemy(1, "graphics/unit/enemy/adoption/slime_battle.png");
+	}
+
+	return ret_obj;
+}
+
+
 

@@ -351,6 +351,7 @@
     <ClInclude Include="program\game\gm_enemy_act.h" />
     <ClInclude Include="program\game\gm_enemy_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_enemy_move.h" />
+    <ClInclude Include="program\game\gm_enums_enemy.h" />
     <ClInclude Include="program\game\gm_enums_graph.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
     <ClInclude Include="program\game\gm_object_battle_state_icon.h" />
