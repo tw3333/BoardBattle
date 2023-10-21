@@ -27,6 +27,8 @@ public:
 
 	void DebugLoadAllyData();
 	void DebugLoadAllyTexture();
+	void LoadAllyDataFromCSV(const std::string& filepath);
+
 	std::shared_ptr<AllyData> GetDeckEditAllyData();
 	std::vector<std::shared_ptr<AllyData>> GetPartyPickAllyData();
 	

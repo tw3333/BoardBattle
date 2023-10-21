@@ -25,6 +25,15 @@ void UnitEnemy::Update(float delta_time) {
 	unit_obj_->Update(delta_time);
 }
 
+void UnitEnemy::Render(dxe::Camera* camera) {
+
+	if (unit_obj_) {
+		unit_obj_->Render(camera);
+	}
+
+
+}
+
 void UnitEnemy::InitEnemyObjPos() {
 
 	int w1 = ((DXE_WINDOW_WIDTH / 10) * 8) / 10;
@@ -37,10 +46,10 @@ void UnitEnemy::InitEnemyObjPos() {
 	//obj_->pos_.z = board_h - (h1 / 2) - (h1) * board_pos_.row;
 	//obj_->pos_.x = (w1 / 2) + ((w1) * board_pos_.col);
 
-	obj_->pos_.z = board_h - (h1 / 2) - (h1) * unit_square_pos_.row;
-	obj_->pos_.x = (w1 / 2) + ((w1) * unit_square_pos_.col);
+	unit_obj_->pos_.z = board_h - (h1 / 2) - (h1) * unit_square_pos_.row;
+	unit_obj_->pos_.x = (w1 / 2) + ((w1) * unit_square_pos_.col);
 
-	obj_->Update(0);
+	unit_obj_->Update(0);
 }
 
 

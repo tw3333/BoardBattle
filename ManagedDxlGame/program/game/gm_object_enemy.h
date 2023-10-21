@@ -21,6 +21,7 @@ public:
 
 	static ObjEnemy* Create(EnemyData* enemydata);
 	static ObjEnemy* CreateEnemy(int id, std::string texture_path);
+	static ObjEnemy* CreateObj(std::shared_ptr<EnemyData> enemydata);
 
 
 	void SetObjEnemyID(int id) { enemy_id_ = id; }

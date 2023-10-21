@@ -74,11 +74,18 @@ void SceneBattle::Initialzie() {
 	//party_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
 	//party_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
-	unit_enemy_ = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 5);
-	UnitEnemy* enemy1 = new UnitEnemy(enemydata_mgr_->GetEnemyDataAtID(1), 5, 6);
+	UnitEnemy* enemy2 = enemydata_mgr_->CreateUnitEnemy(0);
+	enemy2->SetUnitSquarePos(4,5);
+	UnitEnemy* enemy3 = enemydata_mgr_->CreateUnitEnemy(1);
+	enemy3->SetUnitSquarePos(4, 6);
+	UnitEnemy* enemy4 = enemydata_mgr_->CreateUnitEnemy(1);
+	enemy4->SetUnitSquarePos(4, 7);
 
-	enemy_units_.push_back(unit_enemy_);
-	enemy_units_.push_back(enemy1);	
+
+	enemy_units_.push_back(enemy2);
+	enemy_units_.push_back(enemy3);
+	enemy_units_.push_back(enemy4);
+
 
 	//enemy_units_[0]->AddShieldValue(20);
 	enemy_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
@@ -99,9 +106,6 @@ void SceneBattle::Initialzie() {
 	board_->SetEnemyUnitsInBoard(enemy_units_);
 	board_->SetAllUnitsInBoard(all_units_);
 
-
-	EnemyBehaviorStrategy* newBehavior = new SlimeBehaviorStrategy();
-	unit_enemy_->SetBehavior(newBehavior);
 
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
@@ -385,11 +389,12 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 //1.ターン決め
 bool SceneBattle::TurnCal(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "TurnCal");
+	//DrawStringEx(300, 0, -1, "TurnCal");
 
 	turn_count_ += 1;
 	turn_unit_ = nullptr;
 
+	//表示しているタイルをリセット
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
 
@@ -398,8 +403,20 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		}
 	}
 
-	//素早さ順に降順ソート
-	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
+
+	// それぞれのユニットにランダムな値を割り当てる
+	std::unordered_map<Unit*, float> random_values;
+	std::random_device rd;
+	std::mt19937 g(rd());
+	for (auto unit : all_units_) {
+		random_values[unit] = std::uniform_real_distribution<>(0, 1)(g);
+	}
+
+	// 素早さ順に降順ソート。同じ速さの場合はランダムな順序
+	std::sort(all_units_.begin(), all_units_.end(), [&random_values](Unit* a, Unit* b) {
+		if (a->GetSpeed() == b->GetSpeed()) {
+			return random_values[a] > random_values[b];
+		}
 		return a->GetSpeed() > b->GetSpeed();
 		});
 
@@ -416,6 +433,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		}
 	}
 
+	//各Unitのターンへ移行
 	if (turn_unit_) {
 		if (turn_unit_->GetUnitType() == UnitType::Ally) {
 			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);

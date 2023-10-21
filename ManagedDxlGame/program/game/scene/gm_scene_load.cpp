@@ -30,6 +30,9 @@ void SceneLoad::Update(float delta_time) {
 	//1
 	if (!is_font_loaded_) {
 		font_mgr_.CreateFontData();
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+		
 		is_font_loaded_ = true;
 	}
 	//2
@@ -38,6 +41,9 @@ void SceneLoad::Update(float delta_time) {
 		texture_mgr_.LoadUINoticeGraph();
 		texture_mgr_.LoadUIPlayerActionButtonsGraph();
 		texture_mgr_.LoadBackgroundGraph();
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+		
 		is_texture_loaded_ = true;
 	}
 	//3
@@ -48,18 +54,26 @@ void SceneLoad::Update(float delta_time) {
 		obj_mgr_.CreateObjBattleStateIcon(texture_mgr_.GetBattleStateIconList());
 		obj_mgr_.CreateDebugCardAnimSprites();
 		anim_mgr_.CreateDebugAnim();
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+
 		is_object_loaded_ = true;
 	}
 	//4
 	if (!is_ally_loaded_) {
 		amgr_.DebugLoadAllyData();
 		amgr_.DebugLoadAllyTexture();
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+
 		is_ally_loaded_ = true;
 	}
 	//5
 	if (!is_enemy_loaded_) {
-		emgr_->DebugLoadEnemyData();
-		emgr_->DebugLoadenemyTexture();
+		emgr_->LoadEnemyDataFromCSV("csv/unit/enemy/LoadEnemyData.csv");
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+
 		is_enemy_loaded_ = true;
 	}
 	//6
@@ -76,6 +90,9 @@ void SceneLoad::Update(float delta_time) {
 		card_mgr_.LoadC1DeckFromCSV("csv/card/LoadC1Deck.csv");
 		card_mgr_.LoadC2DeckFromCSV("csv/card/LoadC2Deck.csv");
 		card_mgr_.LoadC3DeckFromCSV("csv/card/LoadC3Deck.csv");
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+
 		is_card_loaded_ = true;
 	}
 	//7
@@ -88,6 +105,9 @@ void SceneLoad::Update(float delta_time) {
 		sound_mgr_.CreateUISEList();
 		sound_mgr_.LoadCardSEFromCSV("csv/sound/LoadCardSE.csv");
 		sound_mgr_.LoadBattleStateSEFromCSV("csv/sound/LoadBattleStateSE.csv");
+		speed_ += 0.1 * 1;
+		move += 2 * std::sin(speed_);
+		
 		is_sound_loaded_ = true;
 	}   
 	

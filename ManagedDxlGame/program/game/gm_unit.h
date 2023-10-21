@@ -4,6 +4,7 @@
 #include "gm_data_board.h"
 #include "gm_data_battle_state.h"
 #include "gm_object.h"
+#include "../dxlib_ext/dxlib_ext.h"
 
 //memo
 //Board上に置かれるUnitの基底クラス
@@ -23,6 +24,7 @@ public:
 
 	virtual UnitType GetUnitType() const = 0;
 	virtual void Update(float delta_time) = 0;
+	virtual void Render(dxe::Camera* camera) = 0;
 
 
 	bool GetIsDead() { return is_dead_; }
@@ -57,7 +59,6 @@ public:
 	bool IsBattleStateAllProcedStartOfTurn();
 	void ResetAllBattleStateProced();
 	bool CheckAllPlayedBattleStateAnimStartOfturn();
-	//void DeeleteBattleState
 
 	bool GetIsAllStateProc() { return is_all_state_proced_; }
 	void SetIsAllStateProc(bool flag) { is_all_state_proced_ = flag; }
@@ -74,7 +75,7 @@ private:
 
 protected:
 
-	GameObject* unit_obj_;
+	GameObject* unit_obj_ = nullptr;
 
 	SquarePos unit_square_pos_; //盤面上のUnitの位置
 
@@ -85,6 +86,7 @@ protected:
 	int shield_value_ = 0; //シールド値
 	int max_hp_ = 0;
 	int current_hp_ = 0;
+
 	std::vector<BattleState> state_; //BattleState
 
 	//Unit共通の状態

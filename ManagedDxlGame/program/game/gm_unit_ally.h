@@ -30,7 +30,6 @@ public:
 
 		speed_ = ally_data_->GetSpeed();
 
-		obj_ = ally_data->GetObj();
 		
 		unit_obj_ = ally_data->GetObj();
 		
@@ -39,13 +38,14 @@ public:
 
 		InitAllyObjPos();
 
-		obj_->Update(0);
+		unit_obj_->Update(0);
 
 	}
 	~UnitAlly(){}
 
 	UnitType GetUnitType() const override { return UnitType::Ally; }
 	void Update(float delta_time) override;
+	void Render(dxe::Camera* camera) override;
 
 	//void InitializeBoardAndObjPos(int row, int col);
 
@@ -62,16 +62,6 @@ public:
 	//getter
 	//AllyData* GetAllyData() { return ally_data_; }
 	std::shared_ptr<AllyData> GetAllyData() { return ally_data_; }
-	ObjAlly* GetObj() {
-		if (!obj_) {
-			DrawStringEx(500,0,-1,"ID%dのObjがないよ",ally_data_->GetAllyDataID());
-		
-		}
-
-		return obj_; 
-	
-	}
-	void SetObj(ObjAlly* obj) { obj_ = obj; }
 
 	int GetMaxHp() { return max_hp_; }
 	int GetCurrentHp() { return current_hp_; }
@@ -146,9 +136,7 @@ private:
 
 	bool is_turn_ally_ = false;
 
-	//AllyData* ally_data_ = nullptr;
 	std::shared_ptr<AllyData> ally_data_ = nullptr;
-	ObjAlly* obj_ = nullptr;
 
 	//ステータス
 

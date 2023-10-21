@@ -4,6 +4,7 @@
 #include "gm_object_manager.h"
 #include "gm_unit_enemy.h"
 #include "gm_enums_enemy.h"
+#include "gm_object_enemy.h"
 
 
 class EnemyDataManager {
@@ -19,9 +20,11 @@ public:
 
 	bool LoadEnemyDataFromCSV(const std::string& filepath);
 
+	void AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enemy_data);
+	void AssignEnemyMoveToEnemyData(std::shared_ptr<EnemyData> enemy_data);
 
 
-	UnitEnemy* CreateUnitEnemy(Enemy enemy);
+	UnitEnemy* CreateUnitEnemy(int enemy_id);
 
 
 	EnemyData* GetEnemyDataAtID(int id) {
@@ -43,5 +46,6 @@ private:
 
 	std::vector<EnemyData*> all_enemy_data_;
 
+	std::vector<std::shared_ptr<EnemyData>> enemy_data_;
 
 };

@@ -62,11 +62,11 @@ void Board::Render(dxe::Camera* camera) {
 	}
 
 	for (auto unit : party_units_in_board_) {
-		unit->GetObj()->Render(camera);
+		unit->Render(camera);
 	}
 
 	for (auto unit : enemy_units_in_board_) {
-		unit->GetObj()->Render(camera);
+		unit->Render(camera);
 	}
 }
 

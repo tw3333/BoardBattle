@@ -6,7 +6,8 @@
 #include "gm_enemydata_manager.h"
 
 
-//#include <memory>
+#include <memory>
+
 class Board;
 class EnemyBehaviorStrategy;
 class SlimeBehaviorStrategy;
@@ -16,49 +17,40 @@ class UnitEnemy : public Unit {
 public:
 
 
-	UnitEnemy(EnemyData* enemy_data, int row, int col)
-	{
-		enemy_data_ = enemy_data;
-	
-		max_hp_ = enemy_data->GetHp();
+	//座標指定なしコンストラクタ
+	UnitEnemy(std::shared_ptr<EnemyData> enemydata) {
+		enemy_data_ = enemydata;
+		//hp
+		max_hp_ = enemydata->GetHp();
 		current_hp_ = max_hp_;
-
-		max_move_cost_ = enemy_data->GetMoveCost();
+		//move_cost
+		max_move_cost_ = enemydata->GetMoveCost();
 		current_move_cost_ = max_move_cost_;
-
-		max_action_cost_ = enemy_data->GetActionCost();
+		//action_cost
+		max_action_cost_ = enemydata->GetActionCost();
 		current_action_cost_ = max_action_cost_;
-
-		speed_ = enemy_data->GetSpeed();
-
-		obj_ = enemy_data->GetObj();
-
-		unit_obj_ = enemy_data->GetObj();
-
-		//SetBoardPos(row, col);
-		SetUnitSquarePos(row,col);
-		InitEnemyObjPos();
-
-		obj_->Update(0);
-
+		//speed
+		speed_ = enemydata->GetSpeed();
 	}
+
 	~UnitEnemy(){}
 
 
 	void Update(float delta_time) override;
+	void Render(dxe::Camera* camera) override;
 
 	void InitEnemyObjPos();
-	void SetBoardPos(int row, int col);
+
 
 	UnitType GetUnitType() const override { return UnitType::Enemy; }
-	EnemyData* GetEnemyData() { return enemy_data_; }
-	ObjEnemy* GetObj() { return obj_; }
+	std::shared_ptr<EnemyData> GetEnemyData() { return enemy_data_; }
 
 	enum class MoveType {
 		NotMove, //不動
 		RandomMove, //コスト分ランダムに動く
 		ForcusMove //taunt値が高いAllyに向かって動く
 	};
+
 	MoveType GetMoveType() { return move_type_; }
 	MoveType SetMoveType(MoveType type) { move_type_ = type; }
 
@@ -78,9 +70,6 @@ public:
 	void SetCurrentDamage(int damage) { current_damage_ = damage; }
 
 	//BehaviorStrategy
-	void SetBehavior(EnemyBehaviorStrategy* newBehavior) {
-		behavior_ = newBehavior;
-	}
 
 	void Move(Board* board);
 	void Act(Board* board);
@@ -109,15 +98,9 @@ private:
 	
 	MoveType move_type_ = MoveType::NotMove;
 
-
-	EnemyData* enemy_data_ = nullptr;
-	ObjEnemy* obj_ = nullptr;
-	
-
-	EnemyBehaviorStrategy* behavior_ = nullptr;
+	std::shared_ptr<EnemyData> enemy_data_ = nullptr; 
 
 	//ステータス
-
 
 	int max_move_cost_;
 	int current_move_cost_;
