@@ -390,6 +390,13 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 bool SceneBattle::TurnCal(const float delta_time) {
 
 	//DrawStringEx(300, 0, -1, "TurnCal");
+	
+	//ターン計算用配列にUnitを格納
+	std::vector<Unit*> unit_in_board; //ターン計算用配列
+	unit_in_board.reserve(board_->GetPartyUnitsInBoard().size() + board_->GetEnemyUnitsInBoard().size());
+	unit_in_board.insert(unit_in_board.end(), board_->GetPartyUnitsInBoard().begin(), board_->GetPartyUnitsInBoard().end());
+	unit_in_board.insert(unit_in_board.end(), board_->GetEnemyUnitsInBoard().begin(), board_->GetEnemyUnitsInBoard().end());
+
 
 	turn_count_ += 1;
 	turn_unit_ = nullptr;

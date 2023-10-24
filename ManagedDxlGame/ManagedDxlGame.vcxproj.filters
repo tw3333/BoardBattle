@@ -443,6 +443,12 @@
     <ClCompile Include="program\game\gm_ui_notice.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_ui_turn_icon.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_object_turn_icon.cpp">
+      <Filter>program\[003] game\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -901,6 +907,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_enums_enemy.h">
       <Filter>program\[003] game\data</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_turn_icon.h">
+      <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_object_turn_icon.h">
+      <Filter>program\[003] game\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

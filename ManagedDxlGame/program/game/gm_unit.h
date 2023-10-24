@@ -87,6 +87,8 @@ protected:
 	int max_hp_ = 0;
 	int current_hp_ = 0;
 
+
+
 	std::vector<BattleState> state_; //BattleState
 
 	//Unit‹¤’Ê‚Ìó‘Ô

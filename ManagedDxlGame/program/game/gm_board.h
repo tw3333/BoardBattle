@@ -27,6 +27,7 @@ public:
 	Board(){
 		Create();
 		
+
 	}
 	~Board(){}
 
@@ -73,8 +74,8 @@ public:
 	void SetPartyUnitsInBoard(std::vector<UnitAlly*> party_units) { party_units_in_board_ = party_units; }
 	void SetEnemyUnitsInBoard(std::vector<UnitEnemy*> enemy_units) { enemy_units_in_board_ = enemy_units; }
 	void SetAllUnitsInBoard(std::vector<Unit*> units) { all_units_in_board_ = units; }
-	std::vector<UnitAlly*> GetPartyUnitsInBoard() { return party_units_in_board_; }
-	std::vector<UnitEnemy*> GetEnemyUnitsInBoard() { return enemy_units_in_board_; }
+	std::vector<UnitAlly*>& GetPartyUnitsInBoard() { return party_units_in_board_; }
+	std::vector<UnitEnemy*>& GetEnemyUnitsInBoard() { return enemy_units_in_board_; }
 	std::vector<Unit*> GetAllUnitsInBoard() { return all_units_in_board_; }
 
 

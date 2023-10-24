@@ -226,6 +226,7 @@
     <ClCompile Include="program\game\gm_object_manager.cpp" />
     <ClCompile Include="program\game\gm_object_move_select_flame.cpp" />
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
+    <ClCompile Include="program\game\gm_object_turn_icon.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
     <ClCompile Include="program\game\gm_slime_act.cpp" />
     <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp" />
@@ -259,6 +260,7 @@
     <ClCompile Include="program\game\gm_ui_scene_battle_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_turn_ally_state.cpp" />
+    <ClCompile Include="program\game\gm_ui_turn_icon.cpp" />
     <ClCompile Include="program\game\gm_ui_turn_view.cpp" />
     <ClCompile Include="program\game\gm_ui_unit_state_view.cpp" />
     <ClCompile Include="program\game\gm_ui_window.cpp" />
@@ -355,6 +357,7 @@
     <ClInclude Include="program\game\gm_enums_graph.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
     <ClInclude Include="program\game\gm_object_battle_state_icon.h" />
+    <ClInclude Include="program\game\gm_object_turn_icon.h" />
     <ClInclude Include="program\game\gm_slime_act.h" />
     <ClInclude Include="program\game\gm_slime_move.h" />
     <ClInclude Include="program\game\gm_enums_sound.h" />
@@ -405,6 +408,7 @@
     <ClInclude Include="program\game\gm_ui_scene_battle_mediator.h" />
     <ClInclude Include="program\game\gm_ui_selectphase_mediator.h" />
     <ClInclude Include="program\game\gm_ui_turn_ally_state.h" />
+    <ClInclude Include="program\game\gm_ui_turn_icon.h" />
     <ClInclude Include="program\game\gm_ui_turn_view.h" />
     <ClInclude Include="program\game\gm_ui_unit_state_view.h" />
     <ClInclude Include="program\game\gm_ui_window.h" />

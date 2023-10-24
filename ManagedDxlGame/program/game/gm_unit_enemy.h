@@ -29,6 +29,9 @@ public:
 		//action_cost
 		max_action_cost_ = enemydata->GetActionCost();
 		current_action_cost_ = max_action_cost_;
+		//power
+		init_power_ = enemydata->GetPower();
+		current_power_ = init_power_;
 		//speed
 		speed_ = enemydata->GetSpeed();
 	}
@@ -57,6 +60,7 @@ public:
 	int GetMaxHp() { return max_hp_; }
 	int GetMaxMoveCost() { return max_move_cost_; }
 	int GetMaxActionCost() { return max_action_cost_; }
+	int GetInitPower() { return init_power_; }
 
 	int GetCurrentHp() { return current_hp_; }
 	void SetCurrentHp(int hp) { current_hp_ = hp; }
@@ -66,8 +70,8 @@ public:
 
 	int GetCurrentActionCost() { return current_action_cost_; }
 	void GetCurrentActionCost(int cost) { current_action_cost_ = cost; }
-	int GetCurrentDamage() { return current_damage_; }
-	void SetCurrentDamage(int damage) { current_damage_ = damage; }
+
+	int GetCurrentPower() { return current_power_; }
 
 	//BehaviorStrategy
 
@@ -101,15 +105,15 @@ private:
 	std::shared_ptr<EnemyData> enemy_data_ = nullptr; 
 
 	//ステータス
-
-	int max_move_cost_;
-	int current_move_cost_;
-
-	int max_action_cost_;
-	int current_action_cost_;
-
-	int max_damage_ = 8;
-	int current_damage_ = 8;
+	//move_cost
+	int max_move_cost_ = 0;
+	int current_move_cost_ = 0;
+	//action_cost
+	int max_action_cost_ = 0;
+	int current_action_cost_ = 0;
+	//power
+	int init_power_ = 0;
+	int current_power_ = 0;
 
 	//Enemy特有のフラグ
 	bool is_moved_ = false;

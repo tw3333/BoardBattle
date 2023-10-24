@@ -70,7 +70,7 @@ void SlimeAct::Act(UnitEnemy* turn_enemy, Board* board) {
 
 	//damage‚ð—^‚¦‚é
 	if (target_ally) {
-		target_ally->DecreaseCurrentHp(turn_enemy->GetEnemyData()->GetPower());
+		target_ally->DecreaseCurrentHp(turn_enemy->GetCurrentPower());
 		
 		anim_mgr_.GetAnim()[0]->SetObjPosToSquarePos(target_ally->GetUnitSquarePos().row, target_ally->GetUnitSquarePos().col);
 		anim_mgr_.GetAnim()[0]->CardAnimPlay("anim_attack");
