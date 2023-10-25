@@ -412,23 +412,23 @@ bool SceneBattle::TurnCal(const float delta_time) {
 
 
 	// それぞれのユニットにランダムな値を割り当てる
-	std::unordered_map<Unit*, float> random_values;
+	std::unordered_map<Unit*, float> random_values; //格納する連想配列
 	std::random_device rd;
 	std::mt19937 g(rd());
-	for (auto unit : all_units_) {
+	for (auto unit : unit_in_board) {
 		random_values[unit] = std::uniform_real_distribution<>(0, 1)(g);
 	}
 
 	// 素早さ順に降順ソート。同じ速さの場合はランダムな順序
-	std::sort(all_units_.begin(), all_units_.end(), [&random_values](Unit* a, Unit* b) {
+	std::sort(unit_in_board.begin(), unit_in_board.end(), [&random_values](Unit* a, Unit* b) {
 		if (a->GetSpeed() == b->GetSpeed()) {
 			return random_values[a] > random_values[b];
 		}
 		return a->GetSpeed() > b->GetSpeed();
 		});
 
-
-	for (auto au : all_units_) {
+	//行動可能なUnitの中で最速をTurnUnitへ
+	for (auto au : unit_in_board) {
 
 		if (!au->GetIsActed() && !au->GetIsDead()) {
 			active_units_.push_back(au);
