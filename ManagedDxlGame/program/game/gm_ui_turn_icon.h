@@ -14,7 +14,7 @@ public:
 
 	~UITurnIcon() { 
 		delete camera_; 
-		delete turn_unit_
+		delete turn_unit_;
 	}
 
 	void Update(float delta_time) override;

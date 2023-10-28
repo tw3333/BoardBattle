@@ -1,13 +1,13 @@
 #include "gm_scene_battle.h"
 #include "../gm_object_manager.h"
 
-#include "../gm_slime_behavior_strategy.h"
+
 #include <queue>
 
-#include <random>     // for std::default_random_engine and std::uniform_int_distribution
-#include <algorithm>  // for std::shuffle
-#include <chrono>     // for std::chrono::system_clock
-#include <vector>     // for std::vector
+#include <random>     
+#include <algorithm>  
+#include <chrono>     
+#include <vector>     
 #include <numeric> 
 
 #include "../gm_card_target.h"
@@ -176,6 +176,7 @@ void SceneBattle::Render() {
 
 	board_->Render(camera_);
 	select_square_->Render(camera_);
+
 	for (auto anim : anim_mgr_.GetAnim()) {
 		anim->Render(camera_);
 	}
@@ -187,8 +188,8 @@ void SceneBattle::Render() {
 	ui_action_buttons_->Render();
 	ui_notice_->Render();
 
+
 	battle_media_player_->Render(camera_);
-	//obj_mgr_.GetObjBattleStateIcon()->Render(camera_);
 }
 
 
@@ -419,24 +420,22 @@ bool SceneBattle::TurnCal(const float delta_time) {
 		random_values[unit] = std::uniform_real_distribution<>(0, 1)(g);
 	}
 
+
 	// 素早さ順に降順ソート。同じ速さの場合はランダムな順序
 	std::sort(unit_in_board.begin(), unit_in_board.end(), [&random_values](Unit* a, Unit* b) {
 		if (a->GetSpeed() == b->GetSpeed()) {
 			return random_values[a] > random_values[b];
 		}
 		return a->GetSpeed() > b->GetSpeed();
-		});
+	});
+
 
 	//行動可能なUnitの中で最速をTurnUnitへ
 	for (auto au : unit_in_board) {
-
-		if (!au->GetIsActed() && !au->GetIsDead()) {
+		if (!au->GetIsActed()) {
 			active_units_.push_back(au);
-			if (!turn_unit_ || au->GetSpeed() > turn_unit_->GetSpeed()) {
-
-				turn_unit_ = au;
-
-			}
+			turn_unit_ = au;
+			break;
 		}
 	}
 

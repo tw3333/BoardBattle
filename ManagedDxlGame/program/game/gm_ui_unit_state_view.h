@@ -13,16 +13,15 @@ public:
 	UIUnitStateView(int w, int h,SelectSquare* select_square) 
 	: width_(w), height_(h), select_square_(select_square) {
 	
-	
-	
 	}
-	~UIUnitStateView(){}
+	~UIUnitStateView() { delete select_square_; }
 
 
 
 	void Update(float delta_time)override;
-
 	void Render() override;
+	
+	
 	void RenderAllyBox();
 	void RenderEnemyBox();
 	void RenderBattleState(std::vector<BattleState>& battle_state);
@@ -54,7 +53,6 @@ private:
 
 	//grahp(debug)
 	//TODO:csvÇ©ÇÁïœçXÅBÇ±Ç±Ç≈íËã`ÇµÇ»Ç¢ÇÊÇ§Ç…
-
 	int icon_shield_ = LoadGraph("graphics/ui/battlestate_icon/icon_shield.png");
 	int icon_blood_ = LoadGraph("graphics/ui/battlestate_icon/icon_blood.png");
 	int icon_poison_ = LoadGraph("graphics/ui/battlestate_icon/icon_poison.png");
@@ -67,13 +65,10 @@ private:
 	int hp_bar_color_ = GetColor(255,0,0);
 	int hp_bar_back_color_ = GetColor(52,53,65);
 	int hp_bar_flame_color_ = GetColor(0,0,0);
-
 	int shield_font_color = GetColor(34,121,228);
 	int blood_font_color = GetColor(228, 73, 59);
 	int poison_font_color = GetColor(228, 73, 59);
 	int snare_font_color = GetColor(228, 73, 59);
 	int stun_font_color = GetColor(228, 73, 59);
-
-
 };
 

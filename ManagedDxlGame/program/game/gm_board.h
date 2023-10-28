@@ -29,7 +29,7 @@ public:
 		
 
 	}
-	~Board(){}
+	~Board() { delete camera_; }
 
 	void Create();
 	void Update(float delta_time);
@@ -50,8 +50,9 @@ public:
 
 	void UpdateCanMoveSquare();
 	void UpdateSquareState();
-	void UpdateUnitPtrInSquare(); //Board上の各Unitの更新
-	void UpdateUnitsInBoard();
+	void UpdateUnitPtrInSquare(); //Squareに格納するUnitの更新
+	void UpdateUnitsInBoard(); //Board上の各Unitの更新
+
 	void SetParty(UnitAlly* party[3]) { std::copy(party, party + 3, party_); }
 
 	void SetPartyUnits(std::vector<UnitAlly*> party_units) { party_units_ = party_units; }

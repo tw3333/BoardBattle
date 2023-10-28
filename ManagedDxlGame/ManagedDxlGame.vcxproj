@@ -229,7 +229,6 @@
     <ClCompile Include="program\game\gm_object_turn_icon.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
     <ClCompile Include="program\game\gm_slime_act.cpp" />
-    <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp" />
     <ClCompile Include="program\game\gm_slime_move.cpp" />
     <ClCompile Include="program\game\gm_sound_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_ally_action.cpp" />
@@ -351,7 +350,6 @@
     <ClInclude Include="program\game\gm_deck.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
     <ClInclude Include="program\game\gm_enemy_act.h" />
-    <ClInclude Include="program\game\gm_enemy_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_enemy_move.h" />
     <ClInclude Include="program\game\gm_enums_enemy.h" />
     <ClInclude Include="program\game\gm_enums_graph.h" />
@@ -371,7 +369,6 @@
     <ClInclude Include="program\game\gm_object_target_circle.h" />
     <ClInclude Include="program\game\gm_phase_manager.h" />
     <ClInclude Include="program\game\gm_scene_debug_battle_.h" />
-    <ClInclude Include="program\game\gm_slime_behavior_strategy.h" />
     <ClInclude Include="program\game\gm_sound_manager.h" />
     <ClInclude Include="program\game\gm_ui_ally_action.h" />
     <ClInclude Include="program\game\gm_ui_card.h" />

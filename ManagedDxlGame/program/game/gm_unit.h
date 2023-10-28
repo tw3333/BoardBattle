@@ -100,4 +100,5 @@ protected:
 	bool is_snare_turn_ = false;
 	bool is_blood_ = false;
 
+
 };

@@ -61,6 +61,6 @@ private:
 	
 	Square* select_square_ = nullptr;
 	
-	tnl::Vector3 select_square_obj_pos_; //‘I‘ð‚³‚ê‚Ä‚¢‚éSquare‚ÌObjPos\
+	tnl::Vector3 select_square_obj_pos_; //‘I‘ð‚³‚ê‚Ä‚¢‚éSquare‚ÌObjPos
 	 
 };

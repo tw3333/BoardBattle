@@ -113,11 +113,6 @@ void UIUnitStateView::Render() {
 
 				}
 
-
-
-
-
-
 			}
 			else if (select_square_->GetSelectSquare()->GetEnemyInSquare()) {
 

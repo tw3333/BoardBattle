@@ -25,18 +25,19 @@ void Board::Create() {
 void Board::Update(float delta_time) {
 
 	//Squareの状態を更新
-	UpdateSquareState();
-	UpdateUnitPtrInSquare();
 	UpdateUnitsInBoard();
+	UpdateUnitPtrInSquare();
+
 
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
 
-			board_squares_[i][j]->getObj()->Update(delta_time);
+			board_squares_[i][j]->Update(delta_time);
 
 		}
 
 	}
+
 
 }
 
@@ -46,7 +47,7 @@ void Board::Render(dxe::Camera* camera) {
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 10; ++j) {
 
-			board_squares_[i][j]->getObj()->Render(camera);
+			board_squares_[i][j]->Render(camera);
 
 		}
 	}
@@ -182,6 +183,7 @@ void Board::UpdateSquareState() {
 
 }
 
+//Squareに格納するUnitの更新
 void Board::UpdateUnitPtrInSquare() {
 
 	//Squareに格納してある、各Unitのポインタを更新
@@ -195,21 +197,20 @@ void Board::UpdateUnitPtrInSquare() {
 		}
 	}
 
-	for (auto pu : party_units_) {
+	for (auto pu : party_units_in_board_) {
 		board_squares_[pu->GetUnitSquarePos().row][pu->GetUnitSquarePos().col]->SetUnitPtrInSquare(pu);
 		board_squares_[pu->GetUnitSquarePos().row][pu->GetUnitSquarePos().col]->SetAllyPtrInSquare(pu);
 
 
 	}
-	for (auto eu : enemy_units_) {
+	for (auto eu : enemy_units_in_board_) {
 		board_squares_[eu->GetUnitSquarePos().row][eu->GetUnitSquarePos().col]->SetUnitPtrInSquare(eu);
 		board_squares_[eu->GetUnitSquarePos().row][eu->GetUnitSquarePos().col]->SetEnemyPtrInSquare(eu);
 	}
 
-
-
 }
 
+//盤面全体のUnitの配列を更新
 void Board::UpdateUnitsInBoard() {
 
 	//死亡したUnitをBoardから除外
@@ -231,10 +232,6 @@ void Board::UpdateUnitsInBoard() {
 
 		}
 	}
-
-	//各Unitの配列から盤面全体のUnitの配列を作成
-
-
 
 
 }
@@ -274,8 +271,6 @@ void Board::ResetRangeTile() {
 			board_squares_[i][j]->SetRenderRangeTile(false);
 			board_squares_[i][j]->SetRenderCandidateTile(false);
 			board_squares_[i][j]->SetRenderTargetTile(false);
-
-
 
 		}
 	}

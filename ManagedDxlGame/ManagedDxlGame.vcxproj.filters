@@ -302,9 +302,6 @@
     <ClCompile Include="program\game\gm_font_manager.cpp">
       <Filter>program\[003] game\manager</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_slime_behavior_strategy.cpp">
-      <Filter>program\[003] game\enemyaction</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\gm_card.cpp">
       <Filter>program\[003] game\card</Filter>
     </ClCompile>
@@ -721,12 +718,6 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_font_manager.h">
       <Filter>program\[003] game\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_slime_behavior_strategy.h">
-      <Filter>program\[003] game\enemyaction</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_enemy_behavior_strategy.h">
-      <Filter>program\[003] game\enemyaction</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_turn_view.h">
       <Filter>program\[003] game\ui</Filter>

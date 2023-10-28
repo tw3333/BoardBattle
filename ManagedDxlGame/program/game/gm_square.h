@@ -1,4 +1,5 @@
 #pragma once
+#include "../dxlib_ext/dxlib_ext.h"
 #include "gm_object_square.h"
 #include "gm_object_manager.h"
 
@@ -18,16 +19,26 @@ public:
 
 		obj_ = obj;
 		SetSquarePos(row, col);
-		//square_pos_ = SquarePos(row, col);
 		InitObjPos();
 
 	}
+
+	~Square() { 
+		delete obj_; 
+		delete unit_ptr_in_square_;
+		delete ally_ptr_in_square_;
+		delete enemy_ptr_in_square_;
+	}
+
+
+	void Update(float delta_time);
+	void Render(dxe::Camera* camera);
 
 	void InitObjPos(); //î’ñ ê´Ç…Ç∑ÇÈÇΩÇﬂÇÃObjPosÇÃèâä˙âª
 	void SetSquarePos(int row, int col);
 	void SetObj(ObjSquare* obj) { obj_ = obj; }
 	ObjSquare* getObj() { return obj_; }
-	int test_ = 1;
+
 
 	bool GetIsCanMove() { return is_can_move_; }
 	void SetIsCanMove(bool flag) { is_can_move_ = flag; }
@@ -54,7 +65,7 @@ public:
 
 	SquarePos GetSquarePos() { return square_pos_; }
 
-
+	int test_ = 1;
 private:
 
 	SquarePos square_pos_; //î’ñ ÇÃç¿ïW
@@ -64,7 +75,7 @@ private:
 	bool ally_in_square_ = false;
 	bool was_mouse_over_ = false; //targetÇ≈señ¬ÇÁÇ∑óp
 
-	ObjSquare* obj_;
+	ObjSquare* obj_ = nullptr;
 
 	Unit* unit_ptr_in_square_ = nullptr;
 	UnitAlly* ally_ptr_in_square_ = nullptr;

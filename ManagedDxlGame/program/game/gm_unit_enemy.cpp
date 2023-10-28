@@ -1,8 +1,7 @@
 #include "gm_unit_enemy.h"
 
 #include "gm_board.h"
-#include "gm_enemy_behavior_strategy.h"
-#include "gm_slime_behavior_strategy.h"
+
 
 void UnitEnemy::Update(float delta_time) {
 

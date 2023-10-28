@@ -4,6 +4,41 @@
 #include "gm_unit_enemy.h"
 
 
+
+void Square::Update(float delta_time) {
+
+	//Unitがいるときは移動不可に
+	if (ally_ptr_in_square_ || enemy_ptr_in_square_) {
+		is_can_move_ = false;
+	}
+	else {
+		is_can_move_ = true;
+	}
+
+
+	//各Unitごとにフラグ更新ん
+	if (ally_ptr_in_square_) {
+		ally_in_square_ = true;
+	} else {
+		ally_in_square_ = false;
+	}
+	if (enemy_ptr_in_square_) {
+		enemy_in_square_ = true;
+	} else{
+		enemy_in_square_ = false;
+	}
+
+
+
+	obj_->Update(delta_time);
+}
+
+void Square::Render(dxe::Camera* camera) {
+
+	obj_->Render(camera);
+
+}
+
 //Squareを何マスに設置するかの関数
 //この関数でSquareの持つObjの位置もfit
 void Square::SetSquarePos(int row, int col) {
