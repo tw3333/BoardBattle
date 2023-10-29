@@ -16,7 +16,7 @@ void Square::Update(float delta_time) {
 	}
 
 
-	//各Unitごとにフラグ更新ん
+	//各Unitごとにフラグ更新
 	if (ally_ptr_in_square_) {
 		ally_in_square_ = true;
 	} else {

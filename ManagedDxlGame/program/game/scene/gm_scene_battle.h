@@ -58,34 +58,12 @@ class SceneBattle : public SceneBase {
 public:
 
 	SceneBattle() {}
-	~SceneBattle() {
-		delete board_;
-		delete select_square_;
-		delete card_play_;
-		delete battle_media_player_;
-		delete camera_;
-		delete obj_board_;
-		delete obj_ally_;
-		delete unit_ally_;
-		delete unit_ally2_;
-		delete unit_enemy_;
-		//UI群
-		delete ui_action_buttons_;
-		delete ui_mediator_;
-		delete ui_hp_bar_;
-		delete ui_card_cost_;
-		delete ui_move_cost_;
-		delete ui_turn_ally_state_;
-		delete ui_card_;
-		delete ui_card_hand_;
-		delete ui_unit_state_view_;
-		delete ui_notice_target_box_;
-		delete ui_notice_;
-	}
+	~SceneBattle() { }
 
 	void Initialzie() override;
 	void Update(float delta_time) override;
 	void Render() override;
+	void DeletePtr(); //このシーンの持つptrをdeleteする
 
 	//メンバ関数
 	void DrawDebugLayOut(bool is_draw);
@@ -120,6 +98,7 @@ public:
 	bool PhaseCanExcutePlayCardProc(const float delta_time);
 	bool PhaseExecutePlayCard(const float delta_time);
 	bool PhasePlayerActionTool(const float delta_time);
+	bool PhaseDelay(const float delta_time); //Phase移行時にDelayを入れる用
 	bool PhaseDebug(const float delta_time); 
 	//---
 
@@ -134,9 +113,10 @@ private:
 	int w1 = DXE_WINDOW_WIDTH / 10; 
 	int h1 = DXE_WINDOW_HEIGHT / 10;
 
-	//int
+	//
 	int turn_count_ = 0; //ターン数
 	bool reset_acted_ = false; //ターン終了時にactedをリセットするかどうかのフラグ
+	float delay_timer_ = 0.0; //PhaseDelay用タイマー
 
 	//ptr
 	Board* board_ = nullptr;

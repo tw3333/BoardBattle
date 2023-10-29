@@ -6,7 +6,7 @@
 void AllyDataManager::DebugLoadAllyData() {
 
 	all_ally_data_.emplace_back(new AllyData(1,"ミア",30,15,5,35));
-	all_ally_data_.emplace_back(new AllyData(2,"ルーセント",30,15,1,25));
+	all_ally_data_.emplace_back(new AllyData(2,"ルーセント",30,15,15,25));
 	all_ally_data_.emplace_back(new AllyData(3,"ズズ",30,3,15,30));
 	all_ally_data_.emplace_back(new AllyData(4,"ライン",40,3,15,20));
 

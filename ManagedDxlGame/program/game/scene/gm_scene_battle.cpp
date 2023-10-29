@@ -193,6 +193,7 @@ void SceneBattle::Render() {
 }
 
 
+
 //=====メンバ関数群====================================================================
 
 void SceneBattle::DrawDebugLayOut(bool is_draw) {
@@ -286,6 +287,7 @@ void SceneBattle::BattleResultJudgment(Board* board) {
 
 		//GameOver処理
 
+
 	}
 	else if (board->GetEnemyUnitsInBoard().empty()) {
 
@@ -299,6 +301,8 @@ void SceneBattle::BattleResultJudgment(Board* board) {
 //各Phaseの実装=======================================================================================================
 //0.戦闘開始時のターン決め
 bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
+
+	current_phase_ = Phase::PhaseInitialTurnCal;
 
 	//素早さ順に降順ソート
 	std::sort(all_units_.begin(), all_units_.end(), [](Unit* a, Unit* b) {
@@ -314,18 +318,18 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 			turn_ally_ = static_cast<UnitAlly*>(turn_unit_);
 			turn_enemy_ = nullptr;
 
+			prior_phase_ = Phase::PhaseInitialTurnCal;
 			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
-
 		}
 		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
 			turn_enemy_ = static_cast<UnitEnemy*>(turn_unit_);
 			turn_ally_ = nullptr;
 
+			prior_phase_ = Phase::PhaseInitialTurnCal;
 			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 
 	}
-
 
 	return true;
 }
@@ -335,16 +339,21 @@ bool SceneBattle::PhaseInitialTurnCal(const float delta_time) {
 //1.2全Unitが行動したらリセット
 bool SceneBattle::ResetActedCal(const float delta_time)
 {
-	DrawStringEx(300, 0, -1, "ResetActedCal");
+	current_phase_ = Phase::PhaseResetActedCal;
+
 	active_units_.clear();
 
-	bool all_acted = true;
+	//ターン計算用配列にUnitを格納
+	std::vector<Unit*> unit_in_board; //ターン計算用配列
+	unit_in_board.reserve(board_->GetPartyUnitsInBoard().size() + board_->GetEnemyUnitsInBoard().size());
+	unit_in_board.insert(unit_in_board.end(), board_->GetPartyUnitsInBoard().begin(), board_->GetPartyUnitsInBoard().end());
+	unit_in_board.insert(unit_in_board.end(), board_->GetEnemyUnitsInBoard().begin(), board_->GetEnemyUnitsInBoard().end());
 
-	for (auto au : all_units_) {
 
-		if (!au) {
-			continue;  // nullptrの要素をスキップする
-		}
+	bool all_acted = true; //全てのUnitが行動したかどうかのフラグ
+
+	//Board上の全てのUnitが行動したかどうかチェック
+	for (auto au : unit_in_board) {
 
 		if (!au->GetIsActed()) {
 			all_acted = false;
@@ -353,14 +362,18 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 
 	}
 
+	//全てのUnitが行動していた場合の処理
 	if (all_acted) {
-		for (auto au : all_units_) {
+
+		//Board上の全てのUnitのActedフラグをリセット
+		for (auto au : unit_in_board) {
 			if (au) {
 				au->SetIsActed(false);
 			}
 		}
 
-		for (auto pu : party_units_) {
+		//UnitAllyへの処理
+		for (auto pu : board_->GetPartyUnitsInBoard()) {
 
 			//pu->SetCurrentMoveCost(pu->GetMaxMoveCost());
 
@@ -383,6 +396,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 	}
 
 	reset_acted_ = false;
+	prior_phase_ = Phase::PhaseResetActedCal;
 	phase_.change(&SceneBattle::TurnCal);
 	return true;
 }
@@ -390,7 +404,7 @@ bool SceneBattle::ResetActedCal(const float delta_time)
 //1.ターン決め
 bool SceneBattle::TurnCal(const float delta_time) {
 
-	//DrawStringEx(300, 0, -1, "TurnCal");
+	current_phase_ = Phase::PhaseTurnCal;
 	
 	//ターン計算用配列にUnitを格納
 	std::vector<Unit*> unit_in_board; //ターン計算用配列
@@ -447,6 +461,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 
 			turn_ally_->SetIsTurn(true);
 
+			prior_phase_ = Phase::PhaseTurnCal;
 			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 		else if (turn_unit_->GetUnitType() == UnitType::Enemy) {
@@ -454,6 +469,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 
 			turn_enemy_->SetIsTurn(true);
 
+			prior_phase_ = Phase::PhaseTurnCal;
 			phase_.change(&SceneBattle::PhaseBattleStateProcAtStartOfTurn);
 		}
 	}
@@ -465,7 +481,7 @@ bool SceneBattle::TurnCal(const float delta_time) {
 //2.ターン開始時のBattleState処理
 bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhaseBattleStateProcAtStartOfTurn");
+	current_phase_ = Phase::PhaseBattleStateProcAtStartOfTurn;
 
 	//各Unitの処理用
 	Unit* proc_unit = nullptr;
@@ -557,6 +573,7 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 				state.SetIsProc(false);
 			}
 
+			prior_phase_ = Phase::PhaseBattleStateProcAtStartOfTurn;
 			phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurnProc);
 		}
 
@@ -568,7 +585,7 @@ bool SceneBattle::PhaseBattleStateProcAtStartOfTurn(const float delta_time) {
 
 bool SceneBattle::PhaseAnimBattleStateStartOfTurnProc(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhaseAnimBattleStateStartOfTurnProc");
+	current_phase_ = Phase::PhaseAnimBattleStateStartOfTurnProc;
 
 	Unit* proc_unit = nullptr;
 	bool ally_proc = false;
@@ -595,9 +612,11 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurnProc(const float delta_time) {
 
 				//なかったら各UnitTurnへ移行
 				if (proc_unit->GetUnitType() == UnitType::Ally) {
+					prior_phase_ = Phase::PhaseAnimBattleStateStartOfTurnProc;
 					phase_.change(&SceneBattle::PhaseAllyTurn);
 				}
 				else if (proc_unit->GetUnitType() == UnitType::Enemy) {
+					prior_phase_ = Phase::PhaseAnimBattleStateStartOfTurnProc;
 					phase_.change(&SceneBattle::PhaseEnemyTurn);
 				}
 
@@ -625,7 +644,6 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurnProc(const float delta_time) {
 	}
 
 
-
 	return true;
 }
 
@@ -633,9 +651,9 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurnProc(const float delta_time) {
 //2.1ターン開始時のBattleStateのAnim再生
 bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhaseAnimBattleStateStartOfTurn");
-
-	DrawStringEx(0, 340, -1, "testtimer:[%f]", battle_media_player_->anim_timer_);
+	//DrawStringEx(300, 0, -1, "PhaseAnimBattleStateStartOfTurn");
+	//DrawStringEx(0, 340, -1, "testtimer:[%f]", battle_media_player_->anim_timer_);
+	current_phase_ = Phase::PhaseAnimBattleStateStartOfTurn;
 
 	if (turn_ally_ && turn_ally_->GetIsTurn()) {
 
@@ -660,10 +678,14 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 
 		if (turn_ally_ && turn_ally_->GetIsTurn()) {
 			battle_media_player_->SetIsBattleStateMediaPlayed(false);
+
+			prior_phase_ = Phase::PhaseAnimBattleStateStartOfTurn;
 			phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurnProc);
 		}
 		else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 			battle_media_player_->SetIsBattleStateMediaPlayed(false);
+
+			prior_phase_ = Phase::PhaseAnimBattleStateStartOfTurn;
 			phase_.change(&SceneBattle::PhaseAnimBattleStateStartOfTurnProc);
 		}
 
@@ -676,8 +698,7 @@ bool SceneBattle::PhaseAnimBattleStateStartOfTurn(const float delta_time) {
 //3.1 Allyのターン
 bool SceneBattle::PhaseAllyTurn(const float delta_time)
 {
-
-	DrawStringEx(300, 0, -1, "PhaseTurnAlly");
+	current_phase_ = Phase::PhaseAllyTurn;
 
 
 	board_->ResetDisplayRangeTile();
@@ -692,21 +713,14 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 	DrawStringEx(0, 200, -1, "turnallysquare:row[%d]col[%d]", turn_ally_->GetUnitSquarePos().row, turn_ally_->GetUnitSquarePos().col);
 
 
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
-
-		battle_media_player_->SetAnimBattleState(State::Blood);
-		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
-
-	}
-
-
-	if (tnl::Input::IsKeyDownTrigger(eKeys::KB_G)) {
-
-		enemy_units_[0]->ResetAllBattleStateProced();
-
-	}
-
-
+	//DebugCode
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
+	//	battle_media_player_->SetAnimBattleState(State::Blood);
+	//	phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
+	//}
+	//if (tnl::Input::IsKeyDownTrigger(eKeys::KB_G)) {
+	//	enemy_units_[0]->ResetAllBattleStateProced();
+	//}
 
 	return true;
 }
@@ -715,13 +729,17 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 //3.2 Enemyのターン
 bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhaseTurnEnemy");
+	current_phase_ = Phase::PhaseEnemyTurn;
 
 	//各Phase移動
 	if (!turn_enemy_->GetIsMoved() && !turn_enemy_->GetIsEnemyActed()) { //move
+
+		prior_phase_ = Phase::PhaseEnemyTurn;
 		phase_.change(&SceneBattle::PhaseEnemyMove);
 	}
 	else if (turn_enemy_->GetIsMoved() && !turn_enemy_->GetIsEnemyActed()) { //act
+
+		prior_phase_ = Phase::PhaseEnemyTurn;
 		phase_.change(&SceneBattle::PhaseEnemyAct);
 	}
 	else if (turn_enemy_->GetIsMoved() && turn_enemy_->GetIsEnemyActed()) { //全行動終了でturn終了
@@ -735,6 +753,7 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 		turn_enemy_->SetIsActed(true);
 		turn_enemy_->DecreaseBattleStateTurn();
 
+		prior_phase_ = Phase::PhaseEnemyTurn;
 		phase_.change(&SceneBattle::ResetActedCal);
 	}
 
@@ -743,17 +762,22 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 
 bool SceneBattle::PhaseEnemyMove(const float delta_time) {
 
-	if (turn_enemy_->GetIsSnareTurn()) {
+	current_phase_ = Phase::PhaseEnemyMove;
 
+	if (turn_enemy_->GetIsSnareTurn()) {
+		
 		turn_enemy_->SetIsMoved(true);
 		//Phase移行
 		battle_media_player_->SetAnimBattleState(State::Snare);
+		prior_phase_ = Phase::PhaseEnemyMove;
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 	}
 	else if (!turn_enemy_->GetIsSnareTurn()) {
-
+		
 		turn_enemy_->SetIsMoved(true);
 		turn_enemy_->Move(board_);
+		//Phase移行
+		prior_phase_ = Phase::PhaseEnemyMove;
 		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
@@ -762,15 +786,22 @@ bool SceneBattle::PhaseEnemyMove(const float delta_time) {
 
 bool SceneBattle::PhaseEnemyAct(const float delta_time) {
 
+	current_phase_ = Phase::PhaseEnemyAct;
+
 	if (turn_enemy_->GetIsStunTurn()) {
+
 		turn_enemy_->SetIsEnemyActed(true);
 		//Phase移行
 		battle_media_player_->SetAnimBattleState(State::Stun);
+		prior_phase_ = Phase::PhaseEnemyAct;
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 	}
 	if (!turn_enemy_->GetIsStunTurn()) {
+
 		turn_enemy_->SetIsEnemyActed(true);
 		turn_enemy_->Act(board_);
+		//Phase移行
+		prior_phase_ = Phase::PhaseEnemyAct;
 		phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
@@ -778,7 +809,7 @@ bool SceneBattle::PhaseEnemyAct(const float delta_time) {
 }
 
 
-//ターン終了時のBattleState処理(使用してない)
+//!!!10/11使用してない！！！！ターン終了時のBattleState処理(使用してない)
 bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 
 	//debugcode
@@ -807,8 +838,9 @@ bool SceneBattle::PhaseBattleStateProcAtEndOfTurn(const float delta_time) {
 //ターン中のBattleStateAnim処理
 bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 
-	DrawStringEx(0, 320, -1, "PhaseAnimBattleStateInTurn");
-	DrawStringEx(0, 340, -1, "testtimer:[%f]", battle_media_player_->anim_timer_);
+	//DrawStringEx(0, 320, -1, "PhaseAnimBattleStateInTurn");
+	//DrawStringEx(0, 340, -1, "testtimer:[%f]", battle_media_player_->anim_timer_);
+	current_phase_ = Phase::PhaseAnimBattleStateInTurn;
 
 	battle_media_player_->anim_timer_ += delta_time;
 
@@ -833,10 +865,12 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 
 		if (turn_ally_ && turn_ally_->GetIsTurn()) {
 			battle_media_player_->SetIsBattleStateMediaPlayed(false);
+			prior_phase_ = Phase::PhaseAnimBattleStateInTurn;
 			phase_.change(&SceneBattle::PhaseAllyTurn);
 		}
 		else if (turn_enemy_ && turn_enemy_->GetIsTurn()) {
 			battle_media_player_->SetIsBattleStateMediaPlayed(false);
+			prior_phase_ = Phase::PhaseAnimBattleStateInTurn;
 			phase_.change(&SceneBattle::PhaseEnemyTurn);
 		}
 
@@ -849,7 +883,9 @@ bool SceneBattle::PhaseAnimBattleStateInTurn(const float delta_time) {
 //3.1.1AllyActuonMove
 bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhasePlayerActionMove");
+	//DrawStringEx(300, 0, -1, "PhasePlayerActionMove");
+	current_phase_ = Phase::PhasePlayerActionMove;
+
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 	ui_notice_->SetIsRenderRightClickReturnPanel(true);
 	ui_action_buttons_->SetSelectFrameLock(true);
@@ -860,15 +896,17 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 	//右クリックでMove終了PhaseTurnAllyへ
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
 		sound_mgr_.PlayUISE(UISE::BackPhase);
+		prior_phase_ = Phase::PhasePlayerActionMove;
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}
 
 	//スネアターンの場合は移動できない
 	if (turn_ally_->GetIsSnareTurn()) {
 		battle_media_player_->SetAnimBattleState(State::Snare);
+		prior_phase_ = Phase::PhasePlayerActionMove;
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 	}
-	else if (!turn_ally_->GetIsSnareTurn()) {
+	else if (!turn_ally_->GetIsSnareTurn()) { //移動処理
 
 		// 移動先のマスを取得
 		int target_row = select_square_->GetSelectSquareRow();
@@ -910,12 +948,10 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 		}
 
-
 		// 移動可能範囲を再計算
 		reachable = GetReachableSquares(turn_ally_);
 		// 移動可能範囲の描画を更新
 		UpdateRender(reachable, turn_ally_);
-
 	}
 
 
@@ -1468,6 +1504,18 @@ bool SceneBattle::PhasePlayerActionTool(const float delta_time) {
 	return true;
 }
 
+
+
+bool SceneBattle::PhaseDelay(const float delta_time) {
+
+
+
+
+
+
+	return true;
+}
+
 bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 
 	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
@@ -1571,6 +1619,16 @@ void SceneBattle::UpdateRender(std::array<std::array<int, 10>, 10> reachable, Un
 			}
 		}
 	}
+
+
+}
+
+
+//このシーンの持つPtrの削除
+void SceneBattle::DeletePtr() {
+
+
+
 
 
 }

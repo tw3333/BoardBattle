@@ -90,11 +90,9 @@ private:
 	std::vector<Unit*> all_units_;
 
 
-
 	//Boardã‚ÌŠeUnit
 	std::vector<UnitAlly*> party_units_in_board_; //Boardã‚É‚¢‚éUnitAlly(Party)
 	std::vector<UnitEnemy*> enemy_units_in_board_; //Boardã‚É‚¢‚éUnitEnemy
-	
 	std::vector<Unit*> all_units_in_board_; //Boardã‚É‚¢‚é‘S‚Ä‚ÌUnit
 
 
