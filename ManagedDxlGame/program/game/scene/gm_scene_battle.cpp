@@ -164,6 +164,7 @@ void SceneBattle::Update(float delta_time) {
 	battle_media_player_->Update(delta_time);
 
 	BattleResultJudgment(board_);
+	PhaseDelayTimer(delta_time);
 	phase_.update(delta_time);
 }
 
@@ -190,6 +191,12 @@ void SceneBattle::Render() {
 
 
 	battle_media_player_->Render(camera_);
+
+	DrawStringEx(500,0,-1,"delaytimer:[%f]",phase_delay_timer_);
+	if (current_phase_ == Phase::PhaseDelay) {
+		DrawStringEx(500,20,-1,"Now:PhaseDelay");
+	}
+
 }
 
 
@@ -754,7 +761,7 @@ bool SceneBattle::PhaseEnemyTurn(const float delta_time) {
 		turn_enemy_->DecreaseBattleStateTurn();
 
 		prior_phase_ = Phase::PhaseEnemyTurn;
-		phase_.change(&SceneBattle::ResetActedCal);
+		phase_.change(&SceneBattle::PhaseDelay);
 	}
 
 	return true;
@@ -767,8 +774,9 @@ bool SceneBattle::PhaseEnemyMove(const float delta_time) {
 	if (turn_enemy_->GetIsSnareTurn()) {
 		
 		turn_enemy_->SetIsMoved(true);
-		//Phase移行
 		battle_media_player_->SetAnimBattleState(State::Snare);
+
+		//Phase移行
 		prior_phase_ = Phase::PhaseEnemyMove;
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 	}
@@ -776,9 +784,11 @@ bool SceneBattle::PhaseEnemyMove(const float delta_time) {
 		
 		turn_enemy_->SetIsMoved(true);
 		turn_enemy_->Move(board_);
+		
 		//Phase移行
 		prior_phase_ = Phase::PhaseEnemyMove;
-		phase_.change(&SceneBattle::PhaseEnemyTurn);
+		phase_.change(&SceneBattle::PhaseDelay);
+		//phase_.change(&SceneBattle::PhaseEnemyTurn);
 	}
 
 	return true;
@@ -791,6 +801,7 @@ bool SceneBattle::PhaseEnemyAct(const float delta_time) {
 	if (turn_enemy_->GetIsStunTurn()) {
 
 		turn_enemy_->SetIsEnemyActed(true);
+		
 		//Phase移行
 		battle_media_player_->SetAnimBattleState(State::Stun);
 		prior_phase_ = Phase::PhaseEnemyAct;
@@ -800,6 +811,7 @@ bool SceneBattle::PhaseEnemyAct(const float delta_time) {
 
 		turn_enemy_->SetIsEnemyActed(true);
 		turn_enemy_->Act(board_);
+		
 		//Phase移行
 		prior_phase_ = Phase::PhaseEnemyAct;
 		phase_.change(&SceneBattle::PhaseEnemyTurn);
@@ -962,37 +974,34 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 //3.1.2AllyActionCard
 bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhasePlayerActionCard");
+	//DrawStringEx(300, 0, -1, "PhasePlayerActionCard");
+	current_phase_ = Phase::PhasePlayerActionCard;
+
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 	ui_action_buttons_->SetSelectFrameLock(true);
 	ui_action_buttons_->SetIsRenderDecisionFlame(true);
 	ui_notice_->SetIsRenderRightClickReturnPanel(true);
 
-
+	//右クリックでPhase終了PhaseTurnAllyへ
 	if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_RIGHT)) {
 		sound_mgr_.PlayUISE(UISE::BackPhase);
+		prior_phase_ = Phase::PhasePlayerActionCard;
 		phase_.change(&SceneBattle::PhaseAllyTurn);
 	}
 
 	//スタンターンの場合はカードを使用できない
 	if (turn_ally_->GetIsStunTurn()) {
 		battle_media_player_->SetAnimBattleState(State::Stun);
+		prior_phase_ = Phase::PhasePlayerActionCard;
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
 	}
-	else if (!turn_ally_->GetIsStunTurn()) {
+	else if (!turn_ally_->GetIsStunTurn()) { //カード使用処理
 
 		card_play_->SetSelectUICard(ui_card_hand_->GetSelectUICard());
 		card_play_->SetTurnAlly(turn_ally_);
 
 		board_->ResetDisplayRangeTile();
 		board_->ResetAllTile();
-
-		//card_play_->RenderSelectCardRange(turn_ally_, board_);
-		//card_play_->UpdateSelectCardGetUnitInRange(turn_ally_, all_units_);
-
-		//card_play_->UpdateSelectCardRangeSquarePos(turn_ally_->GetUnitSquarePos());
-		//board_->DisplayRangePosRangeTile(card_play_->GetCardRangeSquarePos());
-
 
 		//UICardを選択している時
 		if (ui_card_hand_->GetSelectUICard()) {
@@ -1009,57 +1018,29 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 			//クリックでCardを決定したら
 			if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
 
-				if (!card_play_->IsSelectCardCostEnough()) {
+				if (!card_play_->IsSelectCardCostEnough()) { //コストが足りない場合
 
-					DrawStringEx(0, 400, -1, "コストが足りません");
 					ui_notice_->PlayNotEnoughCost();
 					sound_mgr_.PlayUISE(UISE::CantUseCard);
 				}
-				else if (!card_play_->IsSelectCardTargetInRange(board_)) {
+				else if (!card_play_->IsSelectCardTargetInRange(board_)) { //射程内に対象がいない場合
 
-					DrawStringEx(0, 400, -1, "射程に対象がいません");
 					ui_notice_->PlayNoTarget();
 					sound_mgr_.PlayUISE(UISE::CantUseCard);
 				}
-				//else if (card_play_->IsSelectCardCostEnough() && card_play_->IsSelectCardTargetInRange(board_)) {
-				//	
-				//	card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
-				//	ui_card_hand_->SetEnableSelectCard(false);
-				//	phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
-
-				//}
-				else if (card_play_->IsSelectCardTargetInRange(board_)) {
+				else if (card_play_->IsSelectCardTargetInRange(board_)) { //Cardが使用できる場合はPhase移行
 
 					card_play_->SetPlayCard(ui_card_hand_->GetSelectUICard()->GetCardPtr());
 					ui_card_hand_->SetEnableSelectCard(false);
+					prior_phase_ = Phase::PhasePlayerActionCard;
 					phase_.change(&SceneBattle::PhaseSpecifyPlayCardTarget);
-
 				}
 			}
 
 		}
-		else {
-
-			//board_->ResetDisplayRangeTile();
-			//board_->ResetAllTile();
-
-		}
-
-		if (tnl::Input::IsKeyDownTrigger(eKeys::KB_D)) {
-			battle_media_player_->BattleStateMediaPlay(turn_ally_, State::Blood);
-		}
 
 	}
 
-
-	//board_->ResetDisplayRangeTile();
-	//board_->ResetAllTile();
-
-	//card_play_->EffectExecute();
-
-	//if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
-	//	turn_ally_->GetHand().erase(turn_ally_->GetHand().begin() + 1);
-	//}
 
 	return true;
 }
@@ -1068,6 +1049,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
 	DrawStringEx(300, 0, -1, "PhaseDrawCard");
+	current_phase_ = Phase::PhaseDrawCard;
 
 	if (turn_ally_->GetIsDrew()) {
 		phase_.change(&SceneBattle::PhasePlayerActionCard);
@@ -1091,6 +1073,7 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 		turn_ally_->SetIsDrew(true);
 		sound_mgr_.PlayUISE(UISE::AddCard);
 
+		prior_phase_ = Phase::PhaseDrawCard;
 		phase_.change(&SceneBattle::PhasePlayerActionCard);
 	}
 
@@ -1102,6 +1085,7 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 		if (turn_ally_->GetHand().size() == 10) { //10枚以上の場合はドローしない
 
 			turn_ally_->SetIsDrew(true);
+			prior_phase_ = Phase::PhaseDrawCard;
 			phase_.change(&SceneBattle::PhasePlayerActionCard);
 		}
 		else if (turn_ally_->GetHand().size() < 10) { //10枚未満の場合はドローする
@@ -1110,7 +1094,8 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 			turn_ally_->GetUseDeck().pop_back();
 			turn_ally_->SetIsDrew(true);
 			sound_mgr_.PlayUISE(UISE::AddCard);
-
+			
+			prior_phase_ = Phase::PhaseDrawCard;
 			phase_.change(&SceneBattle::PhasePlayerActionCard);
 		}
 
@@ -1129,6 +1114,7 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 //カードを選択した後、ターゲットを選択する段階の処理
 bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 
+	
 	for (auto ctl : card_play_->GetPlayCard()->GetCardData()->GetCardTargetList()) {
 
 		//範囲攻撃処理
@@ -1152,7 +1138,7 @@ bool SceneBattle::PhaseSpecifyPlayCardTarget(const float delta_time) {
 		//対象指定攻撃処理
 		if (ctl->GetTargetType() == TARGETTYPE::Specify && !ctl->GetIsDetermined()) {
 
-			DrawStringEx(0, 400, -1, "選択中");
+			//DrawStringEx(0, 400, -1, "選択中");
 
 
 			card_play_->SetCurrentCardTarget(ctl);
@@ -1461,7 +1447,6 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 //Cardが使えるか判定。できなかったら指定まで戻す
 bool SceneBattle::PhaseCanExcutePlayCardProc(const float delta_time) {
 
-
 	if (card_play_->CanPlayCardExecute(board_)) {
 		phase_.change(&SceneBattle::PhaseExecutePlayCard);
 	}
@@ -1481,8 +1466,6 @@ bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 	card_play_->ResetPlayCardTargetSquarePos();
 	card_play_->RemovePlayCardFromHand();
 
-
-	//sound_mgr_.PlayCardSE(1);
 
 	if (!battle_media_player_->GetIsMediaPlaying()) {
 
@@ -1508,30 +1491,46 @@ bool SceneBattle::PhasePlayerActionTool(const float delta_time) {
 
 bool SceneBattle::PhaseDelay(const float delta_time) {
 
+	current_phase_ = Phase::PhaseDelay;
+	//Phase実行時からタイマースタート
+	delay_timer_start_ = true;
 
+	//prior_phase_ごとの経過時間で、対応したPhaseへ移行
+	if (prior_phase_ == Phase::PhaseEnemyMove) {
+		if (phase_delay_timer_ > 0.5f) {
 
+			delay_timer_start_ = false;
+			prior_phase_ = Phase::PhaseDelay;
+			phase_.change(&SceneBattle::PhaseEnemyTurn);
+		}
+	}
+	else if (prior_phase_ == Phase::PhaseEnemyTurn) {
+		if (phase_delay_timer_ > 1.0f) {
 
-
+			delay_timer_start_ = false;
+			prior_phase_ = Phase::PhaseDelay;
+			phase_.change(&SceneBattle::ResetActedCal);
+		}
+	}
 
 	return true;
 }
 
 bool SceneBattle::PhasePlayerActionTurnEnd(const float delta_time) {
 
-	DrawStringEx(500, 0, -1, "PhasePlayerActionTurnEnd");
+	current_phase_ = Phase::PhasePlayerActionTurnEnd;
 	ui_mediator_->SetIsPlayerActionButtonEnabled(false);
 
-
-
-	//各Allyのflag変更
+	//ターン終了時のAllyへの処理
 	turn_ally_->SetIsTurn(false);
 	turn_ally_->SetIsDrew(false);
 	turn_ally_->SetIsActed(true);
 	turn_ally_->SetIsStunTurn(false);
 	turn_ally_->SetIsSnareTurn(false);
-
 	turn_ally_->DecreaseBattleStateTurn();
 
+	//Phase移行
+	prior_phase_ = Phase::PhasePlayerActionTurnEnd;
 	phase_.change(&SceneBattle::ResetActedCal);
 
 	return true;
@@ -1549,6 +1548,18 @@ bool SceneBattle::PhaseDebug(const float delta_time) {
 //=======================================================================================================================
 
 
+
+void SceneBattle::PhaseDelayTimer(float delta_time) {
+
+	if (delay_timer_start_) {
+		phase_delay_timer_ += delta_time;
+	}
+
+	if (!delay_timer_start_) {
+		phase_delay_timer_ = 0.0f;
+	}
+
+}
 
 std::array<std::array<int, 10>, 10> SceneBattle::GetReachableSquares(UnitAlly* unit) {
 

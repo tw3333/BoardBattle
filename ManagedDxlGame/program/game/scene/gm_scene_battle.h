@@ -52,6 +52,33 @@
 //memo
 //戦闘シーンのSceneクラス
 
+//Phase記憶用enum
+enum Phase {
+	PhaseInitialTurnCal,
+	PhaseTurnCal,
+	PhaseResetActedCal,
+	PhaseAllyTurn,
+	PhaseEnemyTurn,
+	PhaseEnemyMove,
+	PhaseEnemyAct,
+	PhaseDrawCard,
+	PhasePlayerActionMove,
+	PhasePlayerActionCard,
+	PhasePlayerActionTurnEnd,
+	PhaseBattleStateProcAtStartOfTurn,
+	PhaseAnimBattleStateStartOfTurnProc,
+	PhaseAnimBattleStateStartOfTurn,
+	PhaseBattleStateProcAtEndOfTurn,
+	PhaseAnimBattleStateInTurn,
+	PhaseSpecifyPlayCardTarget,
+	PhaseSpecifyTargetProc,
+	PhaseCanExcutePlayCardProc,
+	PhaseExecutePlayCard,
+	PhasePlayerActionTool,
+	PhaseDelay,
+	PhaseDebug,
+	PhaseNum
+};
 
 
 class SceneBattle : public SceneBase {
@@ -102,6 +129,7 @@ public:
 	bool PhaseDebug(const float delta_time); 
 	//---
 
+	void PhaseDelayTimer(float delta_time); //PhaseDelay用タイマー
 	std::array<std::array<int, 10>, 10> GetReachableSquares(UnitAlly* unit);
 	void UpdateRender(std::array<std::array<int, 10>, 10> reachable, UnitAlly* unit);
 
@@ -116,7 +144,11 @@ private:
 	//
 	int turn_count_ = 0; //ターン数
 	bool reset_acted_ = false; //ターン終了時にactedをリセットするかどうかのフラグ
-	float delay_timer_ = 0.0; //PhaseDelay用タイマー
+	bool delay_timer_start_ = false; //PhaseDelay用タイマーのスタートフラグ
+	float phase_delay_timer_ = 0.0f; //PhaseDelay用タイマー
+	Phase current_phase_; //現在のPhase
+	Phase prior_phase_; //1つ前のPhase
+
 
 	//ptr
 	Board* board_ = nullptr;
