@@ -1,3 +1,5 @@
 EnemyID,Name,Hp,Power,Speed,MoveCost,ActionCost,FaceTexture,BattleTexture
 0,テストスライム,30,5,10,1,1,graphics/unit/enemy/adoption/test_slime_face.png,graphics/unit/enemy/adoption/test_slime_battle.png
 1,スライム,30,5,10,1,1,graphics/unit/enemy/adoption/slime_face.png,graphics/unit/enemy/adoption/slime_battle.png
+2,レッドポポ,20,5,20,1,1,graphics/unit/enemy/adoption/attackpopo_face.png,graphics/unit/enemy/adoption/attackpopo_battle.png
+3,グリーンポポ,20,3,15,1,1,graphics/unit/enemy/adoption/healpopo_face.png,graphics/unit/enemy/adoption/healpopo_battle.png

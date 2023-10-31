@@ -19,5 +19,7 @@ public:
 	void Move(UnitEnemy* turn_enemy, Board* board) override;
 	bool IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board);
 
+
+
 	
 };

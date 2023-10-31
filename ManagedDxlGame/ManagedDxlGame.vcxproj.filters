@@ -54,14 +54,14 @@
     <Filter Include="program\[003] game\twr">
       <UniqueIdentifier>{f9a267e9-1323-4f83-88fd-726b364a8841}</UniqueIdentifier>
     </Filter>
-    <Filter Include="program\[003] game\enemyaction">
-      <UniqueIdentifier>{ce3d3087-2385-41f0-9bcd-f0e98c556491}</UniqueIdentifier>
-    </Filter>
     <Filter Include="program\[003] game\card\range">
       <UniqueIdentifier>{28141741-a3c7-4db5-b03c-dc2f66456df0}</UniqueIdentifier>
     </Filter>
     <Filter Include="program\[003] game\card\Effect">
       <UniqueIdentifier>{77746548-2155-4b7b-999c-bba39abadb01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="program\[003] game\enemy_behavior">
+      <UniqueIdentifier>{ce3d3087-2385-41f0-9bcd-f0e98c556491}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -351,10 +351,10 @@
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_slime_move.cpp">
-      <Filter>program\[003] game\enemyaction</Filter>
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_slime_act.cpp">
-      <Filter>program\[003] game\enemyaction</Filter>
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
     <ClCompile Include="program\game\scene\gm_scene_battle_result.cpp">
       <Filter>program\[003] game\scene</Filter>
@@ -445,6 +445,9 @@
     </ClCompile>
     <ClCompile Include="program\game\gm_object_turn_icon.cpp">
       <Filter>program\[003] game\object</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_slime_behavior.cpp">
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -795,16 +798,16 @@
       <Filter>program\[003] game\data</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_enemy_move.h">
-      <Filter>program\[003] game\enemyaction</Filter>
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_enemy_act.h">
-      <Filter>program\[003] game\enemyaction</Filter>
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_slime_act.h">
-      <Filter>program\[003] game\enemyaction</Filter>
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_slime_move.h">
-      <Filter>program\[003] game\enemyaction</Filter>
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_unit_obstacle.h">
       <Filter>program\[003] game\unit</Filter>
@@ -904,6 +907,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_object_turn_icon.h">
       <Filter>program\[003] game\object</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_enemy_behavior.h">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_slime_behavior.h">
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

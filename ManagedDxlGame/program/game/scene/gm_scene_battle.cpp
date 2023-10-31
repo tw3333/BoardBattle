@@ -76,15 +76,27 @@ void SceneBattle::Initialzie() {
 
 	UnitEnemy* enemy2 = enemydata_mgr_->CreateUnitEnemy(0);
 	enemy2->SetUnitSquarePos(4,5);
+	
 	UnitEnemy* enemy3 = enemydata_mgr_->CreateUnitEnemy(1);
 	enemy3->SetUnitSquarePos(4, 6);
+	
 	UnitEnemy* enemy4 = enemydata_mgr_->CreateUnitEnemy(1);
 	enemy4->SetUnitSquarePos(4, 7);
+	
+	UnitEnemy* enemy5 = enemydata_mgr_->CreateUnitEnemy(2);
+	enemy5->SetUnitSquarePos(7, 7);
+	
+	UnitEnemy* enemy6 = enemydata_mgr_->CreateUnitEnemy(3);
+	enemy6->SetUnitSquarePos(7, 8);
+
 
 
 	enemy_units_.push_back(enemy2);
 	enemy_units_.push_back(enemy3);
 	enemy_units_.push_back(enemy4);
+	enemy_units_.push_back(enemy5);
+	enemy_units_.push_back(enemy6);
+
 
 
 	//enemy_units_[0]->AddShieldValue(20);
@@ -811,6 +823,7 @@ bool SceneBattle::PhaseEnemyAct(const float delta_time) {
 
 		turn_enemy_->SetIsEnemyActed(true);
 		turn_enemy_->Act(board_);
+
 		
 		//PhaseˆÚs
 		prior_phase_ = Phase::PhaseEnemyAct;

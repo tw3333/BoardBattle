@@ -5,5 +5,7 @@
 enum Enemy{
 	TestSlime,
 	Slime,
+	AttackPopo,
+	HealPopo,
 	EnemyNum
 };
