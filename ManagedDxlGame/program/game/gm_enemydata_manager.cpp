@@ -8,6 +8,7 @@
 
 #include "gm_enemy_behavior.h"
 #include "gm_slime_behavior.h"
+#include "gm_attackpopo_behavior.h"
 
 #include <vector>
 #include <memory>
@@ -164,11 +165,11 @@ void EnemyDataManager::AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enem
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
 	}
 	else if (enemy_data->GetEnemyDataID() == 2) {
-		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
+		enemy_data->SetEnemyBehavior(std::make_shared<AttackPopoBehavior>());
 
 	}
 	else if (enemy_data->GetEnemyDataID() == 3) {
-		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
+		enemy_data->SetEnemyBehavior(std::make_shared<AttackPopoBehavior>());
 
 	}
 

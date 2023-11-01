@@ -449,6 +449,12 @@
     <ClCompile Include="program\game\gm_slime_behavior.cpp">
       <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_attackpopo_behavior.cpp">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_healpopo_behavior.cpp">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -912,6 +918,12 @@
       <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_slime_behavior.h">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_attackpopo_behavior.h">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_healpopo_behavior.h">
       <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
   </ItemGroup>
