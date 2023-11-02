@@ -350,12 +350,6 @@
     <ClCompile Include="program\game\gm_ui_notice_target_box.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\gm_slime_move.cpp">
-      <Filter>program\[003] game\enemy_behavior</Filter>
-    </ClCompile>
-    <ClCompile Include="program\game\gm_slime_act.cpp">
-      <Filter>program\[003] game\enemy_behavior</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\scene\gm_scene_battle_result.cpp">
       <Filter>program\[003] game\scene</Filter>
     </ClCompile>
@@ -453,6 +447,9 @@
       <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
     <ClCompile Include="program\game\gm_healpopo_behavior.cpp">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_enemy_behavior.cpp">
       <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
   </ItemGroup>
@@ -802,18 +799,6 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_data_board.h">
       <Filter>program\[003] game\data</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_enemy_move.h">
-      <Filter>program\[003] game\enemy_behavior</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_enemy_act.h">
-      <Filter>program\[003] game\enemy_behavior</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_slime_act.h">
-      <Filter>program\[003] game\enemy_behavior</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\gm_slime_move.h">
-      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
     <ClInclude Include="program\game\gm_unit_obstacle.h">
       <Filter>program\[003] game\unit</Filter>

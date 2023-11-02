@@ -22,6 +22,7 @@ public:
 
 	void AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enemy_data);
 	void AssignEnemyMoveToEnemyData(std::shared_ptr<EnemyData> enemy_data);
+	void AssignEnemyBehaviorToEnemyData(std::shared_ptr<EnemyData> enemy_data);
 
 
 	UnitEnemy* CreateUnitEnemy(int enemy_id);

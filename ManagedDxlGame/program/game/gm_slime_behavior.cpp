@@ -14,162 +14,152 @@
 
 void SlimeBehavior::Move(UnitEnemy* turn_enemy, Board* board) {
 
-    if (IsAllyAdjacent(turn_enemy, board)) {
-        return;
-    }
+	//Allyが隣接していたら移動しない
+	if (IsAllyAdjacent(turn_enemy, board)) {
+		return;
+	}
+	else {
 
-    std::vector<UnitAlly*> nearest_allies;
-    int min_distance = INT_MAX;
+		//移動処理
+		//最も近いAllyを探す
+		UnitAlly* target_ally = this->GetNearestAlly(turn_enemy, board);
 
-    for (auto ally : board->GetPartyUnitsInBoard()) {
-        int distance = std::abs(turn_enemy->GetUnitSquarePos().row - ally->GetUnitSquarePos().row)
-            + std::abs(turn_enemy->GetUnitSquarePos().col - ally->GetUnitSquarePos().col);
 
-        if (distance < min_distance) {
-            nearest_allies.clear();
-            nearest_allies.push_back(ally);
-            min_distance = distance;
-        }
-        else if (distance == min_distance) {
-            nearest_allies.push_back(ally);
-        }
-    }
+		//移動先を決定
+		SquarePos start = turn_enemy->GetUnitSquarePos();
+		SquarePos target_pos = target_ally->GetUnitSquarePos();
+		final_pos_ = start;
+		target_pos_ = target_pos;
 
-    std::uniform_int_distribution<int> dist(0, nearest_allies.size() - 1);
-    UnitAlly* target_ally = nearest_allies[dist(s_rng)];
+		// BFSのためのデータ構造
+		SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+		std::vector<std::vector<bool>> visited(10, std::vector<bool>(10, false));
+		std::queue<std::pair<SquarePos, int>> q;
+		SquarePos startPos = turn_enemy->GetUnitSquarePos();
+		SquarePos targetPos = target_ally->GetUnitSquarePos();
 
-    SquarePos start = turn_enemy->GetUnitSquarePos();
-    SquarePos target_pos = target_ally->GetUnitSquarePos();
-    final_pos_ = start;
-    target_pos_ = target_pos;
+		q.push({ startPos, turn_enemy->GetCurrentMoveCost() });
+		visited[startPos.row][startPos.col] = true;
 
-    // BFSのためのデータ構造
-    SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-    std::vector<std::vector<bool>> visited(10, std::vector<bool>(10, false));
-    std::queue<std::pair<SquarePos, int>> q;
-    SquarePos startPos = turn_enemy->GetUnitSquarePos();
-    SquarePos targetPos = target_ally->GetUnitSquarePos();
+		SquarePos nextPos = startPos;
 
-    q.push({ startPos, turn_enemy->GetCurrentMoveCost() });
-    visited[startPos.row][startPos.col] = true;
+		while (!q.empty()) {
+			SquarePos currPos = q.front().first;
+			int remainingMove = q.front().second;
+			q.pop();
 
-    SquarePos nextPos = startPos;
+			int currDist = std::abs(currPos.row - targetPos.row) + std::abs(currPos.col - targetPos.col);
 
-    while (!q.empty()) {
-        SquarePos currPos = q.front().first;
-        int remainingMove = q.front().second;
-        q.pop();
+			for (SquarePos dir : directions) {
+				SquarePos adjPos = { currPos.row + dir.row, currPos.col + dir.col };
+				int newDist = std::abs(adjPos.row - targetPos.row) + std::abs(adjPos.col - targetPos.col);
 
-        int currDist = std::abs(currPos.row - targetPos.row) + std::abs(currPos.col - targetPos.col);
+				if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0
+					&& adjPos.col < 10 && !visited[adjPos.row][adjPos.col]
+					&& board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove())
+				{
+					if (remainingMove > 0 && newDist < currDist) { //移動可能かつターゲットに近づく場合
+						q.push({ adjPos, remainingMove - 1 });
+						visited[adjPos.row][adjPos.col] = true;
+						nextPos = adjPos;  //次の座標に更新
+					}
+				}
+			}
+		}
 
-        for (SquarePos dir : directions) {
-            SquarePos adjPos = { currPos.row + dir.row, currPos.col + dir.col };
-            int newDist = std::abs(adjPos.row - targetPos.row) + std::abs(adjPos.col - targetPos.col);
-
-            if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0 
-                && adjPos.col < 10 && !visited[adjPos.row][adjPos.col] 
-                && board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove()) 
-            {
-                if (remainingMove > 0 && newDist < currDist) { //移動可能かつターゲットに近づく場合
-                    q.push({ adjPos, remainingMove - 1 });
-                    visited[adjPos.row][adjPos.col] = true;
-                    nextPos = adjPos;  //次の座標に更新
-                }
-            }
-        }
-    }
-
-    //座標を更新
-    turn_enemy->SetUnitSquarePos(nextPos.row, nextPos.col);
+		//座標を更新
+		sound_mgr_.PlayAllyMoveSE();
+		turn_enemy->SetUnitSquarePos(nextPos.row, nextPos.col);
+	}
 
 }
 
 void SlimeBehavior::Act(UnitEnemy* turn_enemy, Board* board) {
 
-    //turn_enemyの位置を取得
-    SquarePos turn_enemy_pos = turn_enemy->GetUnitSquarePos();
+	//turn_enemyの位置を取得
+	SquarePos turn_enemy_pos = turn_enemy->GetUnitSquarePos();
 
-    //上下左右隣り合っているマスを取得
-    std::vector<SquarePos> around_pos;
-    if (turn_enemy_pos.row > 0) {
-        around_pos.push_back(SquarePos(turn_enemy_pos.row - 1, turn_enemy_pos.col));
-    }
-    if (turn_enemy_pos.row < 9) {
-        around_pos.push_back(SquarePos(turn_enemy_pos.row + 1, turn_enemy_pos.col));
-    }
-    if (turn_enemy_pos.col > 0) {
-        around_pos.push_back(SquarePos(turn_enemy_pos.row, turn_enemy_pos.col - 1));
-    }
-    if (turn_enemy_pos.col < 9) {
-        around_pos.push_back(SquarePos(turn_enemy_pos.row, turn_enemy_pos.col + 1));
-    }
+	//上下左右隣り合っているマスを取得
+	std::vector<SquarePos> around_pos = GetActRangePos(turn_enemy);
 
-    //隣り合っているマスにUnitAllyがいたらaround_allyに追加
-    std::vector<UnitAlly*> around_ally;
-    for (auto pos : around_pos) {
-        if (board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()) {
-            around_ally.push_back(board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare());
-        }
-    }
 
-    UnitAlly* target_ally = nullptr;
+	//隣り合っているマスにUnitAllyがいたらaround_allyに追加
+	std::vector<UnitAlly*> around_ally;
+	for (auto pos : around_pos) {
+		if (board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()) {
+			around_ally.push_back(board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare());
+		}
+	}
 
-    //いなかったら終了
-    if (around_ally.empty()) { return; }
-    //いる場合
-    else if (!around_ally.empty()) {
+	UnitAlly* target_ally = nullptr;
 
-        // taunt_ 値でソート
-        std::sort(around_ally.begin(), around_ally.end(), [](UnitAlly* a, UnitAlly* b) {
-            return a->GetTauntValue() < b->GetTauntValue();
-            });
+	//いなかったら終了
+	if (around_ally.empty()) { return; }
+	//いる場合
+	else if (!around_ally.empty()) {
 
-        // 最も高い taunt_ 値を持つ要素をすべて収集
-        int highest_taunt = around_ally.back()->GetTauntValue();
-        std::vector<UnitAlly*> highest_taunt_allies;
-        std::copy_if(around_ally.begin(), around_ally.end(), std::back_inserter(highest_taunt_allies), [highest_taunt](UnitAlly* unit) {
-            return unit->GetTauntValue() == highest_taunt;
-            });
+		target_ally = ExtractMostTauntAlly(around_ally);
+	}
 
-        // ランダムに1つ選ぶ
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> distr(0, highest_taunt_allies.size() - 1);
+	//damageを与える
+	if (target_ally) {
+		target_ally->DecreaseCurrentHp(turn_enemy->GetCurrentPower());
 
-        target_ally = highest_taunt_allies[distr(gen)];
-    }
+		anim_mgr_.GetAnim()[0]->SetObjPosToSquarePos(target_ally->GetUnitSquarePos().row, target_ally->GetUnitSquarePos().col);
+		anim_mgr_.GetAnim()[0]->CardAnimPlay("anim_attack");
 
-    //damageを与える
-    if (target_ally) {
-        target_ally->DecreaseCurrentHp(turn_enemy->GetCurrentPower());
+		sound_mgr_.PlayEnemyActSE(1);
+		sound_mgr_.PlayAllyDamagedVoice(target_ally->GetAllyData()->GetAllyDataID());
 
-        anim_mgr_.GetAnim()[0]->SetObjPosToSquarePos(target_ally->GetUnitSquarePos().row, target_ally->GetUnitSquarePos().col);
-        anim_mgr_.GetAnim()[0]->CardAnimPlay("anim_attack");
+	}
 
-        mgr.PlayEnemyActSE(1);
-        mgr.PlayAllyDamagedVoice(target_ally->GetAllyData()->GetAllyDataID());
-
-    }
 
 }
 
 bool SlimeBehavior::IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board) {
-    
-    SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-    SquarePos enemy_pos = turn_enemy->GetUnitSquarePos();
 
-    for (auto dir : directions) {
-        SquarePos check_pos = { enemy_pos.row + dir.row, enemy_pos.col + dir.col };
+	SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+	SquarePos enemy_pos = turn_enemy->GetUnitSquarePos();
 
-        if (check_pos.row >= 0 && check_pos.row < 10 && check_pos.col >= 0 && check_pos.col < 10) {
+	for (auto dir : directions) {
+		SquarePos check_pos = { enemy_pos.row + dir.row, enemy_pos.col + dir.col };
 
-            for (auto ally : board->GetPartyUnitsInBoard()) {
-                if (ally->GetUnitSquarePos().row == check_pos.row && ally->GetUnitSquarePos().col == check_pos.col) {
-                    return true;
-                }
-            }
-        }
-    }
+		if (check_pos.row >= 0 && check_pos.row < 10 && check_pos.col >= 0 && check_pos.col < 10) {
 
-    return false;
+			for (auto ally : board->GetPartyUnitsInBoard()) {
+				if (ally->GetUnitSquarePos().row == check_pos.row && ally->GetUnitSquarePos().col == check_pos.col) {
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+std::vector<SquarePos> SlimeBehavior::GetActRangePos(UnitEnemy* turn_enemy) {
+
+	std::vector<SquarePos> ret_act_range_pos;
+
+	SquarePos turn_enemy_pos = turn_enemy->GetUnitSquarePos();
+
+	// 上下左右のオフセット
+	std::vector<SquarePos> offsets = {
+		{-1, 0}, // 上
+		{1, 0},  // 下
+		{0, -1}, // 左
+		{0, 1}   // 右
+	};
+
+	for (const auto& offset : offsets) {
+		int newRow = turn_enemy_pos.row + offset.row;
+		int newCol = turn_enemy_pos.col + offset.col;
+
+		if (newRow >= 0 && newRow < 10 && newCol >= 0 && newCol < 10) {
+			ret_act_range_pos.push_back(SquarePos(newRow, newCol));
+		}
+
+	}
+
+	return ret_act_range_pos;
 }

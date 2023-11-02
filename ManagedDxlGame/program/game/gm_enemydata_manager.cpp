@@ -1,14 +1,9 @@
 #include "gm_enemydata_manager.h"
 
-
-#include "gm_enemy_move.h"
-#include "gm_enemy_act.h"
-#include "gm_slime_move.h"
-#include "gm_slime_act.h"
-
 #include "gm_enemy_behavior.h"
 #include "gm_slime_behavior.h"
 #include "gm_attackpopo_behavior.h"
+#include "gm_healpopo_behavior.h"
 
 #include <vector>
 #include <memory>
@@ -140,8 +135,7 @@ bool EnemyDataManager::LoadEnemyDataFromCSV(const std::string& filepath) {
 			//EnemyDataì¬
 			auto enemy = std::make_shared<EnemyData>(enemy_id, name, hp, power, speed, move_cost, action_cost, face_texture_path, battle_texture_path);
 			//EnemyAct‚ÆEnemyMove‚ğŠ„‚è“–‚Ä
-			AssignEnemyMoveToEnemyData(enemy);
-			AssignEnemyActToEnemyData(enemy);
+			AssignEnemyBehaviorToEnemyData(enemy);
 			//Ši”[
 			enemy_data_.push_back(enemy);
 		}
@@ -155,22 +149,16 @@ bool EnemyDataManager::LoadEnemyDataFromCSV(const std::string& filepath) {
 void EnemyDataManager::AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enemy_data) {
 
 	if (enemy_data->GetEnemyDataID() == 0) {
-
-		enemy_data->SetEnemyAct(std::make_shared<SlimeAct>());
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
 	}
 	else if (enemy_data->GetEnemyDataID() == 1) {
-		
-		enemy_data->SetEnemyAct(std::make_shared<SlimeAct>());
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
 	}
 	else if (enemy_data->GetEnemyDataID() == 2) {
 		enemy_data->SetEnemyBehavior(std::make_shared<AttackPopoBehavior>());
-
 	}
 	else if (enemy_data->GetEnemyDataID() == 3) {
 		enemy_data->SetEnemyBehavior(std::make_shared<AttackPopoBehavior>());
-
 	}
 
 }
@@ -178,28 +166,39 @@ void EnemyDataManager::AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enem
 void EnemyDataManager::AssignEnemyMoveToEnemyData(std::shared_ptr<EnemyData> enemy_data) {
 
 	if (enemy_data->GetEnemyDataID() == 0) {
-
-		enemy_data->SetEnemyMove(std::make_shared<SlimeMove>());
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
 	}
 	else if (enemy_data->GetEnemyDataID() == 1) {
-
-		enemy_data->SetEnemyMove(std::make_shared<SlimeMove>());
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
 	}
 	else if (enemy_data->GetEnemyDataID() == 2) {
-
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
-
 	}
 	else if (enemy_data->GetEnemyDataID() == 3) {
 
 		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
-
-
 	}
 
+}
 
+//“n‚µ‚½EnemyData‚É‘Î‰‚·‚éEnemyBehavior‚ğŠ„‚è“–‚Ä‚é
+void EnemyDataManager::AssignEnemyBehaviorToEnemyData(std::shared_ptr<EnemyData> enemy_data) {
+
+	if (enemy_data->GetEnemyDataID() == 0) {
+		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
+	}
+	else if (enemy_data->GetEnemyDataID() == 1) {
+		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
+	}
+	else if (enemy_data->GetEnemyDataID() == 2) {
+		enemy_data->SetEnemyBehavior(std::make_shared<AttackPopoBehavior>());
+	}
+	else if (enemy_data->GetEnemyDataID() == 3) {
+		enemy_data->SetEnemyBehavior(std::make_shared<HealPopoBehavior>());
+	}
+	else if (enemy_data->GetEnemyDataID() == 4) {
+		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
+	}
 
 }
 

@@ -221,6 +221,7 @@
     <ClCompile Include="program\game\gm_card_target.cpp" />
     <ClCompile Include="program\game\gm_deck.cpp" />
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
+    <ClCompile Include="program\game\gm_enemy_behavior.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
     <ClCompile Include="program\game\gm_healpopo_behavior.cpp" />
     <ClCompile Include="program\game\gm_object_battle_state_icon.cpp" />
@@ -230,9 +231,7 @@
     <ClCompile Include="program\game\gm_object_target_circle.cpp" />
     <ClCompile Include="program\game\gm_object_turn_icon.cpp" />
     <ClCompile Include="program\game\gm_phase_manager.cpp" />
-    <ClCompile Include="program\game\gm_slime_act.cpp" />
     <ClCompile Include="program\game\gm_slime_behavior.cpp" />
-    <ClCompile Include="program\game\gm_slime_move.cpp" />
     <ClCompile Include="program\game\gm_sound_manager.cpp" />
     <ClCompile Include="program\game\gm_ui_ally_action.cpp" />
     <ClCompile Include="program\game\gm_ui_card.cpp" />
@@ -353,18 +352,14 @@
     <ClInclude Include="program\game\gm_data_sound.h" />
     <ClInclude Include="program\game\gm_deck.h" />
     <ClInclude Include="program\game\gm_enemydata_manager.h" />
-    <ClInclude Include="program\game\gm_enemy_act.h" />
     <ClInclude Include="program\game\gm_enemy_behavior.h" />
-    <ClInclude Include="program\game\gm_enemy_move.h" />
     <ClInclude Include="program\game\gm_enums_enemy.h" />
     <ClInclude Include="program\game\gm_enums_graph.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
     <ClInclude Include="program\game\gm_healpopo_behavior.h" />
     <ClInclude Include="program\game\gm_object_battle_state_icon.h" />
     <ClInclude Include="program\game\gm_object_turn_icon.h" />
-    <ClInclude Include="program\game\gm_slime_act.h" />
     <ClInclude Include="program\game\gm_slime_behavior.h" />
-    <ClInclude Include="program\game\gm_slime_move.h" />
     <ClInclude Include="program\game\gm_enums_sound.h" />
     <ClInclude Include="program\game\gm_ui_deck_edit.h" />
     <ClInclude Include="program\game\gm_ui_graph_enums.h" />

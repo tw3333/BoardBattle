@@ -38,7 +38,7 @@ private:
 	SquarePos current_pos_;
 	std::vector<SquarePos> move_route_;
 
-	SoundManager& mgr = SoundManager::GetInstance();
+	SoundManager& sound_mgr_ = SoundManager::GetInstance();
 	AnimManager& anim_mgr_ = AnimManager::GetInstance();
 
 

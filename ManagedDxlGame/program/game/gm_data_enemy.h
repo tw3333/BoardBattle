@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 #include "../dxlib_ext/dxlib_ext.h"
-#include "gm_enemy_act.h"
-#include "gm_enemy_move.h"
 #include "gm_enemy_behavior.h"
 
 
@@ -47,10 +45,6 @@ public:
 	}
 	std::shared_ptr<dxe::Texture> GetTextureFace() { return texture_face_; }
 
-	void SetEnemyMove(std::shared_ptr<EnemyMove> enemy_move) { enemy_move_ = enemy_move; }
-	void SetEnemyAct(std::shared_ptr<EnemyAct> enemy_act) { enemt_act_ = enemy_act; }
-	std::shared_ptr<EnemyMove> GetEnemyMove() { return enemy_move_; }
-	std::shared_ptr<EnemyAct> GetEnemyAct() { return enemt_act_; }
 	void SetEnemyBehavior(std::shared_ptr<EnemyBehavior> enemy_behavior) { enemy_behavior_ = enemy_behavior; }
 	std::shared_ptr<EnemyBehavior> GetEnemyBehavior() { return enemy_behavior_; }
 
@@ -69,8 +63,6 @@ private:
 	bool is_picked_ = false;
 	
 	//EnemyMove,EnemyAct
-	std::shared_ptr<EnemyMove> enemy_move_ = nullptr;
-	std::shared_ptr<EnemyAct> enemt_act_ = nullptr;
 	std::shared_ptr<EnemyBehavior> enemy_behavior_ = nullptr;
 
 
