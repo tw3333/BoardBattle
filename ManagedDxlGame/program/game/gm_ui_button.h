@@ -31,10 +31,13 @@ public:
 	//void SetClickLeftOrRight();
 
 	bool GetIsOverMousePointer() { return is_over_mouse_p; }
-
+	bool GetIsMouseHited() { return is_mouse_hited_; }
+	void SetIsMouseHited(bool is_mouse_hited) { is_mouse_hited_ = is_mouse_hited; }
+	
 private:
 
 	bool is_over_mouse_p = false;
+	bool is_mouse_hited_ = false;
 	//tnl::Input::eMouse input_click_ = tnl::Input::eMouseTrigger:;
 
 

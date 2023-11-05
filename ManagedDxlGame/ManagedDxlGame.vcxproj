@@ -260,6 +260,7 @@
     <ClCompile Include="program\game\gm_ui_player_action_buttons.cpp" />
     <ClCompile Include="program\game\gm_ui_scene_battle_mediator.cpp" />
     <ClCompile Include="program\game\gm_ui_selectphase_mediator.cpp" />
+    <ClCompile Include="program\game\gm_ui_title.cpp" />
     <ClCompile Include="program\game\gm_ui_turn_ally_state.cpp" />
     <ClCompile Include="program\game\gm_ui_turn_icon.cpp" />
     <ClCompile Include="program\game\gm_ui_turn_view.cpp" />
@@ -276,6 +277,7 @@
     <ClCompile Include="program\game\scene\gm_scene_load.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
     <ClCompile Include="program\game\gm_scene_manager.cpp" />
+    <ClCompile Include="program\game\scene\gm_scene_title.cpp" />
     <ClCompile Include="program\library\json11.cpp" />
     <ClCompile Include="program\library\tnl_font_texture.cpp" />
     <ClCompile Include="program\library\tnl_inclution_owner_locked.cpp" />
@@ -406,6 +408,7 @@
     <ClInclude Include="program\game\gm_ui_player_action_buttons.h" />
     <ClInclude Include="program\game\gm_ui_scene_battle_mediator.h" />
     <ClInclude Include="program\game\gm_ui_selectphase_mediator.h" />
+    <ClInclude Include="program\game\gm_ui_title.h" />
     <ClInclude Include="program\game\gm_ui_turn_ally_state.h" />
     <ClInclude Include="program\game\gm_ui_turn_icon.h" />
     <ClInclude Include="program\game\gm_ui_turn_view.h" />
@@ -425,6 +428,7 @@
     <ClInclude Include="program\game\scene\gm_scene_selectphase.h" />
     <ClInclude Include="program\game\scene\gm_scene_base.h" />
     <ClInclude Include="program\game\gm_scene_manager.h" />
+    <ClInclude Include="program\game\scene\gm_scene_title.h" />
     <ClInclude Include="program\library\json11.hpp" />
     <ClInclude Include="program\library\stb_image.h" />
     <ClInclude Include="program\library\tnl_font_texture.h" />

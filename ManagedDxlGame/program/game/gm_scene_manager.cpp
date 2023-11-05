@@ -2,6 +2,7 @@
 
 #include "scene/gm_scene_battle.h"
 #include "scene/gm_scene_load.h"
+#include "scene/gm_scene_title.h"
 #include "scene/gm_scene_selectphase.h"
 #include "scene/gm_scene_battle_result.h"
 
@@ -10,7 +11,7 @@ SceneManager* SceneManager::instance_ = nullptr;
 //コンストラクタ
 SceneManager::SceneManager() {
 	
-	scene_now_ = new SceneLoad();
+	scene_now_ = new SceneTitle(); //起動時初めのシーン
 	scene_now_->Initialzie();
 	img_black_ = LoadGraph("graphics/512.bmp");
 

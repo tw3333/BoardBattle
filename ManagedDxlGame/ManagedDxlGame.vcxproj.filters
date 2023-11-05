@@ -452,6 +452,12 @@
     <ClCompile Include="program\game\gm_enemy_behavior.cpp">
       <Filter>program\[003] game\enemy_behavior</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\scene\gm_scene_title.cpp">
+      <Filter>program\[003] game\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\gm_ui_title.cpp">
+      <Filter>program\[003] game\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -910,6 +916,12 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_healpopo_behavior.h">
       <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\scene\gm_scene_title.h">
+      <Filter>program\[003] game\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_ui_title.h">
+      <Filter>program\[003] game\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

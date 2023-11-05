@@ -40,7 +40,7 @@ void UIPanel::Render() {
 
 			if (graph_handle_) {
 
-				DrawExtendGraph(x_, y_, x_ + width_, y_ + height_, graph_handle_, false);
+				DrawExtendGraph(x_, y_, x_ + width_, y_ + height_, graph_handle_, is_trans_graph_);
 
 			}
 			else if (!graph_handle_) {
@@ -52,9 +52,6 @@ void UIPanel::Render() {
 		}
 
 	}
-
-
-
 
 }
 

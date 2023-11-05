@@ -22,9 +22,12 @@ void UIButton::Update(float delta_time) {
 
 			if (IsOverMousePointer(mouse_pos.x, mouse_pos.y)) {
 				is_over_mouse_p = true;
+
+
 			}
 			else {
 				is_over_mouse_p = false;
+
 			}
 
 		}

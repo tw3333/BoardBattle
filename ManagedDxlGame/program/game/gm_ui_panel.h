@@ -33,6 +33,8 @@ public:
 
 	//setter
 	void setGraphHandle(int graph_handle) { graph_handle_ = graph_handle; }
+	void SetTransGraph(bool flag) { is_trans_graph_ = flag; }
+	bool GetIsTransGraph() { return is_trans_graph_; }
 	void setColor(int color_code) { color_ = color_code; }
 	int GetPosX() { return x_; }
 	int GetPosY() { return y_; }
@@ -55,6 +57,7 @@ public:
 private:
 	
 	int graph_handle_ = 0;
+	bool is_trans_graph_ = false;
 
 	//easing用の変数
 	int start_x_; //アニメーション初めの左頂点座標
