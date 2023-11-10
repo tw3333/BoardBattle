@@ -6,6 +6,17 @@
 //memo
 //¡ŒãAâ‘Î‚Én‘Ìw’è‚µ‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢‚Æ‚¢‚¤Œø‰Ê‚ğì‚éÛ‚Í‚±‚±‚É‚»‚ê‚ğ’Ç‰Á‚·‚é
 
+void CardTarget::ResetCardTarget() {
+
+	if (!target_squares_pos_.empty()) {
+		target_squares_pos_.clear();
+	}
+
+	is_specified_ = false;
+	is_determined_ = false;
+
+}
+
 bool CardTarget::IsTargetInRange(std::vector<SquarePos> range, Board* board)
 {
 

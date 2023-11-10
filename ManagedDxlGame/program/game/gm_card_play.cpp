@@ -254,9 +254,9 @@ void CardPlay::PlayCardExecute(Board* board) {
 	if (play_card_ && turn_ally_) {
 		
 		//ref_numが一致したTargetに格納されているUnitにEffect
-		for (auto a : play_card_->GetCardData()->GetCardEffectList()) {
+		for (auto &a : play_card_->GetCardData()->GetCardEffectList()) {
 
-			for (auto b : play_card_->GetCardData()->GetCardTargetList()) {
+			for (auto &b : play_card_->GetCardData()->GetCardTargetList()) {
 
 				if (a->GetEffectRefNum() == b->GetTargetRefNum()) {
 
@@ -278,12 +278,24 @@ void CardPlay::PlayCardExecute(Board* board) {
 }
 
 
+void CardPlay::ResetPlayCardTarget() {
+
+	if (play_card_) {
+
+		for (auto &ct : play_card_->GetCardData()->GetCardTargetList()) {
+			ct->ResetCardTarget();
+		}
+
+	}
+
+}
+
 void CardPlay::ResetPlayCardTargetSquarePos() {
 
 	if (play_card_) {
 
 		//CardTargeに格納したSquarePosをリセット
-		for (auto a : play_card_->GetCardData()->GetCardTargetList()) {
+		for (auto &a : play_card_->GetCardData()->GetCardTargetList()) {
 
 			//a->GetTargetUnits().clear();
 			a->GetTargetSquaresPos().clear();
@@ -297,29 +309,29 @@ void CardPlay::ResetPlayCardTargetSquarePos() {
 
 void CardPlay::RemovePlayCardFromHand() {
 
-	//if (play_card_) {
-
-	//	int select_serial_num = play_card_->GetSerialNum();
-
-
-	//	//play_cardと同じカードPtrをHandから削除
-	//	turn_ally_->GetHand().erase(std::remove_if(turn_ally_->GetHand().begin(), turn_ally_->GetHand().end(),
-	//		[select_serial_num](const std::shared_ptr<Card>& card) {
-	//			return card->GetSerialNum() == select_serial_num;
-	//		}), turn_ally_->GetHand().end());
-
-	//}
-
 	if (play_card_) {
-		// 削除したいカードのポインタを直接取得
-		std::shared_ptr<Card> targetCard = play_card_;
 
-		auto& hand = turn_ally_->GetHand();
-		auto it = std::find(hand.begin(), hand.end(), targetCard);
-		if (it != hand.end()) {
-			hand.erase(it);
-		}
+		int select_serial_num = play_card_->GetSerialNum();
+
+
+		//play_cardと同じカードPtrをHandから削除
+		turn_ally_->GetHand().erase(std::remove_if(turn_ally_->GetHand().begin(), turn_ally_->GetHand().end(),
+			[select_serial_num](const std::shared_ptr<Card>& card) {
+				return card->GetSerialNum() == select_serial_num;
+		}), turn_ally_->GetHand().end());
+
 	}
+
+	//if (play_card_) {
+	//	// 削除したいカードのポインタを直接取得
+	//	std::shared_ptr<Card> targetCard = play_card_;
+
+	//	auto& hand = turn_ally_->GetHand();
+	//	auto it = std::find(hand.begin(), hand.end(), targetCard);
+	//	if (it != hand.end()) {
+	//		hand.erase(it);
+	//	}
+	//}
 
 }
 
@@ -331,9 +343,9 @@ bool CardPlay::CanPlayCardExecute(Board* board)
 	if (play_card_ && turn_ally_) {
 
 		//ref_numが一致したTargetに格納されているUnitにEffect
-		for (auto a : play_card_->GetCardData()->GetCardEffectList()) {
+		for (auto &a : play_card_->GetCardData()->GetCardEffectList()) {
 
-			for (auto b : play_card_->GetCardData()->GetCardTargetList()) {
+			for (auto &b : play_card_->GetCardData()->GetCardTargetList()) {
 
 				if (a->GetEffectRefNum() == b->GetTargetRefNum()) {
 

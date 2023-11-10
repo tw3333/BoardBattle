@@ -38,9 +38,10 @@ void SceneBattle::Initialzie() {
 	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 2, 3);
 
 	for (int i = 0; i < 3; ++i) {
-/*		party_[i]->SetBaseDeck(cmgr_.GetAllCard());
+	/*party_[i]->SetBaseDeck(cmgr_.GetAllCard());
 		party_[i]->SetUseDeck(cmgr_.GetAllCard());
-	*/	if (i == 0) {
+	*/	
+		if (i == 0) {
 			party_[i]->SetBaseDeck(cmgr_.GetC1Deck());
 			party_[i]->SetUseDeck(cmgr_.GetC1Deck());
 			party_[i]->AssignSerialNumberToUseDeck();
@@ -927,6 +928,7 @@ bool SceneBattle::PhasePlayerActionMove(const float delta_time) {
 
 	//スネアターンの場合は移動できない
 	if (turn_ally_->GetIsSnareTurn()) {
+
 		battle_media_player_->SetAnimBattleState(State::Snare);
 		prior_phase_ = Phase::PhasePlayerActionMove;
 		phase_.change(&SceneBattle::PhaseAnimBattleStateInTurn);
@@ -1309,7 +1311,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 			//	}
 			//}
 
-			for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+			for (auto &range_pos : card_play_->GetCardRangeSquarePos()) {
 
 				if (select_square_->GetSelectSquarePos() == range_pos && board_->getBoardSquare(range_pos.row, range_pos.col)->GetAllyPtrInSquare()) {
 
@@ -1321,7 +1323,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		}
 		else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Enemy) {
 
-			for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+			for (auto &range_pos : card_play_->GetCardRangeSquarePos()) {
 
 				if (select_square_->GetSelectSquarePos() == range_pos && board_->getBoardSquare(range_pos.row, range_pos.col)->GetEnemyPtrInSquare()) {
 
@@ -1332,7 +1334,7 @@ bool SceneBattle::PhaseSpecifyTargetProc(const float delta_time)
 		}
 		else if (card_play_->GetCurrentCardTarget()->GetToTarget() == TOTARGET::Square) {
 
-			for (auto range_pos : card_play_->GetCardRangeSquarePos()) {
+			for (auto &range_pos : card_play_->GetCardRangeSquarePos()) {
 
 				if (select_square_->GetSelectSquarePos() == range_pos && board_->getBoardSquare(range_pos.row, range_pos.col)->GetIsCanMove()) {
 
@@ -1476,7 +1478,7 @@ bool SceneBattle::PhaseExecutePlayCard(const float delta_time) {
 
 	card_play_->PlayCardExecute(board_);
 	battle_media_player_->CardMediaPlay(card_play_->GetPlayCard());
-	card_play_->ResetPlayCardTargetSquarePos();
+	card_play_->ResetPlayCardTarget();
 	card_play_->RemovePlayCardFromHand();
 
 

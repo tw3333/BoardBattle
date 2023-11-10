@@ -552,9 +552,10 @@ void CardManager::LoadC1DeckFromCSV(const std::string& filepath) {
 
 			for (const auto& cardPtr : all_card_) {
 				if (cardPtr->GetCardData()->GetCardID() == cardID) {
+					
 					for (int i = 0; i < cardNum; i++) {
 						// all_card_からのポインタのコピーをc1_deck_に追加
-						c1_deck_.push_back(cardPtr);
+						c1_deck_.push_back(cardPtr->CopyCard());
 					}
 					break;
 				}
@@ -597,7 +598,7 @@ void CardManager::LoadC2DeckFromCSV(const std::string& filepath) {
 				if (cardPtr->GetCardData()->GetCardID() == cardID) {
 					for (int i = 0; i < cardNum; i++) {
 						// all_card_からのポインタのコピーをc1_deck_に追加
-						c2_deck_.push_back(cardPtr);
+						c2_deck_.push_back(cardPtr->CopyCard());
 					}
 					break;
 				}
@@ -641,7 +642,7 @@ void CardManager::LoadC3DeckFromCSV(const std::string& filepath) {
 				if (cardPtr->GetCardData()->GetCardID() == cardID) {
 					for (int i = 0; i < cardNum; i++) {
 						// all_card_からのポインタのコピーをc1_deck_に追加
-						c3_deck_.push_back(cardPtr);
+						c3_deck_.push_back(cardPtr->CopyCard());
 					}
 					break;
 				}

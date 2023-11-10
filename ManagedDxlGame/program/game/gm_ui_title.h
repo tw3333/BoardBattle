@@ -42,6 +42,10 @@ public:
 	void Update(float delta_time);
 	void Render();
 
+	void SetIsPushStartButton(bool is_push_start_button) { is_push_start_button_ = is_push_start_button; }
+	bool GetIsPushStartButton() { return is_push_start_button_; }
+	void SetIsPushQuitGameButton(bool is_push_quit_game_button) { is_push_quit_game_button_ = is_push_quit_game_button; }
+	bool GetIsPushQuitGameButton() { return is_push_quit_game_button_; }
 
 private:
 

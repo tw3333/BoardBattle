@@ -4,6 +4,7 @@ void UIButton::Update(float delta_time) {
 
 	tnl::Vector3 mouse_pos = tnl::Input::GetMousePosition();
 
+
 	if (is_enabled_) {
 
 		if (!is_moving_) {
@@ -11,6 +12,7 @@ void UIButton::Update(float delta_time) {
 			//ƒNƒŠƒbƒN”»’è
 			if (IsClicked(mouse_pos.x, mouse_pos.y)) {
 
+				is_clicked_ = true;
 
 				if (mediator_) {
 
@@ -32,8 +34,12 @@ void UIButton::Update(float delta_time) {
 
 		}
 
+		is_clicked_ = false;
+
 		UIPanel::Update(delta_time);
 	}
+
+
 
 }
 

@@ -33,11 +33,17 @@ public:
 	bool GetIsOverMousePointer() { return is_over_mouse_p; }
 	bool GetIsMouseHited() { return is_mouse_hited_; }
 	void SetIsMouseHited(bool is_mouse_hited) { is_mouse_hited_ = is_mouse_hited; }
+	void SetIsClicked(bool is_clicked) { is_clicked_ = is_clicked; }
+	bool GetIsClicked() { return is_clicked_; }
 	
+
+
 private:
 
 	bool is_over_mouse_p = false;
 	bool is_mouse_hited_ = false;
+
+	bool is_clicked_ = false;
 	//tnl::Input::eMouse input_click_ = tnl::Input::eMouseTrigger:;
 
 

@@ -71,6 +71,7 @@ public:
 	void SetCurrentCardTarget(std::shared_ptr<CardTarget> card_target) { current_card_target_ = card_target; }
 
 	std::vector<SquarePos> GetCardRangeSquarePos() { return card_range_square_pos_; }
+	void ResetPlayCardTarget(); //PlayCardのCardTargetをリセットする関数
 	void ResetPlayCardTargetSquarePos(); //PlayCardのTargetのSquarePosをリセットする関数
 	void RemovePlayCardFromHand(); //PlayCardを手札から削除する
 	

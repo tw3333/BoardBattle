@@ -30,7 +30,6 @@ void UnitEnemy::Render(dxe::Camera* camera) {
 		unit_obj_->Render(camera);
 	}
 
-
 }
 
 void UnitEnemy::InitEnemyObjPos() {

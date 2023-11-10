@@ -106,6 +106,7 @@ private:
 	//std::vector<std::shared_ptr<Card>> all_card_; //全てのカード
 
 	std::vector<CardData*> all_card_data_; //全てのカードのCardData
+
 	std::vector<std::shared_ptr<Card>> all_card_; //全てのカード
 	std::vector<std::shared_ptr<Card>> c1_poss_cards; //c1の全所持カード
 	std::vector<std::shared_ptr<Card>> c2_poss_cards; //c2の全所持カード

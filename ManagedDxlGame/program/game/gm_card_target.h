@@ -41,6 +41,7 @@ public:
 	}
 	~CardTarget() { for (auto a : target_units_) { delete a; } }
 
+	void ResetCardTarget(); //PlayCard‚Åg—p‘O‚É‰Šú‰»‚·‚é
 
 	TARGETTYPE GetTargetType() { return target_type_; }
 	TOTARGET GetToTarget() { return to_target_; }

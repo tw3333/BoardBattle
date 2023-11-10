@@ -1,4 +1,5 @@
 #include "gm_ui_title.h"
+#include "../dxlib_ext/dxlib_ext.h"
 
 //‰ŠúScene‚ÅŽg‚¤‚½‚ßŠÖ”‚Åƒ[ƒh
 void UITitle::UITitleLoadGraph() {
@@ -30,12 +31,17 @@ void UITitle::Update(float delta_time) {
 		button->Update(delta_time);
 
 		if (button == title_buttons_[TitleButton::START_BUTTON]) {
+			
 			if (button->GetIsOverMousePointer()) {
 				
 				button->setGraphHandle(start_button_graph_on);
 				if (!button->GetIsMouseHited()) {
 					PlaySoundMem(se_math_cursor_title_button_, DX_PLAYTYPE_BACK, true);
 					button->SetIsMouseHited(true);
+				}
+				//Push
+				if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+					is_push_start_button_ = true;
 				}
 
 			} else {
@@ -47,12 +53,19 @@ void UITitle::Update(float delta_time) {
 		}
 		
 		if (button == title_buttons_[TitleButton::QUIT_GAME_BUTTON]) {
+			
 			if (button->GetIsOverMousePointer()) {
+				
 				button->setGraphHandle(quit_game_button_graph_on);
 				if (!button->GetIsMouseHited()) {
 					PlaySoundMem(se_math_cursor_title_button_, DX_PLAYTYPE_BACK, true);
 					button->SetIsMouseHited(true);
 				}
+				//Push
+				if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+					is_push_quit_game_button_ = true;
+				}
+
 			}
 			else  {
 				button->setGraphHandle(quit_game_button_graph);
@@ -61,8 +74,9 @@ void UITitle::Update(float delta_time) {
 			}
 		}
 
-
 	}
+
+
 
 	
 }

@@ -24,10 +24,11 @@ private:
 	SceneManager* scene_mgr_ = nullptr;
 	UITitle* ui_title_ = nullptr;
 
-	bool start_ = false;
-	bool quit_game_ = false;
+	bool push_start_ = false;
+	bool push_quit_game_ = false;
 	
-	int title_bgm_handle_ = 0;
+	int bgm_title_handle_ = 0;
+	int se_push_button_handle_ = 0;
 
 	
 };
