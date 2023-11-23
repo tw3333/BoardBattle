@@ -82,3 +82,64 @@ UnitAlly* EnemyBehavior::ExtractMostTauntAlly(std::vector<UnitAlly*> allies) {
     }
 
 }
+
+
+//渡した座標を軸に上下左右の移動可能なSquarePosを返す
+std::vector<SquarePos> EnemyBehavior::GetCanMoveAdjacentSquares(SquarePos target_square_pos, Board* board) {
+
+    std::vector<SquarePos> ret_adjacent_squares;
+    SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+    
+    for (SquarePos dir : directions) {
+       
+        SquarePos adjPos = { target_square_pos.row + dir.row, target_square_pos.col + dir.col };
+        
+        if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0 && adjPos.col < 10
+            && board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove()) {
+            ret_adjacent_squares.push_back(adjPos);
+        
+        }
+    }
+
+
+    return ret_adjacent_squares;
+}
+
+std::vector<SquarePos> EnemyBehavior::GetAllAlliesAdjacentSquares(Board* board) {
+
+    std::vector<SquarePos> ret_all_adjacent_squares;
+    
+    for (int row = 0; row < 10; ++row) {
+        for (int col = 0; col < 10; ++col) {
+
+            if (board->getBoardSquares()[row][col]->GetAllyPtrInSquare()) {
+
+                std::vector<SquarePos> adjacent_squares = GetAdjacentSquares(SquarePos{ row, col }, board);
+                
+                ret_all_adjacent_squares.insert(ret_all_adjacent_squares.end(), adjacent_squares.begin(), adjacent_squares.end());
+            }
+        }
+    }
+
+    return ret_all_adjacent_squares;
+}
+
+
+
+std::vector<SquarePos> EnemyBehavior::GetAdjacentSquares(SquarePos pos, Board* board) {
+    
+    std::vector<SquarePos> ret_adjacent_squares;
+    SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} }; // 上、下、左、右
+
+    for (SquarePos dir : directions) {
+        SquarePos adjPos = { pos.row + dir.row, pos.col + dir.col };
+        
+        if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0 && adjPos.col < 10
+            && board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove()) {
+            
+            ret_adjacent_squares.push_back(adjPos);
+        }
+    }
+
+    return ret_adjacent_squares;
+}

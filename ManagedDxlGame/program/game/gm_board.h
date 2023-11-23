@@ -24,10 +24,8 @@ class SelectSquare;
 class Board {
 public:
 
-	Board(){
+	Board() {
 		Create();
-		
-
 	}
 	~Board() { delete camera_; }
 

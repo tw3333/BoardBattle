@@ -19,7 +19,8 @@ public:
 	
 	void SetMediator(UIMediator* mediator) { mediator_= mediator; }
 	void SetIsEnabled(bool is_enabled) { is_enabled_ = is_enabled; }
-	void SetNotifyTag(std::string tag_name) { notify_tag_ = tag_name; };
+	void SetNotifyTag(std::string tag_name) { notify_tag_ = tag_name; }
+
 
 protected:
 

@@ -79,8 +79,8 @@ void SceneBattle::Initialzie() {
 	enemy2->SetUnitSquarePos(4,5);
 	
 	UnitEnemy* enemy3 = enemydata_mgr_->CreateUnitEnemy(1);
-	enemy3->SetUnitSquarePos(4, 6);
-	
+	enemy3->SetUnitSquarePos(3, 3);
+
 	UnitEnemy* enemy4 = enemydata_mgr_->CreateUnitEnemy(4);
 	enemy4->SetUnitSquarePos(4, 7);
 	
@@ -91,12 +91,17 @@ void SceneBattle::Initialzie() {
 	enemy6->SetUnitSquarePos(7, 8);
 
 
+	UnitEnemy* enemy7 = enemydata_mgr_->CreateUnitEnemy(1);
+	enemy7->SetUnitSquarePos(4, 3);
+
+
 
 	enemy_units_.push_back(enemy2);
 	enemy_units_.push_back(enemy3);
 	enemy_units_.push_back(enemy4);
 	enemy_units_.push_back(enemy5);
 	enemy_units_.push_back(enemy6);
+	enemy_units_.push_back(enemy7);
 
 
 

@@ -458,6 +458,9 @@
     <ClCompile Include="program\game\gm_ui_title.cpp">
       <Filter>program\[003] game\ui</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\gm_golem_behavior.cpp">
+      <Filter>program\[003] game\enemy_behavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ManagedDxlGame.rc">
@@ -922,6 +925,9 @@
     </ClInclude>
     <ClInclude Include="program\game\gm_ui_title.h">
       <Filter>program\[003] game\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\gm_golem_behavior.h">
+      <Filter>program\[003] game\enemy_behavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

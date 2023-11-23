@@ -27,7 +27,7 @@ bool CardEffectAddBlood::CanEffectExcute(std::vector<SquarePos> range_square_pos
 void CardEffectAddBlood::EffectExcute(std::vector<SquarePos> target_square_pos, Board* board) {
 	
 	
-	for (auto square : target_square_pos) {
+	for (auto &square : target_square_pos) {
 		bool hit = false;
 
 		if (board->getBoardSquare(square.row, square.col)->GetAllyPtrInSquare()

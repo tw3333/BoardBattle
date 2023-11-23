@@ -24,13 +24,16 @@ static std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().coun
 class EnemyBehavior {
 public:
 
-	virtual void Move(UnitEnemy* turn_enemy, Board* board) = 0;
-	virtual void Act(UnitEnemy* turn_enemy, Board* board) = 0;
+	virtual void Move(UnitEnemy* turn_enemy, Board* board) = 0; //移動
+	virtual void Act(UnitEnemy* turn_enemy, Board* board) = 0; //行動
 	
 	//Behaviorクラスで使う凡庸的な関数
 	UnitAlly* GetNearestAlly(UnitEnemy* turn_enemy, Board* board); //一番近い味方のユニットを返す
 	UnitAlly* ExtractMostTauntAlly(std::vector<UnitAlly*> allies); //渡したUnitAllyの配列の高い味方のユニットを返す
+	std::vector<SquarePos> GetCanMoveAdjacentSquares(SquarePos target_square_pos, Board* board); //渡したマスの周囲の移動可能なマスの座標を返す
 
+	std::vector<SquarePos> GetAllAlliesAdjacentSquares(Board* board);
+	std::vector<SquarePos> GetAdjacentSquares(SquarePos pos, Board* board);
 
 
 };

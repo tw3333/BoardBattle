@@ -223,6 +223,7 @@
     <ClCompile Include="program\game\gm_enemydata_manager.cpp" />
     <ClCompile Include="program\game\gm_enemy_behavior.cpp" />
     <ClCompile Include="program\game\gm_font_manager.cpp" />
+    <ClCompile Include="program\game\gm_golem_behavior.cpp" />
     <ClCompile Include="program\game\gm_healpopo_behavior.cpp" />
     <ClCompile Include="program\game\gm_object_battle_state_icon.cpp" />
     <ClCompile Include="program\game\gm_object_enemy.cpp" />
@@ -358,6 +359,7 @@
     <ClInclude Include="program\game\gm_enums_enemy.h" />
     <ClInclude Include="program\game\gm_enums_graph.h" />
     <ClInclude Include="program\game\gm_font_manager.h" />
+    <ClInclude Include="program\game\gm_golem_behavior.h" />
     <ClInclude Include="program\game\gm_healpopo_behavior.h" />
     <ClInclude Include="program\game\gm_object_battle_state_icon.h" />
     <ClInclude Include="program\game\gm_object_turn_icon.h" />

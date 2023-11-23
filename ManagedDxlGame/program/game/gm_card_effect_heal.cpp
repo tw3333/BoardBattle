@@ -26,7 +26,7 @@ void CardEffectHeal::EffectExcute(std::vector<SquarePos> target_square_pos, Boar
 	bool ally_heal = false;
 
 
-	for (auto pos : target_square_pos) {
+	for (auto &pos : target_square_pos) {
 
 		if (board->getBoardSquare(pos.row, pos.col)->GetAllyPtrInSquare()) {
 

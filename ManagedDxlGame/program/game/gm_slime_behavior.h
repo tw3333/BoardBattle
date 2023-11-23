@@ -23,7 +23,7 @@ public:
 	
 	bool IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board);
 	std::vector<SquarePos> GetActRangePos(UnitEnemy* turn_enemy);
-
+	std::pair<SquarePos, std::vector<SquarePos>> GetBestMoveAlongPath(SquarePos start_pos, const std::vector<SquarePos>& targetPositions, Board* board, int move_cost);
 
 private:
 
