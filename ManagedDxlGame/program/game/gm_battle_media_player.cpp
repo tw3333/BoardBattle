@@ -66,7 +66,7 @@ void BattleMediaPlayer::Render(dxe::Camera* camera) {
 		obj_battle_state_icon_->Render(camera);
 	}
 
-	DrawStringEx(0,350,-1,"battle_state_timer[%f]",timer_);
+	//DrawStringEx(0,350,-1,"battle_state_timer[%f]",timer_);
 
 }
 
@@ -106,7 +106,7 @@ void BattleMediaPlayer::CardMediaPlay(std::shared_ptr<Card> card) {
 			anim_[anim_cnt]->SetObjPosToSquarePos(target->GetTargetSquaresPos()[anim_cnt].row, target->GetTargetSquaresPos()[anim_cnt].col);
 			anim_[anim_cnt]->CardAnimPlay(card->GetCardData()->GetCardAnimName());
 
-			DrawStringEx(0,300,-1,"playtime:%f",anim_[anim_cnt]->GetPlayTime());
+			//DrawStringEx(0,300,-1,"playtime:%f",anim_[anim_cnt]->GetPlayTime());
 
 			anim_cnt++;
 		}

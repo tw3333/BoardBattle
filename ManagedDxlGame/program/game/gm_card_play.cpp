@@ -184,7 +184,7 @@ void CardPlay::EffectExecute()
 			if (total_units_in_range_.empty()) {
 
 				//debugcode
-				DrawStringEx(0, 500, -1, "射程に誰もいないよ！");
+				//DrawStringEx(0, 500, -1, "射程に誰もいないよ！");
 
 				return;
 			}

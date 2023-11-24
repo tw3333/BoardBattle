@@ -62,7 +62,7 @@ void UINotice::Render() {
 
 	//w1 * 4 + (w1 * 1 / 2) + 10
 
-	DrawStringEx(0,400,-1,"timer:%f",timer_);
+	//DrawStringEx(0,400,-1,"timer:%f",timer_);
 }
 
 void UINotice::NoTargetPanelRender(bool flag) {

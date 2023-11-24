@@ -120,7 +120,7 @@ void UICardHand::Render() {
 	}
 
 	if (select_uicard_) {
-		DrawStringEx(0,0,-1,"serialnum:[%d]",select_uicard_->GetCardPtr()->GetSerialNum());
+		//DrawStringEx(0,0,-1,"serialnum:[%d]",select_uicard_->GetCardPtr()->GetSerialNum());
 	}
 
 }

@@ -39,14 +39,14 @@ void UICard::Update(float delta_time) {
 
 void UICard::Render() {
 
-	DrawStringEx(500,40,-1,"Render:UICard");
+	//DrawStringEx(500,40,-1,"Render:UICard");
 
 
 	if (is_render_) {
 
 		if (card_ptr_) {
 
-			DrawStringEx(500, 60 + debug_txt_y_, -1, "RenderUICard[%d]", debug_cnt_);
+			//DrawStringEx(500, 60 + debug_txt_y_, -1, "RenderUICard[%d]", debug_cnt_);
 
 			//‘S‘Ì‰º’n
 			DrawBox(pos_x_, pos_y_, pos_x_ + width_, pos_y_ + height_, color_black_, true);

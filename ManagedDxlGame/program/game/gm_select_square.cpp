@@ -75,14 +75,14 @@ void SelectSquare::Render(dxe::Camera* camera) {
 	if (select_square_) {
 
 		if (select_square_->GetAllyPtrInSquare()) {
-			DrawStringEx(0,0,-1,"ここには味方がいるよ！");
+			//DrawStringEx(0,0,-1,"ここには味方がいるよ！");
 		}
 		else if (select_square_->GetEnemyPtrInSquare()) {
-			DrawStringEx(0,0,-1,"ここには敵がいるよ！");
+			//DrawStringEx(0,0,-1,"ここには敵がいるよ！");
 		}
 	}
 	else {
-		DrawStringEx(0,0,-1,"このコードは失敗してる");
+		//DrawStringEx(0,0,-1,"このコードは失敗してる");
 	}
 
 	//DrawStringEx(0,100,-1,"test:%f",board_squares_[0][0]->getObj()->getBeginPos().x);

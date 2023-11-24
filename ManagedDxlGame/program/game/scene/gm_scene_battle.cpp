@@ -210,10 +210,10 @@ void SceneBattle::Render() {
 
 	battle_media_player_->Render(camera_);
 
-	DrawStringEx(500,0,-1,"delaytimer:[%f]",phase_delay_timer_);
-	if (current_phase_ == Phase::PhaseDelay) {
-		DrawStringEx(500,20,-1,"Now:PhaseDelay");
-	}
+	//DrawStringEx(500,0,-1,"delaytimer:[%f]",phase_delay_timer_);
+	//if (current_phase_ == Phase::PhaseDelay) {
+	//	DrawStringEx(500,20,-1,"Now:PhaseDelay");
+	//}
 
 }
 
@@ -735,7 +735,7 @@ bool SceneBattle::PhaseAllyTurn(const float delta_time)
 
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 
-	DrawStringEx(0, 200, -1, "turnallysquare:row[%d]col[%d]", turn_ally_->GetUnitSquarePos().row, turn_ally_->GetUnitSquarePos().col);
+	//DrawStringEx(0, 200, -1, "turnallysquare:row[%d]col[%d]", turn_ally_->GetUnitSquarePos().row, turn_ally_->GetUnitSquarePos().col);
 
 
 	//DebugCode
@@ -1068,7 +1068,7 @@ bool SceneBattle::PhasePlayerActionCard(const float delta_time) {
 //PhasePlayerCardへ移行する前にカードを引いてなかったら、処理を行うPhase
 bool SceneBattle::PhaseDrawCard(const float delta_time) {
 
-	DrawStringEx(300, 0, -1, "PhaseDrawCard");
+	//DrawStringEx(300, 0, -1, "PhaseDrawCard");
 	current_phase_ = Phase::PhaseDrawCard;
 
 	if (turn_ally_->GetIsDrew()) {
