@@ -23,12 +23,17 @@ public:
 	void Act(UnitEnemy* turn_enemy, Board* board) override;
 
 
-	bool IsAllyActInRange(UnitEnemy* turn_enemy, Board* board);
+	bool IsEnemyActInRange(UnitEnemy* turn_enemy, Board* board);
 	bool IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board);
 	int CalDistance(SquarePos pos1, SquarePos pos2) {
 		return abs(pos1.row - pos2.row) + abs(pos1.col - pos2.col);
 	}
 
+
+	std::vector<SquarePos> GetOneStepAwaySquares(SquarePos pos, Board* board); //渡したマスの1マス離れた移動可能なマスを返す
+	std::vector<SquarePos> GetAllEnemiesOneStepAwaySquares(Board* board); //全てのEnemyの1マス離れた移動可能なマスを返す
+
+	std::pair<SquarePos, std::vector<SquarePos>> GetBestMoveAlongPath(SquarePos start_pos, const std::vector<SquarePos>& targetPositions, Board* board, int move_cost);
 
 private:
 
