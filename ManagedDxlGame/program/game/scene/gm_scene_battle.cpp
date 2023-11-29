@@ -308,12 +308,13 @@ void SceneBattle::DrawDebugLayOut(bool is_draw) {
 
 }
 
+
 void SceneBattle::BattleResultJudgment(Board* board) {
 
 	if (board->GetPartyUnitsInBoard().empty()) {
 
 		//GameOverˆ—
-
+		smgr_->ChengeScene(new SceneBattleResult());
 
 	}
 	else if (board->GetEnemyUnitsInBoard().empty()) {

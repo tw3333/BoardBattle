@@ -4,6 +4,7 @@
 #include "gm_unit_enemy.h"
 #include "gm_board.h"
 
+
 #include <vector>
 #include <cstdlib> // std::rand, std::srand
 #include <ctime> // std::time
@@ -84,23 +85,23 @@ void HealPopoBehavior::Act(UnitEnemy* turn_enemy, Board* board) {
 
 	//Range内のマス目を取得
 	std::vector<SquarePos> in_range_pos;
-	if (turn_enemy_pos.row > 0) {
+	if (turn_enemy_pos.row > 2) {
 		in_range_pos.push_back(SquarePos(turn_enemy_pos.row - 2, turn_enemy_pos.col));
 	}
-	if (turn_enemy_pos.row < 9) {
+	if (turn_enemy_pos.row < 7) {
 		in_range_pos.push_back(SquarePos(turn_enemy_pos.row + 2, turn_enemy_pos.col));
 	}
-	if (turn_enemy_pos.col > 0) {
+	if (turn_enemy_pos.col > 2) {
 		in_range_pos.push_back(SquarePos(turn_enemy_pos.row, turn_enemy_pos.col - 2));
 	}
-	if (turn_enemy_pos.col < 9) {
+	if (turn_enemy_pos.col < 7) {
 		in_range_pos.push_back(SquarePos(turn_enemy_pos.row, turn_enemy_pos.col + 2));
 	}
 
 	//Range内にUnitEnemyがいたらin_range_enemyに追加
 	std::vector<UnitEnemy*> in_range_enemy; //Range内のUnitEnemyを格納
 
-	for (auto& pos : in_range_pos) {
+	for (auto pos : in_range_pos) {
 		if (board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare()) {
 			in_range_enemy.push_back(board->getBoardSquare(pos.row, pos.col)->GetEnemyPtrInSquare());
 		}
@@ -139,7 +140,6 @@ void HealPopoBehavior::Act(UnitEnemy* turn_enemy, Board* board) {
 		if (target_enemy->GetMaxHp() == target_enemy->GetCurrentHp()) {
 			return;
 		}
-
 
 		target_enemy->IncreareCurrentHp(target_enemy->GetCurrentPower()); //Power値を使用
 
