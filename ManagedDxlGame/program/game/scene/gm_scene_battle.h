@@ -24,6 +24,7 @@
 #include "../gm_ui_unit_state_view.h"
 #include "../gm_ui_notice_target_box.h"
 #include "../gm_ui_notice.h"
+#include "../gm_ui_enemy_act_panel.h"
 
 #include "../gm_object.h"
 #include "../gm_object_board.h"
@@ -199,6 +200,7 @@ private:
 	UIUnitStateView* ui_unit_state_view_ = nullptr;
 	UINoticeTargetBox* ui_notice_target_box_ = nullptr;
 	UINotice* ui_notice_ = nullptr;
+	UIEnemyActPanel* ui_enemy_act_panel_ = nullptr;
 
 	//bool
 	bool is_draw_debug_layout_ = false;

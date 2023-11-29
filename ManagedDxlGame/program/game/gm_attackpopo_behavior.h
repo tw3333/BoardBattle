@@ -30,6 +30,11 @@ public:
 		return abs(pos1.row - pos2.row) + abs(pos1.col - pos2.col);
 	}
 
+	std::pair<SquarePos, std::vector<SquarePos>> GetBestMoveAlongPath(SquarePos start_pos, const std::vector<SquarePos>& targetPositions, Board* board, int move_cost);
+
+	std::vector<SquarePos> GetOneStepAwaySquares(SquarePos pos, Board* board); //渡したマスの1マス離れた移動可能なマスを返す
+	std::vector<SquarePos> GetAllAlliesOneStepAwaySquares(Board* board); //全てのAllyの1マス離れた移動可能なマスを返す
+
 private:
 
 	//Move用変数

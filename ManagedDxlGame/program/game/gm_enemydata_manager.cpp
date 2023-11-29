@@ -4,6 +4,7 @@
 #include "gm_slime_behavior.h"
 #include "gm_attackpopo_behavior.h"
 #include "gm_healpopo_behavior.h"
+#include "gm_golem_behavior.h"
 
 #include <vector>
 #include <memory>
@@ -146,6 +147,7 @@ bool EnemyDataManager::LoadEnemyDataFromCSV(const std::string& filepath) {
 }
 
 //“n‚µ‚½EnemyData‚É‘Î‰ž‚·‚éEnemyMove‚ðŠ„‚è“–‚Ä‚é
+//NotUsed
 void EnemyDataManager::AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enemy_data) {
 
 	if (enemy_data->GetEnemyDataID() == 0) {
@@ -163,6 +165,7 @@ void EnemyDataManager::AssignEnemyActToEnemyData(std::shared_ptr<EnemyData> enem
 
 }
 
+//NotUsed
 void EnemyDataManager::AssignEnemyMoveToEnemyData(std::shared_ptr<EnemyData> enemy_data) {
 
 	if (enemy_data->GetEnemyDataID() == 0) {
@@ -182,6 +185,7 @@ void EnemyDataManager::AssignEnemyMoveToEnemyData(std::shared_ptr<EnemyData> ene
 }
 
 //“n‚µ‚½EnemyData‚É‘Î‰ž‚·‚éEnemyBehavior‚ðŠ„‚è“–‚Ä‚é
+//Use
 void EnemyDataManager::AssignEnemyBehaviorToEnemyData(std::shared_ptr<EnemyData> enemy_data) {
 
 	if (enemy_data->GetEnemyDataID() == 0) {
@@ -197,7 +201,7 @@ void EnemyDataManager::AssignEnemyBehaviorToEnemyData(std::shared_ptr<EnemyData>
 		enemy_data->SetEnemyBehavior(std::make_shared<HealPopoBehavior>());
 	}
 	else if (enemy_data->GetEnemyDataID() == 4) {
-		enemy_data->SetEnemyBehavior(std::make_shared<SlimeBehavior>());
+		enemy_data->SetEnemyBehavior(std::make_shared<GolemBehavior>());
 	}
 
 }

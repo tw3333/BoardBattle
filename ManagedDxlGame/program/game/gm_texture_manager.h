@@ -64,4 +64,6 @@ private:
 	int ui_player_action_buttons_graph_handle_[UIPlayerActionButtonsGraph::UIPlayerActionButtonsGraphNum] = {0};
 	int background_graph_handle_[BackGroundGraph::BackGroundGraphNum] = {0};
 
+
+
 };

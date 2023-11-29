@@ -279,6 +279,7 @@
     <ClCompile Include="program\game\scene\gm_scene_selectphase.cpp" />
     <ClCompile Include="program\game\gm_scene_manager.cpp" />
     <ClCompile Include="program\game\scene\gm_scene_title.cpp" />
+    <ClCompile Include="program\game\gm_ui_enemy_act_panel.cpp" />
     <ClCompile Include="program\library\json11.cpp" />
     <ClCompile Include="program\library\tnl_font_texture.cpp" />
     <ClCompile Include="program\library\tnl_inclution_owner_locked.cpp" />
@@ -431,6 +432,7 @@
     <ClInclude Include="program\game\scene\gm_scene_base.h" />
     <ClInclude Include="program\game\gm_scene_manager.h" />
     <ClInclude Include="program\game\scene\gm_scene_title.h" />
+    <ClInclude Include="program\game\gm_ui_enemy_act_panel.h" />
     <ClInclude Include="program\library\json11.hpp" />
     <ClInclude Include="program\library\stb_image.h" />
     <ClInclude Include="program\library\tnl_font_texture.h" />

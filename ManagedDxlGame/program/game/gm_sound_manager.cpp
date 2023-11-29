@@ -44,7 +44,7 @@ void SoundManager::CreateAllyVoiveList() {
 
 	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(1,SoundType::AllyVoice,"sound/se/ally_voice/c1_damaged_voice.mp3"));
 	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(2, SoundType::AllyVoice, "sound/se/ally_voice/c2_damaged_voice.mp3"));
-	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(2, SoundType::AllyVoice, "sound/se/ally_voice/c3_damaged_voice.mp3"));
+	ally_damaged_voice_list_.push_back(std::make_shared<SoundData>(3, SoundType::AllyVoice, "sound/se/ally_voice/c3_damaged_voice.mp3"));
 
 
 
@@ -210,7 +210,7 @@ void SoundManager::PlayAllyDamagedVoice(int id) {
 
 	if (!ally_damaged_voice_list_.empty()) {
 
-		for (auto se : ally_damaged_voice_list_) {
+		for (auto &se : ally_damaged_voice_list_) {
 
 			if (se->GetID() == id) {
 

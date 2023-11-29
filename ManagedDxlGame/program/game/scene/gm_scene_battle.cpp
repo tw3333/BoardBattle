@@ -143,7 +143,7 @@ void SceneBattle::Initialzie() {
 	ui_unit_state_view_->SetAllyBoxUpperLeftPos(10, 10);
 	ui_unit_state_view_->SetEnemyBoxUpperLeftPos((w1 * 8) - 10, 10);
 	ui_notice_ = new UINotice();
-
+	ui_enemy_act_panel_ = new UIEnemyActPanel();
 
 	//Init_BattleMediaPlayer
 	battle_media_player_ = new BattleMediaPlayer();
@@ -178,6 +178,7 @@ void SceneBattle::Update(float delta_time) {
 	ui_card_hand_->SetTurnAlly(turn_ally_);
 	ui_card_hand_->Update(delta_time);
 	ui_notice_->Update(delta_time);
+	ui_enemy_act_panel_->Update(delta_time);
 
 	battle_media_player_->Update(delta_time);
 
@@ -205,6 +206,7 @@ void SceneBattle::Render() {
 	ui_unit_state_view_->Render();
 	ui_card_hand_->Render();
 	ui_action_buttons_->Render();
+	ui_enemy_act_panel_->Render();
 	ui_notice_->Render();
 
 

@@ -15,12 +15,12 @@
 
 void AttackPopoBehavior::Move(UnitEnemy* turn_enemy, Board* board) {
 
-	//Range内にAllyがいた場合は移動しない
+	//1.Range内にAllyがいた場合は移動しない
 	if (IsAllyActInRange(turn_enemy, board)) {
 		return;
 	}
 
-	//Allyが隣接していた場合一マス遠ざかる
+	//2.Allyが隣接していた場合一マス遠ざかる
 	if (IsAllyAdjacent(turn_enemy, board)) {
 
 		SquarePos enemy_pos = turn_enemy->GetUnitSquarePos();
@@ -55,72 +55,22 @@ void AttackPopoBehavior::Move(UnitEnemy* turn_enemy, Board* board) {
 		return;
 	}
 
+	//3.Range内にAllyがいない場合は一番近いAllyに近づく
 	if (!IsAllyActInRange(turn_enemy, board)) {
 
-		//Range内にAllyがいない場合は一番近いAllyに近づく
-		std::vector<UnitAlly*> nearest_allies;
-		int min_distance = INT_MAX;
+		// 全てのAllyの1マス先の移動可能なマスを集める
+		std::vector<SquarePos> all_adjacent_squares = GetAllAlliesOneStepAwaySquares(board);
 
-		for (auto ally : board->GetPartyUnitsInBoard()) {
-			int distance = std::abs(turn_enemy->GetUnitSquarePos().row - ally->GetUnitSquarePos().row)
-				+ std::abs(turn_enemy->GetUnitSquarePos().col - ally->GetUnitSquarePos().col);
+		//アタックポポの現在位置から最短距離にある隣接マスを探す
+		SquarePos current_pos = turn_enemy->GetUnitSquarePos();
+		std::pair<SquarePos, std::vector<SquarePos>> move_data = GetBestMoveAlongPath(current_pos, all_adjacent_squares, board, turn_enemy->GetCurrentMoveCost());
 
-			if (distance < min_distance) {
-				nearest_allies.clear();
-				nearest_allies.push_back(ally);
-				min_distance = distance;
-			}
-			else if (distance == min_distance) {
-				nearest_allies.push_back(ally);
-			}
+		//アタックポポをその位置に移動
+		if (!move_data.second.empty()) {
+			SquarePos new_pos = move_data.second.front(); // これが新しい位置
+			sound_mgr_.PlayAllyMoveSE();
+			turn_enemy->SetUnitSquarePos(new_pos.row, new_pos.col);
 		}
-
-		std::uniform_int_distribution<int> dist(0, nearest_allies.size() - 1);
-		UnitAlly* target_ally = nearest_allies[dist(a_rng)];
-
-		SquarePos start = turn_enemy->GetUnitSquarePos();
-		SquarePos target_pos = target_ally->GetUnitSquarePos();
-		final_pos_ = start;
-		target_pos_ = target_pos;
-
-		// BFSによる計算
-		SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-		std::vector<std::vector<bool>> visited(10, std::vector<bool>(10, false));
-		std::queue<std::pair<SquarePos, int>> q;
-		SquarePos startPos = turn_enemy->GetUnitSquarePos();
-		SquarePos targetPos = target_ally->GetUnitSquarePos();
-
-		q.push({ startPos, turn_enemy->GetCurrentMoveCost() });
-		visited[startPos.row][startPos.col] = true;
-
-		SquarePos nextPos = startPos;
-
-		while (!q.empty()) {
-			SquarePos currPos = q.front().first;
-			int remainingMove = q.front().second;
-			q.pop();
-
-			int currDist = std::abs(currPos.row - targetPos.row) + std::abs(currPos.col - targetPos.col);
-
-			for (SquarePos dir : directions) {
-				SquarePos adjPos = { currPos.row + dir.row, currPos.col + dir.col };
-				int newDist = std::abs(adjPos.row - targetPos.row) + std::abs(adjPos.col - targetPos.col);
-
-				if (adjPos.row >= 0 && adjPos.row < 10 && adjPos.col >= 0 && adjPos.col < 10 && !visited[adjPos.row][adjPos.col] && board->getBoardSquares()[adjPos.row][adjPos.col]->GetIsCanMove()) {
-
-					if (remainingMove > 0 && newDist < currDist) { //移動可能かつターゲットに近づく場合
-						q.push({ adjPos, remainingMove - 1 });
-						visited[adjPos.row][adjPos.col] = true;
-						nextPos = adjPos;  //次の座標に更新
-					}
-				}
-			}
-		}
-
-		//座標更新
-		turn_enemy->SetUnitSquarePos(nextPos.row, nextPos.col);
-		sound_mgr_.PlayAllyMoveSE();
-		return;
 	}
 
 }
@@ -237,4 +187,88 @@ bool AttackPopoBehavior::IsAllyAdjacent(UnitEnemy* turn_enemy, Board* board) {
 	}
 
 	return false;
+}
+
+std::pair<SquarePos, std::vector<SquarePos>> AttackPopoBehavior::GetBestMoveAlongPath(SquarePos start_pos, const std::vector<SquarePos>& targetPositions, Board* board, int move_cost) {
+
+	std::queue<SquarePos> q;
+	std::map<SquarePos, SquarePos> prev;
+	std::vector<SquarePos> path;
+	std::vector<std::vector<bool>> visited(10, std::vector<bool>(10, false));
+	SquarePos directions[] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} }; // 上、下、左、右
+
+	q.push(start_pos);
+	visited[start_pos.row][start_pos.col] = true;
+	prev[start_pos] = { -1, -1 };
+
+	while (!q.empty()) {
+		SquarePos current = q.front();
+		q.pop();
+
+		if (std::find(targetPositions.begin(), targetPositions.end(), current) != targetPositions.end()) {
+			for (SquarePos at = current; at != SquarePos{-1, -1}; at = prev[at]) {
+				path.push_back(at);
+			}
+			std::reverse(path.begin(), path.end());
+			break;
+		}
+
+		for (SquarePos dir : directions) {
+			SquarePos next = { current.row + dir.row, current.col + dir.col };
+			if (next.row >= 0 && next.row < 10 && next.col >= 0 && next.col < 10 && !visited[next.row][next.col] && board->getBoardSquares()[next.row][next.col]->GetIsCanMove()) {
+				q.push(next);
+				visited[next.row][next.col] = true;
+				prev[next] = current;
+			}
+		}
+	}
+
+	// 最短経路をmove_cost分だけ進む
+	std::vector<SquarePos> movePath;
+	int path_length = path.size();
+	if (path_length > 1 && move_cost > 0) { // path_length > 1 はスタート位置を含むため
+		int moves = (std::min)(path_length - 1, move_cost); // スタート位置は除外してカウント
+		movePath.assign(path.begin() + 1, path.begin() + 1 + moves); // +1 はスタート位置をスキップ
+	}
+
+	SquarePos final_pos = movePath.empty() ? start_pos : movePath.back();
+	return { final_pos, movePath };
+
+}
+
+std::vector<SquarePos> AttackPopoBehavior::GetOneStepAwaySquares(SquarePos pos, Board* board) {
+
+	std::vector<SquarePos> ret_one_step_away_squares;
+	SquarePos directions[] = { {-2, 0}, {2, 0}, {0, -2}, {0, 2} }; // 1マス先の位置
+
+	for (SquarePos dir : directions) {
+		SquarePos one_step_away_pos = { pos.row + dir.row, pos.col + dir.col };
+
+		if (one_step_away_pos.row >= 0 && one_step_away_pos.row < 10 && one_step_away_pos.col >= 0 && one_step_away_pos.col < 10
+			&& board->getBoardSquares()[one_step_away_pos.row][one_step_away_pos.col]->GetIsCanMove()) {
+			ret_one_step_away_squares.push_back(one_step_away_pos);
+		}
+	}
+
+	return ret_one_step_away_squares;
+
+}
+
+
+
+std::vector<SquarePos> AttackPopoBehavior::GetAllAlliesOneStepAwaySquares(Board* board) {
+
+	std::vector<SquarePos> ret_all_one_step_away_squares;
+
+	for (int row = 0; row < 10; ++row) {
+		for (int col = 0; col < 10; ++col) {
+			if (board->getBoardSquares()[row][col]->GetAllyPtrInSquare()) {
+				std::vector<SquarePos> one_step_away_squares = GetOneStepAwaySquares(SquarePos{ row, col }, board);
+				ret_all_one_step_away_squares.insert(ret_all_one_step_away_squares.end(), one_step_away_squares.begin(), one_step_away_squares.end());
+			}
+		}
+	}
+
+	return ret_all_one_step_away_squares;
+
 }
