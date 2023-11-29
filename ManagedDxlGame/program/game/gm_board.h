@@ -77,6 +77,8 @@ public:
 	std::vector<UnitEnemy*>& GetEnemyUnitsInBoard() { return enemy_units_in_board_; }
 	std::vector<Unit*> GetAllUnitsInBoard() { return all_units_in_board_; }
 
+	std::vector<SquarePos> GenerateRandomPositions(int count); //引数に入れた数だけランダムな座標が入った配列を返す(重複なし)
+
 
 private:
 

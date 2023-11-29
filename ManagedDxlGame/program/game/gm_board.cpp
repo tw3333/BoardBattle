@@ -276,3 +276,25 @@ void Board::ResetRangeTile() {
 	}
 
 }
+
+std::vector<SquarePos> Board::GenerateRandomPositions(int count) {
+
+	std::vector<SquarePos> ret_positions;
+
+	// 全ての可能なマス目を生成
+	for (int r = 0; r < 10; ++r) {
+		for (int c = 0; c < 10; ++c) {
+			ret_positions.emplace_back(r, c);
+		}
+	}
+
+	// ランダムにシャッフル
+	std::random_device rd;
+	std::mt19937 g(rd());
+	std::shuffle(ret_positions.begin(), ret_positions.end(), g);
+
+	// 指定された数だけのマス目を選択
+	if (count > 100) count = 100; // 盤面の最大数を超えないように
+	return std::vector<SquarePos>(ret_positions.begin(), ret_positions.begin() + count);
+
+}
