@@ -38,9 +38,7 @@ void SceneBattle::Initialzie() {
 	party_[2] = new UnitAlly(allydata_mgr_.GetAllyDataAtID(3), 2, 3);
 
 	for (int i = 0; i < 3; ++i) {
-	/*party_[i]->SetBaseDeck(cmgr_.GetAllCard());
-		party_[i]->SetUseDeck(cmgr_.GetAllCard());
-	*/	
+
 		if (i == 0) {
 			party_[i]->SetBaseDeck(cmgr_.GetC1Deck());
 			party_[i]->SetUseDeck(cmgr_.GetC1Deck());
@@ -60,18 +58,13 @@ void SceneBattle::Initialzie() {
 			party_[i]->ShuffleUseDeck();
 		}
 
-		//party_[i]->AssignSerialNumberToUseDeck();
-		//party_[i]->ShuffleUseDeck();
-
 	}
 
-	party_[0]->SetTauntValue(500);
+	//party_[0]->SetTauntValue(500);
 	party_units_.push_back(party_[0]);
 	party_units_.push_back(party_[1]);
 	party_units_.push_back(party_[2]);
 
-	party_units_[0]->AddShieldValue(20);
-	party_units_[0]->AddBattleState(BattleState(State::Blood, 3, 3));
 	//party_units_[0]->AddBattleState(BattleState(State::Stun, 3, 3));
 	//party_units_[0]->AddBattleState(BattleState(State::Snare, 3, 3));
 
@@ -123,7 +116,6 @@ void SceneBattle::Initialzie() {
 	board_->SetPartyUnitsInBoard(party_units_);
 	board_->SetEnemyUnitsInBoard(enemy_units_);
 	board_->SetAllUnitsInBoard(all_units_);
-
 
 	select_square_ = new SelectSquare(board_->getBoardSquares());
 
@@ -1126,10 +1118,30 @@ bool SceneBattle::PhaseDrawCard(const float delta_time) {
 	}
 
 	//山札と手札が空の場合のみ、山札を元に戻す
-	if (turn_ally_->GetUseDeck().empty() && turn_ally_->GetUseDeck().empty()) {
+	if (turn_ally_->GetUseDeck().empty() && turn_ally_->GetHand().empty()) {
 
+		//デッキのリセット処理
+		turn_ally_->SetUseDeck(turn_ally_->GetBaseDeck());
+		turn_ally_->AssignSerialNumberToUseDeck();
+		turn_ally_->ShuffleUseDeck();
+
+		int cnt = 0; //for用変数
+		//手札にカードを追加、削除するカードのシリアル番号を取得
+		for (int i = turn_ally_->GetUseDeck().size() - 1; i >= 0 && cnt < 5; --i) {
+
+			auto card = turn_ally_->GetUseDeck()[i];
+			turn_ally_->AddCardToHand(card);
+			turn_ally_->GetUseDeck().pop_back();
+			cnt++;
+		}
+
+		turn_ally_->SetIsDrewInitCard(true);
+		turn_ally_->SetIsDrew(true);
+		sound_mgr_.PlayUISE(UISE::AddCard);
+
+		prior_phase_ = Phase::PhaseDrawCard;
+		phase_.change(&SceneBattle::PhasePlayerActionCard);
 	}
-
 
 	return true;
 }
