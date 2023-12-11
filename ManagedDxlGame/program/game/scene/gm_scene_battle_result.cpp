@@ -11,9 +11,7 @@ void SceneBattleResult::Initialzie()
 
 void SceneBattleResult::Update(float delta_time) {
 
-	if () {
-
-	}
+	
 
 
 

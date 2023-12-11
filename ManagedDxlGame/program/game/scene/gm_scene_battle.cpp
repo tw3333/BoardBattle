@@ -198,7 +198,7 @@ void SceneBattle::Render() {
 	ui_unit_state_view_->Render();
 	ui_card_hand_->Render();
 	ui_action_buttons_->Render();
-	ui_enemy_act_panel_->Render();
+	//ui_enemy_act_panel_->Render();
 	ui_notice_->Render();
 
 

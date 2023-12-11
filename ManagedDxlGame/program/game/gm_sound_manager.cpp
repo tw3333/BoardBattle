@@ -18,7 +18,7 @@ void SoundManager::CreateBattleBGMList() {
 
 
 	//SetVolumeMusicMem(0,battle_bgm_list_[0]->GetSoundHandle());
-	ChangeVolumeSoundMem(5, battle_bgm_list_[0]->GetSoundHandle());
+	ChangeVolumeSoundMem(20, battle_bgm_list_[0]->GetSoundHandle());
 
 
 
