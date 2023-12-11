@@ -14,11 +14,11 @@ void SoundManager::CreateBattleBGMList() {
 
 	
 
-	battle_bgm_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::BGM,"sound/bgm/battle1.mp3"));
+	battle_bgm_list_.emplace_back(std::make_shared<SoundData>(1,SoundType::BGM,"sound/bgm/bgm_battle_1.mp3"));
 
 
 	//SetVolumeMusicMem(0,battle_bgm_list_[0]->GetSoundHandle());
-	ChangeVolumeSoundMem(20, battle_bgm_list_[0]->GetSoundHandle());
+	ChangeVolumeSoundMem(50, battle_bgm_list_[0]->GetSoundHandle());
 
 
 
@@ -182,7 +182,7 @@ void SoundManager::PlayBattleBGM(int id) {
 
 		if (bbl->GetID() == id) {
 
-			PlaySoundMem(bbl->GetSoundHandle(), DX_PLAYTYPE_LOOP, false);
+			PlaySoundMem(bbl->GetSoundHandle(), DX_PLAYTYPE_LOOP, true);
 			break;
 		}
 	}
